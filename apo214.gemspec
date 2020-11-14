@@ -6,7 +6,7 @@ require "apo214/version"
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
   spec.name        = "apo214"
-  spec.version     = Ap214::VERSION
+  spec.version     = Apo214::VERSION
   spec.authors     = ["Vladimir Támara Patiño"]
   spec.email       = ["vtamara@pasosdeJesus.org"]
   spec.homepage    = "https://github.com/pasosdeJesus/apo214"

@@ -1,4 +1,4 @@
-module Ap214
+module Apo214
   class Ability  < Heb412Gen::Ability
 
     GRUPO_DESAPARICION_CASOS = 25

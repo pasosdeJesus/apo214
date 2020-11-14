@@ -44,7 +44,7 @@ GIT
 PATH
   remote: .
   specs:
-    ap214 (0.1.0)
+    apo214 (0.1.0)
       rails (~> 6.0.3, >= 6.0.3.2)
       sip
 
@@ -324,7 +324,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ap214!
+  apo214!
   bcrypt
   bootsnap (>= 1.1.0)
   cancancan

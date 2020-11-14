@@ -1,4 +1,4 @@
-class Ability  < Ap214::Ability
+class Ability  < Apo214::Ability
 
   # Autorizacion con CanCanCan
   def initialize(usuario = nil)

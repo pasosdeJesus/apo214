@@ -1,4 +1,4 @@
-module Ap214
+module Apo214
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
   end

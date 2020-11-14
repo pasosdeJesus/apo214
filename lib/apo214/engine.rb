@@ -1,6 +1,6 @@
-module Ap214
+module Apo214
   class Engine < ::Rails::Engine
-    isolate_namespace Ap214
+    isolate_namespace Apo214
 
     config.generators do |g|
       g.test_framework      :minitest,        :fixture => false
