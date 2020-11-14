@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount Ap214::Engine => "/ap214"
+  mount Ap214::Engine => "/apo214"
 end

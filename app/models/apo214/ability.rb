@@ -11,7 +11,7 @@ module Ap214
     end
 
     # Establece autorizaciones con CanCanCan
-    def initialize_ap214(usuario = nil)
+    def initialize_apo214(usuario = nil)
       if !usuario || !usuario.rol
         return
       end

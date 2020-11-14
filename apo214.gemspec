@@ -1,15 +1,15 @@
 $:.push File.expand_path("lib", __dir__)
 
 # Maintain your gem's version:
-require "ap214/version"
+require "apo214/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
-  spec.name        = "ap214"
+  spec.name        = "apo214"
   spec.version     = Ap214::VERSION
   spec.authors     = ["Vladimir Támara Patiño"]
   spec.email       = ["vtamara@pasosdeJesus.org"]
-  spec.homepage    = "https://github.com/pasosdeJesus/ap214"
+  spec.homepage    = "https://github.com/pasosdeJesus/apo214"
   spec.summary     = "Motor de desaparición para sivel2_gen."
   spec.description = "Agrega elementos para registrar desapariciones a sivel2_gen"
   spec.license     = "ISC"

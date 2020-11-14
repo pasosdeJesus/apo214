@@ -1,14 +1,59 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Dummy</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<% content_for :title do %>
+    <%= Sip.titulo %>
+<% end %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-  </head>
+<% content_for :marca do %>
+    <%= Sip.titulo %>
+<% end %>
 
-  <body>
-    <%= yield %>
-  </body>
-</html>
+<% content_for :menu do %>
+  <%= grupo_menus do %>
+    <% if !current_usuario.nil? %>
+        <%= opcion_menu "Actores sociales", sip.actoressociales_path %>
+        <%= opcion_menu "Personas", sip.personas_path %>
+    <% end %>
+  <% end %>
+  <%= grupo_menus :pull => :right do %>
+    <% if !current_usuario.nil? %>
+      <%= despliega_abajo "Documentos" do %>
+        <%= opcion_menu "Nube", heb412_gen.sisini_path, 
+          desplegable: true %>
+        <%= opcion_menu "Plantillas para listados", 
+          heb412_gen.plantillashcm_path,
+          desplegable: true %>
+        <%= opcion_menu "Plantillas para un registro", 
+          heb412_gen.plantillashcr_path,
+          desplegable: true %>
+      <% end %>
+      <%= despliega_abajo "Administrar" do %>
+        <%= opcion_menu "Clave y tema", main_app.editar_registro_usuario_path,
+          desplegable: true %>
+        <% if current_usuario.rol == Ability::ROLADMIN %>
+          <%= opcion_menu "Usuarios", main_app.usuarios_path,
+            desplegable: true %>
+        <% end %>
+        <% if can? :manage, Mr519Gen::Formulario %>
+          <%= opcion_menu "Formularios", mr519_gen.formularios_path, 
+            desplegable: true %>
+        <% end %>
+        <% if current_usuario.rol == Ability::ROLADMIN %>
+          <%= opcion_menu "Tablas Básicas", sip.tablasbasicas_path,
+            desplegable: true %>
+        <% end %>
+      <% end %>
+      <%= opcion_menu "Salir #{current_usuario.nusuario}", 
+        main_app.sign_out_path %>
+    <% else %>
+      <%= opcion_menu "Acerca de", '/acercade' %>
+      <%= opcion_menu "Iniciar Sesión", main_app.new_usuario_session_path %> 
+    <% end %>
+  <% end %>
+<% end %>
+
+<% content_for :footer do %>
+  <p><span class='derechos'>Dominio Público de acuerdo a Legislación Colombiana<br/>
+    Desarrollado por <a href="http://www.pasosdeJesus.org" target="_blank">Pasos de Jesús</a>. 2016. 
+  </span></p>
+<% end %>
+
+<%= render template: "layouts/sip/application" %>
