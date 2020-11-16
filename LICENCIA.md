@@ -1,7 +1,9 @@
 Licencia ISC
 
 
-Derechos de Autor (c) 2020, Vladimir Támara Patiño vtamara@pasosdeJesus.org
+Derechos de Autor (c) 2020, 
+  Vladimir Támara Patiño vtamara@pasosdeJesus.org,
+  Luis Alejandro Cruz alejocruzzz@gmail.com
 
 Se otorga permiso para usar, copiar, modificar y/o distribuir este programa 
 con cualquier propósito con o sin pago, siempre y cuando la anterior nota 
