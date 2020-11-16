@@ -1,8 +1,6 @@
 ISC License
 
-Copyright (c) 2020, 
-  Vladimir Támara Patiño vtamara@pasosdeJesus.org,
-  Luis Alejandro Cruz alejocruzzz@gmail.com
+Copyright (c) 2020, Vladimir Támara Patiño vtamara@pasosdeJesus.org, Luis Alejandro Cruz alejocruzzz@gmail.com
 
 
 Permission to use, copy, modify, and/or distribute this software for any 
