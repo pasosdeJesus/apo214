@@ -72,6 +72,10 @@ gem 'heb412_gen',  # Motor de nube y llenado de plantillas
   git: 'https://github.com/pasosdeJesus/heb412_gen.git'
   #path: '../heb412_gen'
 
+gem 'sivel2_gen',  # Motor de nube y llenado de plantillas
+  git: 'https://github.com/pasosdeJesus/sivel2_gen.git'
+  #path: '../sivel2_gen'
+
 group  :development, :test do
  
   #gem 'byebug' # Depurar

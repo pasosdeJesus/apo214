@@ -1,12 +1,18 @@
 module Apo214
-  class Ability  < Heb412Gen::Ability
+  class Ability  < Sivel2Gen::Ability
 
     GRUPO_DESAPARICION_CASOS = 25
+
 
     def tablasbasicas
       r = (Sip::Ability::BASICAS_PROPIAS - 
            [['Sip', 'oficina']]
-          ) 
+          ) + Sivel2Gen::Ability::BASICAS_PROPIAS - [
+            ['Sivel2Gen', 'actividadoficio'],
+            ['Sivel2Gen', 'escolaridad'],
+            ['Sivel2Gen', 'estadocivil'],
+            ['Sivel2Gen', 'maternidad'] 
+          ]
           return r
     end
 
@@ -17,7 +23,7 @@ module Apo214
       end
       case usuario.rol
       when Ability::ROLADMIN
-        can :manage, Mr519Gen::Encuestausuario
+        can :manage, Apo214::Lugarpreliminar
       end
     end
 

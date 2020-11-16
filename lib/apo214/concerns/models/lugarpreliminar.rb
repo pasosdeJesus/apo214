@@ -1,0 +1,46 @@
+# encoding: UTF-8
+
+module Apo214
+  module Concerns
+    module Models
+      module Lugarpreliminar
+        extend ActiveSupport::Concern
+
+        included do
+          include Sip::Modelo
+          include Sip::Localizacion
+
+          campofecha_localizado :fecha
+          
+          belongs_to :persona, foreign_key: "id_persona", dependent: :destroy,
+           class_name: 'Sip::Persona'
+          accepts_nested_attributes_for :persona, reject_if: :all_blank
+          belongs_to :ubicacionpre, class_name: 'Sip::Ubicacionpre', 
+            foreign_key: 'ubicacionpre_id', optional: true
+          belongs_to :tipotestigo, class_name: 'Apo214::Tipotestigo',
+            foreign_key: 'tipotestigo_id', optional: true
+          
+          attr_accessor :ubicacionpre_texto
+          attr_accessor :ubicacionpre_mundep_texto
+
+          def ubicacionpre_texto
+            if self.ubicacionpre
+              self.ubicacionpre.nombre
+            else
+              ''
+            end
+          end
+
+
+          def ubicacionpre_mundep_texto
+            if self.ubicacionpre
+              self.ubicacionpre.nombre_sin_pais
+            else
+              ''
+            end
+          end
+        end
+      end
+    end
+  end
+end
