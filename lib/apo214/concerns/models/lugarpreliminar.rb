@@ -11,7 +11,7 @@ module Apo214
           include Sip::Localizacion
 
           campofecha_localizado :fecha
-          
+
           belongs_to :persona, foreign_key: "id_persona", dependent: :destroy,
            class_name: 'Sip::Persona'
           accepts_nested_attributes_for :persona, reject_if: :all_blank
@@ -19,7 +19,7 @@ module Apo214
             foreign_key: 'ubicacionpre_id', optional: true
           belongs_to :tipotestigo, class_name: 'Apo214::Tipotestigo',
             foreign_key: 'tipotestigo_id', optional: true
-          
+
           attr_accessor :ubicacionpre_texto
           attr_accessor :ubicacionpre_mundep_texto
 

@@ -88,8 +88,8 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
 
   // Autocompleta ubicacionpre en lugar preliminar
   $(document).on('focusin',
-    'input[id^=lugarpreliminar_ubicacionpre_texto]', function (e) {
-      sip_busca_ubicacionpre($(this))
+    'input[id^=lugarpreliminar_ubicacionpre_mundep_texto]', function (e) {
+      sip_busca_ubicacionpre_mundep($(this))
     })
 
   // Autocompleta aportante en lugar preliminar
