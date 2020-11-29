@@ -20,6 +20,10 @@ module Apo214
           belongs_to :tipotestigo, class_name: 'Apo214::Tipotestigo',
             foreign_key: 'tipotestigo_id', optional: true
 
+          validates :min_depositados, :numericality => { greater_than_or_equal_to: 0 },
+            :allow_nil => true
+          validates :max_depositados, :numericality => { greater_than_or_equal_to: 0 },
+            :allow_nil => true
           validate :es_menor_que_max
 
           def es_menor_que_max
