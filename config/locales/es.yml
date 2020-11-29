@@ -5,17 +5,24 @@ es:
     fechadeshabilitacion: Deshabilitación 
     fechadeshabilitacion_localizada: Deshabilitación 
   activerecord:
-    models:
     attributes:
+      "apo214/tipotestigo":
+        Tipotestigo: Tipo de testigo
+        Tipostestigo: Tipos de testigo
+      "apo214/disposicioncadaveres":
+        Disposicioncadaveres: Disposicion de cadáveres
+        Disposicionescadaveres: Disposiciones de cadáveres
       "apo214/lugarpreliminar":
         Lugarpreliminar: Lugar preliminar de disposición irregular de cadáveres
         Lugarespreliminares: Lugares preliminares de disposición irregular de cadáveres
         codigositio: Código de Sitio
+        disposicioncadaveres: Disposición de cadáveres
         fecha_localizada: Fecha
         hechos: Presuntos Hechos
         nombreusuario: Nombre de quien diligencia el formato
         organizacion: Organización/Entidad perteneciente
         otrotipotestigo: ¿Otro tipo de testigo? ¿Cuál?
+        otradisposicioncadaveres: ¿Otra? ¿Cuál?
         tipotestigo: Tipo de testigo
         ubicacionpre_id: Ubicación 
         ubicaespecifica:  Ubicación del sitio de disposición (detalles más específicos)
