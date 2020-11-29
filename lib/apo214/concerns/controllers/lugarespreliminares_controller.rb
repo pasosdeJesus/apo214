@@ -93,6 +93,8 @@ module Apo214
               :id,
               :nombreusuario,
               :hechos,
+              :max_depositados,
+              :min_depositados,
               :organizacion,
               :otrotipotestigo,
               :parentezco,

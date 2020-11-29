@@ -20,6 +20,14 @@ module Apo214
           belongs_to :tipotestigo, class_name: 'Apo214::Tipotestigo',
             foreign_key: 'tipotestigo_id', optional: true
 
+          validate :es_menor_que_max
+
+          def es_menor_que_max
+            if max_depositados < min_depositados
+               errors.add(:max_depositados, 'El número máximo de individuos depositados debe ser mayor que el mínimo')
+            end
+          end
+
           attr_accessor :ubicacionpre_texto
           attr_accessor :ubicacionpre_mundep_texto
 

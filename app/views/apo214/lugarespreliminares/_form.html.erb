@@ -171,6 +171,19 @@
             <%= f.input :ubicaespecifica %>
           </div>
         </div> <!-- row -->
+        <div class="row">
+          <div class="col-md-2">
+            Número estimado de individuos depositados
+          </div>
+          <div class="col-md-1">
+            Mín. <%= f.input :min_depositados,
+              label: false,
+              input_html: { min: '0'} %>
+            Máx. <%= f.input :max_depositados,
+              label: false,
+              input_html: { min: '0'} %>
+          </div>
+        </div> <!-- row -->
       </div><!-- collapse -->
     </div> <! -- multicollapse -->
 
