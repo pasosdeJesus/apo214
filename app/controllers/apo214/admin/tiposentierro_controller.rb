@@ -15,16 +15,6 @@ module Apo214
         @basica = Apo214::Tipoentierro.find(params[:id])
       end
 
-      def atributos_index
-        [
-          :id, 
-          :nombre, 
-          :observaciones, 
-          :fechacreacion_localizada, 
-          :habilitado
-        ]
-      end
-
       def genclase
         'M'
       end
