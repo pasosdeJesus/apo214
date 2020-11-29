@@ -16,4 +16,5 @@
 # end
 ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'lugarpreliminar', 'lugarespreliminares'
+	inflect.irregular 'tipoentierro', 'tiposentierro'
 end

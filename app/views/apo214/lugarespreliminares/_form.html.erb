@@ -171,6 +171,17 @@
             <%= f.input :ubicaespecifica %>
           </div>
         </div> <!-- row -->
+        <div class="row">
+          <div class="col-md-6">
+          </div>
+          <div class="col-md-6">
+            <%= f.association :tipoentierro,
+              collection: Apo214::Tipoentierro.habilitados,
+              include_blank: true,
+              label_method: :nombre, 
+              value_method: :id
+            %>
+          </div>
       </div><!-- collapse -->
     </div> <! -- multicollapse -->
 

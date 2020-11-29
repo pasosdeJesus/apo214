@@ -19,6 +19,8 @@ module Apo214
             foreign_key: 'ubicacionpre_id', optional: true
           belongs_to :tipotestigo, class_name: 'Apo214::Tipotestigo',
             foreign_key: 'tipotestigo_id', optional: true
+          belongs_to :tipoentierro, class_name: 'Apo214::Tipoentierro',
+            foreign_key: 'tipoentierro_id', optional: true
 
           attr_accessor :ubicacionpre_texto
           attr_accessor :ubicacionpre_mundep_texto

@@ -98,6 +98,7 @@ module Apo214
               :parentezco,
               :telefono,
               :tipotestigo_id,
+              :tipoentierro_id,
               :ubicacionpre_id,
               :ubicacionpre_texto,
               :ubicaespecifica,
