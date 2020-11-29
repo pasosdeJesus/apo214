@@ -3,6 +3,10 @@ module Apo214
 
     GRUPO_DESAPARICION_CASOS = 25
 
+    BASICAS_PROPIAS = [
+      ['Apo214', 'tipotestigo'],
+      ['Apo214', 'disposicioncadaveres']
+    ]
 
     def tablasbasicas
       r = (Sip::Ability::BASICAS_PROPIAS - 
@@ -11,8 +15,9 @@ module Apo214
             ['Sivel2Gen', 'actividadoficio'],
             ['Sivel2Gen', 'escolaridad'],
             ['Sivel2Gen', 'estadocivil'],
-            ['Sivel2Gen', 'maternidad'] 
-          ]
+            ['Sivel2Gen', 'maternidad']
+          ] +
+          BASICAS_PROPIAS
           return r
     end
 

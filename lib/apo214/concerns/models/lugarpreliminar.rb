@@ -19,6 +19,11 @@ module Apo214
             foreign_key: 'ubicacionpre_id', optional: true
           belongs_to :tipotestigo, class_name: 'Apo214::Tipotestigo',
             foreign_key: 'tipotestigo_id', optional: true
+          belongs_to :disposicioncadaveres, class_name: 'Apo214::Disposicioncadaveres',
+            foreign_key: 'disposicioncadaveres_id', optional: true
+
+          validates_length_of :otradisposicioncadaveres, maximum: 1000
+          validates_length_of :otrotipotestigo, maximum: 1000
 
           attr_accessor :ubicacionpre_texto
           attr_accessor :ubicacionpre_mundep_texto
