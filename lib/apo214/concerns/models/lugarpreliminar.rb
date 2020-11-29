@@ -23,6 +23,7 @@ module Apo214
             foreign_key: 'disposicioncadaveres_id', optional: true
 
           validates_length_of :otradisposicioncadaveres, maximum: 1000
+          validates_length_of :otrotipotestigo, maximum: 1000
 
           attr_accessor :ubicacionpre_texto
           attr_accessor :ubicacionpre_mundep_texto
