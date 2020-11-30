@@ -109,4 +109,17 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
       }
     }
   )
+
+  // Al elegir otra disposicion cadaveres se despliega el campo otra
+  $(document).on('change', 'select[id=lugarpreliminar_disposicioncadaveres_id]', 
+    function (e) {
+      div_otradis = $(this).parent().parent().siblings().
+        find($('.otradisposicioncadaveres'))
+      if ($(this).val() == '4') {
+        div_otradis.css("display", "block")
+      } else {
+        div_otradis.css("display", "none")
+      }
+    }
+  )
 };
