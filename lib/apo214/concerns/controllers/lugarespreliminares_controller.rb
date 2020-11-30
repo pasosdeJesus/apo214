@@ -94,6 +94,8 @@ module Apo214
               :nombreusuario,
               :disposicioncadaveres_id,
               :hechos,
+              :max_depositados,
+              :min_depositados,
               :organizacion,
               :otradisposicioncadaveres,
               :otrotipotestigo,
