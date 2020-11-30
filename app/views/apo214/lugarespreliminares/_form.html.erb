@@ -173,15 +173,31 @@
         </div> <!-- row -->
         <div class="row">
           <div class="col-md-6">
-          </div>
-          <div class="col-md-6">
             <%= f.association :tipoentierro,
               collection: Apo214::Tipoentierro.habilitados,
               include_blank: true,
               label_method: :nombre, 
               value_method: :id
             %>
+          <div class="col-md-3">
+            <%= f.association :disposicioncadaveres,
+              collection: Apo214::Disposicioncadaveres.habilitados,
+              include_blank: true,
+              label_method: :nombre, 
+              value_method: :id
+            %>
           </div>
+          <div class="col-md-3">
+            <% if f.object.otradisposicioncadaveres && f.object.disposicioncadaveres.id == 4 %>
+              <% esdis = "display: block" %>
+            <% else %>
+              <% esdis = "display: none" %>
+            <% end %>
+            <div class="otradisposicioncadaveres" style="<%= esdis %>">
+              <%= f.input :otradisposicioncadaveres %>
+            </div>
+          </div>
+        </div>
       </div><!-- collapse -->
     </div> <! -- multicollapse -->
 

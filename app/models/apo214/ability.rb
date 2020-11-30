@@ -4,7 +4,9 @@ module Apo214
     GRUPO_DESAPARICION_CASOS = 25
 
     BASICAS_PROPIAS = [
-      ['Apo214', 'tipoentierro']
+      ['Apo214', 'tipoentierro'],
+      ['Apo214', 'tipotestigo'],
+      ['Apo214', 'disposicioncadaveres']
     ]
 
     def tablasbasicas
