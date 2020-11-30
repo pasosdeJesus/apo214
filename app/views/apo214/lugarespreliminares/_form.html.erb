@@ -171,14 +171,16 @@
             <%= f.input :ubicaespecifica %>
           </div>
         </div> <!-- row -->
+        
         <div class="row">      
-         <div class="col-md-6">
+          <div class="col-md-6">
             <%= f.association :tipoentierro,
               collection: Apo214::Tipoentierro.habilitados,
               include_blank: true,
               label_method: :nombre, 
               value_method: :id
             %>
+          </div>
           <div class="col-md-3">
             <%= f.association :disposicioncadaveres,
               collection: Apo214::Disposicioncadaveres.habilitados,
@@ -200,10 +202,10 @@
         </div> <!-- row -->
         
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-3">
             Número estimado de individuos depositados
           </div>
-          <div class="col-md-1">
+          <div class="col-md-3">
             Mín. <%= f.input :min_depositados,
               label: false,
               input_html: { min: '0'} %>
@@ -213,6 +215,31 @@
           </div>
         </div> <!-- row -->
 
+        <div class="row">
+          <div class="col-md-6">
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                Fecha de disposición
+              </div>
+              <div class="col-md-6">
+                <%= f.input :fechadis, 
+                  label: false,
+                  :input_html => { "data-behaviour" => "datepicker" },
+                  :as => :string %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                Hora de disposición
+              </div>
+              <div class="col-md-6">
+                <%= f.time_select :horadis, {ampm: true} %>
+              </div>
+            </div>
+          </div>
+        </div> <!-- row -->
       </div><!-- collapse -->
     </div> <! -- multicollapse -->
 

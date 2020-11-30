@@ -89,7 +89,9 @@ module Apo214
             params.require(:lugarpreliminar).permit(
             [ :codigositio,
               :fecha,
+              :fechadis,
               :grabacion,
+              :horadis,
               :id,
               :nombreusuario,
               :disposicioncadaveres_id,
