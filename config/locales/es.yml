@@ -6,6 +6,9 @@ es:
     fechadeshabilitacion_localizada: Deshabilitación 
   activerecord:
     attributes:
+      "apo214/tipoentierro":
+        Tipoentierro: Tipo de enterramiento
+        Tiposentierro: Tipos de enterramiento
       "apo214/tipotestigo":
         Tipotestigo: Tipo de testigo
         Tipostestigo: Tipos de testigo
@@ -24,5 +27,6 @@ es:
         otrotipotestigo: ¿Otro tipo de testigo? ¿Cuál?
         otradisposicioncadaveres: ¿Otra? ¿Cuál?
         tipotestigo: Tipo de testigo
+        tipoentierro: Tipo de enterramiento
         ubicacionpre_id: Ubicación 
         ubicaespecifica:  Ubicación del sitio de disposición (detalles más específicos)

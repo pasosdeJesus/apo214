@@ -172,6 +172,13 @@
           </div>
         </div> <!-- row -->
         <div class="row">
+          <div class="col-md-6">
+            <%= f.association :tipoentierro,
+              collection: Apo214::Tipoentierro.habilitados,
+              include_blank: true,
+              label_method: :nombre, 
+              value_method: :id
+            %>
           <div class="col-md-3">
             <%= f.association :disposicioncadaveres,
               collection: Apo214::Disposicioncadaveres.habilitados,
