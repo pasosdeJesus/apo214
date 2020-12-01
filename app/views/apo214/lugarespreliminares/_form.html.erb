@@ -171,7 +171,6 @@
             <%= f.input :ubicaespecifica %>
           </div>
         </div> <!-- row -->
-        
         <div class="row">      
           <div class="col-md-6">
             <%= f.association :tipoentierro,
@@ -200,7 +199,6 @@
             </div>
           </div>
         </div> <!-- row -->
-        
         <div class="row">
           <div class="col-md-3">
             Número estimado de individuos depositados
@@ -240,6 +238,42 @@
             </div>
           </div>
         </div> <!-- row -->
+        <div class="row">
+          <div class="col-md-2">
+            Lugar del asesinato
+          </div>
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-2"> 
+                <% if !f.object.insitu.nil? %>
+                  <% ch = f.object.insitu %>
+                <% else %>
+                  <% ch = true %>
+                <% end %>
+                <%= f.input :insitu, 
+                  :input_html => { checked: ch } %>
+              </div>
+              <% if !f.object.insitu.nil? && f.object.insitu == false %>
+                <% estol = "display: block" %>
+              <% else %>
+                <% estol = "display: none" %>
+              <% end %>
+              <div class="col-md-10" >
+                <%= render partial: 'campo_otrolugarasesinato', 
+                  locals: {f: f, estol: estol, con_label: false} %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                Detalles:
+              </div>
+              <div class="col-md-10">
+                <%= f.input :detallesasesinato,
+                  label: false %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div><!-- collapse -->
     </div> <! -- multicollapse -->
 

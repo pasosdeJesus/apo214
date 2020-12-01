@@ -17,6 +17,8 @@ module Apo214
           accepts_nested_attributes_for :persona, reject_if: :all_blank
           belongs_to :ubicacionpre, class_name: 'Sip::Ubicacionpre', 
             foreign_key: 'ubicacionpre_id', optional: true
+          belongs_to :otrolubicacionpre, class_name: 'Sip::Ubicacionpre', 
+            foreign_key: 'otrolubicacionpre_id', optional: true
           belongs_to :tipotestigo, class_name: 'Apo214::Tipotestigo',
             foreign_key: 'tipotestigo_id', optional: true
           belongs_to :tipoentierro, class_name: 'Apo214::Tipoentierro',
@@ -40,11 +42,20 @@ module Apo214
           end
 
           attr_accessor :ubicacionpre_texto
+          attr_accessor :otrolubicacionpre_texto
           attr_accessor :ubicacionpre_mundep_texto
 
           def ubicacionpre_texto
             if self.ubicacionpre
               self.ubicacionpre.nombre
+            else
+              ''
+            end
+          end
+
+          def otrolubicacionpre_texto
+            if self.otrolubicacionpre
+              self.otrolubicacionpre.nombre
             else
               ''
             end

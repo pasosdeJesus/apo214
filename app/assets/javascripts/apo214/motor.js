@@ -92,6 +92,12 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
       sip_busca_ubicacionpre_mundep($(this))
     })
 
+  // Autocompleta otrolugarasesinato en lugar preliminar
+  $(document).on('focusin',
+    'input[id^=lugarpreliminar_otrolubicacionpre_texto]', function (e) {
+      sip_busca_ubicacionpre($(this))
+    })
+
   // Autocompleta aportante en lugar preliminar
   $(document).on('focusin', 'input[id^=lugarpreliminar_persona_attributes][id$=_nombres]', function (e) {
     apo214_busca_aportante($(this), root)
@@ -119,6 +125,16 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
         div_otradis.css("display", "block")
       } else {
         div_otradis.css("display", "none")
+
+  // Al no elegir insitu se habilita campo otro lugar asesinato
+  $(document).on('change', 'input[id=lugarpreliminar_insitu]', 
+    function (e) {
+      div_otrolugaras = $(this).parent().parent().siblings().
+        find($('.otrolugarasesinato'))
+      if (this.checked == false) {
+        div_otrolugaras.css("display", "block")
+      } else {
+        div_otrolugaras.css("display", "none")
       }
     }
   )

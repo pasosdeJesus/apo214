@@ -88,11 +88,13 @@ module Apo214
           def lugarpreliminar_params
             params.require(:lugarpreliminar).permit(
             [ :codigositio,
+              :detallesasesinato,
               :fecha,
               :fechadis,
               :grabacion,
               :horadis,
               :id,
+              :insitu,
               :nombreusuario,
               :disposicioncadaveres_id,
               :hechos,
@@ -106,7 +108,9 @@ module Apo214
               :tipotestigo_id,
               :tipoentierro_id,
               :ubicacionpre_id,
+              :otrolubicacionpre_id,
               :ubicacionpre_texto,
+              :otrolubicacionpre_texto,
               :ubicaespecifica,
               :persona_attributes => [
                 :anionac,
