@@ -1,9 +1,9 @@
 <tr class='nested-fields'>
-  <% if f.object.persona.nil? %>
-    <% f.object.persona = Sip::Persona.new %>
+  <% if f.object.personadepositada.nil? %>
+    <% f.object.personadepositada = Sip::Persona.new %>
   <% end %>
 
-  <%= f.simple_fields_for :persona do |p| %>
+  <%= f.simple_fields_for :personadepositada do |p| %>
     <td>
       <%= p.input :id, as: :hidden %>
       <% ph = 'N'

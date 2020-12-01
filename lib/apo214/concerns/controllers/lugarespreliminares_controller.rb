@@ -110,8 +110,10 @@ module Apo214
               :ubicacionpre_id,
               :otrolubicacionpre_id,
               :ubicacionpre_texto,
+              :ubicacionpre_mundep_texto,
               :otrolubicacionpre_texto,
               :ubicaespecifica,
+              :id_persona,
               :persona_attributes => [
                 :anionac,
                 :apellidos,
@@ -131,7 +133,7 @@ module Apo214
               :listadepositados_attributes => [
                 :id,
                 :_destroy,
-                :persona_attributes => [
+                :personadepositada_attributes => [
                   :apellidos, 
                   :id, 
                   :nombres, 

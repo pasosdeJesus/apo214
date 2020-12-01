@@ -30,8 +30,8 @@ module Apo214
             class_name: 'Apo214::Listadepositados',
             foreign_key: 'lugarpreliminar_id'
 
-          has_many :persona, through: :listadepositados, class_name: 'Sip::Persona'
-          accepts_nested_attributes_for :persona, reject_if: :all_blank
+          has_many :personadepositada, through: :listadepositados, class_name: 'Sip::Persona'
+          accepts_nested_attributes_for :personadepositada, reject_if: :all_blank
           accepts_nested_attributes_for :listadepositados,
             allow_destroy: true, reject_if: :all_blank
 
@@ -45,8 +45,10 @@ module Apo214
           validate :es_menor_que_max
 
           def es_menor_que_max
-            if max_depositados < min_depositados
-               errors.add(:max_depositados, 'El número máximo de individuos depositados debe ser mayor que el mínimo')
+            if max_depositados && min_depositados
+              if max_depositados < min_depositados
+                 errors.add(:max_depositados, 'El número máximo de individuos depositados debe ser mayor que el mínimo')
+              end
             end
           end
 

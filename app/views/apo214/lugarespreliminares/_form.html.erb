@@ -189,8 +189,10 @@
             %>
           </div>
           <div class="col-md-3">
-            <% if f.object.otradisposicioncadaveres && f.object.disposicioncadaveres.id == 4 %>
-              <% esdis = "display: block" %>
+            <% if f.object.otradisposicioncadaveres && f.object.disposicioncadaveres %>
+                <% if f.object.disposicioncadaveres.id == 4 %>
+                  <% esdis = "display: block" %>
+                <% end %>
             <% else %>
               <% esdis = "display: none" %>
             <% end %>
