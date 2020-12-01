@@ -125,6 +125,9 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
         div_otradis.css("display", "block")
       } else {
         div_otradis.css("display", "none")
+      }
+    }
+  )
 
   // Al no elegir insitu se habilita campo otro lugar asesinato
   $(document).on('change', 'input[id=lugarpreliminar_insitu]', 
