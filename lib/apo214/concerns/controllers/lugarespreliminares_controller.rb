@@ -127,8 +127,23 @@ module Apo214
                 :numerodocumento,
                 :sexo,
                 :tdocumento_id
-              ]
+              ],
+              :listadepositados_attributes => [
+                :id,
+                :_destroy,
+                :persona_attributes => [
+                  :apellidos, 
+                  :id, 
+                  :nombres, 
+                  :numerodocumento, 
+                  :sexo, 
+                  :tdocumento_id,
+                  :anionac,
+                  :mesnac,
+                  :dianac
+                ]
              ]
+            ]
             )
           end
         end
