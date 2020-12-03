@@ -13,9 +13,6 @@ module Apo214
             foreign_key: 'persona_id'
           accepts_nested_attributes_for :personadepositada, reject_if: :all_blank
 
-          validates :actividad, presence: true
-          validates :persona, presence: true
-
         end # included
       end
     end
