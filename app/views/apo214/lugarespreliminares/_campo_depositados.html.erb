@@ -1,0 +1,29 @@
+<h5 style="text-align: center;"> Personas depositadas en este sitio </h5>
+<table class="table  table-bordered table-sm ">
+  <thead class="thead-light">
+    <tr>
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th colspan="2">Identificación</th>
+      <th>Sexo</th>
+      <th>Año nac.</th>
+      <th>Mes</th>
+      <th>Dia</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="listadepositados">
+    <%= f.simple_fields_for :listadepositados do |a| %>
+      <%= render 'listadepositados_campos', f: a %>
+    <% end %>
+  </tbody>
+</table>
+<div class="links">
+  <%= link_to_add_association 'Añadir Depositado', f, 
+    :listadepositados,
+    :"data-association-insertion-node" => "tbody#listadepositados", 
+    :"data-association-insertion-method" => "append", 
+    partial: 'listadepositados_campos',
+    :class => 'btn-primary'
+  %>
+</div>
