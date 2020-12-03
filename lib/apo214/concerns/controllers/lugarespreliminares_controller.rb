@@ -65,6 +65,23 @@ module Apo214
                   :dianac
                 ]
               ],
+              :listapersofuentes_attributes => [
+                :id,
+                :telefono,
+                :observacion,
+                :_destroy,
+                :personafuente_attributes => [
+                  :apellidos, 
+                  :id, 
+                  :nombres, 
+                  :numerodocumento, 
+                  :sexo, 
+                  :tdocumento_id,
+                  :anionac,
+                  :mesnac,
+                  :dianac
+                ]
+              ],
               :persona_attributes => [
                 :anionac,
                 :apellidos,
@@ -138,6 +155,24 @@ module Apo214
                   })
                   ld.save!(validate: false)
                   params[:lugarepliminar][:listadepositados_attributes][a[0].to_s][:id] = ld.id
+                end
+              end
+            end
+            if lugarpreliminar_params[:listapersofuentes_attributes]
+              lugarpreliminar_params[:listapersofuentes_attributes].each do |a|
+                # Ubicamos los de autocompletacion y para esos creamos un registro 
+                if a[1] && a[1][:id] && a[1][:id] == '' && 
+                    a[1][:personafuente_attributes] && 
+                    a[1][:personafuente_attributes][:id] &&
+                    a[1][:personafuente_attributes][:id].to_i > 0 &&
+                    Sip::Persona.where(
+                      id: a[1][:personafuente_attributes][:id].to_i).count == 1
+                  ld = Apo214::Listadepostidos.create({
+                    lugarpreliminar_id: @lugarpeliminar.id,
+                    persona_id: a[1][:personafuente_attributes][:id]
+                  })
+                  ld.save!(validate: false)
+                  params[:lugarepliminar][:listapersofuentes_attributes][a[0].to_s][:id] = ld.id
                 end
               end
             end
