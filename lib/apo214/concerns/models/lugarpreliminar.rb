@@ -33,6 +33,7 @@ module Apo214
           has_many :personadepositada, through: :listadepositados, class_name: 'Sip::Persona'
           accepts_nested_attributes_for :personadepositada, reject_if: :all_blank
           accepts_nested_attributes_for :listadepositados,
+            allow_destroy: true, reject_if: :all_blank
 
           has_many :listapersofuentes, dependent: :delete_all,
             class_name: 'Apo214::Listapersofuentes',
