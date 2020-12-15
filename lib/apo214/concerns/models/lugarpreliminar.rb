@@ -14,10 +14,13 @@ module Apo214
 
           belongs_to :persona, foreign_key: "id_persona", dependent: :destroy,
            class_name: 'Sip::Persona'
-          belongs_to :propietario, foreign_key: "propietario_id", dependent: :destroy,
-           class_name: 'Sip::Persona'
-          accepts_nested_attributes_for :persona, reject_if: :all_blank
-          accepts_nested_attributes_for :propietario, reject_if: :all_blank
+          accepts_nested_attributes_for :persona,  reject_if: :all_blank
+          has_one :propietario, foreign_key: "id_lugarpreliminar", dependent: :destroy,
+           class_name: 'Apo214::Propietario'
+          accepts_nested_attributes_for :propietario, reject_if: :all_blank, allow_destroy: true
+          has_many :personapropietario, through: :propietario, class_name: 'Sip::Persona'
+          accepts_nested_attributes_for :personapropietario,  reject_if: :all_blank
+
           belongs_to :ubicacionpre, class_name: 'Sip::Ubicacionpre', 
             foreign_key: 'ubicacionpre_id', optional: true
           belongs_to :otrolubicacionpre, class_name: 'Sip::Ubicacionpre', 

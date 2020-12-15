@@ -11,7 +11,9 @@ module Apo214
 
           has_many :lugarpreliminar, foreign_key: "id_persona", validate: true,
             class_name: 'Apo214::Lugarpreliminar'
-          has_many :lugarpreliminar, foreign_key: "propietario_id", validate: true,
+          has_many :propietario, foreign_key: "id_persona", validate: true,
+            class_name: 'Apo214::Propietario'
+          has_many :lugarpreliminar, through: :propietario,
             class_name: 'Apo214::Lugarpreliminar'
 
         end

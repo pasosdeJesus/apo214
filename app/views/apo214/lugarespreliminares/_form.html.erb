@@ -53,7 +53,7 @@
       <a data-toggle="collapse" href='#aportantepreliminar'>
         <h5>DATOS DEL APORTANTE</h5>
       </a>
-      <div class="collapse multi-collapse" id="aportantepreliminar">
+      <div class="collapse multi-collapse campodepersona" id="aportantepreliminar">
         <%= f.input :id_persona, as: :hidden %>
         <% if !f.object.persona %>
           <% f.object.persona = Sip::Persona.new%>
@@ -232,20 +232,24 @@
         <a data-toggle="collapse" href='#privada'>
           <h5>Propiedad privada</h5>
         </a>
-        <div class="collapse multi-collapse" id="privada">
+        <div class="collapse multi-collapse campodepersona" id="privada">
           <div class="row">
             <div class="col-md-12">
               <%= f.input :nombrepropiedad %>
-              <%= f.input :propietario_id, as: :hidden %>
-              <% if !f.object.propietario %>
-                <% f.object.propietario = Sip::Persona.new%>
-              <% end %>
               <%= f.simple_fields_for :propietario do |p| %>
-                <%= render partial: 'nombresydoc_persona_campos', 
-                  locals: {p: p, con_label: false} %>
+                <% if p.object.personapropietario.nil? %>
+                  <% p.object.personapropietario = Sip::Persona.new %>
+                <% end %>
+                <%= p.simple_fields_for :personapropietario do |pe| %>
+                  <%= render partial: 'nombresydoc_persona_campos', 
+                    locals: {p: pe, con_label: false} %>
+                    <div class="col-md-3">
+                      <%= render partial: 'sip/personas/campo_sexo', locals: {f: pe} %>
+                    </div>
+                <% end %>
+                <%= p.input :telefono %>
+                <%= p.input :observaciones %>
               <% end %>
-              <%= f.input :telepropietario %>
-              <%= f.input :obserpropietario %>
             </div>
           </div>
         </div>
