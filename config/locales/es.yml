@@ -23,6 +23,7 @@ es:
         fecha_localizada: Fecha
         hechos: Presuntos Hechos
         nombreusuario: Nombre de quien diligencia el formato
+        nomcomoseconoce: Nombre como se le conoce localmente
         organizacion: Organización/Entidad perteneciente
         otrotipotestigo: ¿Otro tipo de testigo? ¿Cuál?
         otradisposicioncadaveres: ¿Otra? ¿Cuál?
