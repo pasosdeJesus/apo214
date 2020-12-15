@@ -12,15 +12,15 @@ module Apo214
           #load_and_authorize_resource class: Apo214::Lugarpreliminar,
           #  except: [:index, :show]
           helper Sip::UbicacionHelper
-         
+
           def registrar_en_bitacora
             true
           end
-          
+
           def clase
             'Apo214::Lugarpreliminar'
           end
-          
+
           def lista_params 
             [ :codigositio,
               :detallesasesinato,
@@ -31,6 +31,8 @@ module Apo214
               :horadis,
               :id,
               :insitu,
+              :interatroprevias,
+              :interatroactuales,
               :nombreusuario,
               :disposicioncadaveres_id,
               :hechos,
