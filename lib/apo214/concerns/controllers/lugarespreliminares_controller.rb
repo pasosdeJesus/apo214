@@ -22,7 +22,8 @@ module Apo214
           end
           
           def lista_params 
-            [ :codigositio,
+            [ :accesolugar,
+              :codigositio,
               :detallesasesinato,
               :depositados,
               :fecha,
