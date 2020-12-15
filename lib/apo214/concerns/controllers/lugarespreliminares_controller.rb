@@ -47,6 +47,8 @@ module Apo214
               :otrolubicacionpre_id,
               :ubicacionpre_texto,
               :ubicacionpre_mundep_texto,
+              :usoterprevios,
+              :usoteractuales,
               :otrolubicacionpre_texto,
               :ubicaespecifica,
               :id_persona,
