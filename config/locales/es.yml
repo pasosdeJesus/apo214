@@ -9,6 +9,9 @@ es:
       "apo214/tipoentierro":
         Tipoentierro: Tipo de enterramiento
         Tiposentierro: Tipos de enterramiento
+      "apo214/elementopaisaje":
+        Elementopaisaje: Elemento del paisaje
+        Elementospaisaje: Elementos del paisaje
       "apo214/tipotestigo":
         Tipotestigo: Tipo de testigo
         Tipostestigo: Tipos de testigo
@@ -19,9 +22,11 @@ es:
         Lugarpreliminar: Lugar preliminar de disposición irregular de cadáveres
         Lugarespreliminares: Lugares preliminares de disposición irregular de cadáveres
         codigositio: Código de Sitio
+        cobertura: Cobertura
         disposicioncadaveres: Disposición de cadáveres
         fecha_localizada: Fecha
         hechos: Presuntos Hechos
+        elementopaisaje: Elemento del paisaje
         nombreusuario: Nombre de quien diligencia el formato
         organizacion: Organización/Entidad perteneciente
         otrotipotestigo: ¿Otro tipo de testigo? ¿Cuál?

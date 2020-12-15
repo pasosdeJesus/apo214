@@ -23,6 +23,10 @@ module Apo214
             foreign_key: 'tipotestigo_id', optional: true
           belongs_to :tipoentierro, class_name: 'Apo214::Tipoentierro',
             foreign_key: 'tipoentierro_id', optional: true
+          belongs_to :cobertura, class_name: 'Apo214::Cobertura',
+            foreign_key: 'cobertura_id', optional: true
+          belongs_to :elementopaisaje, class_name: 'Apo214::Elementopaisaje',
+            foreign_key: 'elementopaisaje_id', optional: true
           belongs_to :disposicioncadaveres, class_name: 'Apo214::Disposicioncadaveres',
             foreign_key: 'disposicioncadaveres_id', optional: true
 
