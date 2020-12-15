@@ -87,6 +87,8 @@ module Apo214
                 :telefono,
                 :observaciones,
                 :id,
+                :id_persona,
+                :_destroy,
                 :personapropietario_attributes => [
                   :apellidos,
                   :id,
@@ -144,6 +146,7 @@ module Apo214
                 Sip::Persona.where(
                   id: lugarpreliminar_params[:persona_attributes][:id].to_i).count == 1
               @lugarpreliminar.id_persona = lugarpreliminar_params[:persona_attributes][:id]
+              params[:lugarpreliminar][:id_persona] = @lugarpreliminar.id_persona
               @lugarpreliminar.save!(validate: false)
             end
             if lugarpreliminar_params[:listadepositados_attributes]
