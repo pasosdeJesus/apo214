@@ -35,6 +35,11 @@ module Apo214
             foreign_key: 'elementopaisaje_id', optional: true
           belongs_to :disposicioncadaveres, class_name: 'Apo214::Disposicioncadaveres',
             foreign_key: 'disposicioncadaveres_id', optional: true
+          has_many :lugarpreliminar_riesgo,
+            dependent: :destroy,
+            foreign_key: :lugarpreliminar_id, 
+            class_name: "Apo214::LugarpreliminarRiesgo"
+          has_many :riesgo, through: :lugarpreliminar_riesgo
 
           has_many :listadepositados, dependent: :delete_all,
             class_name: 'Apo214::Listadepositados',

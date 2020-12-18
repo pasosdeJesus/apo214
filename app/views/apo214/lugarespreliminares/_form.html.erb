@@ -320,6 +320,38 @@
           </div>
         </div>
       </div><!-- collapse -->
+      <br>
+      <a data-toggle="collapse" href='#sitioentorno'>
+        <h5>DESCRIPCIÓN DEL SITIO Y SU ENTORNO</h5>
+      </a>
+      <div class="collapse multi-collapse" id="sitioentorno">
+        <div class="row">
+          <div class="col-md-12">
+          <h5 style="text-align: center;"> Riesgos evaluados </h5>
+          <table class="table  table-bordered table-sm ">
+            <thead class="thead-light">
+              <tr>
+                <th>Riesgos</th>
+                <th>Descripción</th>
+                <th>Calificación</th>
+              </tr>
+            </thead>
+            <tbody id="listadepositados">
+              <% Apo214::Riesgo.habilitados.each do |ri| %>
+                <tr>
+                  <td><%= ri.nombre %> </td>
+                    <%= f.simple_fields_for :lugarpreliminar_riesgo do |a| %>
+                      <%= f.input :id, as: :hidden %>
+                      <td> <%= a.input :descripcion, label: false %> </td>
+                      <td> <%= a.input :calificacion, label: false %> </td>
+                    <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div><!-- collapse -->
     </div> <! -- multicollapse -->
 
     <div class="form-actions" style="text-align: center">

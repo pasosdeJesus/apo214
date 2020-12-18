@@ -6,6 +6,7 @@ module Apo214
     BASICAS_PROPIAS = [
       ['Apo214', 'cobertura'],
       ['Apo214', 'elementopaisaje'],
+      ['Apo214', 'riesgo'],
       ['Apo214', 'tipoentierro'],
       ['Apo214', 'tipotestigo'],
       ['Apo214', 'disposicioncadaveres']
