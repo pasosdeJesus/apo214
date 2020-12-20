@@ -31,9 +31,17 @@ module Apo214
             foreign_key: 'lugarpreliminar_id'
 
           has_many :personadepositada, through: :listadepositados, class_name: 'Sip::Persona'
+          has_many :listasuelo, dependent: :delete_all,
+            class_name: 'Apo214::Listasuelo',
+            foreign_key: 'lugarpreliminar_id'
+
+          has_many :suelo, through: :listasuelo, class_name: 'Apo214::Suelo'
+            allow_destroy: true, reject_if: :all_blank
           accepts_nested_attributes_for :personadepositada, reject_if: :all_blank
           accepts_nested_attributes_for :listadepositados,
             allow_destroy: true, reject_if: :all_blank
+          accepts_nested_attributes_for :suelo, reject_if: :all_blank
+          accepts_nested_attributes_for :listasuelo,
 
           validates_length_of :otradisposicioncadaveres, maximum: 1000
           validates_length_of :otrotipotestigo, maximum: 1000
