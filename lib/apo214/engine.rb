@@ -21,11 +21,6 @@ module Apo214
 
   end
 
-  class << self
-    mattr_accessor :titulo
-    self.titulo = "Motor de SIVeL genérico " 
-  end
-
   def self.setup(&block)
     yield self
   end

@@ -10,14 +10,14 @@ gem 'bootsnap', '>=1.1.0', require: false
 
 gem 'cancancan'                   # Control de acceso
 
-gem "cocoon", git: "https://github.com/vtamara/cocoon.git", 
+gem "cocoon", git: "https://github.com/vtamara/cocoon.git",
   branch: 'new_id_with_ajax' # Formularios anidados (algunos con ajax)
 
 gem 'coffee-rails' # CoffeeScript para recuersos .js.coffee y vistas
 
 gem 'devise'   # Autenticación
 
-gem 'devise-i18n'                
+gem 'devise-i18n'
 
 gem 'jbuilder' # API JSON facil. Ver: https://github.com/rails/jbuilder
 
@@ -33,9 +33,9 @@ gem 'prawnto_2',  :require => 'prawnto'
 
 gem 'prawn-table'
 
-gem 'rails'                 
+gem 'rails'
 
-gem 'rails-i18n'                 
+gem 'rails-i18n'
 
 gem 'redcarpet' # Descripciones en heb412_gen
 
@@ -57,29 +57,29 @@ gem 'will_paginate' # Listados en páginas
 
 
 #####
-# Motores que se sobrecargan vistas (deben ponerse en orden de apilamiento 
-# lógico y no alfabetico como las gemas anteriores) 
+# Motores que se sobrecargan vistas (deben ponerse en orden de apilamiento
+# lógico y no alfabetico como las gemas anteriores)
 
 gem 'sip', # Motor generico
-  git: 'https://github.com/pasosdeJesus/sip.git'
+  git: 'https://github.com/pasosdeJesus/sip.git', branch: 'rails6.1'
   #path: '../sip'
 
 gem 'mr519_gen', # Motor de gestion de formularios y encuestas
-  git: 'https://github.com/pasosdeJesus/mr519_gen.git'
+  git: 'https://github.com/pasosdeJesus/mr519_gen.git', branch: 'rails6.1'
   #path: '../mr519_gen'
 
 gem 'heb412_gen',  # Motor de nube y llenado de plantillas
-  git: 'https://github.com/pasosdeJesus/heb412_gen.git'
+  git: 'https://github.com/pasosdeJesus/heb412_gen.git', branch: 'rails6.1'
   #path: '../heb412_gen'
 
 gem 'sivel2_gen',  # Motor de nube y llenado de plantillas
-  git: 'https://github.com/pasosdeJesus/sivel2_gen.git'
+  git: 'https://github.com/pasosdeJesus/sivel2_gen.git', branch: 'rails6.1'
   #path: '../sivel2_gen'
 
 group  :development, :test do
- 
+
   #gem 'byebug' # Depurar
-  
+
   gem 'colorize' # Colores en terminal
 
 end
@@ -91,7 +91,7 @@ group :development do
 
   gem 'rails-erd'
 
-  gem 'spring' # Acelera ejecutando en fondo. 
+  gem 'spring' # Acelera ejecutando en fondo.
 
   gem 'web-console'
 
