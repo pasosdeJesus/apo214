@@ -25,11 +25,12 @@ es:
         hechos: Presuntos Hechos
         nombreusuario: Nombre de quien diligencia el formato
         nombrepropiedad: Nombre de la propiedad
-        telepropietario: Teléfono
+        nomcomoseconoce: Nombre como se le conoce localmente
         obserpropietario: Observaciones
         organizacion: Organización/Entidad perteneciente
         otrotipotestigo: ¿Otro tipo de testigo? ¿Cuál?
         otradisposicioncadaveres: ¿Otra? ¿Cuál?
+        telepropietario: Teléfono
         tipotestigo: Tipo de testigo
         tipoentierro: Tipo de enterramiento
         ubicacionpre_id: Ubicación 

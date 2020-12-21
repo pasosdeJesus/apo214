@@ -38,6 +38,7 @@ module Apo214
               :max_depositados,
               :min_depositados,
               :nombrepropiedad,
+              :nomcomoseconoce,
               :organizacion,
               :otradisposicioncadaveres,
               :otrotipotestigo,
