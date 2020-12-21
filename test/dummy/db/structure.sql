@@ -58,6 +58,30 @@ CREATE FUNCTION public.f_unaccent(text) RETURNS text
 
 
 --
+-- Name: sip_edad_de_fechanac_fecharef(integer, integer, integer, integer, integer, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.sip_edad_de_fechanac_fecharef(anionac integer, mesnac integer, dianac integer, anioref integer, mesref integer, diaref integer) RETURNS integer
+    LANGUAGE sql IMMUTABLE
+    AS $$
+        SELECT CASE 
+          WHEN anionac IS NULL THEN NULL
+          WHEN anioref IS NULL THEN NULL
+          WHEN mesnac IS NULL OR dianac IS NULL OR mesref IS NULL OR diaref IS NULL THEN 
+            anioref-anionac 
+          WHEN mesnac < mesref THEN
+            anioref-anionac
+          WHEN mesnac > mesref THEN
+            anioref-anionac-1
+          WHEN dianac > diaref THEN
+            anioref-anionac-1
+          ELSE 
+            anioref-anionac
+        END 
+      $$;
+
+
+--
 -- Name: soundexesp(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -169,6 +193,114 @@ $$;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- Name: actividad; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.actividad (
+    id integer NOT NULL,
+    numero integer,
+    minutos integer,
+    nombre character varying(500),
+    objetivo character varying(500),
+    proyecto character varying(500),
+    resultado character varying(500),
+    fecha date,
+    actividad character varying(500),
+    observaciones character varying(5000),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: actividad_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.actividad_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: actividad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.actividad_id_seq OWNED BY public.actividad.id;
+
+
+--
+-- Name: actividadarea; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.actividadarea (
+    id integer NOT NULL,
+    nombre character varying(500),
+    observaciones character varying(5000),
+    fechacreacion date,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: actividadarea_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.actividadarea_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: actividadarea_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.actividadarea_id_seq OWNED BY public.actividadarea.id;
+
+
+--
+-- Name: actividadareas_actividad; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.actividadareas_actividad (
+    id integer NOT NULL,
+    actividad_id integer,
+    actividadarea_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: actividadareas_actividad_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.actividadareas_actividad_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: actividadareas_actividad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.actividadareas_actividad_id_seq OWNED BY public.actividadareas_actividad.id;
+
 
 --
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
@@ -727,6 +859,38 @@ CREATE SEQUENCE public.mr519_gen_valorcampo_id_seq
 --
 
 ALTER SEQUENCE public.mr519_gen_valorcampo_id_seq OWNED BY public.mr519_gen_valorcampo.id;
+
+
+--
+-- Name: regionsjr; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.regionsjr (
+    id integer NOT NULL,
+    nombre character varying(500),
+    fechacreacion date,
+    fechadeshabilitacion date
+);
+
+
+--
+-- Name: regionsjr_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.regionsjr_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: regionsjr_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.regionsjr_id_seq OWNED BY public.regionsjr.id;
 
 
 --
@@ -1616,6 +1780,16 @@ ALTER SEQUENCE public.sip_ubicacionpre_id_seq OWNED BY public.sip_ubicacionpre.i
 
 
 --
+-- Name: sivel2_gen_observador_filtrodepartamento; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_observador_filtrodepartamento (
+    usuario_id integer,
+    departamento_id integer
+);
+
+
+--
 -- Name: usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1658,9 +1832,32 @@ CREATE TABLE public.usuario (
     updated_at timestamp without time zone,
     regionsjr_id integer,
     tema_id integer,
+    observadorffechaini date,
+    observadorffechafin date,
     CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
     CONSTRAINT usuario_rol_check CHECK ((rol >= 1))
 );
+
+
+--
+-- Name: actividad id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.actividad ALTER COLUMN id SET DEFAULT nextval('public.actividad_id_seq'::regclass);
+
+
+--
+-- Name: actividadarea id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.actividadarea ALTER COLUMN id SET DEFAULT nextval('public.actividadarea_id_seq'::regclass);
+
+
+--
+-- Name: actividadareas_actividad id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.actividadareas_actividad ALTER COLUMN id SET DEFAULT nextval('public.actividadareas_actividad_id_seq'::regclass);
 
 
 --
@@ -1776,6 +1973,13 @@ ALTER TABLE ONLY public.mr519_gen_valorcampo ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: regionsjr id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.regionsjr ALTER COLUMN id SET DEFAULT nextval('public.regionsjr_id_seq'::regclass);
+
+
+--
 -- Name: sip_actorsocial id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1857,6 +2061,30 @@ ALTER TABLE ONLY public.sip_trivalente ALTER COLUMN id SET DEFAULT nextval('publ
 --
 
 ALTER TABLE ONLY public.sip_ubicacionpre ALTER COLUMN id SET DEFAULT nextval('public.sip_ubicacionpre_id_seq'::regclass);
+
+
+--
+-- Name: actividad actividad_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.actividad
+    ADD CONSTRAINT actividad_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: actividadarea actividadarea_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.actividadarea
+    ADD CONSTRAINT actividadarea_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: actividadareas_actividad actividadareas_actividad_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.actividadareas_actividad
+    ADD CONSTRAINT actividadareas_actividad_pkey PRIMARY KEY (id);
 
 
 --
@@ -2049,6 +2277,14 @@ ALTER TABLE ONLY public.sip_pais
 
 ALTER TABLE ONLY public.sip_persona
     ADD CONSTRAINT persona_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: regionsjr regionsjr_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.regionsjr
+    ADD CONSTRAINT regionsjr_pkey PRIMARY KEY (id);
 
 
 --
@@ -2318,6 +2554,20 @@ CREATE INDEX sip_busca_mundep ON public.sip_mundep USING gin (mundep);
 --
 
 CREATE INDEX sip_nombre_ubicacionpre_b ON public.sip_ubicacionpre USING gin (to_tsvector('spanish'::regconfig, public.f_unaccent((nombre)::text)));
+
+
+--
+-- Name: sivel2_gen_obs_fildep_d_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX sivel2_gen_obs_fildep_d_idx ON public.sivel2_gen_observador_filtrodepartamento USING btree (departamento_id);
+
+
+--
+-- Name: sivel2_gen_obs_fildep_u_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX sivel2_gen_obs_fildep_u_idx ON public.sivel2_gen_observador_filtrodepartamento USING btree (usuario_id);
 
 
 --
@@ -2736,6 +2986,22 @@ ALTER TABLE ONLY public.sip_municipio
 
 
 --
+-- Name: sivel2_gen_observador_filtrodepartamento sivel2_gen_observador_filtrodepartamento_d_idx; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_observador_filtrodepartamento
+    ADD CONSTRAINT sivel2_gen_observador_filtrodepartamento_d_idx FOREIGN KEY (departamento_id) REFERENCES public.sip_departamento(id);
+
+
+--
+-- Name: sivel2_gen_observador_filtrodepartamento sivel2_gen_observador_filtrodepartamento_u_idx; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_observador_filtrodepartamento
+    ADD CONSTRAINT sivel2_gen_observador_filtrodepartamento_u_idx FOREIGN KEY (usuario_id) REFERENCES public.usuario(id);
+
+
+--
 -- Name: sip_ubicacion ubicacion_id_clase_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2782,23 +3048,91 @@ ALTER TABLE ONLY public.sip_ubicacion
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20131128151014'),
+('20131204135932'),
+('20131204140000'),
+('20131204143718'),
+('20131204183530'),
+('20131206081531'),
+('20131210221541'),
+('20131220103409'),
+('20131223175141'),
+('20140117212555'),
+('20140129151136'),
+('20140207102709'),
+('20140207102739'),
+('20140211162355'),
+('20140211164659'),
+('20140211172443'),
+('20140313012209'),
+('20140514142421'),
+('20140518120059'),
+('20140527110223'),
+('20140528043115'),
+('20140804202100'),
+('20140804202101'),
+('20140804202958'),
+('20140815111351'),
+('20140827142659'),
+('20140901105741'),
+('20140901106000'),
+('20140909165233'),
+('20140918115412'),
+('20140922102737'),
+('20140922110956'),
+('20141002140242'),
+('20141111102451'),
+('20141111203313'),
+('20150313153722'),
+('20150317084737'),
+('20150413000000'),
 ('20150413160156'),
 ('20150413160157'),
 ('20150413160158'),
 ('20150413160159'),
 ('20150416074423'),
+('20150416090140'),
 ('20150503120915'),
 ('20150510125926'),
 ('20150521181918'),
 ('20150528100944'),
+('20150602094513'),
+('20150602095241'),
+('20150602104342'),
+('20150609094809'),
+('20150609094820'),
+('20150616095023'),
+('20150616100351'),
+('20150616100551'),
 ('20150707164448'),
 ('20150710114451'),
+('20150716171420'),
+('20150716192356'),
 ('20150717101243'),
 ('20150724003736'),
 ('20150803082520'),
 ('20150809032138'),
+('20150826000000'),
 ('20151020203421'),
+('20151124110943'),
+('20151127102425'),
+('20151130101417'),
+('20160316093659'),
+('20160316094627'),
+('20160316100620'),
+('20160316100621'),
+('20160316100622'),
+('20160316100623'),
+('20160316100624'),
+('20160316100625'),
+('20160316100626'),
 ('20160519195544'),
+('20160719195853'),
+('20160719214520'),
+('20160724160049'),
+('20160724164110'),
+('20160725123242'),
+('20160725131347'),
 ('20161009111443'),
 ('20161010152631'),
 ('20161026110802'),
@@ -2808,20 +3142,38 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20161103083352'),
 ('20161108102349'),
 ('20170405104322'),
+('20170406213334'),
 ('20170413185012'),
 ('20170414035328'),
+('20170503145808'),
+('20170526100040'),
+('20170526124219'),
+('20170526131129'),
+('20170529020218'),
+('20170529154413'),
+('20170609131212'),
 ('20171019133203'),
+('20180126035129'),
+('20180126055129'),
+('20180225152848'),
 ('20180320230847'),
 ('20180427194732'),
 ('20180509111948'),
+('20180717134314'),
 ('20180717135811'),
+('20180718094829'),
+('20180719015902'),
 ('20180720140443'),
 ('20180720171842'),
 ('20180724135332'),
 ('20180724202353'),
+('20180726213123'),
+('20180726234755'),
+('20180801105304'),
 ('20180810221619'),
 ('20180905031342'),
 ('20180905031617'),
+('20180910132139'),
 ('20180912114413'),
 ('20180914153010'),
 ('20180917072914'),
@@ -2829,6 +3181,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180921120954'),
 ('20181011104537'),
 ('20181012110629'),
+('20181017094456'),
+('20181018003945'),
+('20181130112320'),
 ('20181213103204'),
 ('20181218165548'),
 ('20181218165559'),
@@ -2842,7 +3197,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181227210510'),
 ('20190109125417'),
 ('20190110191802'),
+('20190128032125'),
 ('20190208103518'),
+('20190308195346'),
 ('20190322102311'),
 ('20190326150948'),
 ('20190331111015'),
@@ -2853,6 +3210,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190418014012'),
 ('20190418123920'),
 ('20190426125052'),
+('20190430112229'),
 ('20190605143420'),
 ('20190612111043'),
 ('20190618135559'),
@@ -2863,14 +3221,31 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190726203302'),
 ('20190804223012'),
 ('20190818013251'),
+('20190924013712'),
+('20190924112646'),
 ('20190926104116'),
+('20190926104551'),
+('20190926133640'),
+('20190926143845'),
+('20191012042159'),
+('20191016100031'),
 ('20191205200007'),
 ('20191205202150'),
 ('20191205204511'),
 ('20191219011910'),
 ('20191231102721'),
+('20200221181049'),
+('20200224134339'),
 ('20200228235200'),
 ('20200319183515'),
+('20200320152017'),
+('20200324164130'),
+('20200422103916'),
+('20200427091939'),
+('20200430101709'),
+('20200622193241'),
+('20200720005020'),
+('20200720013144'),
 ('20200722210144'),
 ('20200723133542'),
 ('20200727021707'),
@@ -2879,6 +3254,49 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200916022934'),
 ('20200919003430'),
 ('20200921123831'),
-('20201009004421');
+('20201009004421'),
+('20201021214107'),
+('20201029153649'),
+('20201029162732'),
+('20201029220052'),
+('20201102232506'),
+('20201103175114'),
+('20201105154106'),
+('20201106155800'),
+('20201108201914'),
+('20201108203930'),
+('20201110170225'),
+('20201110170728'),
+('20201119125643'),
+('20201127233621'),
+('20201128003003'),
+('20201129144340'),
+('20201129145302'),
+('20201129152636'),
+('20201129153038'),
+('20201129153603'),
+('20201129161641'),
+('20201129175515'),
+('20201129191238'),
+('20201130020715'),
+('20201201015501'),
+('20201201023145'),
+('20201203052009'),
+('20201209230317'),
+('20201209232557'),
+('20201214215209'),
+('20201215152027'),
+('20201215161607'),
+('20201215163716'),
+('20201215164448'),
+('20201215181622'),
+('20201215182935'),
+('20201215183649'),
+('20201215184808'),
+('20201215190623'),
+('20201215191833'),
+('20201215192951'),
+('20201219210527'),
+('20201220130138');
 
 
