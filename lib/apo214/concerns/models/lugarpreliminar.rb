@@ -44,6 +44,14 @@ module Apo214
           accepts_nested_attributes_for :personadepositada, reject_if: :all_blank
           accepts_nested_attributes_for :listadepositados,
             allow_destroy: true, reject_if: :all_blank
+          has_many :listasuelo, dependent: :delete_all,
+            class_name: 'Apo214::Listasuelo',
+            foreign_key: 'lugarpreliminar_id'
+
+          has_many :suelo, through: :listasuelo, class_name: 'Apo214::Suelo'
+          accepts_nested_attributes_for :listasuelo,
+            allow_destroy: true, reject_if: :all_blank
+          accepts_nested_attributes_for :suelo, reject_if: :all_blank
 
           has_many :listapersofuentes, dependent: :delete_all,
             class_name: 'Apo214::Listapersofuentes',

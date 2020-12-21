@@ -1,0 +1,36 @@
+<tr class='nested-fields'>
+  <% if f.object.suelo.nil? %>
+    <% f.object.suelo = Apo214::Suelo.new %>
+  <% end %>
+
+  <%= f.simple_fields_for :suelo do |s| %>
+    <td>
+      <%= s.input :id, as: :hidden %>
+      <%= s.input :profinicial,
+        label: false %>
+    </td>
+    <td>
+      <%= s.input :proffinal,
+        label: false %>
+    </td>
+    <td>
+      <%= s.input :color,
+        label: false %>
+    </td>
+    <td>
+      <%= s.input :textura,
+        label: false %>
+    </td>
+    <td>
+      <%= s.input :humedad,
+        label: false %>
+    </td>
+  <% end %>
+  <td>
+    <%= f.input :id, as: :hidden %>
+    <%= link_to_remove_association "Eliminar", f, 
+        :class => 'btn-danger' 
+    %>
+    <div><%= f.error_notification %></div>
+  </td>
+</tr>

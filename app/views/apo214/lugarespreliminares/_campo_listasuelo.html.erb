@@ -1,0 +1,27 @@
+<h5 style="text-align: center;">Descripción del suelo </h5>
+<table class="table  table-bordered table-sm ">
+  <thead class="thead-light">
+    <tr>
+      <th>Profundidad inicial</th>
+      <th>Profundidad final</th>
+      <th>Color</th>
+      <th>Textura</th>
+      <th>Humedad</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="listasuelo">
+    <%= f.simple_fields_for :listasuelo do |a| %>
+      <%= render 'listasuelo_campos', f: a %>
+    <% end %>
+  </tbody>
+</table>
+<div class="links">
+  <%= link_to_add_association 'Añadir Descripción de suelo', f, 
+    :listasuelo,
+    :"data-association-insertion-node" => "tbody#listasuelo", 
+    :"data-association-insertion-method" => "append", 
+    partial: 'listasuelo_campos',
+    :class => 'btn-primary'
+  %>
+</div>

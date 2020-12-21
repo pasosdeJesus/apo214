@@ -93,6 +93,18 @@ module Apo214
                   :dianac
                 ]
               ],
+              :listasuelo_attributes => [
+                :id,
+                :_destroy,
+                :suelo_attributes => [
+                  :color, 
+                  :humedad,
+                  :id,
+                  :profinicial, 
+                  :proffinal, 
+                  :textura 
+                  ]
+              ],
               :persona_attributes => [
                 :anionac,
                 :apellidos,
