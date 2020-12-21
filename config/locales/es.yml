@@ -42,3 +42,5 @@ es:
         tipoentierro: Tipo de enterramiento
         ubicacionpre_id: Ubicación 
         ubicaespecifica:  Ubicación del sitio de disposición (detalles más específicos)
+        usoterprevios: Usos del terreno previos
+        usoteractuales: Usos del terreno actuales
