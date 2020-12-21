@@ -8,13 +8,9 @@ apo214_busca_aportante = function(s) {
   v = $("#" + cnom).data('autocompleta');
   if (v !== 1 && v !== "no") {
     $("#" + cnom).data('autocompleta', 1);
-    divcp = s.closest('#aportantepreliminar');
+    divcp = s.closest('.campodepersona');
     if (typeof divcp === 'undefined') {
       alert('No se ubico div aportante preliminar');
-      return;
-    }
-    if ($(divcp).find("[id$='id_persona']").length !== 1) {
-      alert('Dentro de aportantepreliminar no se ubicó id_persona');
       return;
     }
     $("#" + cnom).autocomplete({
@@ -53,16 +49,16 @@ apo214_autocompleta_persona = function(label, id, divcp, root) {
     return alert("Error con ajax " + texto);
   }).done(function(e, r) {
     var tdocid;
-    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_id]').val(e.id);
-    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_nombres]').val(e.nombres);
-    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_apellidos]').val(e.apellidos);
-    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_sexo]').val(e.sexo);
-    tdocid = divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_tdocumento_id] option:contains(' + e.tdocumento + ')').val();
-    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_tdocumento_id]').val(tdocid);
-    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_numerodocumento]').val(e.numerodocumento);
-    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_anionac]').val(e.anionac);
-    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_mesnac]').val(e.mesnac);
-    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_dianac]').val(e.dianac);
+    divcp.find('[id$=_attributes_id]').val(e.id);
+    divcp.find('[id$=_attributes_nombres]').val(e.nombres);
+    divcp.find('[id$=_attributes_apellidos]').val(e.apellidos);
+    divcp.find('[id$=_attributes_sexo]').val(e.sexo);
+    tdocid = divcp.find('[id$=_attributes_tdocumento_id] option:contains(' + e.tdocumento + ')').val();
+    divcp.find('[id$=_tdocumento_id]').val(tdocid);
+    divcp.find('[id$=_numerodocumento]').val(e.numerodocumento);
+    divcp.find('[id$=_anionac]').val(e.anionac);
+    divcp.find('[id$=_mesnac]').val(e.mesnac);
+    divcp.find('[id$=_dianac]').val(e.dianac);
     $(document).trigger("cor1440gen:autocompletada-persona");
   });
 };
@@ -100,6 +96,10 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
 
   // Autocompleta aportante en lugar preliminar
   $(document).on('focusin', 'input[id^=lugarpreliminar_persona_attributes][id$=_nombres]', function (e) {
+    apo214_busca_aportante($(this), root)
+  });
+  
+  $(document).on('focusin', 'input[id=lugarpreliminar_propietario_attributes_personapropietario_attributes_nombres]', function (e) {
     apo214_busca_aportante($(this), root)
   });
 

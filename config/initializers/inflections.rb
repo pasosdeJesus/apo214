@@ -16,7 +16,10 @@
 # end
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'listadepositados', 'listasdepositados'
+  inflect.irregular 'elementopaisaje', 'elementospaisaje'
 	inflect.irregular 'tipotestigo', 'tipostestigo'
+  inflect.irregular 'listapersofuentes', 'listaspersofuentes'
+  inflect.irregular 'tipotestigo', 'tipostestigo'
 	inflect.irregular 'disposicioncadaveres', 'disposicionescadaveres'
 	inflect.irregular 'lugarpreliminar', 'lugarespreliminares'
 	inflect.irregular 'tipoentierro', 'tiposentierro'
