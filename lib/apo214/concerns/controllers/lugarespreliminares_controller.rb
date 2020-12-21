@@ -23,6 +23,7 @@ module Apo214
           
           def lista_params 
             [ :codigositio,
+              :detallesdisposicion,
               :detallesasesinato,
               :depositados,
               :fecha,
