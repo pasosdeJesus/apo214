@@ -36,6 +36,7 @@ module Apo214
               :hechos,
               :max_depositados,
               :min_depositados,
+              :nombrepropiedad,
               :organizacion,
               :otradisposicioncadaveres,
               :otrotipotestigo,
@@ -50,6 +51,7 @@ module Apo214
               :otrolubicacionpre_texto,
               :ubicaespecifica,
               :id_persona,
+              :propietario_ids => [],
               :listadepositados_attributes => [
                 :id,
                 :_destroy,
@@ -97,6 +99,21 @@ module Apo214
                 :numerodocumento,
                 :sexo,
                 :tdocumento_id
+              ],
+              :propietario_attributes => [
+                :telefono,
+                :observaciones,
+                :id,
+                :id_persona,
+                :_destroy,
+                :personapropietario_attributes => [
+                  :apellidos,
+                  :id,
+                  :nombres,
+                  :numerodocumento,
+                  :sexo,
+                  :tdocumento_id
+                ]
               ]
             ]
           end
@@ -126,18 +143,27 @@ module Apo214
 
           def new
             @registro = @lugarpreliminar = Apo214::Lugarpreliminar.new
+            @registro.propietario = Apo214::Propietario.new
             @registro.save!(validate: false)
             redirect_to apo214.edit_lugarpreliminar_path(@registro)
           end
 
           def update
+            if lugarpreliminar_params && lugarpreliminar_params[:propietario_attributes]
+              if lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i > 0 &&
+                Sip::Persona.where(
+                  id: lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i).count == 1
+                @lugarpreliminar.propietario.id_persona = lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id]
+                @lugarpreliminar.save!(validate: false)
+              end
+            end
             # Ubicamos los de autocompletacion y para esos creamos un registro 
             if lugarpreliminar_params && 
                 lugarpreliminar_params[:persona_attributes][:id].to_i > 0 &&
                 Sip::Persona.where(
                   id: lugarpreliminar_params[:persona_attributes][:id].to_i).count == 1
               @lugarpreliminar.id_persona = lugarpreliminar_params[:persona_attributes][:id]
-            
+              params[:lugarpreliminar][:id_persona] = @lugarpreliminar.id_persona
               @lugarpreliminar.save!(validate: false)
             end
             if lugarpreliminar_params[:listadepositados_attributes]
@@ -186,7 +212,7 @@ module Apo214
           def vistas_manejadas
              return ['Lugarpreliminar']
           end
-          
+
           private
 
           def set_lugarpreliminar
