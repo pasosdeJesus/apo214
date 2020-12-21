@@ -25,9 +25,11 @@ es:
         cobertura: Cobertura
         detallesdisposicion: Detalles de la disposicion del cuerpo(s)
         disposicioncadaveres: Disposición de cadáveres
+        elementopaisaje: Elemento del paisaje
         fecha_localizada: Fecha
         hechos: Presuntos Hechos
-        elementopaisaje: Elemento del paisaje
+        interatroprevias: Intervenciones atrópicas previas
+        interatroactuales: Intervenciones atrópicas actuales
         nombreusuario: Nombre de quien diligencia el formato
         nombrepropiedad: Nombre de la propiedad
         nomcomoseconoce: Nombre como se le conoce localmente
