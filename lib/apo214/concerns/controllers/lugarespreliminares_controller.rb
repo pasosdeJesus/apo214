@@ -24,6 +24,7 @@ module Apo214
           def lista_params 
             [ :codigositio,
               :cobertura_id,
+              :detallesdisposicion,
               :detallesasesinato,
               :depositados,
               :elementopaisaje_id,
@@ -38,6 +39,8 @@ module Apo214
               :hechos,
               :max_depositados,
               :min_depositados,
+              :nombrepropiedad,
+              :nomcomoseconoce,
               :organizacion,
               :otradisposicioncadaveres,
               :otrotipotestigo,
@@ -52,10 +55,28 @@ module Apo214
               :otrolubicacionpre_texto,
               :ubicaespecifica,
               :id_persona,
+              :propietario_ids => [],
               :listadepositados_attributes => [
                 :id,
                 :_destroy,
                 :personadepositada_attributes => [
+                  :apellidos, 
+                  :id, 
+                  :nombres, 
+                  :numerodocumento, 
+                  :sexo, 
+                  :tdocumento_id,
+                  :anionac,
+                  :mesnac,
+                  :dianac
+                ]
+              ],
+              :listapersofuentes_attributes => [
+                :id,
+                :telefono,
+                :observacion,
+                :_destroy,
+                :personafuente_attributes => [
                   :apellidos, 
                   :id, 
                   :nombres, 
@@ -82,6 +103,21 @@ module Apo214
                 :numerodocumento,
                 :sexo,
                 :tdocumento_id
+              ],
+              :propietario_attributes => [
+                :telefono,
+                :observaciones,
+                :id,
+                :id_persona,
+                :_destroy,
+                :personapropietario_attributes => [
+                  :apellidos,
+                  :id,
+                  :nombres,
+                  :numerodocumento,
+                  :sexo,
+                  :tdocumento_id
+                ]
               ]
             ]
           end
@@ -111,18 +147,27 @@ module Apo214
 
           def new
             @registro = @lugarpreliminar = Apo214::Lugarpreliminar.new
+            @registro.propietario = Apo214::Propietario.new
             @registro.save!(validate: false)
             redirect_to apo214.edit_lugarpreliminar_path(@registro)
           end
 
           def update
+            if lugarpreliminar_params && lugarpreliminar_params[:propietario_attributes]
+              if lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i > 0 &&
+                Sip::Persona.where(
+                  id: lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i).count == 1
+                @lugarpreliminar.propietario.id_persona = lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id]
+                @lugarpreliminar.save!(validate: false)
+              end
+            end
             # Ubicamos los de autocompletacion y para esos creamos un registro 
             if lugarpreliminar_params && 
                 lugarpreliminar_params[:persona_attributes][:id].to_i > 0 &&
                 Sip::Persona.where(
                   id: lugarpreliminar_params[:persona_attributes][:id].to_i).count == 1
               @lugarpreliminar.id_persona = lugarpreliminar_params[:persona_attributes][:id]
-            
+              params[:lugarpreliminar][:id_persona] = @lugarpreliminar.id_persona
               @lugarpreliminar.save!(validate: false)
             end
             if lugarpreliminar_params[:listadepositados_attributes]
@@ -143,6 +188,24 @@ module Apo214
                 end
               end
             end
+            if lugarpreliminar_params[:listapersofuentes_attributes]
+              lugarpreliminar_params[:listapersofuentes_attributes].each do |a|
+                # Ubicamos los de autocompletacion y para esos creamos un registro 
+                if a[1] && a[1][:id] && a[1][:id] == '' && 
+                    a[1][:personafuente_attributes] && 
+                    a[1][:personafuente_attributes][:id] &&
+                    a[1][:personafuente_attributes][:id].to_i > 0 &&
+                    Sip::Persona.where(
+                      id: a[1][:personafuente_attributes][:id].to_i).count == 1
+                  ld = Apo214::Listadepostidos.create({
+                    lugarpreliminar_id: @lugarpeliminar.id,
+                    persona_id: a[1][:personafuente_attributes][:id]
+                  })
+                  ld.save!(validate: false)
+                  params[:lugarepliminar][:listapersofuentes_attributes][a[0].to_s][:id] = ld.id
+                end
+              end
+            end
             update_gen
           end
 
@@ -153,7 +216,7 @@ module Apo214
           def vistas_manejadas
              return ['Lugarpreliminar']
           end
-          
+
           private
 
           def set_lugarpreliminar
