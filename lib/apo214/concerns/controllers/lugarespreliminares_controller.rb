@@ -23,9 +23,11 @@ module Apo214
           
           def lista_params 
             [ :codigositio,
+              :cobertura_id,
               :detallesdisposicion,
               :detallesasesinato,
               :depositados,
+              :elementopaisaje_id,
               :fecha,
               :fechadis,
               :grabacion,

@@ -273,6 +273,29 @@
           </div>
         </div>
       </div><!-- collapse -->
+      <br>
+      <a data-toggle="collapse" href='#sitioentorno'>
+        <h5>DESCRIPCIÓN DEL SITIO Y SU ENTORNO</h5>
+      </a>
+      <div class="collapse multi-collapse" id="sitioentorno">
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.association :elementopaisaje,
+              collection: Apo214::Elementopaisaje.habilitados,
+              include_blank: true,
+              label_method: :nombre, 
+              value_method: :id
+            %>
+          </div>
+          <div class="col-md-6">
+            <%= f.association :cobertura,
+              collection: Apo214::Cobertura.habilitados,
+              include_blank: true,
+              label_method: :nombre, 
+              value_method: :id
+            %>
+        </div>
+      </div><!-- collapse -->
     </div> <! -- multicollapse -->
 
     <div class="form-actions" style="text-align: center">
