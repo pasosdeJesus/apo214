@@ -2881,7 +2881,7 @@ CREATE SEQUENCE public.sivel2_gen_caso_fotra_seq
 CREATE TABLE public.sivel2_gen_caso_fotra (
     id_caso integer NOT NULL,
     id_fotra integer,
-    anotacion character varying(200),
+    anotacion character varying(1024),
     fecha date NOT NULL,
     ubicacionfisica character varying(1024),
     tfuente character varying(25),
@@ -2923,7 +2923,7 @@ CREATE SEQUENCE public.sivel2_gen_caso_fuenteprensa_seq
 
 CREATE TABLE public.sivel2_gen_caso_fuenteprensa (
     fecha date NOT NULL,
-    ubicacion character varying(100),
+    ubicacion character varying(1024),
     clasificacion character varying(100),
     ubicacionfisica character varying(1024),
     fuenteprensa_id integer NOT NULL,
@@ -7175,6 +7175,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201215191833'),
 ('20201215192951'),
 ('20201219210527'),
-('20201220130138');
+('20201220130138'),
+('20201231194433');
 
 
