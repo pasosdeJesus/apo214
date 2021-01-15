@@ -35,6 +35,14 @@ module Apo214
             foreign_key: 'elementopaisaje_id', optional: true
           belongs_to :disposicioncadaveres, class_name: 'Apo214::Disposicioncadaveres',
             foreign_key: 'disposicioncadaveres_id', optional: true
+          has_many :listaevariesgo, dependent: :delete_all,
+            class_name: "Apo214::Listaevariesgo",
+            foreign_key: :lugarpreliminar_id 
+          has_many :evaluacionriesgo, through: :listaevariesgo, class_name: "Apo214::Evaluacionriesgo"
+          accepts_nested_attributes_for :listaevariesgo,
+            allow_destroy: true, reject_if: :all_blank
+          accepts_nested_attributes_for :evaluacionriesgo, reject_if: :all_blank
+          validates_associated :evaluacionriesgo
 
           has_many :listadepositados, dependent: :delete_all,
             class_name: 'Apo214::Listadepositados',

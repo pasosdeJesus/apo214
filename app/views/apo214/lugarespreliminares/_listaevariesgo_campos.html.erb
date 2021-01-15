@@ -1,0 +1,16 @@
+<% if f.object.evaluacionriesgo.nil? %>
+  <% f.object.evaluacionriesgo = Apo214::Evaluacionriesgo.new %>
+<% end %>
+<%= f.simple_fields_for :listaevariesgo do |lia| %>
+  <%= lia.input :id, as: :hidden %>
+  <tr class= "nested-fields">
+    <% riesgo = Apo214::Riesgo.all[lia.index] %>
+    <td><%= riesgo.nombre %></td>
+    <%= lia.simple_fields_for :evaluacionriesgo do |a| %>
+      <%= a.input :id, as: :hidden %>
+      <%= a.association :riesgo, input_html: {value: riesgo.id }, as: :hidden %>
+      <td> <%= a.input :descripcion, label: false %> </td>
+      <td> <%= a.input :calificacion, label: false %> </td>
+    </tr>
+  <% end %>
+<% end %>

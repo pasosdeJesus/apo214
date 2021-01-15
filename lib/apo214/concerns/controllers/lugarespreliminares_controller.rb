@@ -105,6 +105,16 @@ module Apo214
                   :textura 
                   ]
               ],
+              :listaevariesgo_attributes => [
+                :id,
+                :_destroy,
+                :evaluacionriesgo_attributes => [
+                  :id,
+                  :riesgo_id,
+                  :calificacion,
+                  :descripcion
+                ]
+              ],
               :persona_attributes => [
                 :anionac,
                 :apellidos,
@@ -165,6 +175,9 @@ module Apo214
           def new
             @registro = @lugarpreliminar = Apo214::Lugarpreliminar.new
             @registro.propietario = Apo214::Propietario.new
+            Apo214::Riesgo.all.each do |ri|
+              @lugarpreliminar.evaluacionriesgo.new
+            end
             @registro.save!(validate: false)
             redirect_to apo214.edit_lugarpreliminar_path(@registro)
           end
@@ -221,6 +234,10 @@ module Apo214
                   ld.save!(validate: false)
                   params[:lugarepliminar][:listapersofuentes_attributes][a[0].to_s][:id] = ld.id
                 end
+              end
+            end
+            if lugarpreliminar_params[:evaluacionriesgo_attributes]
+              Apo214::Riesgo.habilitados.each do |riesgo|
               end
             end
             update_gen
