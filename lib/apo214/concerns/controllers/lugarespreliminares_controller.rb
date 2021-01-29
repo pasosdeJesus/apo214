@@ -236,10 +236,6 @@ module Apo214
                 end
               end
             end
-            if lugarpreliminar_params[:evaluacionriesgo_attributes]
-              Apo214::Riesgo.habilitados.each do |riesgo|
-              end
-            end
             update_gen
           end
 
