@@ -1,5 +1,9 @@
-<% if f.object.evaluacionriesgo.nil? %>
-  <% f.object.evaluacionriesgo = Apo214::Evaluacionriesgo.new %>
+<% if f.object.evaluacionriesgo.empty? %>
+  <% Apo214::Riesgo.habilitados.each do |riesgo|%>
+    <% eri = Apo214::Evaluacionriesgo.new %>
+    <% eri.save! %>
+    <% f.object.evaluacionriesgo.push(eri) %>
+  <% end %>
 <% end %>
 <%= f.simple_fields_for :listaevariesgo do |lia| %>
   <%= lia.input :id, as: :hidden %>
