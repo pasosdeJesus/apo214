@@ -24,6 +24,7 @@ es:
         accesolugar: Acceso al lugar
         codigositio: Código de Sitio
         cobertura: Cobertura
+        desgenanomalia: Descripción general de anomalías presentes
         detallesdisposicion: Detalles de la disposicion del cuerpo(s)
         disposicioncadaveres: Disposición de cadáveres
         elementopaisaje: Elemento del paisaje
@@ -38,6 +39,7 @@ es:
         organizacion: Organización/Entidad perteneciente
         otrotipotestigo: ¿Otro tipo de testigo? ¿Cuál?
         otradisposicioncadaveres: ¿Otra? ¿Cuál?
+        procesoscul: Procesos culturales de formación (intervenciones antrópicas, estructuras, uso del suelo, etc.)
         telepropietario: Teléfono
         tipotestigo: Tipo de testigo
         tipoentierro: Tipo de enterramiento
