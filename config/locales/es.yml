@@ -16,7 +16,7 @@ es:
         Tipotestigo: Tipo de testigo
         Tipostestigo: Tipos de testigo
       "apo214/disposicioncadaveres":
-        Disposicioncadaveres: Disposicion de cadáveres
+        Disposicioncadaveres: Disposición de cadáveres
         Disposicionescadaveres: Disposiciones de cadáveres
       "apo214/lugarpreliminar":
         Lugarpreliminar: Lugar preliminar de disposición irregular de cadáveres
@@ -24,8 +24,8 @@ es:
         accesolugar: Acceso al lugar
         codigositio: Código de Sitio
         cobertura: Cobertura
-        desgenanomalia: Descripción general de anomalías presentes
-        detallesdisposicion: Detalles de la disposicion del cuerpo(s)
+        desgenanomalia: Descripción general de anomalías y otros marcadores arqueológicos de interés forense
+        detallesdisposicion: Detalles de la disposición del cuerpo(s)
         disposicioncadaveres: Disposición de cadáveres
         elementopaisaje: Elemento del paisaje
         fecha_localizada: Fecha
