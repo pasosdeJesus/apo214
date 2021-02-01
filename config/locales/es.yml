@@ -28,6 +28,7 @@ es:
         disposicioncadaveres: Disposición de cadáveres
         elementopaisaje: Elemento del paisaje
         fecha_localizada: Fecha
+        fotografias: Fotografías
         hechos: Presuntos Hechos
         interatroprevias: Intervenciones atrópicas previas
         interatroactuales: Intervenciones atrópicas actuales
@@ -38,6 +39,7 @@ es:
         organizacion: Organización/Entidad perteneciente
         otrotipotestigo: ¿Otro tipo de testigo? ¿Cuál?
         otradisposicioncadaveres: ¿Otra? ¿Cuál?
+        riesgosdanios: Riesgos de daños que tiene o podría tener el sitio
         telepropietario: Teléfono
         tipotestigo: Tipo de testigo
         tipoentierro: Tipo de enterramiento

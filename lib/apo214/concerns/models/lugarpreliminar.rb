@@ -72,6 +72,8 @@ module Apo214
 
           validates_length_of :otradisposicioncadaveres, maximum: 1000
           validates_length_of :otrotipotestigo, maximum: 1000
+          validates_length_of :riesgosdanios, maximum: 5000
+          validates_length_of :fotografias, maximum: 5000
 
           validates :min_depositados, :numericality => { greater_than_or_equal_to: 0 },
             :allow_nil => true
