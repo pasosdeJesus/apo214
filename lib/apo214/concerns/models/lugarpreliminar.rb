@@ -70,6 +70,15 @@ module Apo214
           accepts_nested_attributes_for :listapersofuentes,
             allow_destroy: true, reject_if: :all_blank
 
+          has_many :infoanomalialugar, dependent: :delete_all,
+            class_name: 'Apo214::Infoanomalialugar',
+            foreign_key: 'lugarpreliminar_id'
+
+          has_many :infoanomalia, through: :infoanomalialugar, class_name: 'Apo214::Infoanomalia'
+          accepts_nested_attributes_for :infoanomalialugar,
+            allow_destroy: true, reject_if: :all_blank
+          accepts_nested_attributes_for :infoanomalia, reject_if: :all_blank
+
           validates_length_of :otradisposicioncadaveres, maximum: 1000
           validates_length_of :otrotipotestigo, maximum: 1000
 
