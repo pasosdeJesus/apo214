@@ -105,6 +105,19 @@ module Apo214
                   :textura 
                   ]
               ],
+              :infoanomalialugar_attributes => [
+                :id,
+                :_destroy,
+                :infoanomalia_attributes => [
+                  :anomalia, 
+                  :descripcion,
+                  :id,
+                  :latitud, 
+                  :longitud, 
+                  :area,
+                  :waypoint
+                  ]
+              ],
               :listaevariesgo_attributes => [
                 :id,
                 :_destroy,
