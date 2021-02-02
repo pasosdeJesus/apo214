@@ -31,7 +31,6 @@ module Apo214
               :elementopaisaje_id,
               :fecha,
               :fechadis,
-              :fotografias,
               :grabacion,
               :horadis,
               :id,
@@ -105,6 +104,16 @@ module Apo214
                   :profinicial, 
                   :proffinal, 
                   :textura 
+                  ]
+              ],
+              :listainfofoto_attributes => [
+                :id,
+                :_destroy,
+                :infofoto_attributes => [
+                  :fotografia, 
+                  :descripcion,
+                  :id,
+                  :fecha 
                   ]
               ],
               :listaevariesgo_attributes => [

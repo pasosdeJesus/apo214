@@ -1,0 +1,25 @@
+<h5 style="text-align: center;">Fotografías </h5>
+<table class="table  table-bordered table-sm ">
+  <thead class="thead-light">
+    <tr>
+      <th>Fotografía</th>
+      <th>Descripción</th>
+      <th>Fecha</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="listainfofoto">
+    <%= f.simple_fields_for :listainfofoto do |a| %>
+      <%= render 'listainfofoto_campos', f: a %>
+    <% end %>
+  </tbody>
+</table>
+<div class="links">
+  <%= link_to_add_association 'Añadir Fotografía', f, 
+    :listainfofoto,
+    :"data-association-insertion-node" => "tbody#listainfofoto", 
+    :"data-association-insertion-method" => "append", 
+    partial: 'listainfofoto_campos',
+    :class => 'btn-primary'
+  %>
+</div>

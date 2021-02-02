@@ -69,11 +69,16 @@ module Apo214
           accepts_nested_attributes_for :personafuente, reject_if: :all_blank
           accepts_nested_attributes_for :listapersofuentes,
             allow_destroy: true, reject_if: :all_blank
-
+          has_many :listainfofoto, dependent: :delete_all,
+            class_name: 'Apo214::Listainfofoto',
+            foreign_key: 'lugarpreliminar_id'
+          has_many :infofoto, through: :listainfofoto, class_name: 'Apo214::Infofoto'
+          accepts_nested_attributes_for :listainfofoto,
+            allow_destroy: true, reject_if: :all_blank
+          accepts_nested_attributes_for :infofoto, reject_if: :all_blank
           validates_length_of :otradisposicioncadaveres, maximum: 1000
           validates_length_of :otrotipotestigo, maximum: 1000
           validates_length_of :riesgosdanios, maximum: 5000
-          validates_length_of :fotografias, maximum: 5000
 
           validates :min_depositados, :numericality => { greater_than_or_equal_to: 0 },
             :allow_nil => true
