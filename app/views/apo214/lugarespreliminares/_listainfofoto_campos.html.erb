@@ -1,25 +1,16 @@
 <tr class='nested-fields'>
-  <% if f.object.infofoto.nil? %>
-    <% f.object.infofoto = Apo214::Infofoto.new %>
+  <% f.object.sip_anexo = Sip::Anexo.new if !f.object.sip_anexo %>
+  <%= f.simple_fields_for :sip_anexo do |ane| %>
+    <td>
+      <%= render 'sip/anexos/anexo_campos', a: ane  %>
+    </td>
   <% end %>
-
-  <%= f.simple_fields_for :infofoto do |s| %>
     <td>
-      <%= s.input :id, as: :hidden %>
-      <%= s.input :fotografia, as: :file,
-        label: false %>
-    </td>
-    <td>
-      <%= s.input :descripcion, :as => :text, :input_html => {:rows => 3},
-        label: false %>
-    </td>
-    <td>
-      <%= s.input :fecha,
+      <%= f.input :fecha,
         label: false,
         :input_html => { "data-behaviour" => "datepicker" },
         :as => :string %>
     </td>
-  <% end %>
   <td>
     <%= f.input :id, as: :hidden %>
     <%= link_to_remove_association "Eliminar", f, 

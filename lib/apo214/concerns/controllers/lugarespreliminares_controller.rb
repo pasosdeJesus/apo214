@@ -108,13 +108,12 @@ module Apo214
               ],
               :listainfofoto_attributes => [
                 :id,
+                :lugarpreliminar_id,
+                :fecha,
                 :_destroy,
-                :infofoto_attributes => [
-                  :fotografia, 
-                  :descripcion,
-                  :id,
-                  :fecha 
-                  ]
+                :sip_anexo_attributes => [
+                  :id, :descripcion, :adjunto, :_destroy
+                ]
               ],
               :listaevariesgo_attributes => [
                 :id,

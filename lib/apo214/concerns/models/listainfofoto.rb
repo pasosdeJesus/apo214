@@ -9,9 +9,9 @@ module Apo214
 
           belongs_to :lugarpreliminar, class_name: 'Apo214::Lugarpreliminar',
             validate: true, foreign_key: 'lugarpreliminar_id'
-          belongs_to :infofoto, class_name: 'Apo214::Infofoto', validate: true,
-            foreign_key: 'infofoto_id'
-          accepts_nested_attributes_for :infofoto, reject_if: :all_blank
+          belongs_to :sip_anexo, class_name: 'Sip::Anexo', validate: true,
+            foreign_key: 'anexo_id'
+          accepts_nested_attributes_for :sip_anexo, reject_if: :all_blank
 
         end # included
       end
