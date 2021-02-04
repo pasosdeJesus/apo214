@@ -117,8 +117,10 @@ module Apo214
                   :latitud, 
                   :longitud, 
                   :area,
-                  :waypoint
+                  :sip_anexo_attributes => [
+                    :id, :descripcion, :adjunto, :_destroy
                   ]
+                ]
               ],
               :listaevariesgo_attributes => [
                 :id,

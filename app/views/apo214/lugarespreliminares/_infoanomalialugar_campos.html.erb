@@ -21,10 +21,12 @@
       <%= s.input :area,
         label: false %>
     </td>
+    <% s.object.sip_anexo = Sip::Anexo.new if !s.object.sip_anexo %>
+    <%= s.simple_fields_for :sip_anexo do |ane| %>
     <td>
-      <%= s.input :waypoint, as: :file,
-        label: false %>
+      <%= render 'sip/anexos/anexo_campos', a: ane  %>
     </td>
+    <% end %>
   <% end %>
   <td>
     <%= f.input :id, as: :hidden %>
