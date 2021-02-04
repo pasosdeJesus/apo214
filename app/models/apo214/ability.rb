@@ -30,7 +30,6 @@ module Apo214
       if !usuario || !usuario.rol
         return
       end
-      can :descarga_anexo, Sip::Anexo
       case usuario.rol
       when Ability::ROLADMIN
         can :manage, Apo214::Lugarpreliminar
