@@ -1,0 +1,24 @@
+<h5 style="text-align: center;">Anexos </h5>
+<table class="table  table-bordered table-sm ">
+  <thead class="thead-light">
+    <tr>
+      <th>Anexo</th>
+      <th>Fecha</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="listaanexos">
+    <%= f.simple_fields_for :listaanexos do |a| %>
+      <%= render 'listaanexos_campos', f: a %>
+    <% end %>
+  </tbody>
+</table>
+<div class="links">
+  <%= link_to_add_association 'Añadir Fotografía', f, 
+    :listaanexos,
+    :"data-association-insertion-node" => "tbody#listaanexos", 
+    :"data-association-insertion-method" => "append", 
+    partial: 'listaanexos_campos',
+    :class => 'btn-primary'
+  %>
+</div>

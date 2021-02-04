@@ -66,7 +66,20 @@ module Apo214
               :otrolubicacionpre_texto,
               :ubicaespecifica,
               :id_persona,
+              :archivokml_id,
               :propietario_ids => [],
+              :archivokml_attributes => [
+                :id, :descripcion, :adjunto, :_destroy
+              ],
+              :listaanexos_attributes => [
+                :id,
+                :lugarpreliminar_id,
+                :fecha,
+                :_destroy,
+                :sip_anexo_attributes => [
+                  :id, :descripcion, :adjunto, :_destroy
+                ]
+              ],
               :listadepositados_attributes => [
                 :id,
                 :_destroy,

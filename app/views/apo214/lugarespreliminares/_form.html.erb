@@ -374,6 +374,23 @@
             <%= f.input :desgenanomalia, :as => :text, :input_html => {:rows => 3} %>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-6">
+            <% f.object.archivokml = Sip::Anexo.new if !f.object.archivokml %>
+              <%= f.simple_fields_for :archivokml do |ane| %>
+              <td>
+                <%= render 'sip/anexos/anexo_campos', a: ane  %>
+              </td>
+              <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="panel-body table-responsive" style="overflow-x:scroll;">
+              <%= render 'campo_listaanexos', f: f %>
+            </div> <!-- panel-body -->
+          </div>
+        </div>
       </div><!-- collapse -->
     </div> <! -- multicollapse -->
 
