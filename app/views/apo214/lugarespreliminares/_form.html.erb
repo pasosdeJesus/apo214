@@ -53,7 +53,7 @@
       <a data-toggle="collapse" href='#aportantepreliminar'>
         <h5>DATOS DEL APORTANTE</h5>
       </a>
-      <div class="collapse multi-collapse campodepersona" id="aportantepreliminar">
+      <div class="collapse multi-collapse filapersona" id="aportantepreliminar">
         <%= f.input :id_persona, as: :hidden %>
         <% if !f.object.persona %>
           <% f.object.persona = Sip::Persona.new%>
@@ -240,11 +240,15 @@
         <a data-toggle="collapse" href='#privada'>
           <h5>Propiedad privada</h5>
         </a>
-        <div class="collapse multi-collapse campodepersona" id="privada">
+        <div class="collapse multi-collapse filapersona" id="privada">
           <div class="row">
             <div class="col-md-12">
               <%= f.input :nombrepropiedad %>
+              <% if f.object.propietario.nil? %>
+                <% f.object.propietario = Apo214::Propietario.new %>
+              <% end %>
               <%= f.simple_fields_for :propietario do |p| %>
+                <%= f.input :id, as: :hidden %>
                 <%= f.input :id_persona, as: :hidden %>
                 <% if p.object.personapropietario.nil? %>
                   <% p.object.personapropietario = Sip::Persona.new %>

@@ -8,7 +8,7 @@ apo214_busca_aportante = function(s) {
   v = $("#" + cnom).data('autocompleta');
   if (v !== 1 && v !== "no") {
     $("#" + cnom).data('autocompleta', 1);
-    divcp = s.closest('.campodepersona');
+    divcp = s.closest('.filapersona');
     if (typeof divcp === 'undefined') {
       alert('No se ubico div aportante preliminar');
       return;
