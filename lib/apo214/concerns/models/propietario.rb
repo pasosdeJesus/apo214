@@ -18,6 +18,7 @@ module Apo214
             validate: true, class_name: "Sip::Persona"
           accepts_nested_attributes_for :personapropietario, reject_if: :all_blank
 
+          validates_length_of :observaciones, maximum: 5000
         end
       end
     end

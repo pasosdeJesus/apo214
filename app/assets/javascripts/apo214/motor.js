@@ -98,7 +98,11 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
   $(document).on('focusin', 'input[id^=lugarpreliminar_persona_attributes][id$=_nombres]', function (e) {
     apo214_busca_aportante($(this), root)
   });
-  
+
+  $(document).on('focusin', 'input[id^=lugarpreliminar_listapersofuentes_attributes][id$=_attributes_nombres]', function (e) {
+    apo214_busca_aportante($(this), root)
+  });
+
   $(document).on('focusin', 'input[id=lugarpreliminar_propietario_attributes_personapropietario_attributes_nombres]', function (e) {
     apo214_busca_aportante($(this), root)
   });
