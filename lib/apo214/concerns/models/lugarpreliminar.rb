@@ -92,10 +92,12 @@ module Apo214
             foreign_key: 'archivokml_id'
           has_many :listaanexos, dependent: :delete_all,
             class_name: 'Apo214::Listaanexos',
+          has_many :listaanexo, dependent: :delete_all,
+            class_name: 'Apo214::Listaanexo',
             foreign_key: 'lugarpreliminar_id'
-          accepts_nested_attributes_for :listaanexos,
+          accepts_nested_attributes_for :listaanexo,
             allow_destroy: true, reject_if: :all_blank
-          has_many :sip_anexo, :through => :listaanexos, 
+          has_many :sip_anexo, :through => :listaanexo, 
             class_name: 'Sip::Anexo'
           accepts_nested_attributes_for :sip_anexo,  reject_if: :all_blank
 

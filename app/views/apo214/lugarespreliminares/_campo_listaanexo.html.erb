@@ -7,18 +7,18 @@
       <th></th>
     </tr>
   </thead>
-  <tbody id="listaanexos">
-    <%= f.simple_fields_for :listaanexos do |a| %>
-      <%= render 'listaanexos_campos', f: a %>
+  <tbody id="listaanexo">
+    <%= f.simple_fields_for :listaanexo do |a| %>
+      <%= render 'listaanexo_campos', f: a %>
     <% end %>
   </tbody>
 </table>
 <div class="links">
-  <%= link_to_add_association 'Añadir Fotografía', f, 
-    :listaanexos,
-    :"data-association-insertion-node" => "tbody#listaanexos", 
+  <%= link_to_add_association 'Añadir Anexo', f, 
+    :listaanexo,
+    :"data-association-insertion-node" => "tbody#listaanexo", 
     :"data-association-insertion-method" => "append", 
-    partial: 'listaanexos_campos',
+    partial: 'listaanexo_campos',
     :class => 'btn-primary'
   %>
 </div>

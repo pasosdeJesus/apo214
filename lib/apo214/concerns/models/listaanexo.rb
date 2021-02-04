@@ -1,7 +1,7 @@
 module Apo214
   module Concerns
     module Models
-      module Listaanexos
+      module Listaanexo
         extend ActiveSupport::Concern
 
         included do

@@ -71,7 +71,7 @@ module Apo214
               :archivokml_attributes => [
                 :id, :descripcion, :adjunto, :_destroy
               ],
-              :listaanexos_attributes => [
+              :listaanexo_attributes => [
                 :id,
                 :lugarpreliminar_id,
                 :fecha,

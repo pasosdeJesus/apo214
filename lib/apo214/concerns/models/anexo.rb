@@ -20,10 +20,10 @@ module Apo214
           validates_attachment_file_name :adjunto, matches: [/png\z/, /jpe?g\z/], message: "Solo se permite imágens en png o jpeg"
           has_one :lugarpreliminar, foreign_key: "archivokml_id", 
             validate: true, class_name: 'Apo214::Lugarpreliminar'
-          has_many :listaanexos, foreign_key: "anexo_id", 
-            validate: true, class_name: 'Apo214::Listaanexos'
+          has_many :listaanexo, foreign_key: "anexo_id", 
+            validate: true, class_name: 'Apo214::Listaanexo'
           has_many :lugarpreliminar, class_name: 'Apo214::Lugarpreliminar',
-            through: :listaanexos 
+            through: :listaanexo 
         end
 
         module ClassMethods
