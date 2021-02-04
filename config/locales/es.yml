@@ -36,9 +36,11 @@ es:
         nombrepropiedad: Nombre de la propiedad
         nomcomoseconoce: Nombre como se le conoce localmente
         obserpropietario: Observaciones
+        observaciones: Observaciones
         organizacion: Organización/Entidad perteneciente
         otrotipotestigo: ¿Otro tipo de testigo? ¿Cuál?
         otradisposicioncadaveres: ¿Otra? ¿Cuál?
+        perfilestrategico: Perfil Estratégico
         telepropietario: Teléfono
         tipotestigo: Tipo de testigo
         tipoentierro: Tipo de enterramiento
