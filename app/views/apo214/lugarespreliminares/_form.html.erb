@@ -110,10 +110,10 @@
       <div class="collapse multi-collapse" id="antepreliminar">
         <div class="row">
           <div class="col-md-12">
-            <%= f.input :hechos %>
+            <%= f.input :hechos, as: :text, input_html: {rows: 3} %>
           </div>
           <div class="col-md-12">
-            <%= f.input :ubicaespecifica %>
+            <%= f.input :ubicaespecifica, as: :text, input_html: {rows: 3} %>
           </div>
         </div> <!-- row -->
         <div class="row">      
@@ -210,7 +210,7 @@
                 Detalles:
               </div>
               <div class="col-md-10">
-                <%= f.input :detallesasesinato,
+                <%= f.input :detallesasesinato, as: :text, input_html: {rows: 3},
                   label: false %>
               </div>
             </div>
@@ -228,7 +228,7 @@
             </div> <!-- panel-body -->
           </div>
           <div class="col-md-12">
-            <%= f.input :detallesdisposicion %>
+            <%= f.input :detallesdisposicion, as: :text, input_html: {rows: 3} %>
           </div>
         </div>
       </div><!-- collapse -->
@@ -257,7 +257,7 @@
                     </div>
                 <% end %>
                 <%= p.input :telefono %>
-                <%= p.input :observaciones %>
+                <%= p.input :observaciones , as: :text, input_html: {rows: 3}%>
               <% end %>
             </div>
           </div>
@@ -309,7 +309,7 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <%= f.input :accesolugar %>
+            <%= f.input :accesolugar, as: :text, input_html: {rows: 3} %>
           </div>
         </div>
         <div class="row">
@@ -335,6 +335,10 @@
             <div class="panel-body table-responsive" style="overflow-x:scroll;">
               <%= render 'campo_listasuelo', f: f %>
             </div> <!-- panel-body -->
+            <%= f.input :observaciones, :as => :text, :input_html => {:rows => 8} %>
+          </div>
+          <div class="col-md-4">
+            <%= f.input :perfilestrategico, :as => :text, :input_html => {:rows => 20} %>
           </div>
         </div>
         <div class="row">
