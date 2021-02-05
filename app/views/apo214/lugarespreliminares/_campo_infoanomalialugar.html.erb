@@ -1,0 +1,27 @@
+<h5 style="text-align: center;">Anomalías y otros marcadores arqueológicos de interes forense</h5>
+<table class="table  table-bordered table-sm ">
+  <thead class="thead-light">
+    <tr>
+      <th>Anomalía</th>
+      <th>Descripción</th>
+      <th>Coordenadas</th>
+      <th>Área</th>
+      <th>Nombre del Waypoint</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="infoanomalialugar">
+    <%= f.simple_fields_for :infoanomalialugar do |a| %>
+      <%= render 'infoanomalialugar_campos', f: a %>
+    <% end %>
+  </tbody>
+</table>
+<div class="links">
+  <%= link_to_add_association 'Añadir anomalía', f, 
+    :infoanomalialugar,
+    :"data-association-insertion-node" => "tbody#infoanomalialugar", 
+    :"data-association-insertion-method" => "append", 
+    partial: 'infoanomalialugar_campos',
+    :class => 'btn-primary'
+  %>
+</div>

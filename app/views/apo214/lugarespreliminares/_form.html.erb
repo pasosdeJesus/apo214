@@ -341,6 +341,35 @@
             <%= f.input :perfilestrategico, :as => :text, :input_html => {:rows => 20} %>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-4">
+            <%= f.input :riesgosdanios, :as => :text, :input_html => {:rows => 3} %>
+          </div>
+          <div class="col-md-8">
+            <div class="panel-body table-responsive" style="overflow-x:scroll;">
+              <%= render 'campo_listainfofoto', f: f %>
+            </div> <!-- panel-body -->
+          <div class="col-md-12">
+            <%= f.input :evaluacionlugar, :as => :text, :input_html => {:rows => 3} %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel-body table-responsive" style="overflow-x:scroll;">
+              <%= render 'campo_infoanomalialugar', f: f %>
+            </div> <!-- panel-body -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.input :procesoscul, :as => :text, :input_html => {:rows => 20} %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.input :desgenanomalia, :as => :text, :input_html => {:rows => 3} %>
+          </div>
+        </div>
       </div><!-- collapse -->
     </div> <! -- multicollapse -->
 

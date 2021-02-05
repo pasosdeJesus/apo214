@@ -1,0 +1,38 @@
+<tr class='nested-fields'>
+  <% if f.object.infoanomalia.nil? %>
+    <% f.object.infoanomalia = Apo214::Infoanomalia.new %>
+  <% end %>
+
+  <%= f.simple_fields_for :infoanomalia do |s| %>
+    <td>
+      <%= s.input :id, as: :hidden %>
+      <%= s.input :anomalia,
+        label: false %>
+    </td>
+    <td>
+      <%= s.input :descripcion, as: :text,
+        label: false %>
+    </td>
+    <td>
+      <%= s.input :latitud %>
+      <%= s.input :longitud %>
+    </td>
+    <td>
+      <%= s.input :area,
+        label: false %>
+    </td>
+    <% s.object.sip_anexo = Sip::Anexo.new if !s.object.sip_anexo %>
+    <%= s.simple_fields_for :sip_anexo do |ane| %>
+    <td>
+      <%= render 'sip/anexos/anexo_campos', a: ane  %>
+    </td>
+    <% end %>
+  <% end %>
+  <td>
+    <%= f.input :id, as: :hidden %>
+    <%= link_to_remove_association "Eliminar", f, 
+        :class => 'btn-danger' 
+    %>
+    <div><%= f.error_notification %></div>
+  </td>
+</tr>

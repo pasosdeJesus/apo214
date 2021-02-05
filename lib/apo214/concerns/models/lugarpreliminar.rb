@@ -70,8 +70,30 @@ module Apo214
           accepts_nested_attributes_for :listapersofuentes,
             allow_destroy: true, reject_if: :all_blank
 
+          has_many :infoanomalialugar, dependent: :delete_all,
+            class_name: 'Apo214::Infoanomalialugar',
+            foreign_key: 'lugarpreliminar_id'
+
+          has_many :infoanomalia, through: :infoanomalialugar, class_name: 'Apo214::Infoanomalia'
+          accepts_nested_attributes_for :infoanomalialugar,
+            allow_destroy: true, reject_if: :all_blank
+          accepts_nested_attributes_for :infoanomalia, reject_if: :all_blank
+
+          has_many :listainfofoto, dependent: :delete_all,
+            class_name: 'Apo214::Listainfofoto',
+            foreign_key: 'lugarpreliminar_id'
+          accepts_nested_attributes_for :listainfofoto,
+            allow_destroy: true, reject_if: :all_blank
+          has_many :sip_anexo, :through => :listainfofoto, 
+            class_name: 'Sip::Anexo'
+          accepts_nested_attributes_for :sip_anexo,  reject_if: :all_blank
+
           validates_length_of :otradisposicioncadaveres, maximum: 1000
           validates_length_of :otrotipotestigo, maximum: 1000
+          validates_length_of :riesgosdanios, maximum: 5000
+          validates_length_of :evaluacionlugar, maximum: 5000
+          validates_length_of :procesoscul, maximum: 5000
+          validates_length_of :desgenanomalia, maximum: 5000
           validates_length_of :hechos, maximum: 5000
           validates_length_of :ubicaespecifica, maximum: 5000
           validates_length_of :accesolugar, maximum: 5000
@@ -79,6 +101,7 @@ module Apo214
           validates_length_of :detallesdisposicion, maximum: 5000
           validates_length_of :observaciones, maximum: 5000
           validates_length_of :perfilestrategico, maximum: 5000
+
           validates :min_depositados, :numericality => { greater_than_or_equal_to: 0 },
             :allow_nil => true
           validates :max_depositados, :numericality => { greater_than_or_equal_to: 0 },

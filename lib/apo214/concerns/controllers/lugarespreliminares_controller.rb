@@ -29,6 +29,7 @@ module Apo214
               :detallesasesinato,
               :depositados,
               :elementopaisaje_id,
+              :evaluacionlugar,
               :fecha,
               :fechadis,
               :grabacion,
@@ -38,6 +39,7 @@ module Apo214
               :interatroprevias,
               :interatroactuales,
               :nombreusuario,
+              :desgenanomalia,
               :disposicioncadaveres_id,
               :hechos,
               :max_depositados,
@@ -49,6 +51,8 @@ module Apo214
               :otradisposicioncadaveres,
               :otrotipotestigo,
               :parentezco,
+              :riesgosdanios,
+              :procesoscul,
               :perfilestrategico,
               :telefono,
               :tipotestigo_id,
@@ -106,6 +110,30 @@ module Apo214
                   :proffinal, 
                   :textura 
                   ]
+              ],
+              :infoanomalialugar_attributes => [
+                :id,
+                :_destroy,
+                :infoanomalia_attributes => [
+                  :anomalia, 
+                  :descripcion,
+                  :id,
+                  :latitud, 
+                  :longitud, 
+                  :area,
+                  :sip_anexo_attributes => [
+                    :id, :descripcion, :adjunto, :_destroy
+                  ]  
+                ]
+              ],
+              :listainfofoto_attributes => [
+                :id,
+                :lugarpreliminar_id,
+                :fecha,
+                :_destroy,
+                :sip_anexo_attributes => [
+                  :id, :descripcion, :adjunto, :_destroy
+                ]
               ],
               :listaevariesgo_attributes => [
                 :id,
