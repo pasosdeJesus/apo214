@@ -103,6 +103,10 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
     apo214_busca_aportante($(this), root)
   });
 
+  $(document).on('focusin', 'input[id^=lugarpreliminar_listadepositados_attributes][id$=_attributes_nombres]', function (e) {
+    apo214_busca_aportante($(this), root)
+  });
+
   $(document).on('focusin', 'input[id=lugarpreliminar_propietario_attributes_personapropietario_attributes_nombres]', function (e) {
     apo214_busca_aportante($(this), root)
   });

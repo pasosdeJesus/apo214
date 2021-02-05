@@ -35,6 +35,8 @@ module Apo214
             foreign_key: 'elementopaisaje_id', optional: true
           belongs_to :disposicioncadaveres, class_name: 'Apo214::Disposicioncadaveres',
             foreign_key: 'disposicioncadaveres_id', optional: true
+          belongs_to :archivokml, class_name: 'Sip::Anexo', validate: true,
+            foreign_key: 'archivokml_id', optional: true
           has_many :listaevariesgo, dependent: :delete_all,
             class_name: "Apo214::Listaevariesgo",
             foreign_key: :lugarpreliminar_id 
@@ -88,10 +90,6 @@ module Apo214
             class_name: 'Sip::Anexo'
           accepts_nested_attributes_for :sip_anexo,  reject_if: :all_blank
 
-          belongs_to :archivokml, class_name: 'Sip::Anexo', validate: true,
-            foreign_key: 'archivokml_id'
-          has_many :listaanexos, dependent: :delete_all,
-            class_name: 'Apo214::Listaanexos',
           has_many :listaanexo, dependent: :delete_all,
             class_name: 'Apo214::Listaanexo',
             foreign_key: 'lugarpreliminar_id'
