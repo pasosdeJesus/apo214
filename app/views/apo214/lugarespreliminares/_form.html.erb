@@ -244,9 +244,6 @@
           <div class="row">
             <div class="col-md-12">
               <%= f.input :nombrepropiedad %>
-              <% if f.object.propietario.nil? %>
-                <% f.object.propietario = Apo214::Propietario.new %>
-              <% end %>
               <%= f.simple_fields_for :propietario do |p| %>
                 <%= f.input :id, as: :hidden %>
                 <%= f.input :id_persona, as: :hidden %>
@@ -346,15 +343,13 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4">
-            <%= f.input :riesgosdanios, :as => :text, :input_html => {:rows => 3} %>
-          </div>
-          <div class="col-md-8">
-            <div class="panel-body table-responsive" style="overflow-x:scroll;">
-              <%= render 'campo_listainfofoto', f: f %>
-            </div> <!-- panel-body -->
           <div class="col-md-12">
-            <%= f.input :evaluacionlugar, :as => :text, :input_html => {:rows => 3} %>
+            <%= f.input :procesoscul, :as => :text, :input_html => {:rows => 20} %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.input :desgenanomalia, :as => :text, :input_html => {:rows => 3} %>
           </div>
         </div>
         <div class="row">
@@ -366,12 +361,36 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <%= f.input :procesoscul, :as => :text, :input_html => {:rows => 20} %>
+            <%= f.input :evaluacionlugar, :as => :text, :input_html => {:rows => 3} %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <%= f.input :riesgosdanios, :as => :text, :input_html => {:rows => 3} %>
+          </div>
+          <div class="col-md-8">
+            <div class="panel-body table-responsive" style="overflow-x:scroll;">
+              <%= render 'campo_listainfofoto', f: f %>
+            </div> <!-- panel-body -->
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <%= f.input :desgenanomalia, :as => :text, :input_html => {:rows => 3} %>
+            <% f.object.archivokml = Sip::Anexo.new if !f.object.archivokml %>
+              <%= f.simple_fields_for :archivokml do |ane| %>
+                <td>
+                </br>
+                <p>Archivo KML con los datos geográficos para su visualización y navegación en Google earth</p>
+                <%= render 'sip/anexos/anexo_campos', a: ane  %>
+              </td>
+              <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel-body table-responsive" style="overflow-x:scroll;">
+              <%= render 'campo_listaanexo', f: f %>
+            </div> <!-- panel-body -->
           </div>
         </div>
       </div><!-- collapse -->

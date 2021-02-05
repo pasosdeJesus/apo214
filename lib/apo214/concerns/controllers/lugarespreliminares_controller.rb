@@ -23,6 +23,7 @@ module Apo214
 
           def lista_params 
             [ :accesolugar,
+              :archivokml_id,
               :codigositio,
               :cobertura_id,
               :detallesdisposicion,
@@ -67,6 +68,18 @@ module Apo214
               :ubicaespecifica,
               :id_persona,
               :propietario_ids => [],
+              :sip_anexo_attributes => [
+                :id, :descripcion, :adjunto, :_destroy
+              ],
+              :listaanexo_attributes => [
+                :id,
+                :lugarpreliminar_id,
+                :fecha,
+                :_destroy,
+                :sip_anexo_attributes => [
+                  :id, :descripcion, :adjunto, :_destroy
+                ]
+              ],
               :listadepositados_attributes => [
                 :id,
                 :_destroy,

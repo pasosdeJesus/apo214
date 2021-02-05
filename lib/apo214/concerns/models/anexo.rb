@@ -16,6 +16,10 @@ module Apo214
             validate: true, class_name: 'Apo214::Listainfofoto'
           has_many :lugarpreliminar, class_name: 'Apo214::Lugarpreliminar',
             through: :listainfofoto
+          has_many :listaanexo, foreign_key: "anexo_id", 
+            validate: true, class_name: 'Apo214::Listaanexo'
+          has_many :lugarpreliminar, class_name: 'Apo214::Lugarpreliminar',
+            through: :listaanexo 
           validates_attachment_content_type :adjunto, content_type: /\Aimage/, message: "Solo se permite imágenes en png o jpeg"
           validates_attachment_file_name :adjunto, matches: [/png\z/, /jpe?g\z/], message: "Solo se permite imágens en png o jpeg"
         end
