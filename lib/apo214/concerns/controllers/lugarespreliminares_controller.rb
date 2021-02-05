@@ -29,6 +29,7 @@ module Apo214
               :detallesasesinato,
               :depositados,
               :elementopaisaje_id,
+              :evaluacionlugar,
               :fecha,
               :fechadis,
               :grabacion,
