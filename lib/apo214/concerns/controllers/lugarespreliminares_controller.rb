@@ -29,6 +29,7 @@ module Apo214
               :detallesasesinato,
               :depositados,
               :elementopaisaje_id,
+              :evaluacionlugar,
               :fecha,
               :fechadis,
               :grabacion,
@@ -50,6 +51,7 @@ module Apo214
               :otradisposicioncadaveres,
               :otrotipotestigo,
               :parentezco,
+              :riesgosdanios,
               :procesoscul,
               :perfilestrategico,
               :telefono,
@@ -121,7 +123,16 @@ module Apo214
                   :area,
                   :sip_anexo_attributes => [
                     :id, :descripcion, :adjunto, :_destroy
-                  ]
+                  ]  
+                ]
+              ],
+              :listainfofoto_attributes => [
+                :id,
+                :lugarpreliminar_id,
+                :fecha,
+                :_destroy,
+                :sip_anexo_attributes => [
+                  :id, :descripcion, :adjunto, :_destroy
                 ]
               ],
               :listaevariesgo_attributes => [
