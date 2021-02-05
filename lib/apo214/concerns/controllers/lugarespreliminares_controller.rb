@@ -111,6 +111,21 @@ module Apo214
                   :textura 
                   ]
               ],
+              :infoanomalialugar_attributes => [
+                :id,
+                :_destroy,
+                :infoanomalia_attributes => [
+                  :anomalia, 
+                  :descripcion,
+                  :id,
+                  :latitud, 
+                  :longitud, 
+                  :area,
+                  :sip_anexo_attributes => [
+                    :id, :descripcion, :adjunto, :_destroy
+                  ]  
+                ]
+              ],
               :listainfofoto_attributes => [
                 :id,
                 :lugarpreliminar_id,

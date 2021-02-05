@@ -10,6 +10,8 @@ module Apo214
         include Sip::Concerns::Models::Anexo
 
         included do
+          has_many :infoanomalia, foreign_key: "anexo_id", 
+            validate: true, class_name: 'Apo214::Infoanomalia'
           has_many :listainfofoto, foreign_key: "anexo_id", 
             validate: true, class_name: 'Apo214::Listainfofoto'
           has_many :lugarpreliminar, class_name: 'Apo214::Lugarpreliminar',
