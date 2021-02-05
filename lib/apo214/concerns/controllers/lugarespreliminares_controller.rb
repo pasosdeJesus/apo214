@@ -217,8 +217,8 @@ module Apo214
               if lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i > 0 &&
                 Sip::Persona.where(
                   id: lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i).count == 1
-                @lugarpreliminar.propietario.id_persona = lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id]
-                @lugarpreliminar.save!(validate: false)
+                  @registro.propietario.id_persona = lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i
+                  @registro.propietario.save!(validate: false)
               end
             end
             # Ubicamos los de autocompletacion y para esos creamos un registro 
@@ -239,12 +239,12 @@ module Apo214
                     a[1][:personadepositada_attributes][:id].to_i > 0 &&
                     Sip::Persona.where(
                       id: a[1][:personadepositada_attributes][:id].to_i).count == 1
-                  ld = Apo214::Listadepostidos.create({
-                    lugarpreliminar_id: @lugarpeliminar.id,
+                  ld = Apo214::Listadepositados.create({
+                    lugarpreliminar_id: @lugarpreliminar.id,
                     persona_id: a[1][:personadepositada_attributes][:id]
                   })
                   ld.save!(validate: false)
-                  params[:lugarepliminar][:listadepositados_attributes][a[0].to_s][:id] = ld.id
+                  params[:lugarpreliminar][:listadepositados_attributes][a[0].to_s][:id] = ld.id
                 end
               end
             end
@@ -257,12 +257,12 @@ module Apo214
                     a[1][:personafuente_attributes][:id].to_i > 0 &&
                     Sip::Persona.where(
                       id: a[1][:personafuente_attributes][:id].to_i).count == 1
-                  ld = Apo214::Listadepostidos.create({
-                    lugarpreliminar_id: @lugarpeliminar.id,
+                  ld = Apo214::Listapersofuentes.create({
+                    lugarpreliminar_id: @lugarpreliminar.id,
                     persona_id: a[1][:personafuente_attributes][:id]
                   })
                   ld.save!(validate: false)
-                  params[:lugarepliminar][:listapersofuentes_attributes][a[0].to_s][:id] = ld.id
+                  params[:lugarpreliminar][:listapersofuentes_attributes][a[0].to_s][:id] = ld.id
                 end
               end
             end
