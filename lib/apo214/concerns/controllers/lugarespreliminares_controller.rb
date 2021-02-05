@@ -29,48 +29,45 @@ module Apo214
               :detallesdisposicion,
               :detallesasesinato,
               :depositados,
+              :desgenanomalia,
+              :disposicioncadaveres_id,
               :elementopaisaje_id,
               :evaluacionlugar,
               :fecha,
               :fechadis,
               :grabacion,
+              :hechos,
               :horadis,
               :id,
+              :id_persona,
               :insitu,
               :interatroprevias,
               :interatroactuales,
-              :nombreusuario,
-              :desgenanomalia,
-              :disposicioncadaveres_id,
-              :hechos,
               :max_depositados,
               :min_depositados,
               :nombrepropiedad,
+              :nombreusuario,
               :nomcomoseconoce,
               :observaciones,
               :organizacion,
               :otradisposicioncadaveres,
+              :otrolubicacionpre_id,
+              :otrolubicacionpre_texto,
               :otrotipotestigo,
               :parentezco,
-              :riesgosdanios,
+              :perfilestratigrafico,
               :procesoscul,
-              :perfilestrategico,
+              :riesgosdanios,
               :telefono,
               :tipotestigo_id,
               :tipoentierro_id,
               :ubicacionpre_id,
-              :otrolubicacionpre_id,
               :ubicacionpre_texto,
               :ubicacionpre_mundep_texto,
               :usoterprevios,
               :usoteractuales,
-              :otrolubicacionpre_texto,
               :ubicaespecifica,
-              :id_persona,
               :propietario_ids => [],
-              :sip_anexo_attributes => [
-                :id, :descripcion, :adjunto, :_destroy
-              ],
               :listaanexo_attributes => [
                 :id,
                 :lugarpreliminar_id,
@@ -78,6 +75,19 @@ module Apo214
                 :_destroy,
                 :sip_anexo_attributes => [
                   :id, :descripcion, :adjunto, :_destroy
+              :infoanomalialugar_attributes => [
+                :id,
+                :_destroy,
+                :infoanomalia_attributes => [
+                  :anomalia, 
+                  :descripcion,
+                  :id,
+                  :latitud, 
+                  :longitud, 
+                  :area,
+                  :sip_anexo_attributes => [
+                    :id, :descripcion, :adjunto, :_destroy
+                  ]  
                 ]
               ],
               :listadepositados_attributes => [
@@ -93,6 +103,25 @@ module Apo214
                   :anionac,
                   :mesnac,
                   :dianac
+                ]
+              ],
+              :listaevariesgo_attributes => [
+                :id,
+                :_destroy,
+                :evaluacionriesgo_attributes => [
+                  :id,
+                  :riesgo_id,
+                  :calificacion,
+                  :descripcion
+                ]
+              ],
+              :listainfofoto_attributes => [
+                :id,
+                :lugarpreliminar_id,
+                :fecha,
+                :_destroy,
+                :sip_anexo_attributes => [
+                  :id, :descripcion, :adjunto, :_destroy
                 ]
               ],
               :listapersofuentes_attributes => [
@@ -124,40 +153,6 @@ module Apo214
                   :textura 
                   ]
               ],
-              :infoanomalialugar_attributes => [
-                :id,
-                :_destroy,
-                :infoanomalia_attributes => [
-                  :anomalia, 
-                  :descripcion,
-                  :id,
-                  :latitud, 
-                  :longitud, 
-                  :area,
-                  :sip_anexo_attributes => [
-                    :id, :descripcion, :adjunto, :_destroy
-                  ]  
-                ]
-              ],
-              :listainfofoto_attributes => [
-                :id,
-                :lugarpreliminar_id,
-                :fecha,
-                :_destroy,
-                :sip_anexo_attributes => [
-                  :id, :descripcion, :adjunto, :_destroy
-                ]
-              ],
-              :listaevariesgo_attributes => [
-                :id,
-                :_destroy,
-                :evaluacionriesgo_attributes => [
-                  :id,
-                  :riesgo_id,
-                  :calificacion,
-                  :descripcion
-                ]
-              ],
               :persona_attributes => [
                 :anionac,
                 :apellidos,
@@ -188,7 +183,12 @@ module Apo214
                   :sexo,
                   :tdocumento_id
                 ]
-              ]
+              ],
+              :propietario_ids => [],
+              :sip_anexo_attributes => [
+                :id, :descripcion, :adjunto, :_destroy
+              ],
+
             ]
           end
 
