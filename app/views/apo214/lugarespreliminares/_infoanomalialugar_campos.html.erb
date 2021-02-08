@@ -14,8 +14,8 @@
         label: false %>
     </td>
     <td>
-      <%= s.input :latitud %>
-      <%= s.input :longitud %>
+      <%= s.input :latitud, input_html: {value: s.object.latitud || '-75.09779149580004'} %>
+      <%= s.input :longitud, input_html: {value: s.object.longitud || '4.746367689258643'} %>
     </td>
     <td>
       <%= s.input :area,
