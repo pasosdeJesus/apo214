@@ -67,7 +67,6 @@ module Apo214
               :usoterprevios,
               :usoteractuales,
               :ubicaespecifica,
-              :propietario_ids => [],
               :listaanexo_attributes => [
                 :id,
                 :lugarpreliminar_id,
@@ -75,6 +74,8 @@ module Apo214
                 :_destroy,
                 :sip_anexo_attributes => [
                   :id, :descripcion, :adjunto, :_destroy
+                ]
+              ],
               :infoanomalialugar_attributes => [
                 :id,
                 :_destroy,
