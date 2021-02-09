@@ -41,6 +41,8 @@ module Apo214
             class_name: "Apo214::Listaevariesgo",
             foreign_key: :lugarpreliminar_id 
           has_many :evaluacionriesgo, through: :listaevariesgo, class_name: "Apo214::Evaluacionriesgo"
+          accepts_nested_attributes_for :archivokml,
+            allow_destroy: true, reject_if: :all_blank
           accepts_nested_attributes_for :listaevariesgo,
             allow_destroy: true, reject_if: :all_blank
           accepts_nested_attributes_for :evaluacionriesgo, reject_if: :all_blank
