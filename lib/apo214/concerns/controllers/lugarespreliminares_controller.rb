@@ -67,14 +67,8 @@ module Apo214
               :usoterprevios,
               :usoteractuales,
               :ubicaespecifica,
-              :listaanexo_attributes => [
-                :id,
-                :lugarpreliminar_id,
-                :fecha,
-                :_destroy,
-                :sip_anexo_attributes => [
-                  :id, :descripcion, :adjunto, :_destroy
-                ]
+              :archivokml_attributes => [
+                :id, :descripcion, :adjunto, :_destroy
               ],
               :infoanomalialugar_attributes => [
                 :id,
@@ -83,12 +77,22 @@ module Apo214
                   :anomalia, 
                   :descripcion,
                   :id,
-                  :latitud, 
-                  :longitud, 
+                  :latitud_localizado, 
+                  :longitud_localizado, 
                   :area,
                   :sip_anexo_attributes => [
                     :id, :descripcion, :adjunto, :_destroy
                   ]  
+                ]
+              ],
+
+              :listaanexo_attributes => [
+                :id,
+                :lugarpreliminar_id,
+                :fecha,
+                :_destroy,
+                :sip_anexo_attributes => [
+                  :id, :descripcion, :adjunto, :_destroy
                 ]
               ],
               :listadepositados_attributes => [
