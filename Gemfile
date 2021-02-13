@@ -61,7 +61,7 @@ gem 'will_paginate' # Listados en páginas
 # lógico y no alfabetico como las gemas anteriores)
 
 gem 'sip', # Motor generico
-  git: 'https://github.com/pasosdeJesus/sip.git'
+  git: 'https://github.com/pasosdeJesus/sip.git', branch: :main
   #path: '../sip'
 
 gem 'mr519_gen', # Motor de gestion de formularios y encuestas
@@ -82,12 +82,15 @@ group  :development, :test do
 
   gem 'colorize' # Colores en terminal
 
+  gem 'dotenv-rails'
 end
 
 
 group :development do
 
   gem 'erd'
+
+  gem 'puma'
 
   gem 'rails-erd'
 

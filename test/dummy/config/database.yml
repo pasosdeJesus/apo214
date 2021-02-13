@@ -2,21 +2,21 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: sipdes
-  password: xyz
+  username: <%= ENV.fetch('BD_USUARIO', 'sipdes') %>
+  password: <%= ENV.fetch('BD_CLAVE') %>
   host: /var/www/var/run/postgresql
 
 development:
   <<: *default
-  database: apo214_des
+  database: <%= ENV.fetch('BD_DES', 'apo214_des') %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: apo214_pru
+  database: <%= ENV.fetch('BD_DES', 'apo214_pru') %>
 
 production:
   <<: *default
-  database: apo214_prod
+  database: <%= ENV.fetch('BD_DES', 'apo214_prod') %>

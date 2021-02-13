@@ -37,3 +37,6 @@ test/dummy/public/heb412/
 test/dummy/node_modules/
 .byebug_history
 coverage
+.env
+test/dummy/public/apo214/assets
+test/dummy/public/packs
