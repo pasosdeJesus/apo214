@@ -554,6 +554,105 @@ ALTER SEQUENCE public.apo214_evaluacionriesgo_id_seq OWNED BY public.apo214_eval
 
 
 --
+-- Name: apo214_infoanomalia; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.apo214_infoanomalia (
+    id bigint NOT NULL,
+    anomalia character varying(100),
+    descripcion character varying(5000),
+    latitud double precision,
+    longitud double precision,
+    area character varying(1024),
+    anexo_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: apo214_infoanomalia_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.apo214_infoanomalia_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: apo214_infoanomalia_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.apo214_infoanomalia_id_seq OWNED BY public.apo214_infoanomalia.id;
+
+
+--
+-- Name: apo214_infoanomalialugar; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.apo214_infoanomalialugar (
+    id bigint NOT NULL,
+    lugarpreliminar_id integer NOT NULL,
+    infoanomalia_id integer NOT NULL
+);
+
+
+--
+-- Name: apo214_infoanomalialugar_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.apo214_infoanomalialugar_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: apo214_infoanomalialugar_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.apo214_infoanomalialugar_id_seq OWNED BY public.apo214_infoanomalialugar.id;
+
+
+--
+-- Name: apo214_listaanexo; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.apo214_listaanexo (
+    id bigint NOT NULL,
+    fecha date,
+    lugarpreliminar_id integer NOT NULL,
+    anexo_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: apo214_listaanexo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.apo214_listaanexo_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: apo214_listaanexo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.apo214_listaanexo_id_seq OWNED BY public.apo214_listaanexo.id;
+
+
+--
 -- Name: apo214_listadepositados; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -611,6 +710,39 @@ CREATE SEQUENCE public.apo214_listaevariesgo_id_seq
 --
 
 ALTER SEQUENCE public.apo214_listaevariesgo_id_seq OWNED BY public.apo214_listaevariesgo.id;
+
+
+--
+-- Name: apo214_listainfofoto; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.apo214_listainfofoto (
+    id bigint NOT NULL,
+    fecha date,
+    lugarpreliminar_id integer NOT NULL,
+    anexo_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: apo214_listainfofoto_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.apo214_listainfofoto_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: apo214_listainfofoto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.apo214_listainfofoto_id_seq OWNED BY public.apo214_listainfofoto.id;
 
 
 --
@@ -716,8 +848,13 @@ CREATE TABLE public.apo214_lugarpreliminar (
     usoterprevios character varying(5000),
     usoteractuales character varying(5000),
     accesolugar character varying(5000),
-    perfilestrategico character varying(5000),
-    observaciones character varying(5000)
+    perfilestratigrafico character varying(5000),
+    observaciones character varying(5000),
+    procesoscul character varying(5000),
+    desgenanomalia character varying(5000),
+    evaluacionlugar character varying(5000),
+    riesgosdanios character varying(500),
+    archivokml_id integer
 );
 
 
@@ -4059,6 +4196,27 @@ ALTER TABLE ONLY public.apo214_evaluacionriesgo ALTER COLUMN id SET DEFAULT next
 
 
 --
+-- Name: apo214_infoanomalia id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_infoanomalia ALTER COLUMN id SET DEFAULT nextval('public.apo214_infoanomalia_id_seq'::regclass);
+
+
+--
+-- Name: apo214_infoanomalialugar id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_infoanomalialugar ALTER COLUMN id SET DEFAULT nextval('public.apo214_infoanomalialugar_id_seq'::regclass);
+
+
+--
+-- Name: apo214_listaanexo id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_listaanexo ALTER COLUMN id SET DEFAULT nextval('public.apo214_listaanexo_id_seq'::regclass);
+
+
+--
 -- Name: apo214_listadepositados id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4070,6 +4228,13 @@ ALTER TABLE ONLY public.apo214_listadepositados ALTER COLUMN id SET DEFAULT next
 --
 
 ALTER TABLE ONLY public.apo214_listaevariesgo ALTER COLUMN id SET DEFAULT nextval('public.apo214_listaevariesgo_id_seq'::regclass);
+
+
+--
+-- Name: apo214_listainfofoto id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_listainfofoto ALTER COLUMN id SET DEFAULT nextval('public.apo214_listainfofoto_id_seq'::regclass);
 
 
 --
@@ -4429,6 +4594,30 @@ ALTER TABLE ONLY public.apo214_evaluacionriesgo
 
 
 --
+-- Name: apo214_infoanomalia apo214_infoanomalia_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_infoanomalia
+    ADD CONSTRAINT apo214_infoanomalia_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: apo214_infoanomalialugar apo214_infoanomalialugar_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_infoanomalialugar
+    ADD CONSTRAINT apo214_infoanomalialugar_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: apo214_listaanexo apo214_listaanexo_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_listaanexo
+    ADD CONSTRAINT apo214_listaanexo_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: apo214_listadepositados apo214_listadepositados_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4442,6 +4631,14 @@ ALTER TABLE ONLY public.apo214_listadepositados
 
 ALTER TABLE ONLY public.apo214_listaevariesgo
     ADD CONSTRAINT apo214_listaevariesgo_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: apo214_listainfofoto apo214_listainfofoto_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_listainfofoto
+    ADD CONSTRAINT apo214_listainfofoto_pkey PRIMARY KEY (id);
 
 
 --
@@ -6095,6 +6292,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
 
 
 --
+-- Name: apo214_listaanexo fk_rails_15d910fc26; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_listaanexo
+    ADD CONSTRAINT fk_rails_15d910fc26 FOREIGN KEY (anexo_id) REFERENCES public.sip_anexo(id);
+
+
+--
 -- Name: mr519_gen_encuestausuario fk_rails_1b24d10e82; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6172,6 +6377,14 @@ ALTER TABLE ONLY public.sip_ubicacionpre
 
 ALTER TABLE ONLY public.sivel2_gen_caso_respuestafor
     ADD CONSTRAINT fk_rails_3aa0de8b93 FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
+
+
+--
+-- Name: apo214_infoanomalialugar fk_rails_3aa92f63a0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_infoanomalialugar
+    ADD CONSTRAINT fk_rails_3aa92f63a0 FOREIGN KEY (infoanomalia_id) REFERENCES public.apo214_infoanomalia(id);
 
 
 --
@@ -6327,6 +6540,22 @@ ALTER TABLE ONLY public.sip_grupo_usuario
 
 
 --
+-- Name: apo214_infoanomalia fk_rails_78511df01b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_infoanomalia
+    ADD CONSTRAINT fk_rails_78511df01b FOREIGN KEY (anexo_id) REFERENCES public.sip_anexo(id);
+
+
+--
+-- Name: apo214_listainfofoto fk_rails_7a80310d89; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_listainfofoto
+    ADD CONSTRAINT fk_rails_7a80310d89 FOREIGN KEY (anexo_id) REFERENCES public.sip_anexo(id);
+
+
+--
 -- Name: sip_actorsocial fk_rails_7bc2a60574; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6399,6 +6628,22 @@ ALTER TABLE ONLY public.mr519_gen_encuestapersona
 
 
 --
+-- Name: apo214_infoanomalialugar fk_rails_8bb02cf8f4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_infoanomalialugar
+    ADD CONSTRAINT fk_rails_8bb02cf8f4 FOREIGN KEY (lugarpreliminar_id) REFERENCES public.apo214_lugarpreliminar(id);
+
+
+--
+-- Name: apo214_listaanexo fk_rails_8bb22a4c10; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_listaanexo
+    ADD CONSTRAINT fk_rails_8bb22a4c10 FOREIGN KEY (lugarpreliminar_id) REFERENCES public.apo214_lugarpreliminar(id);
+
+
+--
 -- Name: mr519_gen_valorcampo fk_rails_8bb7650018; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6420,6 +6665,14 @@ ALTER TABLE ONLY public.sip_grupo_usuario
 
 ALTER TABLE ONLY public.sip_departamento
     ADD CONSTRAINT fk_rails_92093de1a1 FOREIGN KEY (id_pais) REFERENCES public.sip_pais(id);
+
+
+--
+-- Name: apo214_lugarpreliminar fk_rails_9408f90341; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_lugarpreliminar
+    ADD CONSTRAINT fk_rails_9408f90341 FOREIGN KEY (archivokml_id) REFERENCES public.sip_anexo(id);
 
 
 --
@@ -6596,6 +6849,14 @@ ALTER TABLE ONLY public.sip_ubicacionpre
 
 ALTER TABLE ONLY public.apo214_lugarpreliminar
     ADD CONSTRAINT fk_rails_ee76bec01f FOREIGN KEY (disposicioncadaveres_id) REFERENCES public.apo214_disposicioncadaveres(id);
+
+
+--
+-- Name: apo214_listainfofoto fk_rails_efa5c4526f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_listainfofoto
+    ADD CONSTRAINT fk_rails_efa5c4526f FOREIGN KEY (lugarpreliminar_id) REFERENCES public.apo214_lugarpreliminar(id);
 
 
 --
@@ -7348,6 +7609,16 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201221182135'),
 ('20201231194433'),
 ('20210130043950'),
-('20210130052513');
+('20210130052513'),
+('20210130180841'),
+('20210130202050'),
+('20210131194508'),
+('20210201201138'),
+('20210201223910'),
+('20210201225252'),
+('20210201225836'),
+('20210204025126'),
+('20210204045410'),
+('20210206191033');
 
 
