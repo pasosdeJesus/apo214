@@ -7,7 +7,7 @@ module Apo214
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Concerns::Models::Persona
+          include Sivel2Gen::Concerns::Models::Persona
 
           has_many :lugarpreliminar, foreign_key: "id_persona", validate: true,
             class_name: 'Apo214::Lugarpreliminar'
