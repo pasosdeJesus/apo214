@@ -40,6 +40,9 @@ module Apo214
           has_many :listaevariesgo, dependent: :delete_all,
             class_name: "Apo214::Listaevariesgo",
             foreign_key: :lugarpreliminar_id 
+          has_many :asisreconocimientos, dependent: :delete_all,
+            class_name: "Apo214::Asisreconocimiento",
+            foreign_key: :lugarpreliminar_id 
           has_many :evaluacionriesgo, through: :listaevariesgo, class_name: "Apo214::Evaluacionriesgo"
           accepts_nested_attributes_for :archivokml,
             allow_destroy: true, reject_if: :all_blank

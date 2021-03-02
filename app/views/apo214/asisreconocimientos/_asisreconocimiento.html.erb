@@ -1,0 +1,11 @@
+<%= turbo_frame_tag dom_id(asisreconocimiento) do %>
+  <p id="<%= dom_id asisreconocimiento %>">
+      <td>
+        <%= asisreconocimiento.organizacion %>
+      </td>
+      <td>
+        <%= link_to 'Editar', [:edit, asisreconocimiento.lugarpreliminar, asisreconocimiento] %>
+        <%= link_to 'Eliminar', lugarpreliminar_asisreconocimiento_path(@lugarpreliminar, asisreconocimiento), method: :delete %>
+      </td>
+  </p>
+<% end %>
