@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "new_asisreconocimiento", target: "_top" do %>
+<h1> Nuevo Asistente </h1>
+  <%= render "form", asisreconocimiento: @asisreconocimiento %>
+<% end %>
+
+<%= link_to 'Atrás', @asisreconocimiento.lugarpreliminar %>

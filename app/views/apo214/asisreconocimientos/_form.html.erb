@@ -1,0 +1,7 @@
+<%= form_with(model: [@asisreconocimiento.lugarpreliminar, @asisreconocimiento]) do |form| %>
+  <div class="field">
+        <%= form.label :organizacion %>
+        <%= form.text_field :organizacion %>
+        <%= form.submit 'Enviar' %>
+    </div>
+<% end %>
