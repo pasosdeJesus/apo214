@@ -848,7 +848,7 @@ CREATE TABLE public.apo214_lugarpreliminar (
     usoterprevios character varying(5000),
     usoteractuales character varying(5000),
     accesolugar character varying(5000),
-    perfilestrategico character varying(5000),
+    perfilestratigrafico character varying(5000),
     observaciones character varying(5000),
     procesoscul character varying(5000),
     desgenanomalia character varying(5000),
@@ -7619,6 +7619,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210201225836'),
 ('20210204025126'),
 ('20210204045410'),
-('20210206191033');
+('20210206191033'),
+('20210226155035');
 
 
