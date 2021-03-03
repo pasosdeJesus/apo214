@@ -1,7 +1,19 @@
 <%= form_with(model: [@asisreconocimiento.lugarpreliminar, @asisreconocimiento]) do |form| %>
-  <div class="field">
+  <div>
         <%= form.label :organizacion %>
         <%= form.text_field :organizacion %>
+        <% if form.object.asistente.nil? %>
+          <% form.object.asistente = Sip::Persona.new %>
+        <% end %>
+        <%= form.simple_fields_for :asistente do |p| %>
+          <%= p.input :nombres,
+            value_method: lambda {|t| '' if t.nombres == 'N'} %>
+          <%= p.input :apellidos %>
+          <%= p.input :sexo, 
+            collection: [["F", :F], ["M", :M], ["S", :S]], 
+            input_html: { style: 'width: 4em' },
+            include_blank: false %>
+        <% end %>
         <%= form.submit 'Enviar' %>
     </div>
 <% end %>

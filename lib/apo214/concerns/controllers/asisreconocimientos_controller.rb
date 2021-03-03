@@ -22,7 +22,13 @@ module Apo214
           end
 
           def lista_params 
-            [ :organizacion
+            [ :organizacion,
+              :asistente_attributes => [
+                  :apellidos, 
+                  :id, 
+                  :nombres,
+                  :sexo
+                ]
             ]
           end
 
