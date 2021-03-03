@@ -1,0 +1,7 @@
+<h5 style="text-align: center;">Asistencia</h5>
+<%= turbo_frame_tag "asisreconocimiento" do %>
+    <%= turbo_frame_tag "new_asisreconocimiento", src: new_lugarpreliminar_asisreconocimiento_path(@lugarpreliminar), target: "_top" %>
+<% end %>
+<%= turbo_frame_tag "asisreconocimientos" do %>
+  <%= render @lugarpreliminar.asisreconocimientos %>
+<% end %>

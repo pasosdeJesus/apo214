@@ -33,6 +33,7 @@ module Apo214
       case usuario.rol
       when Ability::ROLADMIN
         can :manage, Apo214::Lugarpreliminar
+        can :manage, Apo214::Asisreconocimiento
       end
     end
 
