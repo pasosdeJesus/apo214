@@ -880,7 +880,7 @@ CREATE TABLE public.apo214_lugarpreliminar (
     usoterprevios character varying(5000),
     usoteractuales character varying(5000),
     accesolugar character varying(5000),
-    perfilestrategico character varying(5000),
+    perfilestratigrafico character varying(5000),
     observaciones character varying(5000),
     procesoscul character varying(5000),
     desgenanomalia character varying(5000),
