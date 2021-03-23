@@ -1,4 +1,4 @@
-<%= form_with(model: [@asisreconocimiento.lugarpreliminar, @asisreconocimiento]) do |form| %>
+<%= form_with(model: [@asisreconocimiento.lugarpreliminar, @asisreconocimiento], data: {controller: 'reset_form', action: "turbo:submit-end->reset_form#reset"}) do |form| %>
   <div>
         <%= form.label :organizacion %>
         <%= form.text_field :organizacion %>
