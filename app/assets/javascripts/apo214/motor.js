@@ -111,6 +111,9 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
     apo214_busca_aportante($(this), root)
   });
 
+  $(document).on('focusin', 'input[id=asisreconocimiento_asistente_attributes_nombres]', function (e) {
+    apo214_busca_aportante($(this), root)
+  });
   // Al elegir otro tipo de testigo se despliega el campo otro
   $(document).on('change', 'select[id=lugarpreliminar_tipotestigo_id]', 
     function (e) {

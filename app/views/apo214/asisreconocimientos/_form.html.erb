@@ -1,19 +1,30 @@
-<%= form_with(model: [@asisreconocimiento.lugarpreliminar, @asisreconocimiento], data: {controller: 'reset_form', action: "turbo:submit-end->reset_form#reset"}) do |form| %>
-  <div>
-        <%= form.label :organizacion %>
-        <%= form.text_field :organizacion %>
+<%= form_with(model: [@asisreconocimiento.lugarpreliminar, @asisreconocimiento], data: {controller: 'reset-form', action: "turbo:submit-end->reset-form#reset"}) do |form| %>
+  <div class= "filapersona">
         <% if form.object.asistente.nil? %>
           <% form.object.asistente = Sip::Persona.new %>
         <% end %>
         <%= form.simple_fields_for :asistente do |p| %>
-          <%= p.input :nombres,
-            value_method: lambda {|t| '' if t.nombres == 'N'} %>
-          <%= p.input :apellidos %>
+          <% ph = 'N'
+           ac = {'data-autocompleta' => 'no', style: 'width: 8em' }
+           if (!p.object.nombres || p.object.nombres == 'N' || p.object.nombres == '')
+             ph = 'Buscar'
+             ac = { style: 'width: 16em' }
+           end 
+          %>
+          <%= p.input :nombres, placeholder: ph,
+            value_method: lambda {|t| '' if t.nombres == 'N'},
+            input_html: ac
+          %>
+          <%= p.input :apellidos,
+            input_html: {style: 'width: 16em'}
+          %>
           <%= p.input :sexo, 
             collection: [["F", :F], ["M", :M], ["S", :S]], 
-            input_html: { style: 'width: 4em' },
+            input_html: { style: 'width: 4em'},
             include_blank: false %>
         <% end %>
+        <%= form.label :organizacion %>:
+        <%= form.text_field :organizacion %> </br>
         <%= form.submit 'Enviar' %>
     </div>
 <% end %>
