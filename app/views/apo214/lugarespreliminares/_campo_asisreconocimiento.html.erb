@@ -2,6 +2,20 @@
 <%= turbo_frame_tag "asisreconocimiento" do %>
     <%= turbo_frame_tag "new_asisreconocimiento", src: new_lugarpreliminar_asisreconocimiento_path(@lugarpreliminar), target: "_top" %>
 <% end %>
+<div class="row" >
+  <div class="col-md-3">
+    <h5> Organización </h5>
+  </div>
+  <div class="col-md-3">
+    <h5> Nombre completo </h5>
+  </div>
+  <div class="col-md-2">
+    <h5> Sexo </h5>
+  </div>
+  <div class="col-md-4">
+    <h5> Acciones </h5>
+  </div>
+</div>
 <%= turbo_frame_tag "asisreconocimientos" do %>
   <%= render @lugarpreliminar.asisreconocimientos %>
 <% end %>
