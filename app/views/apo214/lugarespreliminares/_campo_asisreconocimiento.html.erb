@@ -16,6 +16,6 @@
     <h5> Acciones </h5>
   </div>
 </div>
-<%= turbo_frame_tag "asisreconocimientos" do %>
-  <%= render @lugarpreliminar.asisreconocimientos %>
-<% end %>
+<turbo-frame id="asisreconocimientos" data-controller="drag" data-drag-url= <%= url %>>
+    <%= render @lugarpreliminar.asisreconocimientos.order(position: :asc) %>
+</turbo-frame>
