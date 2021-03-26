@@ -42,7 +42,7 @@ module Apo214
             foreign_key: :lugarpreliminar_id 
           has_many :asisreconocimientos, dependent: :delete_all,
             class_name: "Apo214::Asisreconocimiento",
-            foreign_key: :lugarpreliminar_id 
+            foreign_key: :lugarpreliminar_id
           has_many :asistente, through: :asisreconocimientos, class_name: 'Sip::Persona'
           accepts_nested_attributes_for :asistente, reject_if: :all_blank
           accepts_nested_attributes_for :asisreconocimientos,

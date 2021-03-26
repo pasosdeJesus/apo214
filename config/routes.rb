@@ -1,6 +1,10 @@
 Apo214::Engine.routes.draw do
   resources :lugarespreliminares, path_names: { new: 'nuevo', edit: 'edita' } do
-    resources :asisreconocimientos
+    resources :asisreconocimientos do
+      member do
+        patch :move
+      end
+    end
   end
   namespace :admin do
     ab=::Ability.new

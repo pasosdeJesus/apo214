@@ -61,8 +61,15 @@ module Apo214
                 format.turbo_stream
                 format.html { redirect_to @lugarpreliminar }
             end
+            actualiza_position
           end
 
+          def actualiza_position
+            @lugarpreliminar.asisreconocimientos.order(:position).each_with_index do |asis, index|
+              asis.position = index+1
+              asis.save!
+            end
+          end
           def edit
             @lugarpreliminar = Apo214::Lugarpreliminar.find(params[:lugarpreliminar_id])
             @asisreconocimiento = @lugarpreliminar.asisreconocimientos.find(params[:id])
@@ -85,8 +92,29 @@ module Apo214
               format.turbo_stream { render turbo_stream: turbo_stream.remove(@asisreconocimiento) }
               format.html { redirect_to @lugarpreliminar.asisreconocimientos }
             end
+            actualiza_position
           end
 
+          def move
+            nueva = params[:nuevaposition].to_i
+            vieja = params[:viejaposition].to_i
+            if nueva < vieja
+              [*nueva..(vieja-1)].each do |pos|
+                asis = @lugarpreliminar.asisreconocimientos.where(position: pos)[0]
+                asis.position = pos + 1
+                asis.save!
+              end
+            else
+              [*(vieja+1)..nueva].each do |pos|
+                asis = @lugarpreliminar.asisreconocimientos.where(position: pos)[0]
+                asis.position = pos + -1
+                asis.save!
+              end
+            end
+            @asisreconocimiento.insert_at(nueva)
+            actualiza_position
+            head :ok
+          end
           private
           # Use callbacks to share common setup or constraints between actions.
           def set_lugarpreliminar

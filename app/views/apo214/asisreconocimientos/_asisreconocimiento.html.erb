@@ -1,18 +1,23 @@
-<%= turbo_frame_tag dom_id(asisreconocimiento) do %>
-  <div class="row" >
-    <div class="col-md-3">
-      <%= asisreconocimiento.organizacion %>
+<div data-id="<%= asisreconocimiento.id %>">
+  <%= turbo_frame_tag dom_id(asisreconocimiento) do %>
+    <div class="card card-body">
+      <div class="row" >
+        <div class="col-md-3">
+          <%= asisreconocimiento.position %>
+          <%= asisreconocimiento.organizacion %>
+        </div>
+        <div class="col-md-3">
+          <%= asisreconocimiento.asistente.nombres if asisreconocimiento.asistente %>
+          <%= asisreconocimiento.asistente.apellidos if asisreconocimiento.asistente %>
+        </div>
+        <div class="col-md-2">
+          <%= asisreconocimiento.asistente.sexo if asisreconocimiento.asistente %>
+        </div>
+        <div class="col-md-4">
+          <%= link_to 'Editar', [:edit, asisreconocimiento.lugarpreliminar, asisreconocimiento] %>
+          <%= link_to 'Eliminar', lugarpreliminar_asisreconocimiento_path(@lugarpreliminar, asisreconocimiento), method: :delete %>
+        </div>
+      </div>
     </div>
-    <div class="col-md-3">
-      <%= asisreconocimiento.asistente.nombres if asisreconocimiento.asistente %>
-      <%= asisreconocimiento.asistente.apellidos if asisreconocimiento.asistente %>
-    </div>
-    <div class="col-md-2">
-      <%= asisreconocimiento.asistente.sexo if asisreconocimiento.asistente %>
-    </div>
-    <div class="col-md-4">
-      <%= link_to 'Editar', [:edit, asisreconocimiento.lugarpreliminar, asisreconocimiento] %>
-      <%= link_to 'Eliminar', lugarpreliminar_asisreconocimiento_path(@lugarpreliminar, asisreconocimiento), method: :delete %>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
