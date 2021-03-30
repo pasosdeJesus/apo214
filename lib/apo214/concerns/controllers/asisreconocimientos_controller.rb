@@ -61,12 +61,12 @@ module Apo214
                 format.turbo_stream
                 format.html { redirect_to @lugarpreliminar }
             end
-            actualiza_position
+            actualiza_posicion
           end
 
-          def actualiza_position
-            @lugarpreliminar.asisreconocimientos.order(:position).each_with_index do |asis, index|
-              asis.position = index+1
+          def actualiza_posicion
+            @lugarpreliminar.asisreconocimientos.order(:position).each_with_index do |asis, indice|
+              asis.position = indice+1
               asis.save!
             end
           end
@@ -92,12 +92,12 @@ module Apo214
               format.turbo_stream { render turbo_stream: turbo_stream.remove(@asisreconocimiento) }
               format.html { redirect_to @lugarpreliminar.asisreconocimientos }
             end
-            actualiza_position
+            actualiza_posicion
           end
 
-          def move
-            nueva = params[:nuevaposition].to_i
-            vieja = params[:viejaposition].to_i
+          def mover
+            nueva = params[:nuevaposicion].to_i
+            vieja = params[:viejaposicion].to_i
             if nueva < vieja
               [*nueva..(vieja-1)].each do |pos|
                 asis = @lugarpreliminar.asisreconocimientos.where(position: pos)[0]
@@ -112,7 +112,7 @@ module Apo214
               end
             end
             @asisreconocimiento.insert_at(nueva)
-            actualiza_position
+            actualiza_posicion
             head :ok
           end
           private
