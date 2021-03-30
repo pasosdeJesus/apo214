@@ -2,7 +2,7 @@ Apo214::Engine.routes.draw do
   resources :lugarespreliminares, path_names: { new: 'nuevo', edit: 'edita' } do
     resources :asisreconocimientos do
       member do
-        patch :move
+        patch :mover
       end
     end
   end
