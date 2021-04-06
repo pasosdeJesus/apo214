@@ -65,8 +65,8 @@ module Apo214
           end
 
           def actualiza_posicion
-            @lugarpreliminar.asisreconocimientos.order(:position).each_with_index do |asis, indice|
-              asis.position = indice+1
+            @lugarpreliminar.asisreconocimientos.order(:posicion).each_with_index do |asis, indice|
+              asis.posicion = indice+1
               asis.save!
             end
           end
@@ -100,14 +100,14 @@ module Apo214
             vieja = params[:viejaposicion].to_i
             if nueva < vieja
               [*nueva..(vieja-1)].each do |pos|
-                asis = @lugarpreliminar.asisreconocimientos.where(position: pos)[0]
-                asis.position = pos + 1
+                asis = @lugarpreliminar.asisreconocimientos.where(posicion: pos)[0]
+                asis.posicion = pos + 1
                 asis.save!
               end
             else
               [*(vieja+1)..nueva].each do |pos|
-                asis = @lugarpreliminar.asisreconocimientos.where(position: pos)[0]
-                asis.position = pos + -1
+                asis = @lugarpreliminar.asisreconocimientos.where(posicion: pos)[0]
+                asis.posicion = pos + -1
                 asis.save!
               end
             end
