@@ -428,7 +428,8 @@ CREATE TABLE public.apo214_asisreconocimiento (
     id bigint NOT NULL,
     lugarpreliminar_id integer,
     persona_id integer,
-    organizacion character varying(5000)
+    organizacion character varying(5000),
+    posicion integer
 );
 
 
@@ -879,7 +880,7 @@ CREATE TABLE public.apo214_lugarpreliminar (
     usoterprevios character varying(5000),
     usoteractuales character varying(5000),
     accesolugar character varying(5000),
-    perfilestrategico character varying(5000),
+    perfilestratigrafico character varying(5000),
     observaciones character varying(5000),
     procesoscul character varying(5000),
     desgenanomalia character varying(5000),
@@ -7683,6 +7684,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210204045410'),
 ('20210206191033'),
 ('20210218170554'),
-('20210226155035');
+('20210226155035'),
+('20210324141126'),
+('20210401194637'),
+('20210401210102'),
+('20210406225904');
 
 
