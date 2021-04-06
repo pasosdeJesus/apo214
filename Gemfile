@@ -4,6 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gemspec
 
+gem 'acts_as_list'
+
 gem 'bcrypt'
 
 gem 'bootsnap', '>=1.1.0', require: false
