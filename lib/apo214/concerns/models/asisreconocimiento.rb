@@ -11,7 +11,7 @@ module Apo214
             validate: true, foreign_key: 'lugarpreliminar_id'
           belongs_to :asistente, class_name: 'Sip::Persona', validate: true,
             foreign_key: 'persona_id'
-          acts_as_list scope: :asistente
+          acts_as_list scope: :asistente, column: :posicion
           accepts_nested_attributes_for :asistente, reject_if: :all_blank
 
         end # included
