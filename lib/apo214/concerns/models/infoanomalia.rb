@@ -11,6 +11,8 @@ module Apo214
           include Sip::Localizacion
           flotante_localizado :latitud 
           flotante_localizado :longitud
+          attr_accessor :latitud_sirgas
+          attr_accessor :longitud_sirgas
           belongs_to :sip_anexo, class_name: 'Sip::Anexo', validate: true,
             foreign_key: 'anexo_id'
           accepts_nested_attributes_for :sip_anexo, reject_if: :all_blank

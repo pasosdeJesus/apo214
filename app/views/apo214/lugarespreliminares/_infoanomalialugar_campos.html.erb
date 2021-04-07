@@ -2,27 +2,69 @@
   <% if f.object.infoanomalia.nil? %>
     <% f.object.infoanomalia = Apo214::Infoanomalia.new %>
   <% end %>
-
-  <%= f.simple_fields_for :infoanomalia do |s| %>
+  <%= f.simple_fields_for :infoanomalia do |inf| %>
     <td>
-      <%= s.input :id, as: :hidden %>
-      <%= s.input :anomalia,
+      <%= inf.input :id, as: :hidden %>
+      <%= inf.input :anomalia,
         label: false %>
     </td>
     <td>
-      <%= s.input :descripcion, as: :text,
+      <%= inf.input :descripcion, as: :text,
         label: false %>
     </td>
     <td>
-      <%= s.input :latitud_localizado %>
-      <%= s.input :longitud_localizado %>
+      <%= inf.input :latitud_localizado %>
+      <%= inf.input :longitud_localizado %>
+      <!-- Button trigger modal -->
+      <div>
+        <a class="btn btn-primary togglecoord">
+          Ingresar Coordenadas
+        </a>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade coord" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Gestión de coordenadas</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h6>Coordenadas WGS84</h5>
+              <div class="row">
+                <div class="col-md-6">
+                  [[Aquí latitud en Wgs84 ]]
+                </div>
+                <div class="col-md-6">
+                  [[Aquí latitud en Wgs84 ]]
+                </div>
+              </div>
+              <h6>Coordenadas MAGNA SIRGAS</h5>
+              <div class="row">
+                <div class="col-md-6">
+                  <%= inf.input :latitud_sirgas %>
+                </div>
+                <div class="col-md-6">
+                  <%= inf.input :longitud_sirgas %>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </td>
     <td>
-      <%= s.input :area,
+      <%= inf.input :area,
         label: false %>
     </td>
-    <% s.object.sip_anexo = Sip::Anexo.new if !s.object.sip_anexo %>
-    <%= s.simple_fields_for :sip_anexo do |ane| %>
+    <% inf.object.sip_anexo = Sip::Anexo.new if !inf.object.sip_anexo %>
+    <%= inf.simple_fields_for :sip_anexo do |ane| %>
     <td>
       <%= render 'sip/anexos/anexo_campos', a: ane  %>
     </td>
