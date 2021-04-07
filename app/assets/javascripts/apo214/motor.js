@@ -152,4 +152,9 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
       }
     }
   )
+  $(document).on("click", ".togglecoord", function() {
+    console.log("entro")
+   $(this).parent().siblings(".coord").modal('toggle');
+});
+
 };
