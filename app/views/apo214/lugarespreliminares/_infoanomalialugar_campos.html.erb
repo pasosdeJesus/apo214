@@ -13,12 +13,14 @@
         label: false %>
     </td>
     <td>
-      <%= inf.input :latitud_localizado %>
-      <%= inf.input :longitud_localizado %>
+      <%= inf.input :latitud_localizado,
+        as: :float %>
+      <%= inf.input :longitud_localizado,
+        as: :float %>
       <!-- Button trigger modal -->
       <div>
         <a class="btn btn-primary togglecoord">
-          Ingresar Coordenadas
+          Conversión
         </a>
       </div>
       <!-- Modal -->
@@ -35,10 +37,40 @@
               <h6>Coordenadas WGS84</h5>
               <div class="row">
                 <div class="col-md-6">
-                  [[Aquí latitud en Wgs84 ]]
+                  <%= inf.input :latitud_localizado,
+                    as: :float %>
+                  <%= inf.input :longitud_localizado,
+                    as: :float %>
                 </div>
                 <div class="col-md-6">
-                  [[Aquí latitud en Wgs84 ]]
+                  <div class="row">
+                    <div class="col-md-4">
+                      <%= inf.input :gra_lat,
+                        as: :numeric %>
+                    </div>
+                    <div class="col-md-4">
+                      <%= inf.input :min_lat,
+                        as: :numeric %>
+                    </div>
+                    <div class="col-md-4">
+                      <%= inf.input :seg_lat,
+                        as: :numeric %>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <%= inf.input :gra_lon,
+                        as: :numeric %>
+                    </div>
+                    <div class="col-md-4">
+                      <%= inf.input :min_lon,
+                        as: :numeric %>
+                    </div>
+                    <div class="col-md-4">
+                      <%= inf.input :seg_lon,
+                        as: :numeric %>
+                    </div>
+                  </div>
                 </div>
               </div>
               <h6>Coordenadas MAGNA SIRGAS</h5>

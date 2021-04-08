@@ -13,6 +13,12 @@ module Apo214
           flotante_localizado :longitud
           attr_accessor :latitud_sirgas
           attr_accessor :longitud_sirgas
+          attr_accessor :gra_lat
+          attr_accessor :min_lat
+          attr_accessor :seg_lat
+          attr_accessor :gra_lon
+          attr_accessor :min_lon
+          attr_accessor :seg_lon
           belongs_to :sip_anexo, class_name: 'Sip::Anexo', validate: true,
             foreign_key: 'anexo_id'
           accepts_nested_attributes_for :sip_anexo, reject_if: :all_blank
