@@ -36,38 +36,92 @@
             <div class="modal-body">
               <h6>Coordenadas WGS84</h5>
               <div class="row">
-                <div class="col-md-6">
-                  <%= inf.input :latitud_localizado,
-                    as: :float %>
-                  <%= inf.input :longitud_localizado,
-                    as: :float %>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                   <div class="row">
-                    <div class="col-md-4">
-                      <%= inf.input :gra_lat,
-                        as: :numeric %>
-                    </div>
-                    <div class="col-md-4">
-                      <%= inf.input :min_lat,
-                        as: :numeric %>
-                    </div>
-                    <div class="col-md-4">
-                      <%= inf.input :seg_lat,
-                        as: :numeric %>
+                    <div class="col-md-6">
+                      <h6>Latitud flotante </h6>
+                      <%= inf.input :latitud_wgs84,
+                        label: false,
+                        as: :float,
+                        input_html: {value: inf.object.latitud_wgs84 || 0}
+                      %>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
+                      <h6>Longitud flotante </h6>
+                      <%= inf.input :longitud_wgs84,
+                        label: false,
+                        as: :float,
+                        input_html: {value: inf.object.longitud_wgs84 || 0}
+                      %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <h6>Latitud GMS </h6>
+                  <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-3">
+                      °
+                    </div>
+                    <div class="col-md-3">
+                      '
+                    </div>
+                    <div class="col-md-3">
+                      ''
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 pl-4">
+                      <%=
+                        inf.collection_radio_buttons( :cardinal_lat, [['N', 'N'] ,['S', 'S']], :first, :last,
+                                                     {checked: inf.object.cardinal_lat.nil? ? '' : inf.object.carindal_lat }  ) do |b|
+                            b.label(class: "mr-2 mt-2") { b.radio_button + b.text }
+                         end
+                       %> 
+                    </div>
+                    <div class="col-md-3">
+                      <%= inf.input :gra_lat,
+                        label: false,
+                        as: :numeric %>
+                    </div>
+                    <div class="col-md-3">
+                      <%= inf.input :min_lat,
+                        label: false,
+                        as: :numeric %>
+                    </div>
+                    <div class="col-md-3">
+                      <%= inf.input :seg_lat,
+                        label: false,
+                        as: :numeric %>
+                    </div>
+                  </div>
+                  <h6>Longitud GMS </h6>
+                  <div class="row">
+                    <div class="col-md-3 pl-4">
+                      <%=
+                        inf.collection_radio_buttons( :cardinal_lon, [['e', 'E'] ,['w', 'O']], :first, :last,
+                                                     {checked: inf.object.cardinal_lon.nil? ? '' : inf.object.carindal_lon }  ) do |b|
+                            b.label(class: "mr-2 mt-2") { b.radio_button + b.text }
+                         end
+                       %> 
+                    </div>
+                    <div class="col-md-3">
                       <%= inf.input :gra_lon,
-                        as: :numeric %>
+                        label: false,
+                        as: :numeric
+                      %>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <%= inf.input :min_lon,
+                        label: false,
                         as: :numeric %>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <%= inf.input :seg_lon,
+                        label: false,
                         as: :numeric %>
                     </div>
                   </div>
@@ -84,8 +138,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary">Guardar</button>
+              <button type="button" class="btn btn-primary boton_conversion" data-dismiss="modal">Guardar</button>
             </div>
           </div>
         </div>
