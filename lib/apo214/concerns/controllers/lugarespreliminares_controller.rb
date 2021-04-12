@@ -220,6 +220,26 @@ module Apo214
             ]
           end
 
+          def coordenadas
+            tipo = params[:tipo].to_i
+            lat_wgs84_flot = params[:lat_wgs84_flot]
+            lon_wgs84_flot = params[:lon_wgs84_flot]
+            case tipo
+            when 1
+              punto = 'POINT ('+ lon_wgs84_flot + " " + lat_wgs84_flot + ')'
+              consl= 'SELECT (ST_AsLatLonText(\''+ punto +'\', \'D°M\'\'S.SSS\'\'C\'));'
+              resultado = ActiveRecord::Base.connection.select_all consl
+              coor_gms = resultado.rows[0][0]
+            end
+            respond_to do |format|
+              conversion = { 
+                gms: coor_gms
+              }
+              format.json { render json: conversion, status: :ok }
+              format.html { render inilne: conversion.to_s, status: :ok }
+            end
+          end
+
           def new
             @registro = @lugarpreliminar = Apo214::Lugarpreliminar.new
             @registro.propietario = Apo214::Propietario.new

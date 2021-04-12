@@ -2,27 +2,154 @@
   <% if f.object.infoanomalia.nil? %>
     <% f.object.infoanomalia = Apo214::Infoanomalia.new %>
   <% end %>
-
-  <%= f.simple_fields_for :infoanomalia do |s| %>
+  <%= f.simple_fields_for :infoanomalia do |inf| %>
     <td>
-      <%= s.input :id, as: :hidden %>
-      <%= s.input :anomalia,
+      <%= inf.input :id, as: :hidden %>
+      <%= inf.input :anomalia,
         label: false %>
     </td>
     <td>
-      <%= s.input :descripcion, as: :text,
+      <%= inf.input :descripcion, as: :text,
         label: false %>
     </td>
     <td>
-      <%= s.input :latitud_localizado %>
-      <%= s.input :longitud_localizado %>
+      <%= inf.input :latitud_localizado,
+        as: :float %>
+      <%= inf.input :longitud_localizado,
+        as: :float %>
+      <!-- Button trigger modal -->
+      <div>
+        <a class="btn btn-primary togglecoord">
+          Conversión
+        </a>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade coord" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Gestión de coordenadas</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h6>Coordenadas WGS84</h5>
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h6>Latitud flotante </h6>
+                      <%= inf.input :latitud_wgs84,
+                        label: false,
+                        as: :float,
+                        input_html: {value: inf.object.latitud_wgs84 || 0}
+                      %>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h6>Longitud flotante </h6>
+                      <%= inf.input :longitud_wgs84,
+                        label: false,
+                        as: :float,
+                        input_html: {value: inf.object.longitud_wgs84 || 0}
+                      %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <h6>Latitud GMS </h6>
+                  <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-3">
+                      °
+                    </div>
+                    <div class="col-md-3">
+                      '
+                    </div>
+                    <div class="col-md-3">
+                      ''
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 pl-4">
+                      <%=
+                        inf.collection_radio_buttons( :cardinal_lat, [['N', 'N'] ,['S', 'S']], :first, :last,
+                                                     {checked: inf.object.cardinal_lat.nil? ? '' : inf.object.carindal_lat }  ) do |b|
+                            b.label(class: "mr-2 mt-2") { b.radio_button + b.text }
+                         end
+                       %> 
+                    </div>
+                    <div class="col-md-3">
+                      <%= inf.input :gra_lat,
+                        label: false,
+                        as: :numeric %>
+                    </div>
+                    <div class="col-md-3">
+                      <%= inf.input :min_lat,
+                        label: false,
+                        as: :numeric %>
+                    </div>
+                    <div class="col-md-3">
+                      <%= inf.input :seg_lat,
+                        label: false,
+                        as: :numeric %>
+                    </div>
+                  </div>
+                  <h6>Longitud GMS </h6>
+                  <div class="row">
+                    <div class="col-md-3 pl-4">
+                      <%=
+                        inf.collection_radio_buttons( :cardinal_lon, [['e', 'E'] ,['w', 'O']], :first, :last,
+                                                     {checked: inf.object.cardinal_lon.nil? ? '' : inf.object.carindal_lon }  ) do |b|
+                            b.label(class: "mr-2 mt-2") { b.radio_button + b.text }
+                         end
+                       %> 
+                    </div>
+                    <div class="col-md-3">
+                      <%= inf.input :gra_lon,
+                        label: false,
+                        as: :numeric
+                      %>
+                    </div>
+                    <div class="col-md-3">
+                      <%= inf.input :min_lon,
+                        label: false,
+                        as: :numeric %>
+                    </div>
+                    <div class="col-md-3">
+                      <%= inf.input :seg_lon,
+                        label: false,
+                        as: :numeric %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h6>Coordenadas MAGNA SIRGAS</h5>
+              <div class="row">
+                <div class="col-md-6">
+                  <%= inf.input :latitud_sirgas %>
+                </div>
+                <div class="col-md-6">
+                  <%= inf.input :longitud_sirgas %>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary boton_conversion" data-dismiss="modal">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </td>
     <td>
-      <%= s.input :area,
+      <%= inf.input :area,
         label: false %>
     </td>
-    <% s.object.sip_anexo = Sip::Anexo.new if !s.object.sip_anexo %>
-    <%= s.simple_fields_for :sip_anexo do |ane| %>
+    <% inf.object.sip_anexo = Sip::Anexo.new if !inf.object.sip_anexo %>
+    <%= inf.simple_fields_for :sip_anexo do |ane| %>
     <td>
       <%= render 'sip/anexos/anexo_campos', a: ane  %>
     </td>
