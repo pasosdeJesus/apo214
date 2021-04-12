@@ -421,6 +421,38 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: apo214_asisreconocimiento; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.apo214_asisreconocimiento (
+    id bigint NOT NULL,
+    lugarpreliminar_id integer,
+    persona_id integer,
+    organizacion character varying(5000),
+    posicion integer
+);
+
+
+--
+-- Name: apo214_asisreconocimiento_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.apo214_asisreconocimiento_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: apo214_asisreconocimiento_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.apo214_asisreconocimiento_id_seq OWNED BY public.apo214_asisreconocimiento.id;
+
+
+--
 -- Name: apo214_cobertura; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4168,6 +4200,13 @@ CREATE MATERIALIZED VIEW public.vvictimasoundexesp AS
 
 
 --
+-- Name: apo214_asisreconocimiento id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_asisreconocimiento ALTER COLUMN id SET DEFAULT nextval('public.apo214_asisreconocimiento_id_seq'::regclass);
+
+
+--
 -- Name: apo214_cobertura id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4559,6 +4598,14 @@ ALTER TABLE ONLY public.sivel2_gen_acto
 
 ALTER TABLE ONLY public.sivel2_gen_acto
     ADD CONSTRAINT acto_id_presponsable_id_categoria_id_persona_id_caso_key UNIQUE (id_presponsable, id_categoria, id_persona, id_caso);
+
+
+--
+-- Name: apo214_asisreconocimiento apo214_asisreconocimiento_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_asisreconocimiento
+    ADD CONSTRAINT apo214_asisreconocimiento_pkey PRIMARY KEY (id);
 
 
 --
@@ -6620,6 +6667,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso
 
 
 --
+-- Name: apo214_asisreconocimiento fk_rails_883533cb81; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_asisreconocimiento
+    ADD CONSTRAINT fk_rails_883533cb81 FOREIGN KEY (lugarpreliminar_id) REFERENCES public.apo214_lugarpreliminar(id);
+
+
+--
 -- Name: mr519_gen_encuestapersona fk_rails_88eeb03074; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6745,6 +6800,14 @@ ALTER TABLE ONLY public.apo214_lugarpreliminar
 
 ALTER TABLE ONLY public.sip_ubicacion
     ADD CONSTRAINT fk_rails_b82283d945 FOREIGN KEY (id_municipio) REFERENCES public.sip_municipio(id);
+
+
+--
+-- Name: apo214_asisreconocimiento fk_rails_b9116c62bf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.apo214_asisreconocimiento
+    ADD CONSTRAINT fk_rails_b9116c62bf FOREIGN KEY (persona_id) REFERENCES public.sip_persona(id);
 
 
 --
@@ -7620,8 +7683,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210204025126'),
 ('20210204045410'),
 ('20210206191033'),
+('20210218170554'),
 ('20210226155035'),
+('20210324141126'),
 ('20210401194637'),
-('20210401210102');
+('20210401210102'),
+('20210406225904');
 
 
