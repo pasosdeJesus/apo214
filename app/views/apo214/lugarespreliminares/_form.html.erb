@@ -1,7 +1,9 @@
 <% if current_usuario.nil?  %>
   <li><a href="usuarios/sign_in">Iniciar Sesión</a>
 <% else  %>
-  <%= simple_form_for @lugarpreliminar, :html => { :class => 'form-horizontal', 'data-turbo' => "false" } do |f| %>
+
+<div data-turbo="false">
+  <%= simple_form_for @lugarpreliminar, :html => { :class => 'form-horizontal', :id => dom_id(@lugarpreliminar) } do |f| %>
     <div data-role="content" class="form-inputs">
       <h3><center>FORMATO DE REGISTRO DE INFORMACIÓN PRELIMINAR DE PRESUNTOS LUGARES DE DISPOSICIÓN IRREGULAR DE CADÁVERES</center></h3>
     </div>
@@ -384,9 +386,11 @@
       </div>
       <div class="row">
         <div class="col-md-12">
+         <div data-turbo="true">
           <div class="panel-body table-responsive" style="overflow-x:scroll;">
              <%= render 'campo_asisreconocimiento', f: f, url: "asisreconocimientos/:id/mover" %>
           </div> <!-- panel-body -->
+         </div>
         </div>
       </div>
       <div class="row">
@@ -418,4 +422,5 @@
         apo214.lugarespreliminares_path, class: 'btn' %>
     </div> <!-- form-action -->
   <% end %>
+</div>
 <% end %>
