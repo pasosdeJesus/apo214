@@ -221,19 +221,53 @@ module Apo214
           end
 
           def coordenadas
+            ## 3116 - magna-sirgas / colombia bogota zone
+            ## 4326 - wgs84 / latitut longitud
             tipo = params[:tipo].to_i
-            lat_wgs84_flot = params[:lat_wgs84_flot]
-            lon_wgs84_flot = params[:lon_wgs84_flot]
+            conversion = {}
+            coor_gms= '4°0\'0.000\'\'N 73°0\'0.000\'\'W'
+            coor_wgs84 = ['-73', '4']
+            coor_sirgas = ['1119664.42733207', '934150.34391812']
+            mensaje_error = ""
             case tipo
             when 1
+              lat_wgs84_flot = params[:lat_wgs84_flot]
+              lon_wgs84_flot = params[:lon_wgs84_flot]
               punto = 'POINT ('+ lon_wgs84_flot + " " + lat_wgs84_flot + ')'
-              consl= 'SELECT (ST_AsLatLonText(\''+ punto +'\', \'D°M\'\'S.SSS\'\'C\'));'
-              resultado = ActiveRecord::Base.connection.select_all consl
-              coor_gms = resultado.rows[0][0]
+              consl_sirgas = 'SELECT st_astext(st_transform( st_geometryfromtext(\''+ punto +'\', 4326 ), 3116) );'
+              resultado_sirgas = ActiveRecord::Base.connection.select_all consl_sirgas
+              if resultado_sirgas.rows[0][0] == "POINT(inf inf)"
+                mensaje_error = "Valor ingresado no permitido"
+              else
+                consl_gms= 'SELECT (ST_AsLatLonText(\''+ punto +'\', \'D°M\'\'S.SSS\'\'C\'));'
+                resultado_gms = ActiveRecord::Base.connection.select_all consl_gms
+                coor_wgs84 = punto.slice(7..-2).split(" ")
+                coor_gms = resultado_gms.rows[0][0]
+                coor_sirgas = resultado_sirgas.rows[0][0].slice(7..-2).split(" ")
+              end 
+            when 3
+              lat_sirgas = params[:lat_sirgas]
+              lon_sirgas = params[:lon_sirgas]
+              punto = 'POINT ('+ lon_sirgas + " " + lat_sirgas + ')'
+              consl_wgs84 = 'SELECT st_astext(st_transform( st_geometryfromtext(\''+ punto +'\', 3116 ), 4326) );'
+              resultado_wgs84 = ActiveRecord::Base.connection.select_all consl_wgs84
+              punto_wgs84 = resultado_wgs84.rows[0][0]
+              if punto_wgs84 == "POINT(inf inf)"
+                mensaje_error = "Valor ingresado no permitido"
+              else
+                coor_wgs84 = resultado_wgs84.rows[0][0].slice(7..-2).split(" ")
+                consl_gms= 'SELECT (ST_AsLatLonText(\''+ punto_wgs84 +'\', \'D°M\'\'S.SSS\'\'C\'));'
+                resultado_gms = ActiveRecord::Base.connection.select_all consl_gms
+                coor_gms = resultado_gms.rows[0][0]
+                coor_sirgas = punto.slice(7..-2).split(" ")
+              end
             end
             respond_to do |format|
-              conversion = { 
-                gms: coor_gms
+              conversion = {
+                gms: coor_gms,
+                wgs84: coor_wgs84,
+                sirgas: coor_sirgas,
+                mensaje_error: mensaje_error
               }
               format.json { render json: conversion, status: :ok }
               format.html { render inilne: conversion.to_s, status: :ok }
