@@ -188,6 +188,16 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
         lon_wgs84_flot = coordenadas[1] 
         d = "&lat_wgs84_flot=" + lat_wgs84_flot + "&lon_wgs84_flot=" + lon_wgs84_flot + "&tipo=" + conversion;
         break;
+      case 2:
+        lat_gms = coordenadas[0] 
+        lon_gms = coordenadas[1] 
+        d = "&lat_gms=" + lat_gms + "&lon_gms=" + lon_gms + "&tipo=" + conversion;
+        break;
+      case 3:
+        lat_sirgas = coordenadas[0] 
+        lon_sirgas = coordenadas[1] 
+        d = "&lat_sirgas=" + lat_sirgas + "&lon_sirgas=" + lon_sirgas + "&tipo=" + conversion;
+        break;
       default:
         d = "&lat_wgs84=hola";
     }
@@ -199,21 +209,50 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
      }).fail(function(jqXHR, texto) {
        return alert("Error con ajax " + texto);
      }).done(function(e, r) {
-       latitud = e.gms.split(" ")[0]
-       longitud = e.gms.split(" ")[1]
-       gmslat = splitMulti(latitud, ['°', "\'", "\'\'"])
+       if(e.mensaje_error != ""){
+         alert(e.mensaje_error)
+       }
+       latitud_gms = e.gms.split(" ")[0]
+       longitud_gms = e.gms.split(" ")[1]
+       gmslat = splitMulti(latitud_gms, ['°', "\'", "\'\'"])
        p = div_padre.parent()
        lat_g = p.find('[id$=infoanomalia_attributes_gra_lat]').val(gmslat[0])
        lat_m = p.find('[id$=infoanomalia_attributes_min_lat]').val(gmslat[1])
        lat_s = p.find('[id$=infoanomalia_attributes_seg_lat]').val(gmslat[2])
        lat_card = p.find('[id$=infoanomalia_attributes_cardinal_lat_'+gmslat[3].toLowerCase() +']').prop("checked", true)
-       gmslon = splitMulti(longitud, ['°', "\'", "\'\'"])
+       gmslon = splitMulti(longitud_gms, ['°', "\'", "\'\'"])
        lon_g = p.find('[id$=infoanomalia_attributes_gra_lon]').val(gmslon[0])
        lon_m = p.find('[id$=infoanomalia_attributes_min_lon]').val(gmslon[1])
        lon_s = p.find('[id$=infoanomalia_attributes_seg_lon]').val(gmslon[2])
        lon_card = p.find('[id$=infoanomalia_attributes_cardinal_lon_'+gmslon[3].toLowerCase() +']').prop("checked", true)
+       latitud_sirgas = e.sirgas[1]
+       longitud_sirgas = e.sirgas[0]
+       lat_sirgas = p.parent().find('[id$=infoanomalia_attributes_latitud_sirgas]').val(latitud_sirgas)
+       lon_sirgas = p.parent().find('[id$=infoanomalia_attributes_longitud_sirgas]').val(longitud_sirgas)
+       latitud_wgs84 = e.wgs84[1]
+       longitud_wgs84 = e.wgs84[0]
+       lat_wgs84 = p.parent().find('[id$=infoanomalia_attributes_latitud_wgs84]').val(latitud_wgs84)
+       lon_wgs84 = p.parent().find('[id$=infoanomalia_attributes_longitud_wgs84]').val(longitud_wgs84)
      });
   }
+  $(document).on('change', 'input[id$=_infoanomalia_attributes_latitud_sirgas]', 
+    function (e) {
+      div_padre = $(this).parent().parent().parent().parent()
+      lat_sirgas = $(div_padre).find('[id$= _infoanomalia_attributes_latitud_sirgas]').val();
+      lon_sirgas = $(div_padre).find('[id$= _infoanomalia_attributes_longitud_sirgas]').val();
+      coordenadas = [lat_sirgas, lon_sirgas]
+      tranformar_coordenadas(div_padre, 3, coordenadas)
+    }
+  )
+  $(document).on('change', 'input[id$=_infoanomalia_attributes_longitud_sirgas]', 
+    function (e) {
+      div_padre = $(this).parent().parent().parent().parent()
+      lat_sirgas = $(div_padre).find('[id$= _infoanomalia_attributes_latitud_sirgas]').val();
+      lon_sirgas = $(div_padre).find('[id$= _infoanomalia_attributes_longitud_sirgas]').val();
+      coordenadas = [lat_sirgas, lon_sirgas]
+      tranformar_coordenadas(div_padre, 3, coordenadas)
+    }
+  )
   $(document).on('change', 'input[id$=_infoanomalia_attributes_latitud_wgs84]', 
     function (e) {
       div_padre = $(this).parent().parent().parent().parent()
