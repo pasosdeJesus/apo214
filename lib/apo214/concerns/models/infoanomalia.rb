@@ -17,6 +17,8 @@ module Apo214
           attr_accessor :longitud_wgs84
           attr_accessor :latitud_sirgas
           attr_accessor :longitud_sirgas
+          attr_accessor :latitud_on
+          attr_accessor :longitud_on
           attr_accessor :cardinal_lat
           attr_accessor :gra_lat
           attr_accessor :min_lat

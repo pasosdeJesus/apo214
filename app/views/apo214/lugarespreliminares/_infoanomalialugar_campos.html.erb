@@ -34,7 +34,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <h6>Coordenadas WGS84</h5>
+              <h4>Coordenadas WGS84</h4>
               <div class="row">
                 <div class="col-md-5">
                   <div class="row">
@@ -43,7 +43,7 @@
                       <%= inf.input :latitud_wgs84,
                         label: false,
                         as: :float,
-                        input_html: {value: inf.object.latitud_wgs84 || 0}
+                        input_html: {value: inf.object.latitud_wgs84 || 4}
                       %>
                     </div>
                   </div>
@@ -53,7 +53,7 @@
                       <%= inf.input :longitud_wgs84,
                         label: false,
                         as: :float,
-                        input_html: {value: inf.object.longitud_wgs84 || 0}
+                        input_html: {value: inf.object.longitud_wgs84 || -73}
                       %>
                     </div>
                   </div>
@@ -61,41 +61,34 @@
                 <div class="col-md-7">
                   <h6>Latitud GMS </h6>
                   <div class="row">
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-3">
-                      °
-                    </div>
-                    <div class="col-md-3">
-                      '
-                    </div>
-                    <div class="col-md-3">
-                      ''
-                    </div>
-                  </div>
-                  <div class="row">
                     <div class="col-md-3 pl-4">
                       <%=
                         inf.collection_radio_buttons( :cardinal_lat, [['N', 'N'] ,['S', 'S']], :first, :last,
-                                                     {checked: inf.object.cardinal_lat.nil? ? '' : inf.object.carindal_lat }  ) do |b|
+                                                     {checked: inf.object.cardinal_lat.nil? ? 'N' : inf.object.carindal_lat }  ) do |b|
                             b.label(class: "mr-2 mt-2") { b.radio_button + b.text }
                          end
                        %> 
                     </div>
                     <div class="col-md-3">
                       <%= inf.input :gra_lat,
-                        label: false,
-                        as: :numeric %>
+                        label: 'Gra.',
+                        as: :numeric,
+                        input_html: {value: inf.object.gra_lat || 4 }
+                      %>
                     </div>
                     <div class="col-md-3">
                       <%= inf.input :min_lat,
-                        label: false,
-                        as: :numeric %>
+                        label: 'Min.',
+                        as: :numeric, 
+                        input_html: {value: inf.object.min_lat || 0 }
+                      %>
                     </div>
                     <div class="col-md-3">
                       <%= inf.input :seg_lat,
-                        label: false,
-                        as: :numeric %>
+                        label: 'Seg.',
+                        as: :numeric, 
+                        input_html: {value: inf.object.seg_lat || 0 }
+                      %>
                     </div>
                   </div>
                   <h6>Longitud GMS </h6>
@@ -103,37 +96,73 @@
                     <div class="col-md-3 pl-4">
                       <%=
                         inf.collection_radio_buttons( :cardinal_lon, [['e', 'E'] ,['w', 'O']], :first, :last,
-                                                     {checked: inf.object.cardinal_lon.nil? ? '' : inf.object.carindal_lon }  ) do |b|
+                                                     {checked: inf.object.cardinal_lon.nil? ? 'w' : inf.object.carindal_lon }) do |b|
                             b.label(class: "mr-2 mt-2") { b.radio_button + b.text }
                          end
                        %> 
                     </div>
                     <div class="col-md-3">
                       <%= inf.input :gra_lon,
-                        label: false,
-                        as: :numeric
+                        label: 'Gra.',
+                        as: :numeric,
+                        input_html: {value: inf.object.gra_lon || 73 }
                       %>
                     </div>
                     <div class="col-md-3">
                       <%= inf.input :min_lon,
-                        label: false,
-                        as: :numeric %>
+                        label: 'Min.',
+                        as: :numeric, 
+                        input_html: {value: inf.object.min_lon || 0 }
+                      %>
                     </div>
                     <div class="col-md-3">
                       <%= inf.input :seg_lon,
-                        label: false,
-                        as: :numeric %>
+                        label: 'Seg.',
+                        as: :numeric, 
+                        input_html: {value: inf.object.seg_lon || 0 }
+                      %>
                     </div>
                   </div>
                 </div>
               </div>
-              <h6>Coordenadas MAGNA SIRGAS</h5>
+              </br>
+              <h4>Proyección MAGNA SIRGAS (3116 - Colombia Bogotá Zone)</h4>
               <div class="row">
                 <div class="col-md-6">
-                  <%= inf.input :latitud_sirgas %>
+                  <h6>Y:</h6>
+                  <%= inf.input :latitud_sirgas, 
+                    label: false,
+                    as: :float,
+                    input_html: {value: inf.object.latitud_sirgas || 934150.34391812}
+                  %>
                 </div>
                 <div class="col-md-6">
-                  <%= inf.input :longitud_sirgas %>
+                  <h6>X:</h6>
+                  <%= inf.input :longitud_sirgas, 
+                    label: false,
+                    as: :float,
+                    input_html: {value: inf.object.longitud_sirgas || 1119664.42733207}
+                  %>
+                </div>
+              </div>
+              </br>
+              <h4>Conversión a Origen Nacional</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <h6>Norte (m)</h6>
+                  <%= inf.input :latitud_on, 
+                    label: false,
+                    as: :float,
+                    input_html: {value: inf.object.latitud_on || 2000000 }
+                  %>
+                </div>
+                <div class="col-md-6">
+                  <h6>Este (m)</h6>
+                  <%= inf.input :longitud_on, 
+                    label: false,
+                    as: :float,
+                    input_html: {value: inf.object.longitud_on || 5000000}
+                  %>
                 </div>
               </div>
             </div>
