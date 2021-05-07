@@ -395,6 +395,15 @@
       </div>
       <div class="row">
         <div class="col-md-12">
+          <h3> archivo kml as </h3>
+            <%= f.input :descripcion_kml %>
+            <% if !a.object || !a.object.adjunto_file_name || !a.object.id %>
+              <%= f.input :kml_as, as: :file, label: 'Archivo kml' %>
+            <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
           <% f.object.archivokml = Sip::Anexo.new if !f.object.archivokml %>
             <%= f.simple_fields_for :archivokml do |ane| %>
               <td>

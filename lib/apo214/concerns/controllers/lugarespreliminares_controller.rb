@@ -43,6 +43,7 @@ module Apo214
               :insitu,
               :interatroprevias,
               :interatroactuales,
+              :kml_as,
               :max_depositados,
               :min_depositados,
               :nombrepropiedad,
