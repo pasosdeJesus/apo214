@@ -6,6 +6,7 @@ Apo214::Engine.routes.draw do
       end
     end
   end
+  get "/lugp/coordenadas" => 'lugarespreliminares#coordenadas'
   namespace :admin do
     ab=::Ability.new
     ab.tablasbasicas.each do |t|

@@ -152,4 +152,138 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
       }
     }
   )
+  $(document).on("click", ".togglecoord", function() {
+   $(this).parent().siblings(".coord").modal('toggle');
+  });
+
+  $(document).on("click", ".boton_conversion", function() {
+    coor = $(this).parent().parent().parent().parent().parent().children()
+    lat_wgs84 = $($(this).parent().parent().children()[1]).find('[id$= _infoanomalia_attributes_latitud_wgs84]').val();
+    lon_wgs84 = $($(this).parent().parent().children()[1]).find('[id$= _infoanomalia_attributes_longitud_wgs84]').val();
+    lat = coor.find('[id$=attributes_latitud_localizado]').val(lat_wgs84);
+    lon = coor.find('[id$=attributes_longitud_localizado]').val(lon_wgs84);
+
+  });
+
+  function splitMulti(str, tokens){
+        var tempChar = tokens[0];
+        for(var i = 1; i < tokens.length; i++){
+            str = str.split(tokens[i]).join(tempChar);
+        }
+        str = str.split(tempChar);
+        return str;
+  }
+
+  //El tipo de conversión puede ser:
+  // div_padre: Div que contiene los campos del control
+  // conversion:
+  // 1: de wgs_84 flotante a magna sirgas Bogotá y a GMS (wgs_84)
+  // 2: de wgs84 GMS a magna sirgas y a wgs_84 flotante
+  // 3: de magna sirgas a wgs84 flotante y a wgs_84 GMS
+  // coordenadas: datos a convertir
+  function tranformar_coordenadas(div_padre, conversion, coordenadas){
+    d = ""
+    switch(conversion) {
+      case 1:
+        lat_wgs84_flot = coordenadas[0] 
+        lon_wgs84_flot = coordenadas[1] 
+        d = "&lat_wgs84_flot=" + lat_wgs84_flot + "&lon_wgs84_flot=" + lon_wgs84_flot + "&tipo=" + conversion;
+        break;
+      case 2:
+        lat_gms = coordenadas[0] 
+        lon_gms = coordenadas[1] 
+        d = "&lat_gms=" + lat_gms + "&lon_gms=" + lon_gms + "&tipo=" + conversion;
+        break;
+      case 3:
+        lat_sirgas = coordenadas[0] 
+        lon_sirgas = coordenadas[1] 
+        d = "&lat_sirgas=" + lat_sirgas + "&lon_sirgas=" + lon_sirgas + "&tipo=" + conversion;
+        break;
+      default:
+        d = "&lat_wgs84=hola";
+    }
+    root = window
+    a = root.puntomontaje + 'lugp/coordenadas'
+    $.ajax({
+       url: a,
+       data: d
+     }).fail(function(jqXHR, texto) {
+       return alert("Error con ajax " + texto);
+     }).done(function(e, r) {
+       if(e.mensaje_error != ""){
+         alert(e.mensaje_error)
+       }
+       latitud_gms = e.gms.split(" ")[0]
+       longitud_gms = e.gms.split(" ")[1]
+       gmslat = splitMulti(latitud_gms, ['°', "\'", "\'\'"])
+       p = div_padre.parent()
+       lat_g = p.find('[id$=infoanomalia_attributes_gra_lat]').val(gmslat[0])
+       lat_m = p.find('[id$=infoanomalia_attributes_min_lat]').val(gmslat[1])
+       lat_s = p.find('[id$=infoanomalia_attributes_seg_lat]').val(gmslat[2])
+       lat_card = p.find('[id$=infoanomalia_attributes_cardinal_lat_'+gmslat[3].toLowerCase() +']').prop("checked", true)
+       gmslon = splitMulti(longitud_gms, ['°', "\'", "\'\'"])
+       lon_g = p.find('[id$=infoanomalia_attributes_gra_lon]').val(gmslon[0])
+       lon_m = p.find('[id$=infoanomalia_attributes_min_lon]').val(gmslon[1])
+       lon_s = p.find('[id$=infoanomalia_attributes_seg_lon]').val(gmslon[2])
+       lon_card = p.find('[id$=infoanomalia_attributes_cardinal_lon_'+gmslon[3].toLowerCase() +']').prop("checked", true)
+       latitud_sirgas = e.sirgas[1]
+       longitud_sirgas = e.sirgas[0]
+       latitud_on = e.on[1]
+       longitud_on = e.on[0]
+       lat_on = p.parent().find('[id$=infoanomalia_attributes_latitud_on]').val(latitud_on)
+       lon_on = p.parent().find('[id$=infoanomalia_attributes_longitud_on]').val(longitud_on)
+       lat_sirgas = p.parent().find('[id$=infoanomalia_attributes_latitud_sirgas]').val(latitud_sirgas)
+       lon_sirgas = p.parent().find('[id$=infoanomalia_attributes_longitud_sirgas]').val(longitud_sirgas)
+       latitud_wgs84 = e.wgs84[1]
+       longitud_wgs84 = e.wgs84[0]
+       lat_wgs84 = p.parent().find('[id$=infoanomalia_attributes_latitud_wgs84]').val(latitud_wgs84)
+       lon_wgs84 = p.parent().find('[id$=infoanomalia_attributes_longitud_wgs84]').val(longitud_wgs84)
+     });
+  }
+  $(document).on('change', 'input[id$=_infoanomalia_attributes_latitud_sirgas]', 
+    function (e) {
+      div_padre = $(this).parent().parent().parent().parent()
+      lat_sirgas = $(div_padre).find('[id$= _infoanomalia_attributes_latitud_sirgas]').val();
+      lon_sirgas = $(div_padre).find('[id$= _infoanomalia_attributes_longitud_sirgas]').val();
+      coordenadas = [lat_sirgas, lon_sirgas]
+      tranformar_coordenadas(div_padre, 3, coordenadas)
+    }
+  )
+  $(document).on('change', 'input[id$=_infoanomalia_attributes_longitud_sirgas]', 
+    function (e) {
+      div_padre = $(this).parent().parent().parent().parent()
+      lat_sirgas = $(div_padre).find('[id$= _infoanomalia_attributes_latitud_sirgas]').val();
+      lon_sirgas = $(div_padre).find('[id$= _infoanomalia_attributes_longitud_sirgas]').val();
+      coordenadas = [lat_sirgas, lon_sirgas]
+      tranformar_coordenadas(div_padre, 3, coordenadas)
+    }
+  )
+  $(document).on('change', 'input[id$=_infoanomalia_attributes_latitud_wgs84]', 
+    function (e) {
+      div_padre = $(this).parent().parent().parent().parent()
+      lat_wgs84 = $(div_padre).find('[id$= _infoanomalia_attributes_latitud_wgs84]').val();
+      lon_wgs84 = $(div_padre).find('[id$= _infoanomalia_attributes_longitud_wgs84]').val();
+      coordenadas = [lat_wgs84, lon_wgs84]
+      tranformar_coordenadas(div_padre, 1, coordenadas)
+    }
+  )
+
+  $(document).on('change', 'input[id$=_infoanomalia_attributes_longitud_wgs84]', 
+    function (e) {
+      div_padre = $(this).parent().parent().parent().parent()
+      lat_wgs84 = $(div_padre).find('[id$= _infoanomalia_attributes_latitud_wgs84]').val();
+      lon_wgs84 = $(div_padre).find('[id$= _infoanomalia_attributes_longitud_wgs84]').val();
+      coordenadas = [lat_wgs84, lon_wgs84]
+      tranformar_coordenadas(div_padre, 1, coordenadas)
+    }
+  )
 };
+  $(document).on('change', 'input[id$=_infoanomalia_attributes_latitud_gms]', 
+    function (e) {
+      div_padre = $(this).parent().parent().parent().parent()
+      lat_wgs84 = $(div_padre).find('[id$= _infoanomalia_attributes_latitud_wgs84]').val();
+      lon_wgs84 = $(div_padre).find('[id$= _infoanomalia_attributes_longitud_wgs84]').val();
+      coordenadas = [lat_wgs84, lon_wgs84]
+      tranformar_coordenadas(div_padre, 1, coordenadas)
+    }
+  )
