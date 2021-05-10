@@ -173,10 +173,11 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
         str = str.split(tempChar);
         return str;
   }
+
   //El tipo de conversión puede ser:
   // div_padre: Div que contiene los campos del control
   // conversion:
-  // 1: de wgs_84 flotante a magna sirgas y a GMS (wgs_84)
+  // 1: de wgs_84 flotante a magna sirgas Bogotá y a GMS (wgs_84)
   // 2: de wgs84 GMS a magna sirgas y a wgs_84 flotante
   // 3: de magna sirgas a wgs84 flotante y a wgs_84 GMS
   // coordenadas: datos a convertir
@@ -227,6 +228,10 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
        lon_card = p.find('[id$=infoanomalia_attributes_cardinal_lon_'+gmslon[3].toLowerCase() +']').prop("checked", true)
        latitud_sirgas = e.sirgas[1]
        longitud_sirgas = e.sirgas[0]
+       latitud_on = e.on[1]
+       longitud_on = e.on[0]
+       lat_on = p.parent().find('[id$=infoanomalia_attributes_latitud_on]').val(latitud_on)
+       lon_on = p.parent().find('[id$=infoanomalia_attributes_longitud_on]').val(longitud_on)
        lat_sirgas = p.parent().find('[id$=infoanomalia_attributes_latitud_sirgas]').val(latitud_sirgas)
        lon_sirgas = p.parent().find('[id$=infoanomalia_attributes_longitud_sirgas]').val(longitud_sirgas)
        latitud_wgs84 = e.wgs84[1]
@@ -273,3 +278,12 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
     }
   )
 };
+  $(document).on('change', 'input[id$=_infoanomalia_attributes_latitud_gms]', 
+    function (e) {
+      div_padre = $(this).parent().parent().parent().parent()
+      lat_wgs84 = $(div_padre).find('[id$= _infoanomalia_attributes_latitud_wgs84]').val();
+      lon_wgs84 = $(div_padre).find('[id$= _infoanomalia_attributes_longitud_wgs84]').val();
+      coordenadas = [lat_wgs84, lon_wgs84]
+      tranformar_coordenadas(div_padre, 1, coordenadas)
+    }
+  )
