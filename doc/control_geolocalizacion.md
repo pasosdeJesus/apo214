@@ -3,7 +3,7 @@
 ## Definición del prototipo:
 Se precisa implementar un control de conversión entre sistemas de coordenadas y notaciones principalmente para facilitar al usuario en caso de que no tenga las coordenadas en el formato establecido en la aplicación. El usuario podrá visualizar las coordenadas como latitud y longitud en el sistema WGS84. y a continuación un botón  de conversión que abre un cuadro de diálogo que ofrece la posibilidad de transformar las coordenadas a dieferentes sistemas inicialmente: sistema MAGNA SIRGAS. La transformación de los sistemas de coordenadas se hará utilizando Postgis de Postgresql.
 
-##¿Qué conceptos geográficos se necesitan para la transformación de coordenadas?
+## ¿Qué conceptos geográficos se necesitan para la transformación de coordenadas?
 
 De antemano el código EPSG de los sistemas de referencia origen y destino. 
 El código EPSG corresponde a las siglas, en inglés, de European Petroleum Survey Group, organización científica relacionada a la industria petrolera. Dicha organización elaboró un repositorio de parámetros geodésico EPSG, base de datos que contiene información, a nivel mundial, sobre los sistemas de referencia de coordenadas (nombre, tipo, código), proyecciones cartográficas, entre otros.
@@ -23,26 +23,47 @@ Devuelve una nueva geometría con sus coordenadas transformadas a un sistema de 
 Devuelve la representación de texto conocido de la geometría / geografía. Se puede usar un argumento opcional para reducir el número máximo de dígitos decimales después del uso del punto flotante en la salida (el valor predeterminado es 15).
 
 Ejemplo de transformación: para el punto 
-1116000 E
-1135000 N
+Longitud: -73
+Latitud: 4
 
-----------------------
--73.0000000
-----------------------
+´´´
+SELECT st_astext(st_transform( st_geometryfromtext( 'POINT (-73 4)', 4326 ), 3116) );
+´´´
+
  
 Ejemplo para transformar una coordenada flotante en grados, minutos y segundos:
- 
-----------------------
-SELECT (ST_AsLatLonText('POINT (-3.2342342 -2.32498)', 'D°M''S.SSS"C'));
--------------------------
+´´´ 
+SELECT (ST_AsLatLonText('POINT (-73 4)', 'D°M''S.SSS"C'));
+´´´
 
 # Implementación
 
 ## Descripción.
 Antes de continuar con la implementación del control de geolocalización es necesario hacer énfasis en la forma como actualmente se están manejando las coordenadas geográficas y proyecciones en Colombia desde el Agustín codazzi y organismos oficiales. 
 
-El sistema de referencia espacial MAGNA-SIRGAS es el sistema establecido para Colombia y su código EPSG es el 4686, recordemos que el de WGS84 es el 4326. Sin embargo con este código no tiene ningún sentido hacer conversiones entre ellos porque son las mismos valores esto es porque pertenecen a una misma elipsoide. Aquí es donde entran a jugar las proyecciones. El ejemplo realizado anteriormente se hizo con el código 3116 establecido para MAGNA SIRGAS Colombia zona Bogotá y efectivamente se hace la conversión con esa proyección. Colombia zona Bogota junto con otras 4 proyecciones forman el grupo de proyecciones de referencias para Colombia que el “Agustín Codazzi” usó hasta el 2020. Pero en 2020 se cambió a una única proyección denominada “Sistema de proyección cartográfico ORIGEN NACIONAL” [1] en donde el datum seguirá siendo datum MAGNA SIRGAS y la proyección se basará en la proyección cartográfica Transverse de Mercator. Como primera opción se buscó que el origen coincida con el punto materializado del observatorio astronómico y como segunda opción un origen que fuera equidistante a cada extremo del territorio colombiano, definiendo este origen central se establecen un norte falso y un este falso y con otros parámteros se crea el nuevo sistema Origen Nacional CTM12 (el cual aún no ha sido registrado con un srid)
-https://origen.igac.gov.co/herramientas.html
+El sistema de referencia espacial MAGNA-SIRGAS es el sistema establecido para Colombia y su código EPSG es el 4686, recordemos que el de WGS84 es el 4326. Sin embargo con este código no tiene ningún sentido hacer conversiones entre ellos porque son las mismos valores esto es porque pertenecen a una misma elipsoide. Aquí es donde entran a jugar las proyecciones. El ejemplo realizado anteriormente se hizo con el código 3116 establecido para MAGNA SIRGAS Colombia zona Bogotá y efectivamente se hace la conversión con esa proyección. Colombia zona Bogota junto con otras 4 proyecciones forman el grupo de proyecciones de referencias para Colombia que el “Agustín Codazzi” usó hasta el 2020. Pero en 2020 se cambió a una única proyección denominada “Sistema de proyección cartográfico ORIGEN NACIONAL” [1] en donde el datum seguirá siendo datum MAGNA SIRGAS y la proyección se basará en la proyección cartográfica Transverse de Mercator. Como primera opción se buscó que el origen coincida con el punto materializado del observatorio astronómico y como segunda opción un origen que fuera equidistante a cada extremo del territorio colombiano, definiendo este origen central se establecen un norte falso y un este falso y con otros parámteros se crea el nuevo sistema Origen Nacional CTM12 (el cual aún no ha sido registrado con un srid)[2]
 
-Por tanto, según lo anteriormente mencionado, se ha decidido dejar la opción de proyeccion de MAGNA-SIRGAS Colombia zona Bogotá, en el control y además agregar un espació de conversión para Origen Nacional, atentos a actualizar según las actualizaciones en el país.
+Por tanto, según lo anteriormente mencionado, se ha decidido dejar la opción de proyección de MAGNA-SIRGAS Colombia zona Bogotá, en el control y además agregar un espació de conversión para Origen Nacional, atentos a actualizar según las actualizaciones en el país.
+
+## Desarrollo
+
+El control está impementado con Ruby y Javascript, al percibir que se cambia uno
+de los valores en los valores en los campos de entrada, se llama a una funciń de
+conversión que envía los valores cambiados y el tipo de conversión. Actualmente
+el control cuenta con 4 tipos de conversión explicados a continuación:
+1. Tipo=1, de WGS84 flotante a otros
+2. Tipo=2 de WGS84 gms a otros
+3. Tipo=3 de Magna Sirgas zona Bogotá a otros
+4. Tipo=4 de Origen Nacional a otros
+
+Una vez el controlador reciba los parámetros se hacen la diferentes conversiones
+a trvés de consultas en PostGis usando la conexión a la base de datos de Postgresql.
+En javascript se recibe la respuesta del controlador y dinámicamente se
+actualizan los campos con los nuevos valores convertidos.
+
+
+# Referencias
+1. Fuente: Salvini D., Bolívar F. (2018). Propuesta de la Proyección Cartográfica única para la Administración de Tierras en Colombia V2. Bogotá, Colombia: Agencia de Implementación, cooperación suiza.
+2. https://origen.igac.gov.co/herramientas.html
+ 
 
