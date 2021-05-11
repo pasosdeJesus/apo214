@@ -38,6 +38,8 @@ module Apo214
           belongs_to :archivokml, class_name: 'Sip::Anexo', validate: true,
             foreign_key: 'archivokml_id', optional: true
           has_one_attached :kml_as
+          attribute :remove_kml_as, :boolean,  default: false
+          after_save :purge_kml_as, if: :remove_kml_as
           has_many :listaevariesgo, dependent: :delete_all,
             class_name: "Apo214::Listaevariesgo",
             foreign_key: :lugarpreliminar_id 
