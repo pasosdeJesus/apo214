@@ -31,6 +31,20 @@ COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance betwe
 
 
 --
+-- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION postgis; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
+
+
+--
 -- Name: unaccent; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -1607,6 +1621,38 @@ ALTER SEQUENCE public.heb412_gen_campoplantillahcr_id_seq OWNED BY public.heb412
 
 
 --
+-- Name: heb412_gen_carpetaexclusiva; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.heb412_gen_carpetaexclusiva (
+    id bigint NOT NULL,
+    carpeta character varying(2048),
+    grupo_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: heb412_gen_carpetaexclusiva_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.heb412_gen_carpetaexclusiva_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: heb412_gen_carpetaexclusiva_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.heb412_gen_carpetaexclusiva_id_seq OWNED BY public.heb412_gen_carpetaexclusiva.id;
+
+
+--
 -- Name: heb412_gen_doc; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2244,7 +2290,8 @@ CREATE TABLE public.sip_actorsocial_persona (
     perfilactorsocial_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    correo character varying(100)
+    correo character varying(100),
+    cargo character varying(254)
 );
 
 
@@ -3307,7 +3354,7 @@ CREATE TABLE public.sivel2_gen_presponsable (
     id integer DEFAULT nextval('public.sivel2_gen_presponsable_id_seq'::regclass) NOT NULL,
     fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
     fechadeshabilitacion date,
-    papa integer,
+    papa_id integer,
     nombre character varying(500) COLLATE public.es_co_utf_8,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -4354,6 +4401,13 @@ ALTER TABLE ONLY public.heb412_gen_campoplantillahcr ALTER COLUMN id SET DEFAULT
 
 
 --
+-- Name: heb412_gen_carpetaexclusiva id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.heb412_gen_carpetaexclusiva ALTER COLUMN id SET DEFAULT nextval('public.heb412_gen_carpetaexclusiva_id_seq'::regclass);
+
+
+--
 -- Name: heb412_gen_doc id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4814,6 +4868,14 @@ ALTER TABLE ONLY public.heb412_gen_campoplantillahcm
 
 ALTER TABLE ONLY public.heb412_gen_campoplantillahcr
     ADD CONSTRAINT heb412_gen_campoplantillahcr_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: heb412_gen_carpetaexclusiva heb412_gen_carpetaexclusiva_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.heb412_gen_carpetaexclusiva
+    ADD CONSTRAINT heb412_gen_carpetaexclusiva_pkey PRIMARY KEY (id);
 
 
 --
@@ -6899,6 +6961,14 @@ ALTER TABLE ONLY public.sivel2_gen_combatiente
 
 
 --
+-- Name: heb412_gen_carpetaexclusiva fk_rails_ea1add81e6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.heb412_gen_carpetaexclusiva
+    ADD CONSTRAINT fk_rails_ea1add81e6 FOREIGN KEY (grupo_id) REFERENCES public.sip_grupo(id);
+
+
+--
 -- Name: sip_ubicacionpre fk_rails_eba8cc9124; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7031,7 +7101,7 @@ ALTER TABLE ONLY public.sip_persona
 --
 
 ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa) REFERENCES public.sivel2_gen_presponsable(id);
+    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -7055,7 +7125,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
 --
 
 ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presuntos_responsables_id_papa_fkey FOREIGN KEY (papa) REFERENCES public.sivel2_gen_presponsable(id);
+    ADD CONSTRAINT presuntos_responsables_id_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -7578,6 +7648,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190605143420'),
 ('20190612111043'),
 ('20190618135559'),
+('20190625112649'),
 ('20190625140232'),
 ('20190703044126'),
 ('20190715083916'),
@@ -7689,5 +7760,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210401194637'),
 ('20210401210102'),
 ('20210406225904'),
+('20210414201956'),
+('20210428143811'),
+('20210430160739'),
+('20210511011442');
 
 
