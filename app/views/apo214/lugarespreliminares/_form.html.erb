@@ -395,32 +395,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <h3> archivo kml as </h3>
-            <%= f.input :descripcion_kml_as,
-              label: 'Descripción',
-              as: :text %>
-            <%= f.input :fecha_kml_as, 
-              label: 'Fecha', 
-              :input_html => { "data-behaviour" => "datepicker" },
-              :as => :string %>
-            <% if !f.object.kml_as.id %>
-              <%= f.input :kml_as, as: :file, label: 'Archivo kml' %>
-            <% else %>
-              <% ruta = main_app.routes.url_helpers.rails_blob_url(f.object.kml_as, disposition: :attachment, only_path: true) %>
-              <%= link_to f.object.kml_as.filename, ruta %> 
-            <% end %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <% f.object.archivokml = Sip::Anexo.new if !f.object.archivokml %>
-            <%= f.simple_fields_for :archivokml do |ane| %>
-              <td>
-              </br>
-              <p>Archivo KML con los datos geográficos para su visualización y navegación en Google earth</p>
-              <%= render 'sip/anexos/anexo_campos', a: ane  %>
-            </td>
-            <% end %>
+          <%= render 'campo_kml_as', f: f %>
         </div>
       </div>
       <div class="row">

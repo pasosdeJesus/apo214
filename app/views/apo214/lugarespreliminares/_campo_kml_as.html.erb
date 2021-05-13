@@ -1,0 +1,17 @@
+<h3> Archivo Kml </h3>
+  <%= f.input :descripcion_kml_as,
+    label: 'Descripción',
+    as: :text %>
+  <%= f.input :fecha_kml_as, 
+    label: 'Fecha', 
+    :input_html => { "data-behaviour" => "datepicker" },
+    :as => :string %>
+  <% if !f.object.kml_as.id %>
+    <%= f.input :kml_as, as: :file, label: 'Archivo kml' %>
+  <% else %>
+    <% rel = Rails.configuration.active_storage.routes_prefix %>
+    <% ruta =  Rails.application.routes.url_helpers.rails_blob_path(f.object.kml_as,disposition: "attachment", only_path: true) %>
+    <% ruta_n = ruta.gsub(rel + rel , rel) %>
+    <%= link_to f.object.kml_as.filename, ruta_n %>
+    <%= f.input :kml_as, as: :file, label: 'Archivo kml' %>
+  <% end %>
