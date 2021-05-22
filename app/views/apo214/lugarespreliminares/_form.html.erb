@@ -395,14 +395,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <% f.object.archivokml = Sip::Anexo.new if !f.object.archivokml %>
-            <%= f.simple_fields_for :archivokml do |ane| %>
-              <td>
-              </br>
-              <p>Archivo KML con los datos geográficos para su visualización y navegación en Google earth</p>
-              <%= render 'sip/anexos/anexo_campos', a: ane  %>
-            </td>
-            <% end %>
+          <%= render 'campo_kml_as', f: f %>
         </div>
       </div>
       <div class="row">
