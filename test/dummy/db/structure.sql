@@ -3619,6 +3619,16 @@ CREATE TABLE public.sivel2_gen_contextovictima_victima (
 
 
 --
+-- Name: sivel2_gen_departamento_region; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_departamento_region (
+    departamento_id integer,
+    region_id integer
+);
+
+
+--
 -- Name: sivel2_gen_escolaridad; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3969,6 +3979,16 @@ CREATE SEQUENCE public.sivel2_gen_maternidad_id_seq
 --
 
 ALTER SEQUENCE public.sivel2_gen_maternidad_id_seq OWNED BY public.sivel2_gen_maternidad.id;
+
+
+--
+-- Name: sivel2_gen_municipio_region; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_municipio_region (
+    municipio_id integer,
+    region_id integer
+);
 
 
 --
@@ -7956,6 +7976,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210430160739'),
 ('20210511011442'),
 ('20210511065252'),
-('20210531223906');
+('20210531223906'),
+('20210601023450'),
+('20210601023557');
 
 
