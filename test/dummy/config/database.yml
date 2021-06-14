@@ -15,8 +15,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: <%= ENV.fetch('BD_DES', 'apo214_pru') %>
+  database: <%= ENV.fetch('BD_PRU', 'apo214_pru') %>
 
 production:
   <<: *default
-  database: <%= ENV.fetch('BD_DES', 'apo214_prod') %>
+  database: <%= ENV.fetch('BD_PRO', 'apo214_prod') %>
