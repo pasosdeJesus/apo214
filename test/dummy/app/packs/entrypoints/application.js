@@ -23,7 +23,7 @@ require('turbolinks').start()   // Acelera carga de paginas
 //require('@rails/activestorage').start()         // Activestorage
 //require('channels')           // ActiveChannel
 
-import {$, jQuery} from 'jquery';
+import $ from "expose-loader?exposes=$,jQuery!jquery"
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
 import 'bootstrap'              // Maquetacion y elementos de diseño
 import 'chosen-js/chosen.jquery';       // Cuadros de seleccion potenciados
