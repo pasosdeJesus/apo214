@@ -1,22 +1,30 @@
-<div data-id="<%= asisreconocimiento.id %>">
-  <%= turbo_frame_tag dom_id(asisreconocimiento) do %>
-    <div class="card card-body">
+<div data-id="<%= asisreconocimiento.id %>"  data-controller="actualiza-fila" data-actualiza-fila-asisreconocimientoid= "<%= asisreconocimiento.id %>">
+  <div data-actualiza-fila-target='asisestado'>
+    <%= turbo_frame_tag dom_id(asisreconocimiento) do %>
+      <% url_obj = lugarpreliminar_asisreconocimiento_path(asisreconocimiento.lugarpreliminar.id , asisreconocimiento.id) 
+       param_bp = "asisreconocimiento[asistente_attributes]"
+    %>
       <div class="row" >
         <div class="col-md-3">
-          <%= asisreconocimiento.organizacion %>
+          <% if asisreconocimiento.organizacion %>
+            <%= best_in_place asisreconocimiento, :organizacion, url: url_obj %>
+          <% end %>
         </div>
         <div class="col-md-3">
-          <%= asisreconocimiento.asistente.nombres if asisreconocimiento.asistente %>
-          <%= asisreconocimiento.asistente.apellidos if asisreconocimiento.asistente %>
+          <% if asisreconocimiento.asistente %>
+            <%= best_in_place asisreconocimiento.asistente, :nombres, url: url_obj, type: :input, param: param_bp, place_holder: "Nombres" %>
+            <%= best_in_place asisreconocimiento.asistente, :apellidos, url: url_obj, param: param_bp %>
+          <% end %> 
         </div>
         <div class="col-md-2">
-          <%= asisreconocimiento.asistente.sexo if asisreconocimiento.asistente %>
+          <% if asisreconocimiento.asistente %>
+            <%= best_in_place asisreconocimiento.asistente, :sexo, url: url_obj, param: param_bp, as: :select, collection: [["F", :F], ["M", :M], ["S", :S]] %> 
+          <% end %> 
         </div>
         <div class="col-md-4">
-          <%= link_to 'Editar', [:edit, asisreconocimiento.lugarpreliminar, asisreconocimiento] %>
-          <%= link_to 'Eliminar', lugarpreliminar_asisreconocimiento_path(@lugarpreliminar, asisreconocimiento), method: :delete %>
+          <%= link_to 'Eliminar', url_obj, method: :delete %> 
         </div>
       </div>
-    </div>
   <% end %>
+  </div>
 </div>
