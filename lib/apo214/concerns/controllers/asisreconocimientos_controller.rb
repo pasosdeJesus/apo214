@@ -81,6 +81,7 @@ module Apo214
               respond_to do |format|
                 format.turbo_stream { render turbo_stream: turbo_stream.replace(@asisreconocimiento) }
                 format.html { redirect_to @asisreconocimiento }
+                format.json { render :json => @asisreconocimiento}
               end
             end
           end
