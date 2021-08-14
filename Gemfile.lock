@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: 379d3a8ca990ce91baef7498bd74c8680c181c3c
+  revision: 8e4a154ae0c7b8ca1e17daec768d6b211186ca63
   specs:
     kt-paperclip (7.0.0)
       activemodel (>= 4.2.0)
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: fc97e1e0576e9f815b60695fe29bbda269b51ece
+  revision: 0bc6c840bc0ba8bf4a2709dcd98c500b8c7865e4
   branch: main
   specs:
     heb412_gen (1.0.b6)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 63541576e2a7d7c6a4592b68d65315482bbb940e
+  revision: fdf640fe95409e0598ad0b2440c906e8a816b47e
   branch: main
   specs:
     mr519_gen (0.2.0)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 691687ff593a262b8355753e1873529ba7c19a29
+  revision: 2eb471d25c3b9c9ffb33f5258b6306cfd38e55d2
   branch: main
   specs:
     sip (2.0.b12)
@@ -50,7 +50,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 51e69b6015d7f1cf32186abbb0bedcf5d5c84137
+  revision: b6003c12ae030a016623ec2b42b248f2083b09aa
   branch: main
   specs:
     sivel2_gen (2.0b15)
@@ -151,7 +151,7 @@ GEM
     andand (1.3.3)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.7.6)
+    bootsnap (1.7.7)
       msgpack (~> 1.0)
     builder (3.2.4)
     camertron-eprun (1.1.1)
@@ -201,7 +201,7 @@ GEM
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.3)
-    globalid (0.5.1)
+    globalid (0.5.2)
       activesupport (>= 5.0)
     hotwire-rails (0.1.3)
       rails (>= 6.0.0)
@@ -219,7 +219,7 @@ GEM
       railties (>= 3.2.16)
     json (2.5.1)
     libxml-ruby (3.2.1)
-    loofah (2.10.0)
+    loofah (2.12.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -233,12 +233,12 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.0)
-    mini_portile2 (2.5.3)
+    mini_portile2 (2.6.1)
     minitest (5.14.4)
     msgpack (1.4.2)
-    nio4r (2.5.7)
-    nokogiri (1.11.7)
-      mini_portile2 (~> 2.5.0)
+    nio4r (2.5.8)
+    nokogiri (1.12.3)
+      mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     odf-report (0.7.2)
       mime-types
@@ -262,7 +262,7 @@ GEM
       prawn (>= 1.0.0)
       rails (>= 3.2)
     public_suffix (4.0.6)
-    puma (5.3.2)
+    puma (5.4.0)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
@@ -345,14 +345,14 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    stimulus-rails (0.2.4)
+    stimulus-rails (0.3.2)
       rails (>= 6.0.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.1.0)
     tilt (2.0.10)
     ttfunk (1.7.0)
-    turbo-rails (0.6.0)
+    turbo-rails (0.7.1)
       rails (>= 6.0.0)
     twitter_cldr (6.7.0)
       camertron-eprun
@@ -370,7 +370,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    will_paginate (3.3.0)
+    will_paginate (3.3.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.2)
@@ -424,4 +424,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.2.21
+   2.2.25
