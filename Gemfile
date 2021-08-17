@@ -8,6 +8,8 @@ gem 'acts_as_list'
 
 gem 'bcrypt'
 
+gem "best_in_place", git: "https://github.com/mmotherwell/best_in_place"
+
 gem 'bootsnap', '>=1.1.0', require: false
 
 gem 'cancancan'                   # Control de acceso
