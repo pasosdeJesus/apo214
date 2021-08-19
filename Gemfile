@@ -58,8 +58,7 @@ gem 'twitter_cldr'               # Localiación e internacionalización
 
 gem 'tzinfo' # Zonas horarias
 
-gem 'webpacker',
-  git: 'https://github.com/rails/webpacker'
+gem 'webpacker', '~> 6.0.0.rc.1'
 
 
 gem 'will_paginate' # Listados en páginas
