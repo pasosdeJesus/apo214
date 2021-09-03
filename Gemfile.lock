@@ -19,10 +19,10 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 6e5b3d14381fd2f5141164adc01e97750ead6f07
+  revision: e02973d32b7c3f9df37862a0973c7a694667009b
   branch: main
   specs:
-    heb412_gen (1.0.b6)
+    heb412_gen (1.0.b7)
       mr519_gen
       redcarpet
       rspreadsheet
@@ -30,16 +30,16 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 0a5b922b45b972f509e58db31066b20bd5eaa9af
+  revision: 3c81e39b831bc6c4d8f086b33bd7dc82125389c4
   branch: main
   specs:
-    mr519_gen (0.2.0)
+    mr519_gen (0.2.1)
       rails
       sip
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 8555a0a937f7f1bfbe74057a0e57ea316eb0640e
+  revision: 785140129f07bc40259ae21053718254755732d8
   branch: main
   specs:
     sip (2.0.b12)
@@ -58,10 +58,10 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 9ed21cbc89003313d1f125c890092c993e45684b
+  revision: 8ff5da87c17f39a8f27589bbf58ca7bf8a347140
   branch: main
   specs:
-    sivel2_gen (2.0b15)
+    sivel2_gen (2.0b16)
       devise
       jquery-rails
       rails
@@ -149,7 +149,7 @@ GEM
     andand (1.3.3)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.7.7)
+    bootsnap (1.8.1)
       msgpack (~> 1.0)
     builder (3.2.4)
     camertron-eprun (1.1.1)
@@ -198,7 +198,7 @@ GEM
       ruby-graphviz
     erubi (1.10.0)
     execjs (2.8.1)
-    ffi (1.15.3)
+    ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
     hotwire-rails (0.1.3)
@@ -226,7 +226,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2021.0704)
+    mime-types-data (3.2021.0901)
     mimemagic (0.3.10)
       nokogiri (~> 1)
       rake
@@ -235,7 +235,7 @@ GEM
     minitest (5.14.4)
     msgpack (1.4.2)
     nio4r (2.5.8)
-    nokogiri (1.12.3)
+    nokogiri (1.12.4)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     odf-report (0.7.2)
@@ -343,14 +343,14 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    stimulus-rails (0.3.8)
+    stimulus-rails (0.4.0)
       rails (>= 6.0.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.1.0)
     tilt (2.0.10)
     ttfunk (1.7.0)
-    turbo-rails (0.7.4)
+    turbo-rails (0.7.11)
       rails (>= 6.0.0)
     twitter_cldr (6.7.0)
       camertron-eprun
@@ -365,7 +365,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webpacker (6.0.0.rc.1)
+    webpacker (6.0.0.rc.5)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
