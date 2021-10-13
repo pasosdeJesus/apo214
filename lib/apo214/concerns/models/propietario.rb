@@ -15,7 +15,7 @@ module Apo214
           belongs_to :lugarpreliminar, foreign_key: "id_lugarpreliminar",
             validate: true, class_name: "Apo214::Lugarpreliminar"
           belongs_to :personapropietario, foreign_key: "id_persona",
-            validate: true, class_name: "Sip::Persona"
+            validate: false, class_name: "Sip::Persona"
           accepts_nested_attributes_for :personapropietario, reject_if: :all_blank
 
           validates_length_of :observaciones, maximum: 5000

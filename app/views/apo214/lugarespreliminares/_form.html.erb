@@ -231,13 +231,21 @@
             </div>
           </div>
         <% end %>
-
         <%= item_acordeon_bs(
           'dlugarpreliminar', 'sitioentorno',
           'DESCRIPCIÓN DEL SITIO Y SU ENTORNO', false) do %>
-          <button data-bs-toggle="collapse" data-bs-target='privada'>
-            <h5>Propiedad privada</h5>
-          </button>
+          <div class="row">
+            <div class="col-md-6">
+              <p>
+                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#privada" aria-expanded="false" aria-controls="privada">
+                  <h5>Propiedad privada</h5>
+                </button>
+                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#publica" aria-expanded="false" aria-controls="privada">
+                  <h5>Espacio público</h5>
+                </button>
+              </p>
+            </div>
+          </div>
           <div class="collapse multi-collapse filapersona" id="privada">
             <div class="row">
               <div class="col-md-12">
@@ -261,9 +269,6 @@
               </div>
             </div>
           </div>
-          <button data-bs-toggle="collapse" data-bs-target='publica'>
-            <h5>Espacio público</h5>
-          </button>
           <div class="collapse multi-collapse" id="publica">
             <div class="row">
               <div class="col-md-6">
