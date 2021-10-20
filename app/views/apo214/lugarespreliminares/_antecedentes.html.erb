@@ -1,0 +1,128 @@
+<%= item_acordeon_bs(
+  'dlugarpreliminar', 'antepreliminar',
+  'ANTECEDENTES PROPORCIONADOS POR EL APORTANTE', false) do %>
+  <div class="row">
+    <div class="col-md-12">
+      <%= f.input :hechos, as: :text, input_html: {rows: 3} %>
+    </div>
+    <div class="col-md-12">
+      <%= f.input :ubicaespecifica, as: :text, input_html: {rows: 3} %>
+    </div>
+  </div> <!-- row -->
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.association :tipoentierro,
+        collection: Apo214::Tipoentierro.habilitados,
+        include_blank: true,
+        label_method: :nombre,
+        value_method: :id
+      %>
+    </div>
+    <div class="col-md-3">
+      <%= f.association :disposicioncadaveres,
+        collection: Apo214::Disposicioncadaveres.habilitados,
+        include_blank: true,
+        label_method: :nombre,
+        value_method: :id
+      %>
+    </div>
+    <div class="col-md-3">
+      <% if f.object.otradisposicioncadaveres && f.object.disposicioncadaveres %>
+        <% if f.object.disposicioncadaveres.id == 4 %>
+          <% esdis = "display: block" %>
+        <% end %>
+      <% else %>
+        <% esdis = "display: none" %>
+      <% end %>
+      <div class="otradisposicioncadaveres" style="<%= esdis %>">
+        <%= f.input :otradisposicioncadaveres %>
+      </div>
+    </div>
+  </div> <!-- row -->
+  <div class="row">
+    <div class="col-md-3">
+      Número estimado de individuos depositados
+    </div>
+    <div class="col-md-3">
+      Mín. <%= f.input :min_depositados,
+        label: false,
+        input_html: { min: '0'} %>
+      Máx. <%= f.input :max_depositados,
+        label: false,
+        input_html: { min: '0'} %>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          Fecha de disposición
+        </div>
+        <div class="col-md-6">
+          <%= f.input :fechadis,
+            label: false,
+            :input_html => { "data-behaviour" => "datepicker" },
+            :as => :string %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          Hora de disposición
+        </div>
+        <div class="col-md-6">
+          <%= f.time_select :horadis, {ampm: true} %>
+        </div>
+      </div>
+    </div>
+  </div> <!-- row -->
+
+  <div class="row">
+    <div class="col-md-2">
+      Lugar del asesinato
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-2">
+          <% if !f.object.insitu.nil? %>
+            <% ch = f.object.insitu %>
+          <% else %>
+            <% ch = true %>
+          <% end %>
+          <%= f.input :insitu,
+            :input_html => { checked: ch } %>
+        </div>
+        <% if !f.object.insitu.nil? && f.object.insitu == false %>
+          <% estol = "display: block" %>
+        <% else %>
+          <% estol = "display: none" %>
+        <% end %>
+        <div class="col-md-10" >
+          <%= render partial: 'campo_otrolugarasesinato',
+            locals: {f: f, estol: estol, con_label: false} %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          Detalles:
+        </div>
+        <div class="col-md-10">
+          <%= f.input :detallesasesinato, as: :text, input_html: {rows: 3},
+            label: false %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel-body table-responsive" style="overflow-x:scroll;">
+        <%= render 'campo_depositados', f: f %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel-body table-responsive" style="overflow-x:scroll;">
+        <%= render 'campo_personasfuentes', f: f %>
+      </div> <!-- panel-body -->
+    </div>
+    <div class="col-md-12">
+      <%= f.input :detallesdisposicion, as: :text, input_html: {rows: 3} %>
+    </div>
+  </div>
+<% end %>

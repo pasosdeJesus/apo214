@@ -1,0 +1,53 @@
+<%= item_acordeon_bs(
+  'dlugarpreliminar', 'aportantepreliminar', 'DATOS DEL APORTANTE',
+  false) do %>
+  <%= f.input :id_persona, as: :hidden %>
+  <% if !f.object.persona %>
+    <% f.object.persona = Sip::Persona.new%>
+  <% end %>
+  <%= f.simple_fields_for :persona do |p| %>
+    <%= render partial: 'nombresydoc_persona_campos',
+      locals: {p: p, con_label: false} %>
+    <%= render partial: 'edadysexo_persona_campos',
+      locals: {p: p, con_label: false} %>
+  <% end %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.input :grabacion,
+        label: false %>
+      <label> Grabación de audio</label>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :parentezco,
+        collection: Sip::Trelacion.habilitados,
+        include_blank: false,
+        label_method: :nombre,
+        value_method: :id %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :telefono %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.association :tipotestigo,
+        collection: Apo214::Tipotestigo.habilitados,
+        include_blank: false,
+        label_method: :nombre,
+        value_method: :id,
+        selected: f.object.tipotestigo ? f.object.tipotestigo.id : 1
+      %>
+    </div>
+    <div class="col-md-4">
+      <% if f.object.tipotestigo && f.object.tipotestigo.id == 4 %>
+        <% estipo = "display: block" %>
+      <% else %>
+        <% estipo = "display: none" %>
+      <% end %>
+      <div class="otrotipotestigo" style="<%= estipo %>">
+        <%= f.input :otrotipotestigo %>
+      </div>
+    </div>
+  </div> <! -- row -->
+<% end %>
+

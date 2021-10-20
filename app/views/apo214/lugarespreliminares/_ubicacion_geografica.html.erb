@@ -1,0 +1,12 @@
+<%= item_acordeon_bs(
+  'dlugarpreliminar', 'ubicacionpreliminar', 'UBICACIÓN GEOGRÁFICA',
+  false) do %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= render partial: 'campo_ubicacionpre',
+        locals: {f: f, con_label: false} %>
+    </div>
+    <div class="col-md-6">
+    </div>
+  </div>
+<% end %>
