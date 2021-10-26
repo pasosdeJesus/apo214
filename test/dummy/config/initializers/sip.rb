@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'apo214/version'
 
 Sip.setup do |config|

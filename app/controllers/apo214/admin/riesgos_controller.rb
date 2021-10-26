@@ -1,4 +1,3 @@
-# encoding: UTF-8
 module Apo214
   module Admin
     class RiesgosController < Sip::Admin::BasicasController

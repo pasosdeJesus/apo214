@@ -27,6 +27,7 @@ module Apo214
 
     # Establece autorizaciones con CanCanCan
     def initialize_apo214(usuario = nil)
+      initialize_sivel2_gen(usuario)
       if !usuario || !usuario.rol
         return
       end

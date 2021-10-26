@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'apo214/concerns/models/listapersofuentes.rb'
 
 module Apo214

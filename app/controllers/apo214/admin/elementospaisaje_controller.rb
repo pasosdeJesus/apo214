@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 module Apo214
   module Admin
     class ElementospaisajeController < Sip::Admin::BasicasController

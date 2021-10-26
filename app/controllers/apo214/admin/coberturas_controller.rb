@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 module Apo214
   module Admin
     class CoberturasController < Sip::Admin::BasicasController
