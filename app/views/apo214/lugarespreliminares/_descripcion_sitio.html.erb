@@ -1,0 +1,117 @@
+<%= item_acordeon_bs(
+  'dlugarpreliminar', 'sitioentorno',
+  'DESCRIPCIÓN DEL SITIO Y SU ENTORNO', false) do %>
+  <div class="row">
+    <div class="col-md-6">
+      <p>
+        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#privada" aria-expanded="false" aria-controls="privada">
+          <h5>Propiedad privada</h5>
+        </button>
+        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#publica" aria-expanded="false" aria-controls="privada">
+          <h5>Espacio público</h5>
+        </button>
+      </p>
+    </div>
+  </div>
+  <div class="collapse multi-collapse filapersona" id="privada">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.input :nombrepropiedad %>
+        <%= f.simple_fields_for :propietario do |p| %>
+          <%= f.input :id, as: :hidden %>
+          <%= f.input :id_persona, as: :hidden %>
+          <% if p.object.personapropietario.nil? %>
+            <% p.object.personapropietario = Sip::Persona.new %>
+          <% end %>
+          <%= p.simple_fields_for :personapropietario do |pe| %>
+            <%= render partial: 'nombresydoc_persona_campos',
+              locals: {p: pe, con_label: false} %>
+            <div class="col-md-3">
+              <%= render partial: 'sip/personas/campo_sexo', locals: {f: pe} %>
+            </div>
+          <% end %>
+          <%= p.input :telefono %>
+          <%= p.input :observaciones , as: :text, input_html: {rows: 3}%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="collapse multi-collapse" id="publica">
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :nomcomoseconoce %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.association :elementopaisaje,
+        collection: Apo214::Elementopaisaje.habilitados,
+        include_blank: true,
+        label_method: :nombre,
+        value_method: :id
+      %>
+    </div>
+    <div class="col-md-6">
+      <%= f.association :cobertura,
+        collection: Apo214::Cobertura.habilitados,
+        include_blank: true,
+        label_method: :nombre,
+        value_method: :id
+      %>
+    </div>
+  </div> <!-- row -->
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :interatroprevias %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :interatroactuales %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :usoterprevios %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :usoteractuales %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= f.input :accesolugar, as: :text, input_html: {rows: 3} %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h5 style="text-align: center;"> Riesgos evaluados </h5>
+      <table class="table  table-bordered table-sm ">
+        <thead class="thead-light">
+          <tr>
+            <th span="1" style="width: 30%;">Riesgos</th>
+            <th>Descripción</th>
+            <th span="1" style="width: 15%;">Calificación (1 a 5)*</th>
+          </tr>
+        </thead>
+        <tbody id="listaevariesgo">
+          <%= render 'listaevariesgo_campos', f: f %>
+        </tbody>
+      </table>
+      <p>* La evaluación del grado de riesgo se presenta en una escala 1 a 5: 1 = No se detecta; 2 = Bajo; 3 = Medio; 4 = Alto; 5 = Muy alto.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel-body table-responsive" style="overflow-x:scroll;">
+        <%= render 'campo_listasuelo', f: f %>
+      </div> <!-- panel-body -->
+      <%= f.input :observaciones, :as => :text, :input_html => {:rows => 8} %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :perfilestratigrafico, :as => :text,
+        :input_html => {:rows => 20} %>
+    </div>
+  </div>
+<% end %>
+

@@ -1,0 +1,25 @@
+<%= item_acordeon_bs(
+  'dlugarpreliminar', 'basicospreliminar', 'DATOS BÁSICOS', false) do %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :fecha,
+        :input_html => { "data-behaviour" => "datepicker" },
+        as: :string %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :codigositio %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :nombreusuario,
+        input_html: {
+        value: f.object.nombreusuario ? f.object.nombreusuario : current_usuario.nombre
+      }
+    %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :organizacion %>
+    </div>
+  </div>
+<% end %>
