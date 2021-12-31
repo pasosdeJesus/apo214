@@ -8,9 +8,9 @@ module Apo214
           include Sip::Modelo 
 
           belongs_to :lugarpreliminar, class_name: 'Apo214::Lugarpreliminar',
-            validate: true, foreign_key: 'lugarpreliminar_id'
+            validate: true, foreign_key: 'lugarpreliminar_id', optional: false
           belongs_to :suelo, class_name: 'Apo214::Suelo', validate: true,
-            foreign_key: 'suelo_id'
+            foreign_key: 'suelo_id', optional: false
           accepts_nested_attributes_for :suelo, reject_if: :all_blank
 
         end # included

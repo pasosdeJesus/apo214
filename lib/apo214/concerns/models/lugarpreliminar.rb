@@ -11,7 +11,7 @@ module Apo214
           campofecha_localizado :fecha
 
           belongs_to :persona, foreign_key: "id_persona", dependent: :destroy,
-           class_name: 'Sip::Persona'
+           class_name: 'Sip::Persona', optional: false
           accepts_nested_attributes_for :persona,  reject_if: :all_blank
           has_one :propietario, foreign_key: "id_lugarpreliminar", dependent: :destroy,
            class_name: 'Apo214::Propietario'
@@ -31,7 +31,8 @@ module Apo214
             foreign_key: 'cobertura_id', optional: true
           belongs_to :elementopaisaje, class_name: 'Apo214::Elementopaisaje',
             foreign_key: 'elementopaisaje_id', optional: true
-          belongs_to :disposicioncadaveres, class_name: 'Apo214::Disposicioncadaveres',
+          belongs_to :disposicioncadaveres, 
+            class_name: 'Apo214::Disposicioncadaveres',
             foreign_key: 'disposicioncadaveres_id', optional: true
           belongs_to :archivokml, class_name: 'Sip::Anexo', validate: true,
             foreign_key: 'archivokml_id', optional: true

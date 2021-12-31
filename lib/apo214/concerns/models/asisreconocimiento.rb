@@ -8,11 +8,12 @@ module Apo214
           include Sip::Modelo 
 
           belongs_to :lugarpreliminar, class_name: 'Apo214::Lugarpreliminar',
-            validate: true, foreign_key: 'lugarpreliminar_id'
+            validate: true, foreign_key: 'lugarpreliminar_id', optional: false
           belongs_to :asistente, class_name: 'Sip::Persona', validate: true,
-            foreign_key: 'persona_id'
+            foreign_key: 'persona_id', optional: false
           acts_as_list scope: :asistente, column: :posicion
-          accepts_nested_attributes_for :asistente, reject_if: :all_blank, update_only: true
+          accepts_nested_attributes_for :asistente, reject_if: :all_blank, 
+            update_only: true
 
           after_commit :broadcast_me
 

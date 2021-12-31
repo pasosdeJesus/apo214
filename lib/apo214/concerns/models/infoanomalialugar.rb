@@ -8,8 +8,9 @@ module Apo214
           include Sip::Modelo 
 
           belongs_to :lugarpreliminar, class_name: 'Apo214::Lugarpreliminar',
-            validate: true, foreign_key: 'lugarpreliminar_id'
-          belongs_to :infoanomalia, class_name: 'Apo214::Infoanomalia', validate: true,
+            validate: true, foreign_key: 'lugarpreliminar_id', optional: false
+          belongs_to :infoanomalia, class_name: 'Apo214::Infoanomalia', 
+            validate: true, optional: false,
             foreign_key: 'infoanomalia_id'
           accepts_nested_attributes_for :infoanomalia, reject_if: :all_blank
 

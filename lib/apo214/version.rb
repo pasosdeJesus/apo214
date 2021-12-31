@@ -1,3 +1,3 @@
 module Apo214
-  VERSION = '0.1.0'
+  VERSION = '2.1a1'
 end
