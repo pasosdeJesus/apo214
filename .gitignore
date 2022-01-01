@@ -40,3 +40,5 @@ coverage
 .env
 test/dummy/public/apo214/assets
 test/dummy/public/packs
+test/dummy/app/assets/builds
+
