@@ -27,7 +27,9 @@
         <div class="form-actions" style="text-align: center">
           <%= f.button :submit, 'Validar y Guardar', {
             class: 'btn-primary',
-            onclick: 'window.sivel2_detenerEnviarCada60()' } %>
+            onclick: 'window.sivel2_detenerEnviarCada60()',
+            'data-turbo' => false
+          } %>
           <%= link_to t('.cancel', default: t("helpers.links.cancel")),
             apo214.lugarespreliminares_path, class: 'btn' %>
         </div> <!-- form-action -->
