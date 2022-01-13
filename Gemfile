@@ -6,6 +6,8 @@ gemspec
 
 gem 'acts_as_list'
 
+gem 'babel-transpiler'
+
 gem 'bcrypt'
 
 gem "best_in_place", git: "https://github.com/mmotherwell/best_in_place"
@@ -57,6 +59,10 @@ gem 'sassc-rails' # Hojas de estilo con SCSS
 gem 'simple_form'   # Formularios
 
 gem 'sprockets-rails'
+
+gem 'stimulus-rails'
+
+gem 'turbo-rails'
 
 gem 'twitter_cldr'               # Localiación e internacionalización
 

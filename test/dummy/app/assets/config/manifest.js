@@ -8,3 +8,7 @@
 //= link_directory ../stylesheets .css
 //= link_directory ../../../node_modules/chosen-js .png
 //= link_tree ../builds
+//= link recursos_globales.js
+//= link recursos_globales.js.map
+//= link recursos_globales.js
+//= link recursos_globales.js.map
