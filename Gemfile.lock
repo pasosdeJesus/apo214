@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 611ace7e57f54d34c88337a8b7da535690d792e2
+  revision: a952bd11812d0aaa4dc05d70c9636215e5ba5fe6
   branch: rails7jses
   specs:
     heb412_gen (2.1a1)
@@ -30,7 +30,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: e4ed1565b0343ec8cb1fbd974568cef35f4710f9
+  revision: eb59f1251335c0dd543f1c6bc2a0f46d5520703f
   branch: rails7jses
   specs:
     mr519_gen (2.1a1)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 54e170700c6a3cd0b7496bb213e7e8580f97436f
+  revision: bb97f33730a35f6bcc844b61a86e79c8b44ee397
   branch: rails7jses
   specs:
     sip (2.1a1)
@@ -176,6 +176,7 @@ GEM
     choice (0.2.0)
     cldr-plurals-runtime-rb (1.1.0)
     climate_control (0.2.0)
+    cliver (0.3.2)
     coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 5.2.0)
@@ -187,6 +188,9 @@ GEM
     colorize (0.8.1)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    cuprite (0.13)
+      capybara (>= 2.1, < 4)
+      ferrum (~> 0.11.0)
     devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -206,6 +210,11 @@ GEM
       ruby-graphviz
     erubi (1.10.0)
     execjs (2.8.1)
+    ferrum (0.11)
+      addressable (~> 2.5)
+      cliver (~> 0.3)
+      concurrent-ruby (~> 1.1)
+      websocket-driver (>= 0.6, < 0.8)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -254,7 +263,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.0)
+    nokogiri (1.13.1)
       mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
     odf-report (0.7.2)
@@ -401,6 +410,7 @@ DEPENDENCIES
   cocoon!
   coffee-rails
   colorize
+  cuprite
   devise
   devise-i18n
   dotenv-rails

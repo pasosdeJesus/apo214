@@ -64,13 +64,11 @@ if (test "$?" != "0") then {
 	exit 1;
 } fi;
 
-for i in test/integration/*rb; do 
-	CONFIG_HOSTS=www.example.com bin/rails test $i; 
-	if (test "$?" != "0") then {
-		echo "No paso prueba de intregacion $i";
-		exit 1;
-	} fi;
-done;
+#(cd test/dummy; CONFIG_HOSTS=127.0.0.1 bin/rails test:system)
+#if (test "0" != "0") then {
+#	echo "No pasaron pruebas del sistema";
+#	exit 1;
+#} fi;
 
 (cd test/dummy; RAILS_ENV=test bin/rails db:schema:dump)
 
