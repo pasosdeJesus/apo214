@@ -33,19 +33,8 @@ var mc= require('leaflet.markercluster');
 
 import plotly_serietiempo_actos from './plotly_actos'
 
-document.addEventListener("DOMContentLoaded", function() {
-
-  var p = new URL(document.URL).pathname.split('/')
-  var p2ult = ''
-  if (p.length>2) { 
-    p2ult = p[p.length - 2] + "/" + p[p.length - 1]
-  }
-  console.log("p2ult=" + p2ult)
-  if (p2ult == 'graficar/actos_individuales') {
-    plotly_serietiempo_actos() 
-  }
-
-});
+import {AutocompletaAjaxExpreg} from '@pasosdejesus/autocompleta_ajax'
+window.AutocompletaAjaxExpreg = AutocompletaAjaxExpreg
 
 let esperarRecursosSprocketsYDocumento = function (resolver) {
   if (typeof window.puntomontaje == 'undefined') {
@@ -67,8 +56,26 @@ let promesaRecursosSprocketsYDocumento = new Promise((resolver, rechazar) => {
 promesaRecursosSprocketsYDocumento.then((mensaje) => {
   console.log(mensaje)
   var root = window;
-  sip_prepara_eventos_comunes(root);
-  // Agregar más inicializaciones a continuación
+
+  sip_prepara_eventos_comunes(root, null, false);
+  heb412_gen_prepara_eventos_comunes(root);
+  mr519_gen_prepara_eventos_comunes(root);
+  sivel2_gen_prepara_eventos_comunes(root);
+  apo214_prepara_eventos_comunes(root);
+  sivel2_gen_prepara_eventos_unicos(root);
+
+
+  var p = new URL(document.URL).pathname.split('/')
+  var p2ult = ''
+  if (p.length>2) { 
+    p2ult = p[p.length - 2] + "/" + p[p.length - 1]
+  }
+  console.log("p2ult=" + p2ult)
+  if (p2ult == 'graficar/actos_individuales') {
+    plotly_serietiempo_actos() 
+  }
+
+
 })
 
 
