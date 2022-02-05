@@ -20,8 +20,8 @@ module Apo214
             through: :listaanexo
           has_one :lugarpreliminar, foreign_key: "archivokml_id", 
             validate: true, class_name: 'Apo214::Lugarpreliminar'
-          validates_attachment_content_type :adjunto, content_type: /\Aimage/, message: "Solo se permite imágenes en png o jpeg"
-          validates_attachment_file_name :adjunto, matches: [/png\z/, /jpe?g\z/], message: "Solo se permite imágens en png o jpeg"
+          validates_attachment_content_type :adjunto, content_type: [/\Aimage/, 'application/zip'], message: "Solo se permite imágenes en png o jpeg JPG"
+          validates_attachment_file_name :adjunto, matches: [/png\z/, /JPG\z/, /jpe?g\z/, /zip\z/], message: "Solo se permite imágens en png, JPG, jpeg o zip"
         end
 
         module ClassMethods
