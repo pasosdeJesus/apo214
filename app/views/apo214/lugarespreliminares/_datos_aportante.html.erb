@@ -20,7 +20,7 @@
     <div class="col-md-4">
       <%= f.input :parentezco,
         collection: Sip::Trelacion.habilitados,
-        include_blank: false,
+        include_blank: true,
         label_method: :nombre,
         value_method: :id %>
     </div>
