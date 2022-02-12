@@ -1,7 +1,8 @@
-<h5 style="text-align: center;">Asistencia</h5>
-<%= turbo_frame_tag "asisreconocimiento" do %>
+<h1 style="text-align: center;">Asistencia</h1>
+<h3> Nuevo Asistente </h3>
+<div id= new_asisreconocimiento">
     <%= turbo_frame_tag "new_asisreconocimiento", src: new_lugarpreliminar_asisreconocimiento_path(@lugarpreliminar), target: "_top" %>
-<% end %>
+</div>
 <div class="row" >
   <div class="col-md-3">
     <h5> Organización </h5>
@@ -16,6 +17,6 @@
     <h5> Acciones </h5>
   </div>
 </div>
-<turbo-frame id="asisreconocimientos" data-controller="drag" data-drag-url= <%= url %>>
+<turbo-frame id="asisreconocimientos" data-controller="drag" data-drag-url="asisreconocimientos/:id/mover">
     <%= render @lugarpreliminar.asisreconocimientos.order(posicion: :asc) %>
 </turbo-frame>

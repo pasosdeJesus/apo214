@@ -11,7 +11,6 @@ module Apo214
           #load_and_authorize_resource class: Apo214::Asisreconocimiento,
           #  except: [:index, :show]
           helper Sip::UbicacionHelper
-
           def registrar_en_bitacora
             true
           end
@@ -55,20 +54,30 @@ module Apo214
 
           # POST /asisreconocimiento
           def create
-            @asisreconocimiento = @lugarpreliminar.asisreconocimientos.create!(asisreconocimiento_params)
+            @asisreconocimiento = @lugarpreliminar.asisreconocimientos.new(asisreconocimiento_params)
             respond_to do |format|
-                format.turbo_stream
-                format.html { redirect_to @lugarpreliminar }
+              if @asisreconocimiento.save
+                format.turbo_stream do
+                  render turbo_stream: [
+                    turbo_stream.prepend("asisreconocimientos", 
+                                        partial: "apo214/asisreconocimientos/asisreconocimiento", 
+                                        locals: {asisreconocimiento: @asisreconocimiento}) 
+                  ]
+                end
+                format.html { redirect_to edit_lugarpreliminar_path(@lugarpreliminar) }
+              else
+                format.turbo_stream do
+                  render turbo_stream: [
+                    turbo_stream.update("new_asisreconocimiento", 
+                                        partial: "apo214/asisreconocimientos/form", 
+                                        locals: {asisreconocimiento: @asisreconocimiento})
+                  ]
+                end
+                format.html { redirect_to edit_lugarpreliminar_path(@lugarpreliminar) }
+              end
             end
-            actualiza_posicion
           end
 
-          def actualiza_posicion
-            @lugarpreliminar.asisreconocimientos.order(:posicion).each_with_index do |asis, indice|
-              asis.posicion = indice+1
-              asis.save!
-            end
-          end
           def edit
             @lugarpreliminar = Apo214::Lugarpreliminar.find(params[:lugarpreliminar_id])
             @asisreconocimiento = @lugarpreliminar.asisreconocimientos.find(params[:id])
@@ -87,32 +96,18 @@ module Apo214
 
           def destroy
             @asisreconocimiento = @lugarpreliminar.asisreconocimientos.find(params[:id])
+            @asisreconocimiento.remove_from_list
             @asisreconocimiento.destroy!
             respond_to do |format|
               format.turbo_stream { render turbo_stream: turbo_stream.remove(@asisreconocimiento) }
               format.html { redirect_to @lugarpreliminar.asisreconocimientos }
             end
-            actualiza_posicion
           end
 
           def mover
-            nueva = params[:nuevaposicion].to_i
-            vieja = params[:viejaposicion].to_i
-            if nueva < vieja
-              [*nueva..(vieja-1)].each do |pos|
-                asis = @lugarpreliminar.asisreconocimientos.where(posicion: pos)[0]
-                asis.posicion = pos + 1
-                asis.save!
-              end
-            else
-              [*(vieja+1)..nueva].each do |pos|
-                asis = @lugarpreliminar.asisreconocimientos.where(posicion: pos)[0]
-                asis.posicion = pos + -1
-                asis.save!
-              end
-            end
-            @asisreconocimiento.insert_at(nueva)
-            actualiza_posicion
+            asis = @asisreconocimiento
+            nueva = params[:posicion].to_i
+            asis.insert_at(nueva)
             head :ok
           end
           private
