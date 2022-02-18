@@ -1,26 +1,28 @@
-# Configure Rails Environment
-ENV["RAILS_ENV"] = "test"
 
+ENV['RAILS_ENV'] ||= 'test'
 
 require 'nokogiri'
 require 'simplecov'
 SimpleCov.start 'rails'
+require_relative 'dummy/config/environment'
 require 'rails/test_help'
 require 'rake'
 
-require_relative "../test/dummy/config/environment"
-ActiveRecord::Migrator.migrations_paths = [File.expand_path("../test/dummy/db/migrate", __dir__)]
-ActiveRecord::Migrator.migrations_paths << File.expand_path('../db/migrate', __dir__)
-require "rails/test_help"
+Rake::Task.clear # necessary to avoid tasks being loaded several times in dev mode
+Dummy::Application.load_tasks # providing your application name is 'sample'
 
-# Filter out the backtrace from minitest while preserving the one from other libraries.
-Minitest.backtrace_filter = Minitest::BacktraceFilter.new
+class ActiveSupport::TestCase
+  #fixtures :all
 
+  if Sip::Tclase.all.count == 0
+    load "#{Rails.root}/db/seeds.rb"
+    #Rake::Task[].reenable # in case you're going to invoke the same task second time.
+    Rake::Task['sip:indices'].invoke
+  end
 
-# Load fixtures from the engine
-if ActiveSupport::TestCase.respond_to?(:fixture_path=)
-  ActiveSupport::TestCase.fixture_path = File.expand_path("fixtures", __dir__)
-  ActionDispatch::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
-  ActiveSupport::TestCase.file_fixture_path = ActiveSupport::TestCase.fixture_path + "/files"
-  ActiveSupport::TestCase.fixtures :all
+  protected
+  def load_seeds
+    load "#{Rails.root}/db/seeds.rb"
+  end
 end
+

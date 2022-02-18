@@ -90,4 +90,3 @@ document.addEventListener('turbo:load', (e) => {
   sip_ejecutarAlCargarPagina(window)
 })
 
-import "./controllers"
