@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: 6d3cfb9b2dae7a04111411172b803ee4884b56d0
+  revision: 4d95c60665fbb5d453a3f710977a259760996cd9
   specs:
-    kt-paperclip (7.1.0)
+    kt-paperclip (7.1.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       marcel (~> 1.0.1)
@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 556b1b7dc3fe4e75a4f167293e275fb2dfda51af
+  revision: 7d637850fedef5f8dc0236e399b9224bc810a0f8
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -30,7 +30,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 86ea29ff59b9ad0cc054d19f6743ec99923386e0
+  revision: 45de4d09e109164389ae8e8adc17fafff1e09f29
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 3cadd546bf03328e0ee506d3ed7c023863a0b9d4
+  revision: fae41bd3f5da9388d60783c6f841d1b4f1aa3869
   branch: main
   specs:
     sip (2.1a1)
@@ -57,7 +57,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 0cd1751ef1b09dd74d33ebe52c7883131a845c8b
+  revision: 28d93b853e2628394cda296caccb4564c5190572
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -200,7 +200,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.10.1)
+    devise-i18n (1.10.2)
       devise (>= 4.8.0)
     digest (3.1.0)
     docile (1.4.0)
@@ -234,7 +234,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    jsbundling-rails (1.0.0)
+    jsbundling-rails (1.0.1)
       railties (>= 6.0.0)
     json (2.6.1)
     libxml-ruby (3.2.2)
@@ -371,7 +371,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    stimulus-rails (1.0.2)
+    stimulus-rails (1.0.3)
       railties (>= 6.0.0)
     strscan (3.0.1)
     terrapin (0.6.0)
