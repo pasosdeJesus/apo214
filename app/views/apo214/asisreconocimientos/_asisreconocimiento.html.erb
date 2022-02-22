@@ -1,4 +1,4 @@
-<div data-id="<%= asisreconocimiento.id %>"  data-controller="actualiza_fila" data-actualiza-fila-asisreconocimientoid= "<%= asisreconocimiento.id %>">
+<div data-id="<%= asisreconocimiento.id %>"  data-controller="actualiza-fila" data-actualiza-fila-asisreconocimientoid= "<%= asisreconocimiento.id %>">
   <div data-actualiza-fila-target='asisestado'>
     <%= turbo_frame_tag dom_id(asisreconocimiento) do %>
       <% url_obj = lugarpreliminar_asisreconocimiento_path(asisreconocimiento.lugarpreliminar.id , asisreconocimiento.id) 

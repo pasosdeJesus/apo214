@@ -1,5 +1,5 @@
 <div class="card card-body">
-<%= form_with(model: [@asisreconocimiento.lugarpreliminar, @asisreconocimiento], data: {turbo_frame: "asisreconocimientos", turbo_action: "advance", controller: "form_asisreconocimiento", action: "turbo:submit-end->form_asisreconocimiento#reset"}) do |form| %>
+<%= form_with(model: [@asisreconocimiento.lugarpreliminar, @asisreconocimiento], data: {turbo_frame: "asisreconocimientos", turbo_action: "advance", controller: "form-asisreconocimiento", action: "turbo:submit-end->form-asisreconocimiento#reset"}) do |form| %>
   <div class= "filapersona">
         <% if form.object.asistente.nil? %>
           <% form.object.asistente = Sip::Persona.new %>
