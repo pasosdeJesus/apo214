@@ -8,7 +8,7 @@
 
 
 <% content_for :menu do %>
-  <%= grupo_menus do %>
+  <%= Sip::BootstrapHelper.grupo_menus do %>
     <% if !current_usuario.nil? %>
       <%= despliega_abajo "Casos" do %>
         <%= opcion_menu "Listado", sivel2_gen.casos_path,
@@ -54,7 +54,7 @@
       <% end %>
     <% end %>
   <% end %>
-  <%= grupo_menus :pull => :right do %>
+  <%= Sip::BootstrapHelper.grupo_menus :pull => :right do %>
     <% if !current_usuario.nil? %>
       <%= despliega_abajo "Documentos" do %>
         <%= opcion_menu "Manual", 
