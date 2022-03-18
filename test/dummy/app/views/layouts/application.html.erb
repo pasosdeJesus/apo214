@@ -8,7 +8,7 @@
 
 
 <% content_for :menu do %>
-  <%= Sip::BootstrapHelper.grupo_menus do %>
+  <%= grupo_menus do %>
     <% if !current_usuario.nil? %>
       <%= despliega_abajo "Casos" do %>
         <%= opcion_menu "Listado", sivel2_gen.casos_path,
@@ -44,9 +44,6 @@
       <%= despliega_abajo "Mapas" do %>
         <%= opcion_menu "Casos sobre Open Street Maps", 
           sivel2_gen.casos_mapaosm_path, desplegable: true %>
-        <%= opcion_menu 'Mapa-tiempo y gráficos', 
-          main_app.mapatiempo_path,
-          desplegable: true %>
       <% end %>
       <%= despliega_abajo "Desaparición" do %>
         <%= opcion_menu "Lugares preliminares de disposición de cadaveres", 
@@ -54,7 +51,7 @@
       <% end %>
     <% end %>
   <% end %>
-  <%= Sip::BootstrapHelper.grupo_menus :pull => :right do %>
+  <%= grupo_menus :pull => :right do %>
     <% if !current_usuario.nil? %>
       <%= despliega_abajo "Documentos" do %>
         <%= opcion_menu "Manual", 
