@@ -14,9 +14,9 @@
     </td>
     <td>
       <%= inf.input :latitud_localizado,
-        as: :float %>
+        as: :string, input_html: { value: inf.object.latitud_localizado || '0.0' }  %>
       <%= inf.input :longitud_localizado,
-        as: :float %>
+        as: :string, input_html: { value: inf.object.longitud_localizado || '0.0' }  %>
       <!-- Button trigger modal -->
       <div>
         <a class="btn btn-primary togglecoord">
