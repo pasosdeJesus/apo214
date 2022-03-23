@@ -11,5 +11,6 @@
 // about supported directives.
 //
 //= require sivel2_gen/application
+//= require apo214/motor
 //= require best_in_place
 //= require_tree .

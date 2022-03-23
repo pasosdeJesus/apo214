@@ -30,7 +30,7 @@ import 'gridstack'
 // Leaflet
 var L = require('leaflet');
 var mc= require('leaflet.markercluster');
-import "../packs/controllers"
+
 import plotly_serietiempo_actos from './plotly_actos'
 
 import {AutocompletaAjaxExpreg} from '@pasosdejesus/autocompleta_ajax'
