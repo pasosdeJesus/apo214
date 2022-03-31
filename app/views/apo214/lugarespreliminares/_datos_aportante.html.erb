@@ -5,6 +5,9 @@
   <% if !f.object.persona %>
     <% f.object.persona = Sip::Persona.new%>
   <% end %>
+  <datalist id='fuente-aportantes'>
+  </datalist>
+  <div class='campos-aportante'>
   <%= f.simple_fields_for :persona do |p| %>
     <%= render partial: 'nombresydoc_persona_campos',
       locals: {p: p, con_label: false} %>
@@ -50,4 +53,5 @@
     </div>
   </div> <! -- row -->
 <% end %>
+</div>
 

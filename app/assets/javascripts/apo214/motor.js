@@ -1,5 +1,9 @@
 // Funciones javascript del motor apo214
-
+//= require apo214/AutocompletaAjaxAportantes
+root = window;
+sip_arregla_puntomontaje(root);
+console.log(root.puntomontaje)
+Apo214AutocompletaAjaxAportantes.iniciar()
 apo214_busca_aportante = function(s) {
   var cnom, divcp, root, v;
   root = window;

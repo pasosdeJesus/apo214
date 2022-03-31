@@ -1,7 +1,7 @@
 /* eslint no-console:0 */
 
 console.log('Hola Mundo desde ESM')
-
+console.log(window)
 import Rails from "@rails/ujs";
 import "@hotwired/turbo-rails";
 Rails.start();
@@ -56,7 +56,6 @@ let promesaRecursosSprocketsYDocumento = new Promise((resolver, rechazar) => {
 promesaRecursosSprocketsYDocumento.then((mensaje) => {
   console.log(mensaje)
   var root = window;
-
   sip_prepara_eventos_comunes(root, null, false);
   heb412_gen_prepara_eventos_comunes(root);
   mr519_gen_prepara_eventos_comunes(root);
