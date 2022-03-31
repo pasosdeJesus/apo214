@@ -3,27 +3,31 @@
 <% ac = {'data-autocompleta' => 'no' } %>
 <% if (!p.object.nombres || p.object.nombres == 'N' || p.object.nombres == '') %>
   <% ph = 'Buscar' %>
-  <% ac = { } %>
+  <% ac = { list: 'fuente-aportantes' } %>
 <% end %>
-<div class="row">
-  <div class="col-md-3">
-    <%= p.input :nombres, placeholder: ph,
-      value_method: lambda {|t| '' if t.nombres == 'N'},
-      :input_html => ac %>
-  </div>
-  <div class="col-md-3">
-    <%= p.input :apellidos %>
-  </div>
-  <div class="col-md-3">
-    <%= p.input :tdocumento_id,
-      collection: Sip::Tdocumento.habilitados,
-      label_method: lambda { |t| "#{t.sigla} | #{t.nombre}"},
-      value_method: :id %>
-  </div>
-  <div class="col-md-3">
-    <%= p.input :numerodocumento,
-      input_html: { 'data-toggle' => 'tooltip',
-                    title: 'Si el tipo de documento es cédula de ciudadania teclee solo digitos'
-    } %>
+<div class="campos_persona">
+<div class="lp_aportante">
+  <div class="row">
+    <div class="col-md-3">
+      <%= p.input :nombres, placeholder: ph,
+        value_method: lambda {|t| '' if t.nombres == 'N'},
+        :input_html => ac %>
+    </div>
+    <div class="col-md-3">
+      <%= p.input :apellidos %>
+    </div>
+    <div class="col-md-3">
+      <%= p.input :tdocumento_id,
+        collection: Sip::Tdocumento.habilitados,
+        label_method: lambda { |t| "#{t.sigla} | #{t.nombre}"},
+        value_method: :id %>
+    </div>
+    <div class="col-md-3">
+      <%= p.input :numerodocumento,
+        input_html: { 'data-toggle' => 'tooltip',
+                      title: 'Si el tipo de documento es cédula de ciudadania teclee solo digitos'
+      } %>
+    </div>
   </div>
 </div>
+</div> 

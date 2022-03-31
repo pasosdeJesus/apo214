@@ -6,6 +6,7 @@ Apo214::Engine.routes.draw do
       end
     end
   end
+  get "/personas/remplazar" => 'personas#remplazar'
   get "/lugp/coordenadas" => 'lugarespreliminares#coordenadas'
   namespace :admin do
     ab=::Ability.new
