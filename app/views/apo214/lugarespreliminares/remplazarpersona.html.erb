@@ -1,0 +1,23 @@
+<%- model_class = Apo214::Lugarpreliminar %>
+<% @lugarpreliminar = Apo214::Lugarpreliminar.new %>  
+<%= simple_form_for @lugarpreliminar, 
+  :html => { :class => 'form-horizontal', :id => dom_id(@lugarpreliminar) } do |f| %>
+  <div class='campos_persona'>
+      <div class='lp_aportante'>
+        <input type='hidden'
+               name='lugarpreliminar[persona_attributes][id]' 
+               id='lugarpreliminar_persona_attributes_id' 
+               value='<%= @persona.id.to_s %>' >
+        </input>
+      </div>
+
+  <% if !f.object.persona %>
+    <% f.object.persona = @persona %>
+  <% end %>
+      <%= f.simple_fields_for :persona do |p| %>
+        <% s = render partial: '/apo214/lugarespreliminares/nombresydoc_persona_campos',
+          locals: {p: p, con_label: false} %>
+        <%= s.html_safe %>
+      <% end %>
+  </div> <!-- campos-victima -->
+<% end %>
