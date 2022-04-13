@@ -4,32 +4,6 @@ root = window;
 sip_arregla_puntomontaje(root);
 console.log(root.puntomontaje)
 Apo214AutocompletaAjaxAportantes.iniciar()
-apo214_busca_aportante = function(s) {
-  var cnom, divcp, root, v;
-  root = window;
-  sip_arregla_puntomontaje(root);
-  cnom = s.attr('id');
-  v = $("#" + cnom).data('autocompleta');
-  if (v !== 1 && v !== "no") {
-    $("#" + cnom).data('autocompleta', 1);
-    divcp = s.closest('.filapersona');
-    if (typeof divcp === 'undefined') {
-      alert('No se ubico div aportante preliminar');
-      return;
-    }
-    $("#" + cnom).autocomplete({
-      source: root.puntomontaje + "personas.json",
-      minLength: 2,
-      select: function(event, ui) {
-        if (ui.item) {
-          apo214_autocompleta_persona(ui.item.value, ui.item.id, divcp, root);
-          event.stopPropagation();
-          return event.preventDefault();
-        }
-      }
-    });
-  }
-};
 
 apo214_autocompleta_persona = function(label, id, divcp, root) {
   var a, cs, d, i, id_persona, ini, pl, t, _i, _ref;
@@ -98,26 +72,6 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
       sip_busca_ubicacionpre($(this))
     })
 
-  // Autocompleta aportante en lugar preliminar
-  $(document).on('focusin', 'input[id^=lugarpreliminar_persona_attributes][id$=_nombres]', function (e) {
-    apo214_busca_aportante($(this), root)
-  });
-
-  $(document).on('focusin', 'input[id^=lugarpreliminar_listapersofuentes_attributes][id$=_attributes_nombres]', function (e) {
-    apo214_busca_aportante($(this), root)
-  });
-
-  $(document).on('focusin', 'input[id^=lugarpreliminar_listadepositados_attributes][id$=_attributes_nombres]', function (e) {
-    apo214_busca_aportante($(this), root)
-  });
-
-  $(document).on('focusin', 'input[id=lugarpreliminar_propietario_attributes_personapropietario_attributes_nombres]', function (e) {
-    apo214_busca_aportante($(this), root)
-  });
-
-  $(document).on('focusin', 'input[id=asisreconocimiento_asistente_attributes_nombres]', function (e) {
-    apo214_busca_aportante($(this), root)
-  });
   // Al elegir otro tipo de testigo se despliega el campo otro
   $(document).on('change', 'select[id=lugarpreliminar_tipotestigo_id]', 
     function (e) {
