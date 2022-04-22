@@ -1,7 +1,7 @@
 class ExtensionPosgis < ActiveRecord::Migration[6.1]
   def up
     execute <<-SQL
-      CREATE EXTENSION postgis;
+      CREATE EXTENSION IF NOT EXISTS postgis;
     SQL
   end
 end
