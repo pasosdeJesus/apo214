@@ -5,7 +5,7 @@
        param_bp = "asisreconocimiento[asistente_attributes]"
      %>
       <div class="row" >
-        <div class="col-md-3">
+        <div class="col-md-2">
           <% if asisreconocimiento.organizacion %>
             <%= best_in_place asisreconocimiento, :organizacion, url: url_obj %>
           <% end %>
@@ -13,6 +13,10 @@
         <div class="col-md-3">
           <% if asisreconocimiento.asistente %>
             <%= best_in_place asisreconocimiento.asistente, :nombres, url: url_obj, type: :input, param: param_bp, place_holder: "Nombres" %>
+          <% end %>
+        </div>
+        <div class="col-md-3">
+          <% if asisreconocimiento.asistente %>
             <%= best_in_place asisreconocimiento.asistente, :apellidos, url: url_obj, param: param_bp %>
           <% end %> 
         </div>
@@ -21,7 +25,7 @@
             <%= best_in_place asisreconocimiento.asistente, :sexo, url: url_obj, param: param_bp, as: :select, collection: [["F", :F], ["M", :M], ["S", :S]] %> 
           <% end %> 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
           <%= link_to 'Eliminar', url_obj, method: :delete %> 
         </div>
       </div>

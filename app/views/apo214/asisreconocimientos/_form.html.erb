@@ -1,32 +1,46 @@
-<div class="card card-body">
 <%= form_with(model: [@asisreconocimiento.lugarpreliminar, @asisreconocimiento], data: {turbo_frame: "asisreconocimientos", turbo_action: "advance", controller: "form-asisreconocimiento", action: "turbo:submit-end->form-asisreconocimiento#reset"}) do |form| %>
-  <div class= "filapersona">
-        <% if form.object.asistente.nil? %>
-          <% form.object.asistente = Sip::Persona.new %>
-        <% end %>
-        <%= form.simple_fields_for :asistente do |p| %>
-          <% ph = 'N'
-           ac = {'data-autocompleta' => 'no', style: 'width: 8em' }
-           if (!p.object.nombres || p.object.nombres == 'N' || p.object.nombres == '')
-             ph = 'Buscar'
-             ac = { style: 'width: 16em' }
-           end 
-          %>
-          <%= p.input :nombres, placeholder: ph,
-            value_method: lambda {|t| '' if t.nombres == 'N'},
-            input_html: ac
-          %>
-          <%= p.input :apellidos,
-            input_html: {style: 'width: 16em'}
-          %>
-          <%= p.input :sexo, 
-            collection: [["F", :F], ["M", :M], ["S", :S]], 
-            input_html: { style: 'width: 4em'},
-            include_blank: false %>
-        <% end %>
-        <%= form.label :organizacion %>:
+
+  <% if form.object.asistente.nil? %>
+    <% form.object.asistente = Sip::Persona.new %>
+  <% end %>
+
+  <%= form.simple_fields_for :asistente do |p| %>
+    <div class="filapersona row" >
+      <div class="col-md-2">
         <%= form.text_field :organizacion %> </br>
+      </div>
+
+      <div class="col-md-3">
+        <% ph = 'N'
+        ac = {'data-autocompleta' => 'no', style: 'width: 8em' }
+        if (!p.object.nombres || p.object.nombres == 'N' || p.object.nombres == '')
+          ph = 'Buscar'
+          ac = { style: 'width: 16em' }
+        end %>
+        <%= p.input :nombres, placeholder: ph,
+          label: false,
+          value_method: lambda {|t| '' if t.nombres == 'N'},
+          input_html: ac
+        %>
+      </div>
+
+      <div class="col-md-3">
+        <%= p.input :apellidos,
+          label: false,
+          input_html: {style: 'width: 16em'}
+        %>
+      </div>
+
+      <div class="col-md-2">
+        <%= p.input :sexo, 
+          label: false,
+          collection: [["F", :F], ["M", :M], ["S", :S]], 
+          input_html: { style: 'width: 4em'},
+          include_blank: false %>
+      </div>
+      <div class="col-md-2">
         <%= form.submit 'Enviar' %>
-    </div>
+      </div>
+    </div> <!-- row filapersona -->
+  <% end %>
 <% end %>
-</div>

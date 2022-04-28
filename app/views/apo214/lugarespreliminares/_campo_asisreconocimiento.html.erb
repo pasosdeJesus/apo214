@@ -1,22 +1,26 @@
 <h1 style="text-align: center;">Asistencia</h1>
 <h3> Nuevo Asistente </h3>
-<div id= new_asisreconocimiento">
-    <%= turbo_frame_tag "new_asisreconocimiento", src: new_lugarpreliminar_asisreconocimiento_path(@lugarpreliminar), target: "_top" %>
-</div>
 <div class="row" >
-  <div class="col-md-3">
+  <div class="col-md-2">
     <h5> Organización </h5>
   </div>
   <div class="col-md-3">
-    <h5> Nombre completo </h5>
+    <h5> Nombres </h5>
+  </div>
+  <div class="col-md-3">
+    <h5> Apellidos </h5>
   </div>
   <div class="col-md-2">
     <h5> Sexo </h5>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-2">
     <h5> Acciones </h5>
   </div>
 </div>
 <turbo-frame id="asisreconocimientos" data-controller="drag" data-drag-url="asisreconocimientos/:id/mover">
     <%= render @lugarpreliminar.asisreconocimientos.order(posicion: :asc) %>
 </turbo-frame>
+<div id= new_asisreconocimiento">
+    <%= turbo_frame_tag "new_asisreconocimiento", src: new_lugarpreliminar_asisreconocimiento_path(@lugarpreliminar), target: "_top" %>
+</div>
+
