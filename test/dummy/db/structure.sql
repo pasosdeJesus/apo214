@@ -24,10 +24,24 @@ CREATE EXTENSION IF NOT EXISTS fuzzystrmatch WITH SCHEMA public;
 
 
 --
+-- Name: EXTENSION fuzzystrmatch; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance between strings';
+
+
+--
 -- Name: unaccent; Type: EXTENSION; Schema: -; Owner: -
 --
 
 CREATE EXTENSION IF NOT EXISTS unaccent WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION unaccent; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION unaccent IS 'text search dictionary that removes accents';
 
 
 --
@@ -2640,7 +2654,8 @@ CREATE TABLE public.sip_orgsocial (
     web character varying(500),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    fechadeshabilitacion date
+    fechadeshabilitacion date,
+    tipoorg_id integer DEFAULT 2 NOT NULL
 );
 
 
@@ -2992,6 +3007,40 @@ CREATE SEQUENCE public.sip_tema_id_seq
 --
 
 ALTER SEQUENCE public.sip_tema_id_seq OWNED BY public.sip_tema.id;
+
+
+--
+-- Name: sip_tipoorg; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sip_tipoorg (
+    id bigint NOT NULL,
+    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
+    observaciones character varying(5000),
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sip_tipoorg_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sip_tipoorg_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sip_tipoorg_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sip_tipoorg_id_seq OWNED BY public.sip_tipoorg.id;
 
 
 --
@@ -4767,6 +4816,13 @@ ALTER TABLE ONLY public.sip_tema ALTER COLUMN id SET DEFAULT nextval('public.sip
 
 
 --
+-- Name: sip_tipoorg id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_tipoorg ALTER COLUMN id SET DEFAULT nextval('public.sip_tipoorg_id_seq'::regclass);
+
+
+--
 -- Name: sip_trivalente id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5395,6 +5451,14 @@ ALTER TABLE ONLY public.sip_sectororgsocial
 
 ALTER TABLE ONLY public.sip_tema
     ADD CONSTRAINT sip_tema_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sip_tipoorg sip_tipoorg_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_tipoorg
+    ADD CONSTRAINT sip_tipoorg_pkey PRIMARY KEY (id);
 
 
 --
@@ -8308,6 +8372,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210730120340'),
 ('20210823162357'),
 ('20210924022913'),
+('20211010164634'),
 ('20211011214752'),
 ('20211011233005'),
 ('20211019121200'),
@@ -8330,6 +8395,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220417220914'),
 ('20220417221010'),
 ('20220420143020'),
-('20220420154535');
+('20220420154535'),
+('20220422190546'),
+('20220428145059');
 
 
