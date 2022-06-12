@@ -366,18 +366,21 @@ module Apo214
               end
             end
 
-            # Procesar ubicacionespre de migración
-            if lugarpreliminar_params[:ubicacionpre_pais_id] && lugarpreliminar_params[:ubicacionpre_pais_id] != ''
+            # Procesar ubicacionespre de migracion
+            if lugarpreliminar_params[:ubicacionpre_pais_id] && 
+                lugarpreliminar_params[:ubicacionpre_pais_id] != ""
               @registro.ubicacionpre_id = Sip::Ubicacionpre::buscar_o_agregar(
-                lugarpreliminar_params[:ubicacionpre_pais_id], 
+                lugarpreliminar_params[:ubicacionpre_pais_id],
                 lugarpreliminar_params[:ubicacionpre_departamento_id],
-                lugarpreliminar_params[:ubicacionpre_municipio_id], 
+                lugarpreliminar_params[:ubicacionpre_municipio_id],
                 lugarpreliminar_params[:ubicacionpre_clase_id],
-                lugarpreliminar_params[:ubicacionpre_lugar], 
-                lugarpreliminar_params[:ubicacionpre_sitio], 
+                lugarpreliminar_params[:ubicacionpre_lugar],
+                lugarpreliminar_params[:ubicacionpre_sitio],
                 lugarpreliminar_params[:ubicacionpre_tsitio_id],
-                lugarpreliminar_params[:ubicacionpre_latitud_localizado].a_decimal_nolocalizado, 
-                lugarpreliminar_params[:ubicacionpre_longitud_localizado].a_decimal_nolocalizado
+                lugarpreliminar_params[:ubicacionpre_latitud_localizado].
+                  a_decimal_nolocalizado, 
+                lugarpreliminar_params[:ubicacionpre_longitud_localizado].
+                  a_decimal_nolocalizado
               )
               begin
                 @registro.save!(validate: false)

@@ -20,12 +20,12 @@ module Apo214
 
           attr_accessor :region_id
 
-          belongs_to :region, 
-            class_name: 'Sivel2Gen::Region',
-            foreign_key: 'region_id', 
+          belongs_to :region,
+            class_name: "Sivel2Gen::Region",
+            foreign_key: 'region_id',
             optional: true
-          belongs_to :ubicacionpre, class_name: '::Sip::Ubicacionpre',
-            foreign_key: 'ubicacionpre_id', optional: true
+          belongs_to :ubicacionpre, class_name: "::Sip::Ubicacionpre",
+            foreign_key: "ubicacionpre_id", optional: true
 
           belongs_to :persona, foreign_key: "id_persona", dependent: :destroy,
            class_name: 'Sip::Persona', optional: false

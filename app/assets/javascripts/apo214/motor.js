@@ -7,19 +7,21 @@ Apo214AutocompletaAjaxAportantes.iniciar()
 
 
 function apo214_actualiza_region_retrollamada(root, res) {
-  document.getElementById('lugarpreliminar_region').value = res.region_id
+  document.getElementById('lugarpreliminar_region').value = res.region_id;
 }
 
 function apo214_actualiza_region() {
-  dep = document.getElementById('lugarpreliminar_ubicacionpre_departamento_id').value;
-  mun = document.getElementById('lugarpreliminar_ubicacionpre_municipio_id').value;
+  dep = document.getElementById(
+         'lugarpreliminar_ubicacionpre_departamento_id').value;
+  mun = document.getElementById(
+          'lugarpreliminar_ubicacionpre_municipio_id').value;
   params = {
     departamento_id: dep,
     municipio_id: mun
-  }
-  sip_funcion_tras_AJAX('regiones/de_depmun', params, 
+  };
+  sip_funcion_tras_AJAX('regiones/de_depmun', params,
     apo214_actualiza_region_retrollamada, 
-    'No pudo obtener region del departamento y municipio.')
+    'No pudo obtener region del departamento y municipio.');
 }
 
 apo214_autocompleta_persona = function(label, id, divcp, root) {
