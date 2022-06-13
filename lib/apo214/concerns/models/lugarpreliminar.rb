@@ -1,3 +1,5 @@
+require 'sip/accesores_ubicacionpre'
+
 module Apo214
   module Concerns
     module Models
@@ -10,6 +12,21 @@ module Apo214
 
           campofecha_localizado :fecha
 
+          extend Sip::AccesoresUbicacionpre
+
+          accesores_ubicacionpre :ubicacionpre
+          flotante_localizado :ubicacionpre_latitud
+          flotante_localizado :ubicacionpre_longitud
+
+          attr_accessor :region_id
+
+          belongs_to :region,
+            class_name: "Sivel2Gen::Region",
+            foreign_key: 'region_id',
+            optional: true
+          belongs_to :ubicacionpre, class_name: "::Sip::Ubicacionpre",
+            foreign_key: "ubicacionpre_id", optional: true
+
           belongs_to :persona, foreign_key: "id_persona", dependent: :destroy,
            class_name: 'Sip::Persona', optional: false
           accepts_nested_attributes_for :persona,  reject_if: :all_blank
@@ -19,8 +36,6 @@ module Apo214
           has_many :personapropietario, through: :propietario, class_name: 'Sip::Persona'
           accepts_nested_attributes_for :personapropietario,  reject_if: :all_blank
 
-          belongs_to :ubicacionpre, class_name: 'Sip::Ubicacionpre', 
-            foreign_key: 'ubicacionpre_id', optional: true
           belongs_to :otrolubicacionpre, class_name: 'Sip::Ubicacionpre', 
             foreign_key: 'otrolubicacionpre_id', optional: true
           belongs_to :tipotestigo, class_name: 'Apo214::Tipotestigo',
@@ -156,6 +171,9 @@ module Apo214
             end
           end
 
+          def region_id
+            Sivel2Gen::Region.take.id # Por implementar
+          end
 
           def ubicacionpre_mundep_texto
             if self.ubicacionpre

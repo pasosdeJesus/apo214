@@ -5,6 +5,25 @@ sip_arregla_puntomontaje(root);
 console.log(root.puntomontaje)
 Apo214AutocompletaAjaxAportantes.iniciar()
 
+
+function apo214_actualiza_region_retrollamada(root, res) {
+  document.getElementById('lugarpreliminar_region').value = res.region_id;
+}
+
+function apo214_actualiza_region() {
+  dep = document.getElementById(
+         'lugarpreliminar_ubicacionpre_departamento_id').value;
+  mun = document.getElementById(
+          'lugarpreliminar_ubicacionpre_municipio_id').value;
+  params = {
+    departamento_id: dep,
+    municipio_id: mun
+  };
+  sip_funcion_tras_AJAX('regiones/de_depmun', params,
+    apo214_actualiza_region_retrollamada, 
+    'No pudo obtener region del departamento y municipio.');
+}
+
 apo214_autocompleta_persona = function(label, id, divcp, root) {
   var a, cs, d, i, id_persona, ini, pl, t, _i, _ref;
   sip_arregla_puntomontaje(root);
@@ -245,3 +264,6 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
       tranformar_coordenadas(div_padre, 1, coordenadas)
     }
   )
+
+  sip_ubicacionpre_expandible_registra('lugarpreliminar_', 'ubicacionpre', root,
+    apo214_actualiza_region, apo214_actualiza_region);

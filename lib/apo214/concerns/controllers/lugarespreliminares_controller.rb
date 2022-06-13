@@ -61,8 +61,15 @@ module Apo214
               :tipotestigo_id,
               :tipoentierro_id,
               :ubicacionpre_id,
-              :ubicacionpre_texto,
-              :ubicacionpre_mundep_texto,
+              :ubicacionpre_clase_id,
+              :ubicacionpre_departamento_id,
+              :ubicacionpre_latitud_localizado,
+              :ubicacionpre_longitud_localizado,
+              :ubicacionpre_lugar,
+              :ubicacionpre_municipio_id,
+              :ubicacionpre_pais_id,
+              :ubicacionpre_sitio,
+              :ubicacionpre_tsitio_id,
               :usoterprevios,
               :usoteractuales,
               :ubicaespecifica,
@@ -202,7 +209,6 @@ module Apo214
               :codigositio,
               :nombreusuario,
               :organizacion,
-              :ubicacionpre_id
             ]
           end
 
@@ -359,6 +365,29 @@ module Apo214
                 end
               end
             end
+
+            # Procesar ubicacionespre de migracion
+            if lugarpreliminar_params[:ubicacionpre_pais_id] && 
+                lugarpreliminar_params[:ubicacionpre_pais_id] != ""
+              @registro.ubicacionpre_id = Sip::Ubicacionpre::buscar_o_agregar(
+                lugarpreliminar_params[:ubicacionpre_pais_id],
+                lugarpreliminar_params[:ubicacionpre_departamento_id],
+                lugarpreliminar_params[:ubicacionpre_municipio_id],
+                lugarpreliminar_params[:ubicacionpre_clase_id],
+                lugarpreliminar_params[:ubicacionpre_lugar],
+                lugarpreliminar_params[:ubicacionpre_sitio],
+                lugarpreliminar_params[:ubicacionpre_tsitio_id],
+                lugarpreliminar_params[:ubicacionpre_latitud_localizado].
+                  a_decimal_nolocalizado, 
+                lugarpreliminar_params[:ubicacionpre_longitud_localizado].
+                  a_decimal_nolocalizado
+              )
+              begin
+                @registro.save!(validate: false)
+              rescue e
+              end
+            end
+
             if !@registro.save
               flash[:errors] = @registro.errors.full_messages.to_sentence
             end
