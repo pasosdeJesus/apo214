@@ -1,14 +1,13 @@
 /* eslint no-console:0 */
 
 console.log('Hola Mundo desde ESM')
-console.log(window)
+
 import Rails from "@rails/ujs";
-import "@hotwired/turbo-rails";
 Rails.start();
 window.Rails = Rails
 
 import './jquery'
-import '../../vendor/recursos/javascripts/jquery-ui'
+import '../../vendor/assets/javascripts/jquery-ui.js'
 
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
 import * as bootstrap from 'bootstrap'              // Maquetacion y elementos de diseño
@@ -26,6 +25,7 @@ Apex.chart = {
 }
 
 import 'gridstack'
+
 
 // Leaflet
 var L = require('leaflet');
@@ -53,16 +53,17 @@ let promesaRecursosSprocketsYDocumento = new Promise((resolver, rechazar) => {
   esperarRecursosSprocketsYDocumento(resolver)
 })
 
+
 promesaRecursosSprocketsYDocumento.then((mensaje) => {
   console.log(mensaje)
   var root = window;
+
   sip_prepara_eventos_comunes(root, null, false);
   heb412_gen_prepara_eventos_comunes(root);
   mr519_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_comunes(root);
   apo214_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_unicos(root);
-
 
   var p = new URL(document.URL).pathname.split('/')
   var p2ult = ''
@@ -76,7 +77,6 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
 
 
 })
-
 
 document.addEventListener('turbo:load', (e) => {
  /* Lo que debe ejecutarse cada vez que turbo cargue una página,
