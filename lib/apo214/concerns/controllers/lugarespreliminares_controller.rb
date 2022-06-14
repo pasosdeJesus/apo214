@@ -50,8 +50,6 @@ module Apo214
               :observaciones,
               :organizacion,
               :otradisposicioncadaveres,
-              :otrolubicacionpre_id,
-              :otrolubicacionpre_texto,
               :otrotipotestigo,
               :parentezco,
               :perfilestratigrafico,
@@ -60,7 +58,6 @@ module Apo214
               :telefono,
               :tipotestigo_id,
               :tipoentierro_id,
-              :ubicacionpre_id,
               :ubicacionpre_clase_id,
               :ubicacionpre_departamento_id,
               :ubicacionpre_latitud_localizado,
@@ -388,9 +385,11 @@ module Apo214
               end
             end
 
+
             if !@registro.save
               flash[:errors] = @registro.errors.full_messages.to_sentence
             end
+
             update_gen
           end
 

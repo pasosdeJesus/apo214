@@ -12,6 +12,7 @@ module Apo214
         d = params[:departamento_id] ? params[:departamento_id].to_i : nil
         m = params[:municipio_id] ? params[:municipio_id].to_i : nil
 
+        byebug
         r = Sivel2Gen::Region.calcula_de_depmun(d, m)
         respond_to do |format|
           format.json do
