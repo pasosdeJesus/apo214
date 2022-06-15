@@ -7,7 +7,6 @@ Apo214AutocompletaAjaxAportantes.iniciar()
 
 
 function apo214_actualiza_region_retrollamada(root, res) {
-  debugger
   document.getElementById('lugarpreliminar_region').value = res.region_id;
 }
 

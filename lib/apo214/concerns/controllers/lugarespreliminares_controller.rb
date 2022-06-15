@@ -385,7 +385,6 @@ module Apo214
               end
             end
 
-
             if !@registro.save
               flash[:errors] = @registro.errors.full_messages.to_sentence
             end
