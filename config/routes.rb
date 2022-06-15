@@ -8,7 +8,7 @@ Apo214::Engine.routes.draw do
   end
   get "/personas/remplazar" => 'personas#remplazar'
   get "/lugp/coordenadas" => 'lugarespreliminares#coordenadas'
-  get "regiones/de_depmun" => "apo214/admin/regiones#de_depmun",
+  get "/regiones/de_depmun" => "admin/regiones#de_depmun",
      as: 'region_de_depmun'
   namespace :admin do
     ab=::Ability.new
