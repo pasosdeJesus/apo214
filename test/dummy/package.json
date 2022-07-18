@@ -19,7 +19,7 @@
     "gridstack": "^0.6.0",
     "is-svg": "^4.2.2",
     "jquery": "^3.5.1",
-    "jquery-ui": "^1.12.1",
+    "jquery-ui": "^1.13.2",
     "leaflet": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",
     "node-forge": "1.3.0",
