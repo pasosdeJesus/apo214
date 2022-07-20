@@ -6,10 +6,10 @@ Apo214::Engine.routes.draw do
       end
     end
   end
-  get "/personas/remplazar" => 'personas#remplazar'
-  get "/personas/remplazardepositado" => 'personas#remplazardepositado'
-  get "/personas/remplazarotrafuente" => 'personas#remplazarotrafuente'
-  get "/lugp/coordenadas" => 'lugarespreliminares#coordenadas'
+  get "/personas/remplazar" => "personas#remplazar"
+  get "/personas/remplazardepositado" => "personas#remplazardepositado"
+  get "/personas/remplazarotrafuente" => "personas#remplazarotrafuente"
+  get "/lugp/coordenadas" => "lugarespreliminares#coordenadas"
   get "/regiones/de_depmun" => "admin/regiones#de_depmun",
      as: 'region_de_depmun'
   namespace :admin do

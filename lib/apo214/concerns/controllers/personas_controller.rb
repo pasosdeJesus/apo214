@@ -28,32 +28,35 @@ module Apo214
           def remplazar
             @persona = Sip::Persona.find(params[:id_persona])
             respond_to do |format|
-              format.html { 
-                render('/apo214/lugarespreliminares/remplazarpersona', layout: false)
+              format.html {
+                render("/apo214/lugarespreliminares/remplazarpersona",
+                       layout: false)
                 return
               }
             end
           end
 
           def remplazardepositado
-            id_listadepositados= params[:id_listadepositados]
-            @listadepositados= id_listadepositados
+            id_listadepositados = params[:id_listadepositados]
+            @listadepositados = id_listadepositados
             @persona = Sip::Persona.find(params[:id_persona])
             respond_to do |format|
-              format.html { 
-                render('/apo214/lugarespreliminares/remplazardepositado', layout: false)
+              format.html {
+                render("/apo214/lugarespreliminares/remplazardepositado",
+                       layout: false)
                 return
               }
             end
           end
 
           def remplazarotrafuente
-            id_otrafuente= params[:id_listapersofuentes]
-            @listapersofuentes= id_otrafuente
+            id_otrafuente = params[:id_listapersofuentes]
+            @listapersofuentes = id_otrafuente
             @persona = Sip::Persona.find(params[:id_persona])
             respond_to do |format|
-              format.html { 
-                render('/apo214/lugarespreliminares/remplazarotrafuente', layout: false)
+              format.html {
+                render("/apo214/lugarespreliminares/remplazarotrafuente",
+                       layout: false)
                 return
               }
             end
