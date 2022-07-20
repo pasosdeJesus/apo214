@@ -1,0 +1,66 @@
+<% model_class = Apo214::Lugarpreliminar %>
+<% @lugarpreliminar = Apo214::Lugarpreliminar.new %>
+<%= simple_form_for @lugarpreliminar,
+  :html => { :class => 'form-horizontal',
+             :id => dom_id(@lugarpreliminar) } do |f| %>
+
+  <table class="table  table-bordered table-sm ">
+    <thead class="thead-light">
+      <tr>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th colspan="2">Identificación</th>
+        <th>Sexo</th>
+        <th>Año nac.</th>
+        <th>Mes</th>
+        <th>Dia</th>
+        <th>Teléfono</th>
+        <th>Observaciones</th>
+        <th></th>
+      </tr>
+    </thead>
+   <tbody id="listapersofuentes">
+      <% if f.object.listapersofuentes.empty? %>
+        <% f.object.listapersofuentes.push(Apo214::Listapersofuentes.new) %>
+      <% end %>
+    <%= f.simple_fields_for :listapersofuentes, include_id: false do |ld| %>
+      <tr class='nested-fields filapersona campos_otrafuente'>
+          <% if !ld.object.personafuente %>
+            <% ld.object.personafuente = @persona %>
+          <% end %>
+          <%= ld.simple_fields_for :personafuente do |p| %>
+           <% s = render partial: 'apo214/lugarespreliminares/persona_campos_entabla', 
+             locals: { p: p, list: "fuente-otrasfuentes"}  %>
+           <% # se genera con victima_attributes_0 pero lo
+           # generado por cocoon usa el id de la víctima
+             # asi que la cambiamos %>
+           <% s.gsub!(
+             'lugarpreliminar_listapersofuentes_attributes_0', 
+             'lugarpreliminar_listapersofuentes_attributes_' + @listapersofuentes) %>
+           <% s.gsub!(
+             'lugarpreliminar[listapersofuentes_attributes][0]', 
+             'lugarpreliminar[listapersofuentes_attributes][' + @listapersofuentes + ']') %>
+           <%= s.html_safe %>
+           <% t = render partial: 'apo214/lugarespreliminares/telefono_y_observacion', 
+             locals: { f: ld}  %>
+           <% t.gsub!(
+             'lugarpreliminar_listapersofuentes_attributes_0', 
+             'lugarpreliminar_listapersofuentes_attributes_' + @listapersofuentes) %>
+           <% t.gsub!(
+             'lugarpreliminar[listapersofuentes_attributes][0]', 
+             'lugarpreliminar[listapersofuentes_attributes][' + @listapersofuentes + ']') %>
+           <%= t.html_safe %>
+
+        <% end %>
+        <td>
+          <%= f.input :id, as: :hidden %>
+          <%= link_to_remove_association "Eliminar", f, 
+              :class => 'btn-danger' 
+          %>
+          <div><%= f.error_notification %></div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <% end %>

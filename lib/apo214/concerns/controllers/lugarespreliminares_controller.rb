@@ -309,7 +309,8 @@ module Apo214
           end
 
           def update
-            if lugarpreliminar_params && lugarpreliminar_params[:propietario_attributes]
+            if lugarpreliminar_params &&
+                lugarpreliminar_params[:propietario_attributes]
               if lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i > 0 &&
                 Sip::Persona.where(
                   id: lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i).count == 1
@@ -321,44 +322,57 @@ module Apo214
             if lugarpreliminar_params && 
                 lugarpreliminar_params[:persona_attributes][:id].to_i > 0 &&
                 Sip::Persona.where(
-                  id: lugarpreliminar_params[:persona_attributes][:id].to_i).count == 1
-              @lugarpreliminar.id_persona = lugarpreliminar_params[:persona_attributes][:id]
-              params[:lugarpreliminar][:id_persona] = @lugarpreliminar.id_persona
+                  id: lugarpreliminar_params[:persona_attributes][:id].to_i).
+                  count == 1
+              @lugarpreliminar.
+                id_persona = lugarpreliminar_params[:persona_attributes][:id]
+              params[:lugarpreliminar][:id_persona] = @lugarpreliminar
+                 .id_persona
               @lugarpreliminar.save!(validate: false)
+            else
+              persona = Sip::Persona.
+                new(lugarpreliminar_params[:persona_attributes])
+              if persona.save
+               persona.save!
+               @lugarpreliminar.id_persona = persona.id
+              end
             end
             if lugarpreliminar_params[:listadepositados_attributes]
               lugarpreliminar_params[:listadepositados_attributes].each do |a|
-                # Ubicamos los de autocompletacion y para esos creamos un registro 
-                if a[1] && a[1][:id] && a[1][:id] == '' && 
+                # Ubicamos los de autocompletacion
+                if a[1] && a[1][:id].nil? &&
                     a[1][:personadepositada_attributes] && 
                     a[1][:personadepositada_attributes][:id] &&
                     a[1][:personadepositada_attributes][:id].to_i > 0 &&
                     Sip::Persona.where(
-                      id: a[1][:personadepositada_attributes][:id].to_i).count == 1
-                  ld = Apo214::Listadepositados.create({
+                      id: a[1][:personadepositada_attributes][:id].to_i)
+                        .count == 1
+                  ld = Apo214::Listadepositados.create(
                     lugarpreliminar_id: @lugarpreliminar.id,
                     persona_id: a[1][:personadepositada_attributes][:id]
-                  })
+                  )
                   ld.save!(validate: false)
-                  params[:lugarpreliminar][:listadepositados_attributes][a[0].to_s][:id] = ld.id
+                  params[:lugarpreliminar][:listadepositados_attributes][a[0].
+                    to_s][:id] = ld.id
                 end
               end
             end
             if lugarpreliminar_params[:listapersofuentes_attributes]
               lugarpreliminar_params[:listapersofuentes_attributes].each do |a|
-                # Ubicamos los de autocompletacion y para esos creamos un registro 
-                if a[1] && a[1][:id] && a[1][:id] == '' && 
+                # Ubicamos los de autocompletacion
+                if a[1] && a[1][:id].nil? &&
                     a[1][:personafuente_attributes] && 
                     a[1][:personafuente_attributes][:id] &&
                     a[1][:personafuente_attributes][:id].to_i > 0 &&
                     Sip::Persona.where(
                       id: a[1][:personafuente_attributes][:id].to_i).count == 1
-                  ld = Apo214::Listapersofuentes.create({
+                  lp = Apo214::Listapersofuentes.create(
                     lugarpreliminar_id: @lugarpreliminar.id,
                     persona_id: a[1][:personafuente_attributes][:id]
-                  })
-                  ld.save!(validate: false)
-                  params[:lugarpreliminar][:listapersofuentes_attributes][a[0].to_s][:id] = ld.id
+                  )
+                  lp.save!(validate: false)
+                  params[:lugarpreliminar][:listapersofuentes_attributes][a[0].
+                    to_s][:id] = lp.id
                 end
               end
             end
@@ -384,7 +398,6 @@ module Apo214
               rescue e
               end
             end
-
             if !@registro.save
               flash[:errors] = @registro.errors.full_messages.to_sentence
             end

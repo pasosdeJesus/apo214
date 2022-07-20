@@ -1,0 +1,54 @@
+<% model_class = Apo214::Lugarpreliminar %>
+<% @lugarpreliminar = Apo214::Lugarpreliminar.new %>
+<%= simple_form_for @lugarpreliminar,
+  :html => { :class => 'form-horizontal',
+             :id => dom_id(@lugarpreliminar) } do |f| %>
+
+  <table class="table  table-bordered table-sm ">
+    <thead class="thead-light">
+      <tr>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th colspan="2">Identificación</th>
+        <th>Sexo</th>
+        <th>Año nac.</th>
+        <th>Mes</th>
+        <th>Dia</th>
+        <th></th>
+      </tr>
+    </thead>
+   <tbody id="listadepositados">
+      <% if f.object.listadepositados.empty? %>
+        <% f.object.listadepositados.push(Apo214::Listadepositados.new) %>
+      <% end %>
+    <%= f.simple_fields_for :listadepositados, include_id: false do |ld| %>
+      <tr class='nested-fields filapersona campos_depositado'>
+          <% if !ld.object.personadepositada %>
+            <% ld.object.personadepositada = @persona %>
+          <% end %>
+          <%= ld.simple_fields_for :personadepositada do |p| %>
+           <% s = render partial: 'apo214/lugarespreliminares/persona_campos_entabla', 
+             locals: { p: p, list: "fuente-depositados"}  %>
+           <% # se genera con victima_attributes_0 pero lo
+           # generado por cocoon usa el id de la víctima
+             # asi que la cambiamos %>
+           <% s.gsub!(
+             'lugarpreliminar_listadepositados_attributes_0', 
+             'lugarpreliminar_listadepositados_attributes_' + @listadepositados) %>
+           <% s.gsub!(
+             'lugarpreliminar[listadepositados_attributes][0]', 
+             'lugarpreliminar[listadepositados_attributes][' + @listadepositados + ']') %>
+          <%= s.html_safe %>
+        <% end %>
+        <td>
+          <%= f.input :id, as: :hidden %>
+          <%= link_to_remove_association "Eliminar", f, 
+              :class => 'btn-danger' 
+          %>
+          <div><%= f.error_notification %></div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <% end %>

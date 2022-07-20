@@ -1,10 +1,13 @@
 // Funciones javascript del motor apo214
 //= require apo214/AutocompletaAjaxAportantes
+//= require apo214/AutocompletaAjaxDepositados
+//= require apo214/AutocompletaAjaxOtrasfuentes
 root = window;
 sip_arregla_puntomontaje(root);
-console.log(root.puntomontaje)
-Apo214AutocompletaAjaxAportantes.iniciar()
-
+console.log(root.puntomontaje);
+Apo214AutocompletaAjaxAportantes.iniciar();
+Apo214AutocompletaAjaxDepositados.iniciar();
+Apo214AutocompletaAjaxOtrasfuentes.iniciar();
 
 function apo214_actualiza_region_retrollamada(root, res) {
   document.getElementById('lugarpreliminar_region').value = res.region_id;
