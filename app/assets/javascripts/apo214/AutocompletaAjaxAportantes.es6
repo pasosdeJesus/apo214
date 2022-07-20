@@ -39,6 +39,7 @@ export default class Apo214AutocompletaAjaxAportantes {
         const divcp = eorig.target.closest('.' +
         Apo214AutocompletaAjaxAportantes.claseEnvoltura)
         let r = resp.querySelector('.' + Apo214AutocompletaAjaxAportantes.claseEnvoltura)
+        debugger
         divcp.innerHTML=r.innerHTML
         document.dispatchEvent(new Event('sivel2_gen:autocompletada-victima'))
       },
