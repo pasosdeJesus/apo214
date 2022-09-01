@@ -51,7 +51,7 @@ export default class Apo214AutocompletaAjaxAportantes {
 
   static iniciar() {
     console.log("Apo214AutocompletaAjaxAportantes")
-    let url = window.puntomontaje + 'apo214/personas.json'
+    let url = window.puntomontaje + 'personas.json'
     var asistentes = new window.AutocompletaAjaxExpreg(
       [ /^lugarpreliminar_persona_attributes_nombres$/,
         /^lugarpreliminar_persona_attributes_apellidos$/,
