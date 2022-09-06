@@ -26,6 +26,22 @@ Apex.chart = {
 
 import 'gridstack'
 
+// stimulus 
+
+import { Application } from "@hotwired/stimulus"
+
+import HelloController from "./controllers/hello_controller"
+import FormAsisreconocimientoController from "./controllers/form_asisreconocimiento_controller"
+import DragController from "./controllers/drag_controller"
+import ActualizaFilaController from "./controllers/actualiza_fila_controller"
+
+window.Stimulus = Application.start()
+Stimulus.register("drag", DragController)
+Stimulus.register("actualiza_fila", ActualizaFilaController)
+Stimulus.register("hello", HelloController)
+Stimulus.register("form_asisreconocimiento", FormAsisreconocimientoController)
+//
+
 
 // Leaflet
 var L = require('leaflet');
