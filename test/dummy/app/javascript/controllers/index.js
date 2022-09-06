@@ -4,6 +4,15 @@
 
 import { application } from "./application"
 
+import ActualizaFilaController from "./actualiza_fila_controller"
+application.register("actualiza-fila", ActualizaFilaController)
+
+import DragController from "./drag_controller"
+application.register("drag", DragController)
+
+import FormAsisreconocimientoController from "./form_asisreconocimiento_controller"
+application.register("form-asisreconocimiento", FormAsisreconocimientoController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
