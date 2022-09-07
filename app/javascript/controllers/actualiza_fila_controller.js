@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import consumer from '../../javascript/channels/consumer';
+import consumer from '../../../javascript/channels/consumer';
 
 export default class extends Controller {
 

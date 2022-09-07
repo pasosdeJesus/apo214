@@ -1,5 +1,5 @@
-<div data-id="<%= asisreconocimiento.id %>"  data-controller="actualiza-fila" data-actualiza-fila-asisreconocimientoid= "<%= asisreconocimiento.id %>">
-  <div data-actualiza-fila-target='asisestado'>
+<div data-id="<%= asisreconocimiento.id %>"  data-controller="apo214--actualiza-fila" data-apo214--actualiza-fila-asisreconocimientoid= "<%= asisreconocimiento.id %>">
+  <div data-apo214--actualiza-fila-target='asisestado'>
     <%= turbo_frame_tag dom_id(asisreconocimiento) do %>
       <% url_obj = lugarpreliminar_asisreconocimiento_path(asisreconocimiento.lugarpreliminar.id , asisreconocimiento.id) 
        param_bp = "asisreconocimiento[asistente_attributes]"
