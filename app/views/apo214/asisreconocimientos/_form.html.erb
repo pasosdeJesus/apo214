@@ -1,32 +1,46 @@
-<div class="card card-body">
+<div>
 <%= form_with(model: [@asisreconocimiento.lugarpreliminar, @asisreconocimiento], data: {turbo_frame: "asisreconocimientos", turbo_action: "advance", controller: "form-asisreconocimiento", action: "turbo:submit-end->form-asisreconocimiento#reset"}) do |form| %>
-  <div class= "filapersona">
+  <div class= "filapersona text-center">
+    <div class="row">
+      <div class="col-3">
+        <%= form.text_field :organizacion,
+            class: "form-control",
+            placeholder: "Organización"%>
+      </div>
+      <div class="col-3">
         <% if form.object.asistente.nil? %>
           <% form.object.asistente = Sip::Persona.new %>
         <% end %>
+        <div class="row">
+          <div class="col-6">
         <%= form.simple_fields_for :asistente do |p| %>
-          <% ph = 'N'
-           ac = {'data-autocompleta' => 'no', style: 'width: 8em' }
-           if (!p.object.nombres || p.object.nombres == 'N' || p.object.nombres == '')
-             ph = 'Buscar'
-             ac = { style: 'width: 16em' }
-           end 
+          <%= p.input :nombres,
+              label: false,
+              placeholder: "Nombres",
+              value_method: lambda {|t| '' if t.nombres == 'N'}
           %>
-          <%= p.input :nombres, placeholder: ph,
-            value_method: lambda {|t| '' if t.nombres == 'N'},
-            input_html: ac
-          %>
-          <%= p.input :apellidos,
-            input_html: {style: 'width: 16em'}
-          %>
+          </div>
+          <div class="col-6">
+            <%= p.input :apellidos,
+              label: false,
+              placeholder: "Apellidos"
+              %>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
           <%= p.input :sexo, 
-            collection: [["F", :F], ["M", :M], ["S", :S]], 
-            input_html: { style: 'width: 4em'},
+            collection: [["F", :F], ["M", :M], ["S", :S]],
+            label: false,
             include_blank: false %>
         <% end %>
-        <%= form.label :organizacion %>:
-        <%= form.text_field :organizacion %> </br>
-        <%= form.submit 'Enviar' %>
+      </div>
+      <div class="col-4">
+        <%= form.submit 'Añadir', 
+          class: "btn"
+        %>
+      </div>
     </div>
+  </div>
 <% end %>
 </div>
