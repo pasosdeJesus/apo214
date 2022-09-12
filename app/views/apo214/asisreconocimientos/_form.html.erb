@@ -4,8 +4,7 @@
     <div class="row">
       <div class="col-3">
         <%= form.text_field :organizacion,
-            class: "form-control",
-            placeholder: "Organización"%>
+            class: "form-control" %>
       </div>
       <div class="col-3">
         <% if form.object.asistente.nil? %>
@@ -16,14 +15,12 @@
         <%= form.simple_fields_for :asistente do |p| %>
           <%= p.input :nombres,
               label: false,
-              placeholder: "Nombres",
               value_method: lambda {|t| '' if t.nombres == 'N'}
           %>
           </div>
           <div class="col-6">
             <%= p.input :apellidos,
-              label: false,
-              placeholder: "Apellidos"
+              label: false
               %>
           </div>
         </div>
