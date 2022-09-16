@@ -4,7 +4,7 @@
     <h5> Organización </h5>
   </div>
   <div class="col-md-3">
-    <h5> Nombre completo </h5>
+    <h5> Nombres | Apellidos</h5>
   </div>
   <div class="col-md-2">
     <h5> Sexo </h5>
@@ -14,7 +14,7 @@
   </div>
 </div>
 <turbo-frame id="asisreconocimientos" data-controller="apo214--drag" data-apo214--drag-url="asisreconocimientos/:id/mover">
-    <%= render @lugarpreliminar.asisreconocimientos.order(posicion: :asc) %>
+    <%= render @lugarpreliminar.asisreconocimientos.order(posicion: :desc) %>
 </turbo-frame>
 <div id= new_asisreconocimiento">
     <%= turbo_frame_tag "new_asisreconocimiento", src: new_lugarpreliminar_asisreconocimiento_path(@lugarpreliminar), target: "_top" %>

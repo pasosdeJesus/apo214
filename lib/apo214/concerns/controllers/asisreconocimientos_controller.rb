@@ -59,7 +59,7 @@ module Apo214
               if @asisreconocimiento.save
                 format.turbo_stream do
                   render turbo_stream: [
-                    turbo_stream.prepend("asisreconocimientos", 
+                    turbo_stream.append("asisreconocimientos", 
                                         partial: "apo214/asisreconocimientos/asisreconocimiento", 
                                         locals: {asisreconocimiento: @asisreconocimiento}) 
                   ]
@@ -106,7 +106,8 @@ module Apo214
 
           def mover
             asis = @asisreconocimiento
-            nueva = params[:posicion].to_i
+            todos = asis.lugarpreliminar.asisreconocimientos.count
+            nueva = (todos + 1) - params[:posicion].to_i
             asis.insert_at(nueva)
             head :ok
           end
