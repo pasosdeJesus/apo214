@@ -1,3 +1,5 @@
-Dummy::Application.config.relative_url_root = '/apo214'
-Dummy::Application.config.assets.prefix = '/apo214/assets/'
-
+Apo214Demo::Application.config.relative_url_root = ENV.fetch(
+  'RUTA_RELATIVA', '/apo214')
+Apo214Demo::Application.config.assets.prefix = ENV.fetch(
+  'RUTA_RELATIVA', '/apo214') == '/' ?
+ '/assets' : (ENV.fetch('RUTA_RELATIVA', '/apo214') + '/assets/')

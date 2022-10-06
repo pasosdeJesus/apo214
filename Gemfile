@@ -68,7 +68,6 @@ gem 'twitter_cldr'               # Localiación e internacionalización
 
 gem 'tzinfo' # Zonas horarias
 
-
 gem 'will_paginate' # Listados en páginas
 
 
