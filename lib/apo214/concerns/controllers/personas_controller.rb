@@ -41,7 +41,7 @@ module Apo214
             @persona = Sip::Persona.find(params[:id_persona])
             respond_to do |format|
               format.html {
-                render("/apo214/lugarespreliminares/remplazarpersona",
+                render("/sip/personas/remplazarpersona",
                        layout: false)
                 return
               }
@@ -54,7 +54,7 @@ module Apo214
             @persona = Sip::Persona.find(params[:id_persona])
             respond_to do |format|
               format.html {
-                render("/apo214/lugarespreliminares/remplazardepositado",
+                render("/sip/personas/remplazardepositado",
                        layout: false)
                 return
               }
@@ -67,7 +67,7 @@ module Apo214
             @persona = Sip::Persona.find(params[:id_persona])
             respond_to do |format|
               format.html {
-                render("/apo214/lugarespreliminares/remplazarotrafuente",
+                render("/sip/personas/remplazarotrafuente",
                        layout: false)
                 return
               }

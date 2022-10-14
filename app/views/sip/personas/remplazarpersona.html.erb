@@ -1,6 +1,6 @@
 <%- model_class = Apo214::Lugarpreliminar %>
-<% @lugarpreliminar = Apo214::Lugarpreliminar.new %>  
-<%= simple_form_for @lugarpreliminar,
+<% @lugarpreliminar = Apo214::Lugarpreliminar.new %>
+<%= simple_form_for @lugarpreliminar, url: apo214.lugarespreliminares_path, 
   :html => { :class => 'form-horizontal', :id => dom_id(@lugarpreliminar) } do |f| %>
   <div class='campos_persona'>
       <div class='lp_aportante'>

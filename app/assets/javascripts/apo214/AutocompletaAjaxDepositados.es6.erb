@@ -8,8 +8,7 @@ export default class Apo214AutocompletaAjaxDepositados {
 
   // Elije una persona en autocompletación
   static operarElegida (eorig, cadpersona, id, otrosop) {
-    let root = window
-    sip_arregla_puntomontaje(root)
+    let root = "<%= Rails.configuration.relative_url_root %>"
     const cs = id.split(';')
     const idPersona = cs[0]
     const divcp = eorig.target.closest('.' + 
@@ -28,14 +27,15 @@ export default class Apo214AutocompletaAjaxDepositados {
 
     let d = 'id_persona=' + idPersona
     d += "&id_listadepositados=" + id_listadepositados
-    const a = root.puntomontaje + 'personas/remplazardepositado'
+    const a = root + 'remplazardepositado'
 
     window.Rails.ajax({
       type: 'GET',
       url: a,
       data: d,
       success: (resp, estado, xhr) => {
-        const divcp = eorig.target.closest('.' + Apo214AutocompletaAjaxDepositados.claseEnvoltura)
+      const divcp = eorig.target.closest('.' + 
+        Apo214AutocompletaAjaxDepositados.claseEnvoltura)
         let r = resp.querySelector('.' + Apo214AutocompletaAjaxDepositados.claseEnvoltura)
         divcp.innerHTML=r.innerHTML
       },
@@ -47,7 +47,8 @@ export default class Apo214AutocompletaAjaxDepositados {
 
   static iniciar() {
     console.log("Apo214AutocompletaAjaxDepositados")
-    let url = window.puntomontaje + 'apo214/personas.json'
+    let root = "<%= Rails.configuration.relative_url_root %>"
+    let url = root + 'personas.json'
     var asistentes = new window.AutocompletaAjaxExpreg(
       [ /^lugarpreliminar_listadepositados_attributes_[0-9]*_personadepositada_attributes_nombres$/,
         /^lugarpreliminar_listadepositados_attributes_[0-9]*_personadepositada_attributes_apellidos$/,
