@@ -1,4 +1,3 @@
-
 require 'sip/concerns/controllers/personas_controller'
 require 'date'
 
@@ -10,13 +9,26 @@ module Apo214
 
         included do
           include Sip::Concerns::Controllers::PersonasController
- 
+
           # Están llenas @persona, @victima, @personaant, @caso
           # Y está listo para salvar la nueva persona @persona en
           # @victima --remplazando @personaant.
           # Continúa si esta función retorna true, de lo contrario
           # se espera que la función haga render json con el error
           # y que retorne false.
+
+          def atributos_show_apo214
+            atributos_show_sip + [ :lugarpreliminar_ids ]
+          end
+
+          def atributos_show
+            atributos_show_apo214
+          end
+
+          def atributos_form
+            atributos_show - [:id, :lugarpreliminar_ids]
+          end
+
           def remplazar_antes_salvar_v
             true
           end 
