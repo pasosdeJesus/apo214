@@ -1,7 +1,7 @@
 require 'date'
 require 'apo214/concerns/controllers/personas_controller' 
 
-module Apo214
+module Sip
   class PersonasController < Sip::ModelosController
 
     load_and_authorize_resource class: Sip::Persona

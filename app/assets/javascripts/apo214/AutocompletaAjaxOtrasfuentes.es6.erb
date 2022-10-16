@@ -8,8 +8,7 @@ export default class Apo214AutocompletaAjaxOtrasfuentes {
 
   // Elije una persona en autocompletación
   static operarElegida (eorig, cadpersona, id, otrosop) {
-    let root = window
-    sip_arregla_puntomontaje(root)
+    let root = "<%= Rails.configuration.relative_url_root %>"
     const cs = id.split(';')
     const idPersona = cs[0]
     const divcp = eorig.target.closest('.' + 
@@ -28,7 +27,7 @@ export default class Apo214AutocompletaAjaxOtrasfuentes {
 
     let d = 'id_persona=' + idPersona
     d += "&id_listapersofuentes=" + id_listapersofuentes
-    const a = root.puntomontaje + 'personas/remplazarotrafuente'
+    const a = root + 'remplazarotrafuente'
 
     window.Rails.ajax({
       type: 'GET',
@@ -47,7 +46,8 @@ export default class Apo214AutocompletaAjaxOtrasfuentes {
 
   static iniciar() {
     console.log("Apo214AutocompletaAjaxOtrasfuentes")
-    let url = window.puntomontaje + 'apo214/personas.json'
+    let root = "<%= Rails.configuration.relative_url_root %>"
+    let url = root + 'personas.json'
     var asistentes = new window.AutocompletaAjaxExpreg(
       [ /^lugarpreliminar_listapersofuentes_attributes_[0-9]*_personafuente_attributes_nombres$/,
         /^lugarpreliminar_listapersofuentes_attributes_[0-9]*_personafuente_attributes_apellidos$/,

@@ -18,6 +18,10 @@ module Apo214Demo
 
     config.active_record.schema_format = :sql
 
+    config.railties_order = [:main_app, Apo214::Engine, Sivel2Gen::Engine,
+                             Heb412Gen::Engine, Mr519Gen::Engine,
+                             Sip::Engine, :all]
+
     config.x.formato_fecha = (ENV['SIP_FORMATO_FECHA'] ||
                               'yyyy-mm-dd')
 

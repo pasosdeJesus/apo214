@@ -7,9 +7,7 @@ export default class Apo214AutocompletaAjaxAportantes {
 
   // Elije una persona en autocompletación
   static operarElegida (eorig, cadpersona, id, otrosop) {
-    let root = window
-    console.log(root)
-    sip_arregla_puntomontaje(root)
+    let root = "<%= Rails.configuration.relative_url_root %>"
     const cs = id.split(';')
     const idPersona = cs[0]
     const divcp = eorig.target.closest('.' + 
@@ -28,8 +26,7 @@ export default class Apo214AutocompletaAjaxAportantes {
     const idlp = elemIdAportante.value
 
     let d = 'id_persona=' + idPersona
-    d += "&id_lugarpreliminar=" + idlp
-    const a = root.puntomontaje + 'personas/remplazar'
+    const a = root + 'personas/remplazar'
 
     window.Rails.ajax({
       type: 'GET',
@@ -39,7 +36,6 @@ export default class Apo214AutocompletaAjaxAportantes {
         const divcp = eorig.target.closest('.' +
         Apo214AutocompletaAjaxAportantes.claseEnvoltura)
         let r = resp.querySelector('.' + Apo214AutocompletaAjaxAportantes.claseEnvoltura)
-        debugger
         divcp.innerHTML=r.innerHTML
         document.dispatchEvent(new Event('sivel2_gen:autocompletada-victima'))
       },
@@ -51,7 +47,8 @@ export default class Apo214AutocompletaAjaxAportantes {
 
   static iniciar() {
     console.log("Apo214AutocompletaAjaxAportantes")
-    let url = window.puntomontaje + 'personas.json'
+    let root = "<%= Rails.configuration.relative_url_root %>"
+    let url = root + 'personas.json'
     var asistentes = new window.AutocompletaAjaxExpreg(
       [ /^lugarpreliminar_persona_attributes_nombres$/,
         /^lugarpreliminar_persona_attributes_apellidos$/,
