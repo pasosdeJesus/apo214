@@ -31,7 +31,8 @@
               <%= lug.nombreusuario %>
             </td>
             <td>
-              <%= lug.organizacion %>
+              <% asisrec = Apo214::Asisreconocimiento.where(lugarpreliminar_id: lug.id, persona_id: persona)[0] %>
+              <%= asisrec.organizacion if asisrec %>
             </td>
           </tr>
         <% end %>

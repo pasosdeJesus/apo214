@@ -18,7 +18,7 @@ module Apo214
           # y que retorne false.
 
           def atributos_show_apo214
-            atributos_show_sip + [ :lugarpreliminar_ids ]
+            atributos_show_sip + [:lugarpreliminar_ids]
           end
 
           def atributos_show
@@ -27,6 +27,10 @@ module Apo214
 
           def atributos_form
             atributos_show - [:id, :lugarpreliminar_ids]
+          end
+
+          def atributos_index
+            atributos_show - [:lugarpreliminar_ids]
           end
 
           def remplazar_antes_salvar_v
