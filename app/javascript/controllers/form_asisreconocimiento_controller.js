@@ -9,9 +9,9 @@ export default class extends Controller {
   reset() {
     this.element.reset()
     // Reset despues de autocompletar
-    this.element.elements[2].removeAttribute('value')
-    this.element.elements[3].removeAttribute('value')
-    this.element.elements[4].value = null
+    this.element.elements[2].removeAttribute("value");
+    this.element.elements[3].removeAttribute("value");
+    this.element.elements[4].value = null;
   }
 }
 

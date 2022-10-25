@@ -26,7 +26,7 @@ module Apo214
               :asistente_attributes => [
                   :apellidos, 
                   :nombres,
-                  :sexo,
+                  :sexo
                 ]
             ]
           end
@@ -81,11 +81,11 @@ module Apo214
                 format.turbo_stream do
                   render turbo_stream: [
                     turbo_stream.append("asisreconocimientos", 
-                                        partial: "apo214/asisreconocimientos/asisreconocimiento", 
-                                        locals: {asisreconocimiento: @asisreconocimiento}) 
+                                        partial: "apo214/asisreconocimientos/asisreconocimiento",
+                                        locals: {asisreconocimiento: @asisreconocimiento})
                   ]
                 end
-                
+
                 format.html { redirect_to edit_lugarpreliminar_path(@lugarpreliminar) }
               else
                 format.turbo_stream do
