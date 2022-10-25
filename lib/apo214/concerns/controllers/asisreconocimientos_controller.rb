@@ -20,12 +20,13 @@ module Apo214
           end
 
           def lista_params 
-            [ :organizacion,
+            [
+              :organizacion,
+              :persona_id,
               :asistente_attributes => [
                   :apellidos, 
-                  :id, 
                   :nombres,
-                  :sexo
+                  :sexo,
                 ]
             ]
           end
@@ -49,12 +50,32 @@ module Apo214
           end
 
           def new
+            if params[:remplazarasistente]
+              @persona = Sip::Persona.find(params[:id_persona])
+              @lugarpreliminar = Apo214::Lugarpreliminar.
+                find(params[:id_lugarpreliminar].to_i)
+              @asisreconocimiento = @lugarpreliminar.asisreconocimientos.new
+              #@asisreconocimiento.asistente = @persona
+              #@asisreconocimiento.organizacion = ''
+              #@asisreconocimiento.save! 
+              respond_to do |format|
+                format.html {
+                  render("/apo214/lugarespreliminares/_form",
+                         layout: false)
+                }
+                return
+              end
+            end
             @asisreconocimiento = @lugarpreliminar.asisreconocimientos.new
           end
 
           # POST /asisreconocimiento
           def create
             @asisreconocimiento = @lugarpreliminar.asisreconocimientos.new(asisreconocimiento_params)
+            if params[:asisreconocimiento][:persona_id] != ""
+              persona_id = params[:asisreconocimiento][:persona_id].to_i
+              @asisreconocimiento.persona_id = persona_id
+            end
             respond_to do |format|
               if @asisreconocimiento.save
                 format.turbo_stream do
@@ -64,6 +85,7 @@ module Apo214
                                         locals: {asisreconocimiento: @asisreconocimiento}) 
                   ]
                 end
+                
                 format.html { redirect_to edit_lugarpreliminar_path(@lugarpreliminar) }
               else
                 format.turbo_stream do

@@ -1,6 +1,6 @@
 <div>
-<%= form_with(model: [@asisreconocimiento.lugarpreliminar, @asisreconocimiento], data: {turbo_frame: "asisreconocimientos", turbo_action: "advance", controller: "apo214--form-asisreconocimiento", action: "turbo:submit-end->apo214--form-asisreconocimiento#reset"}) do |form| %>
-  <div class= "filapersona text-center">
+  <%= form_with(model: [@asisreconocimiento.lugarpreliminar, @asisreconocimiento], data: {turbo_frame: "asisreconocimientos", turbo_action: "advance", controller: "apo214--form-asisreconocimiento", action: "turbo:submit-end->apo214--form-asisreconocimiento#reset"}, url: apo214.lugarpreliminar_asisreconocimientos_path(@asisreconocimiento.lugarpreliminar, @asisreconocimiento)) do |form| %>
+  <div class= "filapersona text-center campos_asistente">
     <div class="row">
       <div class="col-3">
         <%= form.text_field :organizacion,
@@ -8,14 +8,26 @@
       </div>
       <div class="col-3">
         <% if form.object.asistente.nil? %>
-          <% form.object.asistente = Sip::Persona.new %>
+          <% if @persona %>
+            <% @asisreconocimiento.asistente = @persona %>
+          <% else %>
+            <% form.object.asistente = Sip::Persona.new %>
+          <% end %>
         <% end %>
         <div class="row">
           <div class="col-6">
+            <datalist id="fuente-asistentes">
+            </datalist>
+          <%= form.hidden_field :persona_id, value: @persona ? @persona.id : nil %>
         <%= form.simple_fields_for :asistente do |p| %>
-          <%= p.input :nombres,
+          <%
+            ph = 'Buscar'
+            ac = { list: "fuente-asistentes" }
+          %>
+        <%= p.input :nombres, placeholder: ph,
               label: false,
-              value_method: lambda {|t| '' if t.nombres == 'N'}
+              value_method: lambda {|t| '' if t.nombres == 'N'},
+              :input_html => ac
           %>
           </div>
           <div class="col-6">
