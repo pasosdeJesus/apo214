@@ -1,0 +1,69 @@
+
+export default class Apo214AutocompletaAjaxAsistentes {
+  /* No usamos constructor ni this porque en operaElegida sería
+   * del objeto AutocompletaAjaxExpreg y no esta clase.
+   * Más bien en esta todo static
+   */
+
+  // Elije una persona en autocompletación
+  static operarElegida (eorig, cadpersona, id, otrosop) {
+    let root = "<%= Rails.configuration.relative_url_root %>"
+    const cs = id.split(';')
+    const idPersona = cs[0]
+    const divcp = eorig.target.closest('.' + 
+      Apo214AutocompletaAjaxAsistentes.claseEnvoltura)
+    if (divcp == null) {
+      window.alert('No se ubico ' +
+        Apo214AutocompletaAjaxAsistentes.claseEnvoltura)
+      return
+    }
+    const elemIdAsistente = divcp.querySelector('input')
+    if (elemIdAsistente == null) {
+      window.alert('No se ubico .campos_asistente')
+      return
+      }
+    lugarpreliminar = document.querySelector('form').id
+    id_lugarpreliminar = lugarpreliminar.split('_')[1]
+    let d = 'id_persona=' + idPersona
+    d += "&id_lugarpreliminar=" + id_lugarpreliminar
+    d += "&remplazarasistente=true"
+    //const a = root + 'remplazarasistente'
+    const a = root + 'lugarespreliminares' + '/' + id_lugarpreliminar + '/'
+                + 'asisreconocimientos/nuevo' 
+    window.Rails.ajax({
+      type: 'GET',
+      url: a,
+      data: d,
+      success: (resp, estado, xhr) => {
+      const divcp = eorig.target.closest('.' + 
+        Apo214AutocompletaAjaxAsistentes.claseEnvoltura)
+        let r = resp.querySelector('.' + Apo214AutocompletaAjaxAsistentes.claseEnvoltura)
+        divcp.innerHTML=r.innerHTML
+      },
+      error: (resp, estado, xhr) => {
+        window.alert('Error con ajax ' + resp)
+      }
+    })
+  }
+
+  static iniciar() {
+    console.log("Apo214AutocompletaAjaxAsistentes")
+    let root = "<%= Rails.configuration.relative_url_root %>"
+    let url = root + 'personas.json'
+    var asistentes = new window.AutocompletaAjaxExpreg(
+      [ /^asisreconocimiento_asistente_attributes_nombres$/,
+        /^asisreconocimiento_asistente_attributes_apellidos$/,
+        /^asisreconocimiento_asistente_attributtes_sexo$/ ],
+      url,
+      Apo214AutocompletaAjaxAsistentes.idDatalist,
+      Apo214AutocompletaAjaxAsistentes.operarElegida
+    )
+    asistentes.iniciar()
+  }
+
+}
+
+// Sobrellevamos imposibilidad de hacer static claseEnvoltura y
+// static idDatalist dentro de la clase Apo214AutocompletaAjaxAsistentes asi: 
+Apo214AutocompletaAjaxAsistentes.claseEnvoltura = 'campos_asistente'
+Apo214AutocompletaAjaxAsistentes.idDatalist = 'fuente-asistentes'
