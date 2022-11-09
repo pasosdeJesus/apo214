@@ -9,3 +9,5 @@ valida-js:
 
 valida-ruby:
 	find . -name "*\.rb" -exec ruby -w -W2 -c {} ';'
+	bin/bundler-audit
+	bin/brakeman
