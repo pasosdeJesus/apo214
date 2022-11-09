@@ -92,6 +92,8 @@ gem "sivel2_gen",  # Motor de nube y llenado de plantillas
   #path: "../sivel2_gen"
 
 group  :development, :test do
+  gem "brakeman"
+
   gem "bundler-audit"
 
   gem "colorize" # Colores en terminal
