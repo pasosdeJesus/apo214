@@ -41,7 +41,7 @@ jobs:
         run: (cd test/dummy; cp .env.plantilla .env; bin/rails db:schema:load)
       # Add or replace test runners here
       - name: Run tests
-        run: bin/rake
+        run: CONFIG_HOSTS=www.example.com bin/rails test
 
   lint:
     runs-on: ubuntu-latest
