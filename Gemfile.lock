@@ -161,6 +161,9 @@ GEM
     bootsnap (1.13.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     camertron-eprun (1.1.1)
     cancancan (3.4.0)
     capybara (3.38.0)
@@ -261,6 +264,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
+    nokogiri (1.13.9-x86_64-linux)
       racc (~> 1.4)
     odf-report (0.7.3)
       mime-types
@@ -408,6 +413,7 @@ DEPENDENCIES
   bcrypt
   best_in_place!
   bootsnap (>= 1.1.0)
+  bundler-audit
   cancancan
   capybara
   cocoon!
