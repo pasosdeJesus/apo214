@@ -1,4 +1,4 @@
-require 'sip/concerns/controllers/personas_controller'
+require 'sivel2_gen/concerns/controllers/personas_controller'
 require 'date'
 
 module Apo214
@@ -8,7 +8,7 @@ module Apo214
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Concerns::Controllers::PersonasController
+          include Sivel2Gen::Concerns::Controllers::PersonasController
 
           # Están llenas @persona, @victima, @personaant, @caso
           # Y está listo para salvar la nueva persona @persona en
@@ -41,7 +41,7 @@ module Apo214
             true
           end 
 
-          def remplazar
+          def remplazar_apo214
             @persona = Sip::Persona.find(params[:id_persona])
             respond_to do |format|
               format.html {
