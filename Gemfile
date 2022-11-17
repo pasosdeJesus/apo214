@@ -96,11 +96,19 @@ group  :development, :test do
 
   gem "bundler-audit"
 
+  gem "code-scanning-rubocop"
+
   gem "colorize" # Colores en terminal
   
   gem "debug" # Depurar
 
   gem "dotenv-rails"
+
+  gem "rubocop-minitest"
+
+  gem "rubocop-rails"
+
+  gem "rubocop-shopify"
 end
 
 

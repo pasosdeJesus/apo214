@@ -19,7 +19,7 @@
         as: :string, input_html: { value: inf.object.longitud_localizado || '0.0'.a_decimal_localizado }  %>
       <!-- Button trigger modal -->
       <div>
-        <a class="btn btn-primary togglecoord">
+        <a class="btn btn-sm btn-primary togglecoord">
           Conversión
         </a>
       </div>
@@ -167,7 +167,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary boton_conversion" data-dismiss="modal">Guardar</button>
+              <button type="button" class="btn btn-sm btn-primary boton_conversion" data-dismiss="modal">Guardar</button>
             </div>
           </div>
         </div>
@@ -187,7 +187,7 @@
   <td>
     <%= f.input :id, as: :hidden %>
     <%= link_to_remove_association "Eliminar", f, 
-        :class => 'btn-danger' 
+        :class => 'btn btn-sm btn-danger' 
     %>
     <div><%= f.error_notification %></div>
   </td>
