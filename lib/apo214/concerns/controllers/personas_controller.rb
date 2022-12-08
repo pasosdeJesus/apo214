@@ -18,7 +18,7 @@ module Apo214
           # y que retorne false.
 
           def atributos_show_apo214
-            atributos_show_sip + [:lugarpreliminar_ids]
+            atributos_show_msip + [:lugarpreliminar_ids]
           end
 
           def atributos_show
@@ -42,10 +42,10 @@ module Apo214
           end 
 
           def remplazar_apo214
-            @persona = Sip::Persona.find(params[:id_persona])
+            @persona = Msip::Persona.find(params[:id_persona])
             respond_to do |format|
               format.html {
-                render("/sip/personas/remplazarpersona",
+                render("/msip/personas/remplazarpersona",
                        layout: false)
                 return
               }
@@ -55,10 +55,10 @@ module Apo214
           def remplazardepositado
             id_listadepositados = params[:id_listadepositados]
             @listadepositados = id_listadepositados
-            @persona = Sip::Persona.find(params[:id_persona])
+            @persona = Msip::Persona.find(params[:id_persona])
             respond_to do |format|
               format.html {
-                render("/sip/personas/remplazardepositado",
+                render("/msip/personas/remplazardepositado",
                        layout: false)
                 return
               }
@@ -68,10 +68,10 @@ module Apo214
           def remplazarotrafuente
             id_otrafuente = params[:id_listapersofuentes]
             @listapersofuentes = id_otrafuente
-            @persona = Sip::Persona.find(params[:id_persona])
+            @persona = Msip::Persona.find(params[:id_persona])
             respond_to do |format|
               format.html {
-                render("/sip/personas/remplazarotrafuente",
+                render("/msip/personas/remplazarotrafuente",
                        layout: false)
                 return
               }

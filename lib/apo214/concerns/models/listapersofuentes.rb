@@ -5,11 +5,11 @@ module Apo214
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Modelo 
+          include Msip::Modelo 
 
           belongs_to :lugarpreliminar, class_name: 'Apo214::Lugarpreliminar',
             validate: true, foreign_key: 'lugarpreliminar_id', optional: false
-          belongs_to :personafuente, class_name: 'Sip::Persona', 
+          belongs_to :personafuente, class_name: 'Msip::Persona', 
             validate: true, foreign_key: 'persona_id', optional: false
           accepts_nested_attributes_for :personafuente, reject_if: :all_blank
 

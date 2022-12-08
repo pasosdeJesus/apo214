@@ -1,6 +1,6 @@
 module Apo214
   module Admin
-    class TiposentierroController < Sip::Admin::BasicasController
+    class TiposentierroController < Msip::Admin::BasicasController
       before_action :set_tipoentierro, 
         only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource  class: Apo214::Tipoentierro

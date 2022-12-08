@@ -1,6 +1,6 @@
 <tr class='nested-fields filapersona campos_otrafuente'>
   <% if f.object.personafuente.nil? %>
-    <% f.object.personafuente = Sip::Persona.new %>
+    <% f.object.personafuente = Msip::Persona.new %>
   <% end %>
   <%= f.simple_fields_for :personafuente do |p| %>
     <%= render 'persona_campos_entabla', p: p, list: "fuente-otrasfuentes" %>

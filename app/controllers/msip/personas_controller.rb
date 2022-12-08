@@ -1,10 +1,10 @@
 require 'date'
 require 'apo214/concerns/controllers/personas_controller' 
 
-module Sip
-  class PersonasController < Sip::ModelosController
+module Msip
+  class PersonasController < Msip::ModelosController
 
-    load_and_authorize_resource class: Sip::Persona
+    load_and_authorize_resource class: Msip::Persona
     include Apo214::Concerns::Controllers::PersonasController
   end
 end

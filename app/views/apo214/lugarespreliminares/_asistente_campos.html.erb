@@ -1,6 +1,6 @@
 <tr class='nested-fields filapersona'>
   <% if f.object.asistente.nil? %>
-    <% f.object.asistente = Sip::Persona.new %>
+    <% f.object.asistente = Msip::Persona.new %>
   <% end %>
 
   <%= f.simple_fields_for :asistente do |p| %>
@@ -23,7 +23,7 @@
     </td>
     <td>
       <%= p.input :tdocumento_id,
-        collection: Sip::Tdocumento.habilitados,
+        collection: Msip::Tdocumento.habilitados,
         label_method: :sigla,
         value_method: :id ,
         label: false,

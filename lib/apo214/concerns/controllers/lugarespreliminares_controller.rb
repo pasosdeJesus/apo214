@@ -10,7 +10,7 @@ module Apo214
           #    only: [:show, :edit, :update, :destroy]
           #load_and_authorize_resource class: Apo214::Lugarpreliminar,
           #  except: [:index, :show]
-          helper Sip::UbicacionHelper
+          helper Msip::UbicacionHelper
 
           def registrar_en_bitacora
             true
@@ -83,7 +83,7 @@ module Apo214
                   :latitud_localizado, 
                   :longitud_localizado, 
                   :area,
-                  :sip_anexo_attributes => [
+                  :msip_anexo_attributes => [
                     :id, :descripcion, :adjunto, :_destroy
                   ]  
                 ]
@@ -94,7 +94,7 @@ module Apo214
                 :lugarpreliminar_id,
                 :fecha,
                 :_destroy,
-                :sip_anexo_attributes => [
+                :msip_anexo_attributes => [
                   :id, :descripcion, :adjunto, :_destroy
                 ]
               ],
@@ -128,7 +128,7 @@ module Apo214
                 :lugarpreliminar_id,
                 :fecha,
                 :_destroy,
-                :sip_anexo_attributes => [
+                :msip_anexo_attributes => [
                   :id, :descripcion, :adjunto, :_destroy
                 ]
               ],
@@ -193,7 +193,7 @@ module Apo214
                 ]
               ],
               :propietario_ids => [],
-              :sip_anexo_attributes => [
+              :msip_anexo_attributes => [
                 :id, :descripcion, :adjunto, :_destroy
               ],
 
@@ -312,7 +312,7 @@ module Apo214
             if lugarpreliminar_params &&
                 lugarpreliminar_params[:propietario_attributes]
               if lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i > 0 &&
-                Sip::Persona.where(
+                Msip::Persona.where(
                   id: lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i).count == 1
                   @registro.propietario.id_persona = lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i
                   @registro.propietario.save!(validate: false)
@@ -321,7 +321,7 @@ module Apo214
             # Ubicamos los de autocompletacion y para esos creamos un registro 
             if lugarpreliminar_params && 
                 lugarpreliminar_params[:persona_attributes][:id].to_i > 0 &&
-                Sip::Persona.where(
+                Msip::Persona.where(
                   id: lugarpreliminar_params[:persona_attributes][:id].to_i).
                   count == 1
               @lugarpreliminar.
@@ -330,7 +330,7 @@ module Apo214
                  .id_persona
               @lugarpreliminar.save!(validate: false)
             else
-              persona = Sip::Persona.
+              persona = Msip::Persona.
                 new(lugarpreliminar_params[:persona_attributes])
               if persona.save
                persona.save!
@@ -344,7 +344,7 @@ module Apo214
                     a[1][:personadepositada_attributes] && 
                     a[1][:personadepositada_attributes][:id] &&
                     a[1][:personadepositada_attributes][:id].to_i > 0 &&
-                    Sip::Persona.where(
+                    Msip::Persona.where(
                       id: a[1][:personadepositada_attributes][:id].to_i)
                         .count == 1
                   ld = Apo214::Listadepositados.create(
@@ -364,7 +364,7 @@ module Apo214
                     a[1][:personafuente_attributes] && 
                     a[1][:personafuente_attributes][:id] &&
                     a[1][:personafuente_attributes][:id].to_i > 0 &&
-                    Sip::Persona.where(
+                    Msip::Persona.where(
                       id: a[1][:personafuente_attributes][:id].to_i).count == 1
                   lp = Apo214::Listapersofuentes.create(
                     lugarpreliminar_id: @lugarpreliminar.id,
@@ -380,7 +380,7 @@ module Apo214
             # Procesar ubicacionespre de migracion
             if lugarpreliminar_params[:ubicacionpre_pais_id] && 
                 lugarpreliminar_params[:ubicacionpre_pais_id] != ""
-              @registro.ubicacionpre_id = Sip::Ubicacionpre::buscar_o_agregar(
+              @registro.ubicacionpre_id = Msip::Ubicacionpre::buscar_o_agregar(
                 lugarpreliminar_params[:ubicacionpre_pais_id],
                 lugarpreliminar_params[:ubicacionpre_departamento_id],
                 lugarpreliminar_params[:ubicacionpre_municipio_id],

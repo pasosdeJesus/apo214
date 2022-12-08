@@ -177,10 +177,10 @@
       <%= inf.input :area,
         label: false %>
     </td>
-    <% inf.object.sip_anexo = Sip::Anexo.new if !inf.object.sip_anexo %>
-    <%= inf.simple_fields_for :sip_anexo do |ane| %>
+    <% inf.object.msip_anexo = Msip::Anexo.new if !inf.object.msip_anexo %>
+    <%= inf.simple_fields_for :msip_anexo do |ane| %>
     <td>
-      <%= render 'sip/anexos/anexo_campos', a: ane  %>
+      <%= render 'msip/anexos/anexo_campos', a: ane  %>
     </td>
     <% end %>
   <% end %>

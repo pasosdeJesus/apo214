@@ -4,7 +4,7 @@
 //= require apo214/AutocompletaAjaxOtrasfuentes
 //= require apo214/AutocompletaAjaxAsistentes
 root = window;
-sip_arregla_puntomontaje(root);
+msip_arregla_puntomontaje(root);
 console.log(root.puntomontaje);
 Apo214AutocompletaAjaxAportantes.iniciar();
 Apo214AutocompletaAjaxDepositados.iniciar();
@@ -24,14 +24,14 @@ function apo214_actualiza_region() {
     departamento_id: dep,
     municipio_id: mun
   };
-  sip_funcion_tras_AJAX('regiones/de_depmun', params,
+  msip_funcion_tras_AJAX('regiones/de_depmun', params,
     apo214_actualiza_region_retrollamada, 
     'No pudo obtener region del departamento y municipio.');
 }
 
 apo214_autocompleta_persona = function(label, id, divcp, root) {
   var a, cs, d, i, id_persona, ini, pl, t, _i, _ref;
-  sip_arregla_puntomontaje(root);
+  msip_arregla_puntomontaje(root);
   cs = id.split(";");
   id_persona = cs[0];
   pl = [];
@@ -87,13 +87,13 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
   // Autocompleta ubicacionpre en lugar preliminar
   $(document).on('focusin',
     'input[id^=lugarpreliminar_ubicacionpre_mundep_texto]', function (e) {
-      sip_busca_ubicacionpre_mundep($(this))
+      msip_busca_ubicacionpre_mundep($(this))
     })
 
   // Autocompleta otrolugarasesinato en lugar preliminar
   $(document).on('focusin',
     'input[id^=lugarpreliminar_otrolubicacionpre_texto]', function (e) {
-      sip_busca_ubicacionpre($(this))
+      msip_busca_ubicacionpre($(this))
     })
 
   // Al elegir otro tipo de testigo se despliega el campo otro
@@ -270,5 +270,5 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
     }
   )
 
-  sip_ubicacionpre_expandible_registra('lugarpreliminar_', 'ubicacionpre', root,
+  msip_ubicacionpre_expandible_registra('lugarpreliminar_', 'ubicacionpre', root,
     apo214_actualiza_region, apo214_actualiza_region);

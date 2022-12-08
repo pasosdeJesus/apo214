@@ -6,9 +6,9 @@ Apo214::Engine.routes.draw do
       end
     end
   end
-  get "/personas/remplazar" => "/sip/personas#remplazar"
-  get "/remplazardepositado" => "/sip/personas#remplazardepositado"
-  get "/remplazarotrafuente" => "/sip/personas#remplazarotrafuente"
+  get "/personas/remplazar" => "/msip/personas#remplazar"
+  get "/remplazardepositado" => "/msip/personas#remplazardepositado"
+  get "/remplazarotrafuente" => "/msip/personas#remplazarotrafuente"
   get "/lugp/coordenadas" => "lugarespreliminares#coordenadas"
   get "/regiones/de_depmun" => "admin/regiones#de_depmun",
      as: 'region_de_depmun'

@@ -3,7 +3,7 @@
   false) do %>
   <%= f.input :id_persona, as: :hidden %>
   <% if !f.object.persona %>
-    <% f.object.persona = Sip::Persona.new%>
+    <% f.object.persona = Msip::Persona.new%>
   <% end %>
   <datalist id='fuente-aportantes'>
   </datalist>
@@ -22,7 +22,7 @@
     </div>
     <div class="col-md-4">
       <%= f.input :parentezco,
-        collection: Sip::Trelacion.habilitados,
+        collection: Msip::Trelacion.habilitados,
         include_blank: true,
         label_method: :nombre,
         value_method: :id %>

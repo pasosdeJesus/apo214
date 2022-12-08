@@ -21,13 +21,13 @@
           <%= f.input :id, as: :hidden %>
           <%= f.input :id_persona, as: :hidden %>
           <% if p.object.personapropietario.nil? %>
-            <% p.object.personapropietario = Sip::Persona.new %>
+            <% p.object.personapropietario = Msip::Persona.new %>
           <% end %>
           <%= p.simple_fields_for :personapropietario do |pe| %>
             <%= render partial: 'nombresydoc_persona_campos',
               locals: {p: pe, con_label: false} %>
             <div class="col-md-3">
-              <%= render partial: 'sip/personas/campo_sexo', locals: {f: pe} %>
+              <%= render partial: 'msip/personas/campo_sexo', locals: {f: pe} %>
             </div>
           <% end %>
           <%= p.input :telefono %>

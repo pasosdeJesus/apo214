@@ -1,4 +1,4 @@
 module ApplicationHelper
-  include Sip::BootstrapHelper
+  include Msip::BootstrapHelper
   include Sivel2Gen::ApplicationHelper
 end

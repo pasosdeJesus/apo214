@@ -1,11 +1,11 @@
-require 'sip/concerns/models/anexo'
+require 'msip/concerns/models/anexo'
 
 module Apo214
   module Concerns
     module Models
       module Anexo
         extend ActiveSupport::Concern
-        include Sip::Concerns::Models::Anexo
+        include Msip::Concerns::Models::Anexo
 
         included do
           has_many :infoanomalia, foreign_key: "anexo_id", 

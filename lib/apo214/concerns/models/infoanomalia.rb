@@ -7,8 +7,8 @@ module Apo214
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Modelo
-          include Sip::Localizacion
+          include Msip::Modelo
+          include Msip::Localizacion
           flotante_localizado :latitud 
           flotante_localizado :longitud
 
@@ -27,9 +27,9 @@ module Apo214
           attr_accessor :gra_lon
           attr_accessor :min_lon
           attr_accessor :seg_lon
-          belongs_to :sip_anexo, class_name: 'Sip::Anexo', validate: true,
+          belongs_to :msip_anexo, class_name: 'Msip::Anexo', validate: true,
             foreign_key: 'anexo_id', optional: false
-          accepts_nested_attributes_for :sip_anexo, reject_if: :all_blank
+          accepts_nested_attributes_for :msip_anexo, reject_if: :all_blank
           validates :latitud, :inclusion => {in: -90..90, message: 'El valor de la latitud debe ser entre -90 y 90'}
           validates :longitud, :inclusion => {in: 0..180, message: 'El valor de longitud debe ser entre 0 y 180'}
         end

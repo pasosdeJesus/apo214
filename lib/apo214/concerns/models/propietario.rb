@@ -4,8 +4,8 @@ module Apo214
       module Propietario
         extend ActiveSupport::Concern
 
-        include Sip::Modelo 
-        include Sip::Localizacion
+        include Msip::Modelo 
+        include Msip::Localizacion
 
         included do
 
@@ -14,7 +14,7 @@ module Apo214
             validate: true, class_name: "Apo214::Lugarpreliminar", 
             optional: false
           belongs_to :personapropietario, foreign_key: "id_persona",
-            validate: false, class_name: "Sip::Persona", optional: false
+            validate: false, class_name: "Msip::Persona", optional: false
           accepts_nested_attributes_for :personapropietario, reject_if: :all_blank
 
           validates_length_of :observaciones, maximum: 5000

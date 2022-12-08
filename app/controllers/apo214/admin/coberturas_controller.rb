@@ -1,6 +1,6 @@
 module Apo214
   module Admin
-    class CoberturasController < Sip::Admin::BasicasController
+    class CoberturasController < Msip::Admin::BasicasController
       before_action :set_cobertura, 
         only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource  class: Apo214::Cobertura

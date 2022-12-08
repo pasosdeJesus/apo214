@@ -10,7 +10,7 @@ module Apo214
           #    only: [:show, :edit, :update, :destroy]
           #load_and_authorize_resource class: Apo214::Asisreconocimiento,
           #  except: [:index, :show]
-          helper Sip::UbicacionHelper
+          helper Msip::UbicacionHelper
           def registrar_en_bitacora
             true
           end
@@ -51,7 +51,7 @@ module Apo214
 
           def new
             if params[:remplazarasistente]
-              @persona = Sip::Persona.find(params[:id_persona])
+              @persona = Msip::Persona.find(params[:id_persona])
               @lugarpreliminar = Apo214::Lugarpreliminar.
                 find(params[:id_lugarpreliminar].to_i)
               @asisreconocimiento = @lugarpreliminar.asisreconocimientos.new
