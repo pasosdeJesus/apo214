@@ -1,6 +1,6 @@
 module Apo214
   module Admin
-    class TipostestigoController < Sip::Admin::BasicasController
+    class TipostestigoController < Msip::Admin::BasicasController
       before_action :set_tipotestigo, 
         only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource  class: Apo214::Tipotestigo

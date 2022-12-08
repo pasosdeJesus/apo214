@@ -13,8 +13,8 @@ module Apo214
     ]
 
     def tablasbasicas
-      r = (Sip::Ability::BASICAS_PROPIAS - 
-           [['Sip', 'oficina']]
+      r = (Msip::Ability::BASICAS_PROPIAS - 
+           [['Msip', 'oficina']]
           ) + Sivel2Gen::Ability::BASICAS_PROPIAS - [
             ['Sivel2Gen', 'actividadoficio'],
             ['Sivel2Gen', 'escolaridad'],
@@ -43,7 +43,7 @@ module Apo214
 
     # Tablas no básicas pero que tienen índice *_seq_id
     def nobasicas_indice_seq_con_id
-      Sip::Ability::NOBASICAS_INDSEQID +
+      Msip::Ability::NOBASICAS_INDSEQID +
         Mr519Gen::Ability::NOBASICAS_INDSEQID +
         Heb412Gen::Ability::NOBASICAS_INDSEQID +
         Sivel2Gen::Ability::NOBASICAS_INDSEQID +

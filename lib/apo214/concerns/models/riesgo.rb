@@ -5,7 +5,7 @@ module Apo214
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Basica 
+          include Msip::Basica 
         end # included
 
       end

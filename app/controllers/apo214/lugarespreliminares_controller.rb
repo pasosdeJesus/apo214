@@ -1,7 +1,7 @@
 require 'apo214/concerns/controllers/lugarespreliminares_controller'
 
 module Apo214
-  class LugarespreliminaresController < Sip::ModelosController 
+  class LugarespreliminaresController < Msip::ModelosController 
 
     before_action :set_lugarpreliminar,
         only: [:show, :edit, :update, :destroy]

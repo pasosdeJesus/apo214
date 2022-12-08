@@ -1,6 +1,6 @@
 <tr class='nested-fields filapersona campos_depositado'>
   <% if f.object.personadepositada.nil? %>
-    <% f.object.personadepositada = Sip::Persona.new %>
+    <% f.object.personadepositada = Msip::Persona.new %>
   <% end %>
     <%= f.simple_fields_for :personadepositada do |p| %>
         <%= render 'persona_campos_entabla', p: p, list: "fuente-depositados" %>

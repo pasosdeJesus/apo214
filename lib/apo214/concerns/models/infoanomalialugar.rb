@@ -5,7 +5,7 @@ module Apo214
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Modelo 
+          include Msip::Modelo 
 
           belongs_to :lugarpreliminar, class_name: 'Apo214::Lugarpreliminar',
             validate: true, foreign_key: 'lugarpreliminar_id', optional: false

@@ -11,7 +11,7 @@
           <% if @persona %>
             <% @asisreconocimiento.asistente = @persona %>
           <% else %>
-            <% form.object.asistente = Sip::Persona.new %>
+            <% form.object.asistente = Msip::Persona.new %>
           <% end %>
         <% end %>
         <div class="row">
