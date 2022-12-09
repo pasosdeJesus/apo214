@@ -89,7 +89,7 @@ gem "heb412_gen",  # Motor de nube y llenado de plantillas
 
 gem "sivel2_gen",  # Motor de nube y llenado de plantillas
   git: "https://github.com/pasosdeJesus/sivel2_gen.git", branch: :msip
-  #path: "../sivel2_gen"
+  #path: "../sivel2_gen-msip"
 
 group  :development, :test do
   gem "brakeman"
