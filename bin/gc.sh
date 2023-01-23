@@ -31,8 +31,15 @@ if (test "$?" = "0") then {
 } fi;
 
 if (test "$SINAC" != "1") then {
+  rer=`bundle config get path | grep ":" | head -n 1 | sed -e "s/.*\"\(.*\)\"/\1/g"`
+  rubyver=`ruby -v | sed -e "s/^[^ ]* \([0-9].[0-9]\).*/\1/g"`
+  rutapore="$rer/ruby/$rubyver/cache/bundler/git/"
+  if (test -d "$rutapore") then {
+    echo "Eliminando $rutapore/*"
+    rm -rf $rutapore/*
+  } fi;
+  NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update --bundler
   NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update
-  bin/bundler-audit
   if (test "$?" != "0") then {
     exit 1;
   } fi;
@@ -79,11 +86,11 @@ if (test "$?" != "0") then {
   exit 1;
 } fi;
 
-#(cd $rutaap; CONFIG_HOSTS=127.0.0.1 bin/rails test:system)
-#if (test "$?" != "0") then {
-#  echo "No pasaron pruebas del sistema";
-#  exit 1;
-#} fi;
+(cd $rutaap; CONFIG_HOSTS=127.0.0.1 bin/rails test:system)
+if (test "$?" != "0") then {
+  echo "No pasaron pruebas del sistema";
+  exit 1;
+} fi;
 
 
 (cd $rutaap; RAILS_ENV=test bin/rails db:schema:dump)
