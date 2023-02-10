@@ -41,11 +41,11 @@ module Apo214
             true
           end 
 
-          def remplazar_apo214
+          def remplazar
             @persona = Msip::Persona.find(params[:id_persona])
             respond_to do |format|
               format.html {
-                render("/msip/personas/remplazarpersona",
+                render("/apo214/lugarespreliminares/remplazarpersona",
                        layout: false)
                 return
               }
