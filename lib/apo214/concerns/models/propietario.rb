@@ -10,7 +10,7 @@ module Apo214
         included do
 
           # En el orden de esquema en base
-          belongs_to :lugarpreliminar, foreign_key: "id_lugarpreliminar",
+          belongs_to :lugarpreliminar, foreign_key: "lugarpreliminar_id",
             validate: true, class_name: "Apo214::Lugarpreliminar", 
             optional: false
           belongs_to :personapropietario, foreign_key: "persona_id",

@@ -53,7 +53,7 @@ module Apo214
             if params[:remplazarasistente]
               @persona = Msip::Persona.find(params[:persona_id])
               @lugarpreliminar = Apo214::Lugarpreliminar.
-                find(params[:id_lugarpreliminar].to_i)
+                find(params[:lugarpreliminar_id].to_i)
               @asisreconocimiento = @lugarpreliminar.asisreconocimientos.new
               #@asisreconocimiento.asistente = @persona
               #@asisreconocimiento.organizacion = ''

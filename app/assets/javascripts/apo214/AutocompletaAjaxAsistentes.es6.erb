@@ -23,12 +23,12 @@ export default class Apo214AutocompletaAjaxAsistentes {
       return
       }
     lugarpreliminar = document.querySelector('form').id
-    id_lugarpreliminar = lugarpreliminar.split('_')[1]
+    lugarpreliminar_id = lugarpreliminar.split('_')[1]
     let d = 'persona_id=' + idPersona
-    d += "&id_lugarpreliminar=" + id_lugarpreliminar
+    d += "&lugarpreliminar_id=" + lugarpreliminar_id
     d += "&remplazarasistente=true"
     //const a = root + 'remplazarasistente'
-    const a = root + 'lugarespreliminares' + '/' + id_lugarpreliminar + '/'
+    const a = root + 'lugarespreliminares' + '/' + lugarpreliminar_id + '/'
                 + 'asisreconocimientos/nuevo' 
     window.Rails.ajax({
       type: 'GET',

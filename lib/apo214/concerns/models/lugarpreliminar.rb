@@ -30,7 +30,7 @@ module Apo214
           belongs_to :persona, foreign_key: "persona_id", dependent: :destroy,
            class_name: 'Msip::Persona', optional: false
           accepts_nested_attributes_for :persona,  reject_if: :all_blank
-          has_one :propietario, foreign_key: "id_lugarpreliminar", dependent: :destroy,
+          has_one :propietario, foreign_key: "lugarpreliminar_id", dependent: :destroy,
            class_name: 'Apo214::Propietario'
           accepts_nested_attributes_for :propietario, reject_if: :all_blank, allow_destroy: true
           has_many :personapropietario, through: :propietario, class_name: 'Msip::Persona'
