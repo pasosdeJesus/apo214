@@ -1,7 +1,7 @@
 <%= item_acordeon_bs(
   'dlugarpreliminar', 'aportantepreliminar', 'DATOS DEL APORTANTE',
   false) do %>
-  <%= f.input :id_persona, as: :hidden %>
+  <%= f.input :persona_id, as: :hidden %>
   <% if !f.object.persona %>
     <% f.object.persona = Msip::Persona.new%>
   <% end %>

@@ -19,7 +19,7 @@
         <%= f.input :nombrepropiedad %>
         <%= f.simple_fields_for :propietario do |p| %>
           <%= f.input :id, as: :hidden %>
-          <%= f.input :id_persona, as: :hidden %>
+          <%= f.input :persona_id, as: :hidden %>
           <% if p.object.personapropietario.nil? %>
             <% p.object.personapropietario = Msip::Persona.new %>
           <% end %>

@@ -42,7 +42,7 @@ module Apo214
           end 
 
           def remplazar_apo214
-            @persona = Msip::Persona.find(params[:id_persona])
+            @persona = Msip::Persona.find(params[:persona_id])
             respond_to do |format|
               format.html {
                 render("/msip/personas/remplazarpersona",
@@ -55,7 +55,7 @@ module Apo214
           def remplazardepositado
             id_listadepositados = params[:id_listadepositados]
             @listadepositados = id_listadepositados
-            @persona = Msip::Persona.find(params[:id_persona])
+            @persona = Msip::Persona.find(params[:persona_id])
             respond_to do |format|
               format.html {
                 render("/msip/personas/remplazardepositado",
@@ -68,7 +68,7 @@ module Apo214
           def remplazarotrafuente
             id_otrafuente = params[:id_listapersofuentes]
             @listapersofuentes = id_otrafuente
-            @persona = Msip::Persona.find(params[:id_persona])
+            @persona = Msip::Persona.find(params[:persona_id])
             respond_to do |format|
               format.html {
                 render("/msip/personas/remplazarotrafuente",

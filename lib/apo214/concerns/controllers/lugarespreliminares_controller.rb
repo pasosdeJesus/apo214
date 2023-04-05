@@ -38,7 +38,7 @@ module Apo214
               :hechos,
               :horadis,
               :id,
-              :id_persona,
+              :persona_id,
               :insitu,
               :interatroprevias,
               :interatroactuales,
@@ -166,10 +166,10 @@ module Apo214
                 :apellidos,
                 :dianac,
                 :id,
-                :id_pais,
-                :id_departamento,
-                :id_municipio,
-                :id_clase,
+                :pais_id,
+                :departamento_id,
+                :municipio_id,
+                :clase_id,
                 :mesnac,
                 :nombres,
                 :nacionalde,
@@ -181,7 +181,7 @@ module Apo214
                 :telefono,
                 :observaciones,
                 :id,
-                :id_persona,
+                :persona_id,
                 :_destroy,
                 :personapropietario_attributes => [
                   :apellidos,
@@ -314,7 +314,7 @@ module Apo214
               if lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i > 0 &&
                 Msip::Persona.where(
                   id: lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i).count == 1
-                  @registro.propietario.id_persona = lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i
+                  @registro.propietario.persona_id = lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i
                   @registro.propietario.save!(validate: false)
               end
             end
@@ -325,16 +325,16 @@ module Apo214
                   id: lugarpreliminar_params[:persona_attributes][:id].to_i).
                   count == 1
               @lugarpreliminar.
-                id_persona = lugarpreliminar_params[:persona_attributes][:id]
-              params[:lugarpreliminar][:id_persona] = @lugarpreliminar
-                 .id_persona
+                persona_id = lugarpreliminar_params[:persona_attributes][:id]
+              params[:lugarpreliminar][:persona_id] = @lugarpreliminar
+                 .persona_id
               @lugarpreliminar.save!(validate: false)
             else
               persona = Msip::Persona.
                 new(lugarpreliminar_params[:persona_attributes])
               if persona.save
                persona.save!
-               @lugarpreliminar.id_persona = persona.id
+               @lugarpreliminar.persona_id = persona.id
               end
             end
             if lugarpreliminar_params[:listadepositados_attributes]

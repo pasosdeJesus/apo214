@@ -30,10 +30,10 @@ function apo214_actualiza_region() {
 }
 
 apo214_autocompleta_persona = function(label, id, divcp, root) {
-  var a, cs, d, i, id_persona, ini, pl, t, _i, _ref;
+  var a, cs, d, i, persona_id, ini, pl, t, _i, _ref;
   msip_arregla_puntomontaje(root);
   cs = id.split(";");
-  id_persona = cs[0];
+  persona_id = cs[0];
   pl = [];
   ini = 0;
   for (i = _i = 0, _ref = cs.length; _i <= _ref; i = _i += 1) {
@@ -41,7 +41,7 @@ apo214_autocompleta_persona = function(label, id, divcp, root) {
     pl[i] = label.substring(ini, ini + t);
     ini = ini + t + 1;
   }
-  d = "&id_persona=" + id_persona;
+  d = "&persona_id=" + persona_id;
   a = root.puntomontaje + 'personas/datos';
   $.ajax({
     url: a,

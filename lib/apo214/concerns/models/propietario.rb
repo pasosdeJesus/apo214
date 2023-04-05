@@ -13,7 +13,7 @@ module Apo214
           belongs_to :lugarpreliminar, foreign_key: "id_lugarpreliminar",
             validate: true, class_name: "Apo214::Lugarpreliminar", 
             optional: false
-          belongs_to :personapropietario, foreign_key: "id_persona",
+          belongs_to :personapropietario, foreign_key: "persona_id",
             validate: false, class_name: "Msip::Persona", optional: false
           accepts_nested_attributes_for :personapropietario, reject_if: :all_blank
 

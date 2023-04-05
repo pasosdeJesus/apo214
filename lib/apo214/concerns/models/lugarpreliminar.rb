@@ -27,7 +27,7 @@ module Apo214
           belongs_to :ubicacionpre, class_name: "::Msip::Ubicacionpre",
             foreign_key: "ubicacionpre_id", optional: true
 
-          belongs_to :persona, foreign_key: "id_persona", dependent: :destroy,
+          belongs_to :persona, foreign_key: "persona_id", dependent: :destroy,
            class_name: 'Msip::Persona', optional: false
           accepts_nested_attributes_for :persona,  reject_if: :all_blank
           has_one :propietario, foreign_key: "id_lugarpreliminar", dependent: :destroy,
