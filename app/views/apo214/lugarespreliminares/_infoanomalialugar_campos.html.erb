@@ -18,25 +18,24 @@
       <%= inf.input :longitud_localizado,
         as: :string, input_html: { value: inf.object.longitud_localizado || '0.0'.a_decimal_localizado }  %>
       <!-- Button trigger modal -->
+      <!-- Button trigger modal -->
       <div>
-        <a class="btn btn-sm btn-primary togglecoord">
+        <button type="button" class="btn btn-primary togglecoord" data-bs-toggle="modal">
           Conversión
-        </a>
+        </button>
       </div>
       <!-- Modal -->
-      <div class="modal fade coord" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
+      <div class="modal fade coord" data-bs-keyboard="false" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Gestión de coordenadas</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <h5 class="modal-title">Gestión de coordenadas</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <h4>Coordenadas WGS84</h4>
               <div class="row">
-                <div class="col-md-5">
+                <div class="col-12 col-md-5">
                   <div class="row">
                     <div class="col-md-6">
                       <h6>Latitud flotante </h6>
@@ -58,13 +57,13 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-12 col-md-7">
                   <h6>Latitud GMS </h6>
                   <div class="row">
                     <div class="col-md-3 pl-4">
                       <%=
                         inf.collection_radio_buttons( :cardinal_lat, [['N', 'N'] ,['S', 'S']], :first, :last,
-                                                     {checked: inf.object.cardinal_lat.nil? ? 'N' : inf.object.carindal_lat }  ) do |b|
+                                                     {checked: inf.object.cardinal_lat.nil? ? 'N' : inf.object.cardinal_lat }  ) do |b|
                             b.label(class: "mr-2 mt-2") { b.radio_button + b.text }
                          end
                        %> 
@@ -96,7 +95,7 @@
                     <div class="col-md-3 pl-4">
                       <%=
                         inf.collection_radio_buttons( :cardinal_lon, [['e', 'E'] ,['w', 'O']], :first, :last,
-                                                     {checked: inf.object.cardinal_lon.nil? ? 'w' : inf.object.carindal_lon }) do |b|
+                                                     {checked: inf.object.cardinal_lon.nil? ? 'w' : inf.object.cardinal_lon }) do |b|
                             b.label(class: "mr-2 mt-2") { b.radio_button + b.text }
                          end
                        %> 
@@ -167,11 +166,12 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-sm btn-primary boton_conversion" data-dismiss="modal">Guardar</button>
+              <button type="button" class="btn btn-primary boton_conversion">Guardar</button>
             </div>
           </div>
         </div>
-      </div>
+      </div> 
+      <div>
     </td>
     <td>
       <%= inf.input :area,
