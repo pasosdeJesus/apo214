@@ -142,9 +142,9 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
     coor = $(this).parent().parent().parent().parent().parent().children()
     lat_wgs84 = $($(this).parent().parent().children()[1]).find('[id$= _infoanomalia_attributes_latitud_wgs84]').val();
     lon_wgs84 = $($(this).parent().parent().children()[1]).find('[id$= _infoanomalia_attributes_longitud_wgs84]').val();
-    lat = coor.find('[id$=attributes_latitud_localizado]').val(lat_wgs84);
-    lon = coor.find('[id$=attributes_longitud_localizado]').val(lon_wgs84);
-
+    lat = coor.find('[id$=attributes_latitud_localizado]').val(lat_wgs84.replace('.', ','));
+    lon = coor.find('[id$=attributes_longitud_localizado]').val(lon_wgs84.replace('.', ','));
+    $($(this).parent().parent().parent().parent()[0]).modal("hide");
   });
 
   function splitMulti(str, tokens){
@@ -222,6 +222,7 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
        lon_wgs84 = p.parent().find('[id$=infoanomalia_attributes_longitud_wgs84]').val(longitud_wgs84)
      });
   }
+
   $(document).on('change', 'input[id$=_infoanomalia_attributes_latitud_sirgas]', 
     function (e) {
       div_padre = $(this).parent().parent().parent().parent()
@@ -231,6 +232,7 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
       tranformar_coordenadas(div_padre, 3, coordenadas)
     }
   )
+
   $(document).on('change', 'input[id$=_infoanomalia_attributes_longitud_sirgas]', 
     function (e) {
       div_padre = $(this).parent().parent().parent().parent()
@@ -240,6 +242,7 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
       tranformar_coordenadas(div_padre, 3, coordenadas)
     }
   )
+
   $(document).on('change', 'input[id$=_infoanomalia_attributes_latitud_wgs84]', 
     function (e) {
       div_padre = $(this).parent().parent().parent().parent()
@@ -259,9 +262,10 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
       tranformar_coordenadas(div_padre, 1, coordenadas)
     }
   )
-};
+
   $(document).on('change', 'input[id$=_infoanomalia_attributes_latitud_gms]', 
     function (e) {
+      // Falta implementar conversion de wgs84 gms a todas
       div_padre = $(this).parent().parent().parent().parent()
       lat_wgs84 = $(div_padre).find('[id$= _infoanomalia_attributes_latitud_wgs84]').val();
       lon_wgs84 = $(div_padre).find('[id$= _infoanomalia_attributes_longitud_wgs84]').val();
@@ -270,5 +274,6 @@ apo214_prepara_eventos_comunes = function(root, nomactospe) {
     }
   )
 
+};
   msip_ubicacionpre_expandible_registra('lugarpreliminar_', 'ubicacionpre', root,
     apo214_actualiza_region, apo214_actualiza_region);

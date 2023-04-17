@@ -58,6 +58,9 @@ module Apo214
               :telefono,
               :tipotestigo_id,
               :tipoentierro_id,
+              :ubicacionpre_id, 
+              :otrolubicacionpre_texto, 
+              :otrolubicacionpre_id,
               :ubicacionpre_clase_id,
               :ubicacionpre_departamento_id,
               :ubicacionpre_latitud_localizado,
@@ -83,6 +86,20 @@ module Apo214
                   :latitud_localizado, 
                   :longitud_localizado, 
                   :area,
+                  :latitud_wgs84,
+                  :longitud_wgs84,
+                  :latitud_sirgas,
+                  :longitud_sirgas,
+                  :latitud_on,
+                  :longitud_on,
+                  :cardinal_lat,
+                  :gra_lat,
+                  :min_lat,
+                  :seg_lat,
+                  :cardinal_lon,
+                  :gra_lon,
+                  :min_lon,
+                  :seg_lon,
                   :msip_anexo_attributes => [
                     :id, :descripcion, :adjunto, :_destroy
                   ]  
@@ -242,22 +259,22 @@ module Apo214
               lat_wgs84_flot = params[:lat_wgs84_flot]
               lon_wgs84_flot = params[:lon_wgs84_flot]
               punto = 'POINT('+ lon_wgs84_flot + " " + lat_wgs84_flot + ')'
-              consl_sirgas = 'SELECT st_astext(st_transform( st_geometryfromtext(\''+ punto +'\', 4326 ), 3116) );'
+              consl_sirgas = 'SELECT st_astext(st_transform( st_geometryfromtext(\''+ punto +'\', 4326), 3116) );'
               consl_on = 'SELECT st_astext(st_transform( st_geometryfromtext( 
               \''+ punto +'\', 4326 ), \'+proj=tmerc +ellps=GRS80 +lat_0=4 
               +lon_0=-73 +k=0.9992 +x_0=5000000 +y_0=2000000 +units=m +no_defs\'
               ::text) );'
-              resultado_sirgas = ActiveRecord::Base.connection.select_all consl_sirgas
-              resultado_on = ActiveRecord::Base.connection.select_all consl_on
-              if resultado_sirgas.rows[0][0] == "POINT(inf inf)"
+              resultado_sirgas = ActiveRecord::Base.connection.execute(consl_sirgas)
+              resultado_on = ActiveRecord::Base.connection.execute(consl_on)
+              if resultado_sirgas.getvalue(0,0) == "POINT(inf inf)"
                 mensaje_error = "Valor ingresado no permitido"
               else
                 consl_gms= 'SELECT (ST_AsLatLonText(\''+ punto +'\', \'D°M\'\'S.SSS\'\'C\'));'
-                resultado_gms = ActiveRecord::Base.connection.select_all consl_gms
+                resultado_gms = ActiveRecord::Base.connection.execute(consl_gms)
                 coor_wgs84 = punto.slice(6..-2).split(" ")
-                coor_gms = resultado_gms.rows[0][0]
-                coor_on = resultado_on.rows[0][0].slice(6..-2).split(" ")
-                coor_sirgas = resultado_sirgas.rows[0][0].slice(6..-2).split(" ")
+                coor_gms = resultado_gms.getvalue(0,0)
+                coor_on = resultado_on.getvalue(0,0).slice(6..-2).split(" ")
+                coor_sirgas = resultado_sirgas.getvalue(0,0).slice(6..-2).split(" ")
               end 
             when 2
               lat_gms = params[:lat_gms]
@@ -267,8 +284,8 @@ module Apo214
               lon_sirgas = params[:lon_sirgas]
               punto = 'POINT('+ lon_sirgas + " " + lat_sirgas + ')'
               consl_wgs84 = 'SELECT st_astext(st_transform( st_geometryfromtext(\''+ punto +'\', 3116 ), 4326) );'
-              resultado_wgs84 = ActiveRecord::Base.connection.select_all consl_wgs84
-              punto_wgs84 = resultado_wgs84.rows[0][0]
+              resultado_wgs84 = ActiveRecord::Base.connection.execute(consl_wgs84)
+              punto_wgs84 = resultado_wgs84.getvalue(0,0)
               if punto_wgs84 == "POINT(inf inf)"
                 mensaje_error = "Valor ingresado no permitido"
               else
@@ -276,12 +293,12 @@ module Apo214
                 \''+ punto_wgs84 +'\', 4326 ), \'+proj=tmerc +ellps=GRS80 +lat_0=4 
                 +lon_0=-73 +k=0.9992 +x_0=5000000 +y_0=2000000 +units=m +no_defs\'
                 ::text) );'
-                resultado_on = ActiveRecord::Base.connection.select_all consl_on
-                coor_wgs84 = resultado_wgs84.rows[0][0].slice(6..-2).split(" ")
-                coor_on = resultado_on.rows[0][0].slice(6..-2).split(" ")
+                resultado_on = ActiveRecord::Base.connection.execute(consl_on)
+                coor_wgs84 = resultado_wgs84.getvalue(0,0).slice(6..-2).split(" ")
+                coor_on = resultado_on.getvalue(0,0).slice(6..-2).split(" ")
                 consl_gms= 'SELECT (ST_AsLatLonText(\''+ punto_wgs84 +'\', \'D°M\'\'S.SSS\'\'C\'));'
-                resultado_gms = ActiveRecord::Base.connection.select_all consl_gms
-                coor_gms = resultado_gms.rows[0][0]
+                resultado_gms = ActiveRecord::Base.connection.execute(consl_gms)
+                coor_gms = resultado_gms
                 coor_sirgas = punto.slice(6..-2).split(" ")
               end
             end
