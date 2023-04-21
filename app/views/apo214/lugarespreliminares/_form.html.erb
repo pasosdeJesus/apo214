@@ -3,9 +3,9 @@
   <a href="usuarios/sign_in">Iniciar Sesión</a>
 
 <% else  %>
-
   <div data-turbo="false" >
     <%= simple_form_for @lugarpreliminar, :html => { :class => 'form-horizontal', :id => dom_id(@lugarpreliminar) } do |f| %>
+      <%= render partial: 'msip/hogar/errores', locals: { f: f } %> 
       <div data-role="content" class="form-inputs" >
         <h3><center>FORMATO DE REGISTRO DE INFORMACIÓN PRELIMINAR DE PRESUNTOS LUGARES DE DISPOSICIÓN IRREGULAR DE CADÁVERES</center></h3>
       </div>

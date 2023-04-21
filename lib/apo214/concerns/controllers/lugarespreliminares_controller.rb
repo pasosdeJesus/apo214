@@ -322,7 +322,7 @@ module Apo214
               @lugarpreliminar.evaluacionriesgo.new
             end
             @registro.save!(validate: false)
-            redirect_to apo214.edit_lugarpreliminar_path(@registro)
+            redirect_to apo214.edit_lugarpreliminar_path(@registro), turbo: true
           end
 
           def update
@@ -414,9 +414,6 @@ module Apo214
                 @registro.save!(validate: false)
               rescue e
               end
-            end
-            if !@registro.save
-              flash[:errors] = @registro.errors.full_messages.to_sentence
             end
 
             update_gen
