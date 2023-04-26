@@ -39,7 +39,7 @@
       </div>
       <div class="col-2">
           <%= p.input :sexo, 
-            collection: [["F", :F], ["M", :M], ["S", :S]],
+            collection: Msip::Persona::sexo_opciones_cortas,
             label: false,
             include_blank: false %>
         <% end %>

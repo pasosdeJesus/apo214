@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-2">
           <% if asisreconocimiento.asistente %>
-            <%= best_in_place asisreconocimiento.asistente, :sexo, url: url_obj, param: param_bp, as: :select, collection: [["F", :F], ["M", :M], ["S", :S]] %> 
+            <%= best_in_place asisreconocimiento.asistente, :sexo, url: url_obj, param: param_bp, as: :select, collection: Msip::Persona::sexo_opciones_cortas %> 
           <% end %> 
         </div>
         <div class="col-md-4 text-center">
