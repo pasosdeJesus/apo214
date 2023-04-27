@@ -256,8 +256,8 @@ module Apo214
             mensaje_error = ""
             case tipo
             when 1
-              lat_wgs84_flot = params[:lat_wgs84_flot]
-              lon_wgs84_flot = params[:lon_wgs84_flot]
+              lat_wgs84_flot = params[:lat_wgs84_flot].to_f.to_s
+              lon_wgs84_flot = params[:lon_wgs84_flot].to_f.to_s
               punto = 'POINT('+ lon_wgs84_flot + " " + lat_wgs84_flot + ')'
               consl_sirgas = 'SELECT st_astext(st_transform( st_geometryfromtext(\''+ punto +'\', 4326), 3116) );'
               consl_on = 'SELECT st_astext(st_transform( st_geometryfromtext( 
@@ -280,27 +280,36 @@ module Apo214
               lat_gms = params[:lat_gms]
               lon_gms = params[:lon_gms]
             when 3
-              lat_sirgas = params[:lat_sirgas]
-              lon_sirgas = params[:lon_sirgas]
-              punto = 'POINT('+ lon_sirgas + " " + lat_sirgas + ')'
-              consl_wgs84 = 'SELECT st_astext(st_transform( st_geometryfromtext(\''+ punto +'\', 3116 ), 4326) );'
-              resultado_wgs84 = ActiveRecord::Base.connection.execute(consl_wgs84)
-              punto_wgs84 = resultado_wgs84.getvalue(0,0)
-              if punto_wgs84 == "POINT(inf inf)"
-                mensaje_error = "Valor ingresado no permitido"
-              else
-                consl_on = 'SELECT st_astext(st_transform( st_geometryfromtext( 
-                \''+ punto_wgs84 +'\', 4326 ), \'+proj=tmerc +ellps=GRS80 +lat_0=4 
-                +lon_0=-73 +k=0.9992 +x_0=5000000 +y_0=2000000 +units=m +no_defs\'
-                ::text) );'
-                resultado_on = ActiveRecord::Base.connection.execute(consl_on)
-                coor_wgs84 = resultado_wgs84.getvalue(0,0).slice(6..-2).split(" ")
-                coor_on = resultado_on.getvalue(0,0).slice(6..-2).split(" ")
-                consl_gms= 'SELECT (ST_AsLatLonText(\''+ punto_wgs84 +'\', \'D°M\'\'S.SSS\'\'C\'));'
-                resultado_gms = ActiveRecord::Base.connection.execute(consl_gms)
-                coor_gms = resultado_gms
-                coor_sirgas = punto.slice(6..-2).split(" ")
+              lat_sirgas = params[:lat_sirgas].to_f
+              lon_sirgas = params[:lon_sirgas].to_f
+              unless lat_sirgas.is_a?(Numeric) && lon_sirgas.is_a?(Numeric)
+                raise ArgumentError.new("Valor de latitud o longitud inválida") 
               end
+              punto = 'POINT('+ lon_sirgas.to_s + " " + lat_sirgas.to_s + ')'
+              consl_wgs84 = "SELECT st_astext(st_transform( 
+                st_geometryfromtext(
+                  #{ActiveRecord::Base.connection.quote(punto)}, 3116), 4326));"
+              resultado_wgs84 = ActiveRecord::Base.connection.
+                execute(consl_wgs84, punto)
+              punto_wgs84 = resultado_wgs84.getvalue(0,0)
+              consl_on = "SELECT st_astext(st_transform(
+                st_geometryfromtext(
+                  #{ActiveRecord::Base.connection.quote(punto_wgs84)},
+                  4326
+                ),
+                '+proj=tmerc +ellps=GRS80 +lat_0=4 +lon_0=-73 +k=0.9992 
+                 +x_0=5000000 +y_0=2000000 +units=m +no_defs' ::text
+                ));" 
+              resultado_on = ActiveRecord::Base.connection.execute(consl_on, 
+                                                                   punto_wgs84)
+              coor_wgs84 = resultado_wgs84.getvalue(0,0).slice(6..-2).split(" ")
+              coor_on = resultado_on.getvalue(0,0).slice(6..-2).split(" ")
+              consl_gms= "SELECT (ST_AsLatLonText(
+                #{ActiveRecord::Base.connection.quote(punto_wgs84)}, 
+                  'D°M''S.SSS''C'));"
+              resultado_gms = ActiveRecord::Base.connection.execute(consl_gms)
+              coor_gms = resultado_gms.getvalue(0,0)
+              coor_sirgas = punto.slice(6..-2).split(" ")
             end
             respond_to do |format|
               conversion = {
