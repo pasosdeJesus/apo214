@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: e6bd731480ca60c7cf06e5423c529a7835023d1c
+  revision: dea7b590b01568aa133546f29940db5fb574a2b8
   branch: main
   specs:
     msip (2.2.0.beta2)
@@ -66,7 +66,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 7758a3871468c69ea4d11ddc0631856b20011dbe
+  revision: 7a7fcae394fd4e4ac18cf2d2b6587e98926a3b55
   branch: main
   specs:
     sivel2_gen (2.2.0.beta2)
