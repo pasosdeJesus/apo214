@@ -1,4 +1,6 @@
-require 'apo214/concerns/models/elementopaisaje'
+# frozen_string_literal: true
+
+require "apo214/concerns/models/elementopaisaje"
 
 module Apo214
   class Elementopaisaje < ActiveRecord::Base

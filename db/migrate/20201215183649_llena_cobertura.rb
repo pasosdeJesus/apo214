@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class LlenaCobertura < ActiveRecord::Migration[6.0]
- def up
-    execute <<-SQL
+  def up
+    execute(<<-SQL)
       INSERT INTO public.apo214_cobertura (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at)
         VALUES (1, 'Potrero', null, '2020-12-15', null, '2020-12-15', '2020-12-15');
       INSERT INTO public.apo214_cobertura (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at)
@@ -14,7 +16,7 @@ class LlenaCobertura < ActiveRecord::Migration[6.0]
   end
 
   def down
-    execute <<-SQL
+    execute(<<-SQL)
       DELETE FROM public.apo214_cobertura WHERE id>='1' AND id<='4'
     SQL
   end

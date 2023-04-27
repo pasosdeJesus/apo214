@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "sivel2_gen/concerns/controllers/regiones_controller"
 
 module Apo214
@@ -15,8 +17,11 @@ module Apo214
         r = Sivel2Gen::Region.calcula_de_depmun(d, m)
         respond_to do |format|
           format.json do
-            render :json, inline: { region_id: r ? r.id : nil }.to_json,
-            status: :ok
+            render(
+              :json,
+              inline: { region_id: r ? r.id : nil }.to_json,
+              status: :ok,
+            )
           end
         end
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Apo214
   module Concerns
     module Models
@@ -5,9 +7,8 @@ module Apo214
         extend ActiveSupport::Concern
 
         included do
-          include Msip::Basica 
+          include Msip::Basica
         end # included
-
       end
     end
   end

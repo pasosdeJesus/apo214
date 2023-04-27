@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Apo214
   module Concerns
     module Controllers
@@ -6,9 +8,9 @@ module Apo214
 
         included do
           # Los siguientes deben ir en clase que incluya esta modulo
-          #before_action :set_asisreconocimiento,
+          # before_action :set_asisreconocimiento,
           #    only: [:show, :edit, :update, :destroy]
-          #load_and_authorize_resource class: Apo214::Asisreconocimiento,
+          # load_and_authorize_resource class: Apo214::Asisreconocimiento,
           #  except: [:index, :show]
           helper Msip::UbicacionHelper
           def registrar_en_bitacora
@@ -16,53 +18,54 @@ module Apo214
           end
 
           def clase
-            'Apo214::Asisreconocimiento'
+            "Apo214::Asisreconocimiento"
           end
 
-          def lista_params 
+          def lista_params
             [
               :organizacion,
               :persona_id,
-              :asistente_attributes => [
-                  :apellidos, 
-                  :nombres,
-                  :sexo
-                ]
+              asistente_attributes: [
+                :apellidos,
+                :nombres,
+                :sexo,
+              ],
             ]
           end
 
           def atributos_index
-            [ :organizacion
-            ]
+            [:organizacion]
           end
 
           def genclase
-            'M'
+            "M"
           end
 
           def atributos_show
             atributos_index +
-            [
-              # Otras
-              :created_at,
-              :updated_at
-            ]
+              [
+                # Otras
+                :created_at,
+                :updated_at,
+              ]
           end
 
           def new
             if params[:remplazarasistente]
               @persona = Msip::Persona.find(params[:persona_id])
-              @lugarpreliminar = Apo214::Lugarpreliminar.
-                find(params[:lugarpreliminar_id].to_i)
+              @lugarpreliminar = Apo214::Lugarpreliminar
+                .find(params[:lugarpreliminar_id].to_i)
               @asisreconocimiento = @lugarpreliminar.asisreconocimientos.new
-              #@asisreconocimiento.asistente = @persona
-              #@asisreconocimiento.organizacion = ''
-              #@asisreconocimiento.save! 
+              # @asisreconocimiento.asistente = @persona
+              # @asisreconocimiento.organizacion = ''
+              # @asisreconocimiento.save!
               respond_to do |format|
-                format.html {
-                  render("/apo214/lugarespreliminares/_form",
-                         layout: false)
-                }
+                format.html do
+                  render(
+                    "/apo214/lugarespreliminares/_form",
+                    layout: false,
+                  )
+                end
                 return
               end
             end
@@ -79,23 +82,27 @@ module Apo214
             respond_to do |format|
               if @asisreconocimiento.save
                 format.turbo_stream do
-                  render turbo_stream: [
-                    turbo_stream.append("asisreconocimientos", 
-                                        partial: "apo214/asisreconocimientos/asisreconocimiento",
-                                        locals: {asisreconocimiento: @asisreconocimiento})
-                  ]
+                  render(turbo_stream: [
+                    turbo_stream.append(
+                      "asisreconocimientos",
+                      partial: "apo214/asisreconocimientos/asisreconocimiento",
+                      locals: { asisreconocimiento: @asisreconocimiento },
+                    ),
+                  ])
                 end
 
-                format.html { redirect_to edit_lugarpreliminar_path(@lugarpreliminar) }
+                format.html { redirect_to(edit_lugarpreliminar_path(@lugarpreliminar)) }
               else
                 format.turbo_stream do
-                  render turbo_stream: [
-                    turbo_stream.update("new_asisreconocimiento", 
-                                        partial: "apo214/asisreconocimientos/form", 
-                                        locals: {asisreconocimiento: @asisreconocimiento})
-                  ]
+                  render(turbo_stream: [
+                    turbo_stream.update(
+                      "new_asisreconocimiento",
+                      partial: "apo214/asisreconocimientos/form",
+                      locals: { asisreconocimiento: @asisreconocimiento },
+                    ),
+                  ])
                 end
-                format.html { redirect_to edit_lugarpreliminar_path(@lugarpreliminar) }
+                format.html { redirect_to(edit_lugarpreliminar_path(@lugarpreliminar)) }
               end
             end
           end
@@ -109,9 +116,9 @@ module Apo214
             @asisreconocimiento = @lugarpreliminar.asisreconocimientos.find(params[:id])
             if @asisreconocimiento.update(asisreconocimiento_params)
               respond_to do |format|
-                format.turbo_stream { render turbo_stream: turbo_stream.replace(@asisreconocimiento) }
-                format.html { redirect_to url_for(@asisreconocimiento) }
-                format.json { render :json => @asisreconocimiento}
+                format.turbo_stream { render(turbo_stream: turbo_stream.replace(@asisreconocimiento)) }
+                format.html { redirect_to(url_for(@asisreconocimiento)) }
+                format.json { render(json: @asisreconocimiento) }
               end
             end
           end
@@ -121,8 +128,8 @@ module Apo214
             @asisreconocimiento.remove_from_list
             @asisreconocimiento.destroy!
             respond_to do |format|
-              format.turbo_stream { render turbo_stream: turbo_stream.remove(@asisreconocimiento) }
-              format.html { redirect_to @lugarpreliminar.asisreconocimientos }
+              format.turbo_stream { render(turbo_stream: turbo_stream.remove(@asisreconocimiento)) }
+              format.html { redirect_to(@lugarpreliminar.asisreconocimientos) }
             end
           end
 
@@ -131,9 +138,11 @@ module Apo214
             todos = asis.lugarpreliminar.asisreconocimientos.count
             nueva = (todos + 1) - params[:posicion].to_i
             asis.insert_at(nueva)
-            head :ok
+            head(:ok)
           end
+
           private
+
           # Use callbacks to share common setup or constraints between actions.
           def set_lugarpreliminar
             @lugarpreliminar = Apo214::Lugarpreliminar.find(params[:lugarpreliminar_id])
@@ -143,7 +152,6 @@ module Apo214
           def asisreconocimiento_params
             params.require(:asisreconocimiento).permit(lista_params)
           end
-
         end
       end
     end

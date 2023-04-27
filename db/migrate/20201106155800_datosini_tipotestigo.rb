@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class DatosiniTipotestigo < ActiveRecord::Migration[6.0]
   def up
-    execute <<-SQL
+    execute(<<-SQL)
       INSERT INTO public.apo214_tipotestigo (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at)
         VALUES (1, 'SIN INFORMACIÓN', null, '2020-11-06', null, '2020-11-06', '2020-11-06');
       INSERT INTO public.apo214_tipotestigo (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at)
@@ -14,7 +16,7 @@ class DatosiniTipotestigo < ActiveRecord::Migration[6.0]
   end
 
   def down
-    execute <<-SQL
+    execute(<<-SQL)
       DELETE FROM public.apo214_tipotestigo WHERE id>='1' AND id<='4'
     SQL
   end

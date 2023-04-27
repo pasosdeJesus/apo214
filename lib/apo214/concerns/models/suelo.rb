@@ -1,4 +1,6 @@
-require 'apo214/concerns/models/suelo'
+# frozen_string_literal: true
+
+require "apo214/concerns/models/suelo"
 
 module Apo214
   module Concerns
@@ -7,12 +9,8 @@ module Apo214
         extend ActiveSupport::Concern
 
         included do
-
-
         end
-
       end
     end
   end
 end
-

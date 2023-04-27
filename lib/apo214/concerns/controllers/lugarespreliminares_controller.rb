@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Apo214
   module Concerns
     module Controllers
@@ -6,9 +8,9 @@ module Apo214
 
         included do
           # Los siguientes deben ir en clase que incluya esta modulo
-          #before_action :set_lugarpreliminar,
+          # before_action :set_lugarpreliminar,
           #    only: [:show, :edit, :update, :destroy]
-          #load_and_authorize_resource class: Apo214::Lugarpreliminar,
+          # load_and_authorize_resource class: Apo214::Lugarpreliminar,
           #  except: [:index, :show]
           helper Msip::UbicacionHelper
 
@@ -17,11 +19,12 @@ module Apo214
           end
 
           def clase
-            'Apo214::Lugarpreliminar'
+            "Apo214::Lugarpreliminar"
           end
 
-          def lista_params 
-            [ :accesolugar,
+          def lista_params
+            [
+              :accesolugar,
               :archivokml_id,
               :codigositio,
               :cobertura_id,
@@ -58,8 +61,8 @@ module Apo214
               :telefono,
               :tipotestigo_id,
               :tipoentierro_id,
-              :ubicacionpre_id, 
-              :otrolubicacionpre_texto, 
+              :ubicacionpre_id,
+              :otrolubicacionpre_texto,
               :otrolubicacionpre_id,
               :ubicacionpre_clase_id,
               :ubicacionpre_departamento_id,
@@ -73,18 +76,18 @@ module Apo214
               :usoterprevios,
               :usoteractuales,
               :ubicaespecifica,
-              :archivokml_attributes => [
-                :id, :descripcion, :adjunto, :_destroy
+              archivokml_attributes: [
+                :id, :descripcion, :adjunto, :_destroy,
               ],
-              :infoanomalialugar_attributes => [
+              infoanomalialugar_attributes: [
                 :id,
                 :_destroy,
-                :infoanomalia_attributes => [
-                  :anomalia, 
+                infoanomalia_attributes: [
+                  :anomalia,
                   :descripcion,
                   :id,
-                  :latitud_localizado, 
-                  :longitud_localizado, 
+                  :latitud_localizado,
+                  :longitud_localizado,
                   :area,
                   :latitud_wgs84,
                   :longitud_wgs84,
@@ -100,85 +103,85 @@ module Apo214
                   :gra_lon,
                   :min_lon,
                   :seg_lon,
-                  :msip_anexo_attributes => [
-                    :id, :descripcion, :adjunto, :_destroy
-                  ]  
-                ]
+                  msip_anexo_attributes: [
+                    :id, :descripcion, :adjunto, :_destroy,
+                  ],
+                ],
               ],
 
-              :listaanexo_attributes => [
+              listaanexo_attributes: [
                 :id,
                 :lugarpreliminar_id,
                 :fecha,
                 :_destroy,
-                :msip_anexo_attributes => [
-                  :id, :descripcion, :adjunto, :_destroy
-                ]
+                msip_anexo_attributes: [
+                  :id, :descripcion, :adjunto, :_destroy,
+                ],
               ],
-              :listadepositados_attributes => [
+              listadepositados_attributes: [
                 :id,
                 :_destroy,
-                :personadepositada_attributes => [
-                  :apellidos, 
-                  :id, 
-                  :nombres, 
-                  :numerodocumento, 
-                  :sexo, 
+                personadepositada_attributes: [
+                  :apellidos,
+                  :id,
+                  :nombres,
+                  :numerodocumento,
+                  :sexo,
                   :tdocumento_id,
                   :anionac,
                   :mesnac,
-                  :dianac
-                ]
+                  :dianac,
+                ],
               ],
-              :listaevariesgo_attributes => [
+              listaevariesgo_attributes: [
                 :id,
                 :_destroy,
-                :evaluacionriesgo_attributes => [
+                evaluacionriesgo_attributes: [
                   :id,
                   :riesgo_id,
                   :calificacion,
-                  :descripcion
-                ]
+                  :descripcion,
+                ],
               ],
-              :listainfofoto_attributes => [
+              listainfofoto_attributes: [
                 :id,
                 :lugarpreliminar_id,
                 :fecha,
                 :_destroy,
-                :msip_anexo_attributes => [
-                  :id, :descripcion, :adjunto, :_destroy
-                ]
+                msip_anexo_attributes: [
+                  :id, :descripcion, :adjunto, :_destroy,
+                ],
               ],
-              :listapersofuentes_attributes => [
+              listapersofuentes_attributes: [
                 :id,
                 :telefono,
                 :observacion,
                 :_destroy,
-                :personafuente_attributes => [
-                  :apellidos, 
-                  :id, 
-                  :nombres, 
-                  :numerodocumento, 
-                  :sexo, 
+                personafuente_attributes: [
+                  :apellidos,
+                  :id,
+                  :nombres,
+                  :numerodocumento,
+                  :sexo,
                   :tdocumento_id,
                   :anionac,
                   :mesnac,
-                  :dianac
-                ]
+                  :dianac,
+                ],
               ],
-              :listasuelo_attributes => [
+              listasuelo_attributes: [
                 :id,
                 :_destroy,
-                :suelo_attributes => [
-                  :color, 
+                suelo_attributes: [
+                  :color,
                   :humedad,
                   :id,
-                  :profinicial, 
-                  :proffinal, 
-                  :textura 
-                  ]
+                  :profinicial,
+                  :proffinal,
+                  :textura,
+                ],
               ],
-              :persona_attributes => [
+              persona_attributes: [
                 :anionac,
                 :apellidos,
                 :dianac,
@@ -192,33 +195,33 @@ module Apo214
                 :nacionalde,
                 :numerodocumento,
                 :sexo,
-                :tdocumento_id
+                :tdocumento_id,
               ],
-              :propietario_attributes => [
+              propietario_attributes: [
                 :telefono,
                 :observaciones,
                 :id,
                 :persona_id,
                 :_destroy,
-                :personapropietario_attributes => [
+                personapropietario_attributes: [
                   :apellidos,
                   :id,
                   :nombres,
                   :numerodocumento,
                   :sexo,
-                  :tdocumento_id
-                ]
+                  :tdocumento_id,
+                ],
               ],
-              :propietario_ids => [],
-              :msip_anexo_attributes => [
-                :id, :descripcion, :adjunto, :_destroy
+              propietario_ids: [],
+              msip_anexo_attributes: [
+                :id, :descripcion, :adjunto, :_destroy,
               ],
-
             ]
           end
 
           def atributos_index
-            [ :id,
+            [
+              :id,
               :fecha,
               :codigositio,
               :nombreusuario,
@@ -227,16 +230,16 @@ module Apo214
           end
 
           def genclase
-            'M'
+            "M"
           end
 
           def atributos_show
             atributos_index +
-            [
-              # Otras
-              :created_at,
-              :updated_at
-            ]
+              [
+                # Otras
+                :created_at,
+                :updated_at,
+              ]
           end
 
           def coordenadas
@@ -249,33 +252,33 @@ module Apo214
             ## 4: de Origen nacional a los demás
             tipo = params[:tipo].to_i
             conversion = {}
-            coor_gms= '4°0\'0.000\'\'N 73°0\'0.000\'\'W'
-            coor_wgs84 = ['-73', '4']
-            coor_on = ['5000000', '2000000']
-            coor_sirgas = ['1119664.42733207', '934150.34391812']
+            coor_gms = "4°0'0.000''N 73°0'0.000''W"
+            coor_wgs84 = ["-73", "4"]
+            coor_on = ["5000000", "2000000"]
+            coor_sirgas = ["1119664.42733207", "934150.34391812"]
             mensaje_error = ""
             case tipo
             when 1
               lat_wgs84_flot = params[:lat_wgs84_flot].to_f.to_s
               lon_wgs84_flot = params[:lon_wgs84_flot].to_f.to_s
-              punto = 'POINT('+ lon_wgs84_flot + " " + lat_wgs84_flot + ')'
-              consl_sirgas = 'SELECT st_astext(st_transform( st_geometryfromtext(\''+ punto +'\', 4326), 3116) );'
-              consl_on = 'SELECT st_astext(st_transform( st_geometryfromtext( 
-              \''+ punto +'\', 4326 ), \'+proj=tmerc +ellps=GRS80 +lat_0=4 
+              punto = "POINT(" + lon_wgs84_flot + " " + lat_wgs84_flot + ")"
+              consl_sirgas = "SELECT st_astext(st_transform( st_geometryfromtext('" + punto + "', 4326), 3116) );"
+              consl_on = 'SELECT st_astext(st_transform( st_geometryfromtext(
+              \'' + punto + '\', 4326 ), \'+proj=tmerc +ellps=GRS80 +lat_0=4
               +lon_0=-73 +k=0.9992 +x_0=5000000 +y_0=2000000 +units=m +no_defs\'
               ::text) );'
               resultado_sirgas = ActiveRecord::Base.connection.execute(consl_sirgas)
               resultado_on = ActiveRecord::Base.connection.execute(consl_on)
-              if resultado_sirgas.getvalue(0,0) == "POINT(inf inf)"
+              if resultado_sirgas.getvalue(0, 0) == "POINT(inf inf)"
                 mensaje_error = "Valor ingresado no permitido"
               else
-                consl_gms= 'SELECT (ST_AsLatLonText(\''+ punto +'\', \'D°M\'\'S.SSS\'\'C\'));'
+                consl_gms = "SELECT (ST_AsLatLonText('" + punto + "', 'D°M''S.SSS''C'));"
                 resultado_gms = ActiveRecord::Base.connection.execute(consl_gms)
                 coor_wgs84 = punto.slice(6..-2).split(" ")
-                coor_gms = resultado_gms.getvalue(0,0)
-                coor_on = resultado_on.getvalue(0,0).slice(6..-2).split(" ")
-                coor_sirgas = resultado_sirgas.getvalue(0,0).slice(6..-2).split(" ")
-              end 
+                coor_gms = resultado_gms.getvalue(0, 0)
+                coor_on = resultado_on.getvalue(0, 0).slice(6..-2).split(" ")
+                coor_sirgas = resultado_sirgas.getvalue(0, 0).slice(6..-2).split(" ")
+              end
             when 2
               lat_gms = params[:lat_gms]
               lon_gms = params[:lon_gms]
@@ -283,130 +286,137 @@ module Apo214
               lat_sirgas = params[:lat_sirgas].to_f
               lon_sirgas = params[:lon_sirgas].to_f
               unless lat_sirgas.is_a?(Numeric) && lon_sirgas.is_a?(Numeric)
-                raise ArgumentError.new("Valor de latitud o longitud inválida") 
+                raise ArgumentError, "Valor de latitud o longitud inválida"
               end
-              punto = 'POINT('+ lon_sirgas.to_s + " " + lat_sirgas.to_s + ')'
-              consl_wgs84 = "SELECT st_astext(st_transform( 
+
+              punto = "POINT(" + lon_sirgas.to_s + " " + lat_sirgas.to_s + ")"
+              consl_wgs84 = "SELECT st_astext(st_transform(
                 st_geometryfromtext(
                   #{ActiveRecord::Base.connection.quote(punto)}, 3116), 4326));"
-              resultado_wgs84 = ActiveRecord::Base.connection.
-                execute(consl_wgs84, punto)
-              punto_wgs84 = resultado_wgs84.getvalue(0,0)
+              resultado_wgs84 = ActiveRecord::Base.connection
+                .execute(consl_wgs84, punto)
+              punto_wgs84 = resultado_wgs84.getvalue(0, 0)
               consl_on = "SELECT st_astext(st_transform(
                 st_geometryfromtext(
                   #{ActiveRecord::Base.connection.quote(punto_wgs84)},
                   4326
                 ),
-                '+proj=tmerc +ellps=GRS80 +lat_0=4 +lon_0=-73 +k=0.9992 
+                '+proj=tmerc +ellps=GRS80 +lat_0=4 +lon_0=-73 +k=0.9992
                  +x_0=5000000 +y_0=2000000 +units=m +no_defs' ::text
-                ));" 
-              resultado_on = ActiveRecord::Base.connection.execute(consl_on, 
-                                                                   punto_wgs84)
-              coor_wgs84 = resultado_wgs84.getvalue(0,0).slice(6..-2).split(" ")
-              coor_on = resultado_on.getvalue(0,0).slice(6..-2).split(" ")
-              consl_gms= "SELECT (ST_AsLatLonText(
-                #{ActiveRecord::Base.connection.quote(punto_wgs84)}, 
+                ));"
+              resultado_on = ActiveRecord::Base.connection.execute(
+                consl_on,
+                punto_wgs84,
+              )
+              coor_wgs84 = resultado_wgs84.getvalue(0, 0).slice(6..-2).split(" ")
+              coor_on = resultado_on.getvalue(0, 0).slice(6..-2).split(" ")
+              consl_gms = "SELECT (ST_AsLatLonText(
+                #{ActiveRecord::Base.connection.quote(punto_wgs84)},
                   'D°M''S.SSS''C'));"
               resultado_gms = ActiveRecord::Base.connection.execute(consl_gms)
-              coor_gms = resultado_gms.getvalue(0,0)
+              coor_gms = resultado_gms.getvalue(0, 0)
               coor_sirgas = punto.slice(6..-2).split(" ")
             end
             respond_to do |format|
               conversion = {
                 gms: coor_gms,
-                wgs84: coor_wgs84.map{|cc| cc.to_f.round(6).to_s},
-                sirgas: coor_sirgas.map{|cc| cc.to_f.round(6).to_s},
-                on: coor_on.map{|cc| cc.to_f.round(6).to_s},
-                mensaje_error: mensaje_error
+                wgs84: coor_wgs84.map { |cc| cc.to_f.round(6).to_s },
+                sirgas: coor_sirgas.map { |cc| cc.to_f.round(6).to_s },
+                on: coor_on.map { |cc| cc.to_f.round(6).to_s },
+                mensaje_error: mensaje_error,
               }
-              format.json { render json: conversion, status: :ok }
-              format.html { render inilne: conversion.to_s, status: :ok }
+              format.json { render(json: conversion, status: :ok) }
+              format.html { render(inilne: conversion.to_s, status: :ok) }
             end
           end
 
           def new
             @registro = @lugarpreliminar = Apo214::Lugarpreliminar.new
             @registro.propietario = Apo214::Propietario.new
-            Apo214::Riesgo.all.each do |ri|
+            Apo214::Riesgo.all.each do |_ri|
               @lugarpreliminar.evaluacionriesgo.new
             end
             @registro.save!(validate: false)
-            redirect_to apo214.edit_lugarpreliminar_path(@registro), turbo: true
+            redirect_to(apo214.edit_lugarpreliminar_path(@registro), turbo: true)
           end
 
           def update
             if lugarpreliminar_params &&
                 lugarpreliminar_params[:propietario_attributes]
               if lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i > 0 &&
-                Msip::Persona.where(
-                  id: lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i).count == 1
-                  @registro.propietario.persona_id = lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i
-                  @registro.propietario.save!(validate: false)
+                  Msip::Persona.where(
+                    id: lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i,
+                  ).count == 1
+                @registro.propietario.persona_id = lugarpreliminar_params[:propietario_attributes][:personapropietario_attributes][:id].to_i
+                @registro.propietario.save!(validate: false)
               end
             end
-            # Ubicamos los de autocompletacion y para esos creamos un registro 
-            if lugarpreliminar_params && 
+            # Ubicamos los de autocompletacion y para esos creamos un registro
+            if lugarpreliminar_params &&
                 lugarpreliminar_params[:persona_attributes][:id].to_i > 0 &&
                 Msip::Persona.where(
-                  id: lugarpreliminar_params[:persona_attributes][:id].to_i).
-                  count == 1
-              @lugarpreliminar.
-                persona_id = lugarpreliminar_params[:persona_attributes][:id]
+                  id: lugarpreliminar_params[:persona_attributes][:id].to_i,
+                )
+                    .count == 1
+              @lugarpreliminar
+                .persona_id = lugarpreliminar_params[:persona_attributes][:id]
               params[:lugarpreliminar][:persona_id] = @lugarpreliminar
-                 .persona_id
+                .persona_id
               @lugarpreliminar.save!(validate: false)
             else
-              persona = Msip::Persona.
-                new(lugarpreliminar_params[:persona_attributes])
+              persona = Msip::Persona
+                .new(lugarpreliminar_params[:persona_attributes])
               if persona.save
-               persona.save!
-               @lugarpreliminar.persona_id = persona.id
+                persona.save!
+                @lugarpreliminar.persona_id = persona.id
               end
             end
             if lugarpreliminar_params[:listadepositados_attributes]
               lugarpreliminar_params[:listadepositados_attributes].each do |a|
                 # Ubicamos los de autocompletacion
-                if a[1] && a[1][:id].nil? &&
-                    a[1][:personadepositada_attributes] && 
-                    a[1][:personadepositada_attributes][:id] &&
-                    a[1][:personadepositada_attributes][:id].to_i > 0 &&
-                    Msip::Persona.where(
-                      id: a[1][:personadepositada_attributes][:id].to_i)
-                        .count == 1
-                  ld = Apo214::Listadepositados.create(
-                    lugarpreliminar_id: @lugarpreliminar.id,
-                    persona_id: a[1][:personadepositada_attributes][:id]
+                next unless a[1] && a[1][:id].nil? &&
+                  a[1][:personadepositada_attributes] &&
+                  a[1][:personadepositada_attributes][:id] &&
+                  a[1][:personadepositada_attributes][:id].to_i > 0 &&
+                  Msip::Persona.where(
+                    id: a[1][:personadepositada_attributes][:id].to_i,
                   )
-                  ld.save!(validate: false)
-                  params[:lugarpreliminar][:listadepositados_attributes][a[0].
-                    to_s][:id] = ld.id
-                end
+                    .count == 1
+
+                ld = Apo214::Listadepositados.create(
+                  lugarpreliminar_id: @lugarpreliminar.id,
+                  persona_id: a[1][:personadepositada_attributes][:id],
+                )
+                ld.save!(validate: false)
+                params[:lugarpreliminar][:listadepositados_attributes][a[0]
+                  .to_s][:id] = ld.id
               end
             end
             if lugarpreliminar_params[:listapersofuentes_attributes]
               lugarpreliminar_params[:listapersofuentes_attributes].each do |a|
                 # Ubicamos los de autocompletacion
-                if a[1] && a[1][:id].nil? &&
-                    a[1][:personafuente_attributes] && 
-                    a[1][:personafuente_attributes][:id] &&
-                    a[1][:personafuente_attributes][:id].to_i > 0 &&
-                    Msip::Persona.where(
-                      id: a[1][:personafuente_attributes][:id].to_i).count == 1
-                  lp = Apo214::Listapersofuentes.create(
-                    lugarpreliminar_id: @lugarpreliminar.id,
-                    persona_id: a[1][:personafuente_attributes][:id]
-                  )
-                  lp.save!(validate: false)
-                  params[:lugarpreliminar][:listapersofuentes_attributes][a[0].
-                    to_s][:id] = lp.id
-                end
+                next unless a[1] && a[1][:id].nil? &&
+                  a[1][:personafuente_attributes] &&
+                  a[1][:personafuente_attributes][:id] &&
+                  a[1][:personafuente_attributes][:id].to_i > 0 &&
+                  Msip::Persona.where(
+                    id: a[1][:personafuente_attributes][:id].to_i,
+                  ).count == 1
+
+                lp = Apo214::Listapersofuentes.create(
+                  lugarpreliminar_id: @lugarpreliminar.id,
+                  persona_id: a[1][:personafuente_attributes][:id],
+                )
+                lp.save!(validate: false)
+                params[:lugarpreliminar][:listapersofuentes_attributes][a[0]
+                  .to_s][:id] = lp.id
               end
             end
 
             # Procesar ubicacionespre de migracion
-            if lugarpreliminar_params[:ubicacionpre_pais_id] && 
+            if lugarpreliminar_params[:ubicacionpre_pais_id] &&
                 lugarpreliminar_params[:ubicacionpre_pais_id] != ""
-              @registro.ubicacionpre_id = Msip::Ubicacionpre::buscar_o_agregar(
+              @registro.ubicacionpre_id = Msip::Ubicacionpre.buscar_o_agregar(
                 lugarpreliminar_params[:ubicacionpre_pais_id],
                 lugarpreliminar_params[:ubicacionpre_departamento_id],
                 lugarpreliminar_params[:ubicacionpre_municipio_id],
@@ -414,10 +424,10 @@ module Apo214
                 lugarpreliminar_params[:ubicacionpre_lugar],
                 lugarpreliminar_params[:ubicacionpre_sitio],
                 lugarpreliminar_params[:ubicacionpre_tsitio_id],
-                lugarpreliminar_params[:ubicacionpre_latitud_localizado].
-                  a_decimal_nolocalizado, 
-                lugarpreliminar_params[:ubicacionpre_longitud_localizado].
-                  a_decimal_nolocalizado
+                lugarpreliminar_params[:ubicacionpre_latitud_localizado]
+                  .a_decimal_nolocalizado,
+                lugarpreliminar_params[:ubicacionpre_longitud_localizado]
+                  .a_decimal_nolocalizado,
               )
               begin
                 @registro.save!(validate: false)
@@ -429,26 +439,25 @@ module Apo214
           end
 
           def new_modelo_path(o)
-            return new_lugarpreliminar_path()
+            new_lugarpreliminar_path
           end
 
           def vistas_manejadas
-             return ['Lugarpreliminar']
+            ["Lugarpreliminar"]
           end
 
           private
 
           def set_lugarpreliminar
-            @registro = @basica = @lugarpreliminar = 
-              Apo214::Lugarpreliminar.find(
-                Lugarpreliminar.connection.quote_string(params[:id]).to_i
-            )
+            @registro = @basica = @lugarpreliminar =
+                          Apo214::Lugarpreliminar.find(
+                            Lugarpreliminar.connection.quote_string(params[:id]).to_i,
+                          )
           end
 
           # No confiar parametros a Internet, sólo permitir lista blanca
           def lugarpreliminar_params
             params.require(:lugarpreliminar).permit(lista_params)
-
           end
         end
       end

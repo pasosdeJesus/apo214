@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 module Apo214
   module Admin
     class TiposentierroController < Msip::Admin::BasicasController
-      before_action :set_tipoentierro, 
+      before_action :set_tipoentierro,
         only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource  class: Apo214::Tipoentierro
+      load_and_authorize_resource class: Apo214::Tipoentierro
 
-      def clase 
+      def clase
         "Apo214::Tipoentierro"
       end
 
@@ -14,13 +16,12 @@ module Apo214
       end
 
       def genclase
-        'M'
+        "M"
       end
 
       def tipoentierro_params
         params.require(:tipoentierro).permit(*atributos_form)
       end
-
     end
   end
 end

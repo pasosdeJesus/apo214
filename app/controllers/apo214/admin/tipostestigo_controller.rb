@@ -1,36 +1,37 @@
+# frozen_string_literal: true
+
 module Apo214
   module Admin
     class TipostestigoController < Msip::Admin::BasicasController
-      before_action :set_tipotestigo, 
+      before_action :set_tipotestigo,
         only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource  class: Apo214::Tipotestigo
-  
-      def clase 
+      load_and_authorize_resource class: Apo214::Tipotestigo
+
+      def clase
         "Apo214::Tipotestigo"
       end
-  
+
       def set_tipotestigo
         @basica = Tipotestigo.find(params[:id])
       end
-  
+
       def atributos_index
         [
-          :id, 
-          :nombre, 
-          :observaciones, 
-          :fechacreacion_localizada, 
-          :habilitado
+          :id,
+          :nombre,
+          :observaciones,
+          :fechacreacion_localizada,
+          :habilitado,
         ]
       end
-  
+
       def genclase
-        'M'
+        "M"
       end
-  
+
       def tipotestigo_params
         params.require(:tipotestigo).permit(*atributos_form)
       end
-  
     end
   end
 end

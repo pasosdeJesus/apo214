@@ -1,4 +1,6 @@
-require 'apo214/concerns/models/listapersofuentes.rb'
+# frozen_string_literal: true
+
+require "apo214/concerns/models/listapersofuentes.rb"
 
 module Apo214
   class Listapersofuentes < ActiveRecord::Base

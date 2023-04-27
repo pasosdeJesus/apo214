@@ -1,4 +1,6 @@
-require 'apo214/concerns/models/listadepositados.rb'
+# frozen_string_literal: true
+
+require "apo214/concerns/models/listadepositados.rb"
 
 module Apo214
   class Listadepositados < ActiveRecord::Base

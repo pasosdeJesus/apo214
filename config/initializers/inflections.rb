@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Be sure to restart your server when you modify this file.
 
 # Add new inflection rules using the following format. Inflections
@@ -15,14 +17,14 @@
 #   inflect.acronym 'RESTful'
 # end
 ActiveSupport::Inflector.inflections do |inflect|
-  inflect.irregular 'listadepositados', 'listasdepositados'
-  inflect.irregular 'elementopaisaje', 'elementospaisaje'
-  inflect.irregular 'evaluacionriesgo', 'evaluacionesriesgo'
-  inflect.irregular 'tipotestigo', 'tipostestigo'
-  inflect.irregular 'listapersofuentes', 'listaspersofuentes'
-  inflect.irregular 'listaevariesgo', 'listasevariesgo'
-  inflect.irregular 'tipotestigo', 'tipostestigo'
-  inflect.irregular 'disposicioncadaveres', 'disposicionescadaveres'
-  inflect.irregular 'lugarpreliminar', 'lugarespreliminares'
-  inflect.irregular 'tipoentierro', 'tiposentierro'
+  inflect.irregular("listadepositados", "listasdepositados")
+  inflect.irregular("elementopaisaje", "elementospaisaje")
+  inflect.irregular("evaluacionriesgo", "evaluacionesriesgo")
+  inflect.irregular("tipotestigo", "tipostestigo")
+  inflect.irregular("listapersofuentes", "listaspersofuentes")
+  inflect.irregular("listaevariesgo", "listasevariesgo")
+  inflect.irregular("tipotestigo", "tipostestigo")
+  inflect.irregular("disposicioncadaveres", "disposicionescadaveres")
+  inflect.irregular("lugarpreliminar", "lugarespreliminares")
+  inflect.irregular("tipoentierro", "tiposentierro")
 end

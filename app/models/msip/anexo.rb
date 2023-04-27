@@ -1,4 +1,6 @@
-require 'apo214/concerns/models/anexo'
+# frozen_string_literal: true
+
+require "apo214/concerns/models/anexo"
 
 module Msip
   class Anexo < ActiveRecord::Base

@@ -1,5 +1,7 @@
-require 'sivel2_gen/concerns/controllers/personas_controller'
-require 'date'
+# frozen_string_literal: true
+
+require "sivel2_gen/concerns/controllers/personas_controller"
+require "date"
 
 module Apo214
   module Concerns
@@ -35,20 +37,22 @@ module Apo214
 
           def remplazar_antes_salvar_v
             true
-          end 
+          end
 
           def remplazar_despues_salvar_v
             true
-          end 
+          end
 
           def remplazar_apo214
             @persona = Msip::Persona.find(params[:persona_id])
             respond_to do |format|
-              format.html {
-                render("/msip/personas/remplazarpersona",
-                       layout: false)
+              format.html do
+                render(
+                  "/msip/personas/remplazarpersona",
+                  layout: false,
+                )
                 return
-              }
+              end
             end
           end
 
@@ -57,11 +61,13 @@ module Apo214
             @listadepositados = id_listadepositados
             @persona = Msip::Persona.find(params[:persona_id])
             respond_to do |format|
-              format.html {
-                render("/msip/personas/remplazardepositado",
-                       layout: false)
+              format.html do
+                render(
+                  "/msip/personas/remplazardepositado",
+                  layout: false,
+                )
                 return
-              }
+              end
             end
           end
 
@@ -70,16 +76,16 @@ module Apo214
             @listapersofuentes = id_otrafuente
             @persona = Msip::Persona.find(params[:persona_id])
             respond_to do |format|
-              format.html {
-                render("/msip/personas/remplazarotrafuente",
-                       layout: false)
+              format.html do
+                render(
+                  "/msip/personas/remplazarotrafuente",
+                  layout: false,
+                )
                 return
-              }
+              end
             end
           end
-
         end # included
-
 
         class_methods do
         end # class_methods

@@ -1,4 +1,6 @@
-require 'apo214/concerns/models/disposicioncadaveres'
+# frozen_string_literal: true
+
+require "apo214/concerns/models/disposicioncadaveres"
 
 module Apo214
   class Disposicioncadaveres < ActiveRecord::Base

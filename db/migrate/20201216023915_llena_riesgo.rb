@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class LlenaRiesgo < ActiveRecord::Migration[6.0]
   def up
-    execute <<-SQL
+    execute(<<-SQL)
       INSERT INTO public.apo214_riesgo (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at)
         VALUES (1, 'Presencia de grupos armados al margen de la ley (GAI)', null, '2020-12-15', null, '2020-12-15', '2020-12-15');
       INSERT INTO public.apo214_riesgo (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at)
@@ -20,7 +22,7 @@ class LlenaRiesgo < ActiveRecord::Migration[6.0]
   end
 
   def down
-    execute <<-SQL
+    execute(<<-SQL)
       DELETE FROM public.apo214_riesgo WHERE id>='1' AND id<='7'
     SQL
   end

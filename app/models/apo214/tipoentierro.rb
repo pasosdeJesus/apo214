@@ -1,4 +1,6 @@
-require 'apo214/concerns/models/tipoentierro'
+# frozen_string_literal: true
+
+require "apo214/concerns/models/tipoentierro"
 
 module Apo214
   class Tipoentierro < ActiveRecord::Base

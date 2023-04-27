@@ -1,8 +1,9 @@
-require 'apo214/concerns/controllers/asisreconocimientos_controller'
+# frozen_string_literal: true
+
+require "apo214/concerns/controllers/asisreconocimientos_controller"
 
 module Apo214
-  class AsisreconocimientosController < Msip::ModelosController 
-
+  class AsisreconocimientosController < Msip::ModelosController
     before_action :set_lugarpreliminar
     load_and_authorize_resource class: Apo214::Asisreconocimiento,
       except: [:index, :show, :update]

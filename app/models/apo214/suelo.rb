@@ -1,4 +1,6 @@
-require 'apo214/concerns/models/suelo'
+# frozen_string_literal: true
+
+require "apo214/concerns/models/suelo"
 
 module Apo214
   class Suelo < ActiveRecord::Base

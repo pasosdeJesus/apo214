@@ -1,4 +1,6 @@
-$:.push File.expand_path("lib", __dir__)
+# frozen_string_literal: true
+
+$:.push(File.expand_path("lib", __dir__))
 
 # Maintain your gem's version:
 require "apo214/version"
@@ -23,8 +25,8 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "LICENSE.md", "Rakefile", "README.md"]
 
-  spec.add_dependency "rails"
-  spec.add_dependency "msip"
+  spec.add_dependency("msip")
+  spec.add_dependency("rails")
 
-  spec.add_development_dependency "pg"
+  spec.add_development_dependency("pg")
 end

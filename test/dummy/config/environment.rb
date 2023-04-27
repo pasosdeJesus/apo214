@@ -1,7 +1,9 @@
-# Carga aplicación Rails
-require_relative 'application'
+# frozen_string_literal: true
 
-ActiveRecord::Base.pluralize_table_names=false
+# Carga aplicación Rails
+require_relative "application"
+
+ActiveRecord::Base.pluralize_table_names = false
 
 # Inicializa aplicación Rails
 Rails.application.initialize!

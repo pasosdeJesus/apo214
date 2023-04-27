@@ -1,4 +1,6 @@
-require 'apo214/concerns/models/infoanomalia'
+# frozen_string_literal: true
+
+require "apo214/concerns/models/infoanomalia"
 
 module Apo214
   class Infoanomalia < ActiveRecord::Base

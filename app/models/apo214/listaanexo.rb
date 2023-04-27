@@ -1,4 +1,6 @@
-require 'apo214/concerns/models/listaanexo.rb'
+# frozen_string_literal: true
+
+require "apo214/concerns/models/listaanexo.rb"
 
 module Apo214
   class Listaanexo < ActiveRecord::Base

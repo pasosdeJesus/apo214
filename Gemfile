@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # development dependencies will be added by default to the :development group.
@@ -14,9 +16,10 @@ gem "best_in_place", git: "https://github.com/mmotherwell/best_in_place"
 
 gem "bootsnap", ">=1.1.0", require: false
 
-gem "cancancan"                   # Control de acceso
+gem "cancancan" # Control de acceso
 
-gem "cocoon", git: "https://github.com/vtamara/cocoon.git",
+gem "cocoon",
+  git: "https://github.com/vtamara/cocoon.git",
   branch: "new_id_with_ajax" # Formularios anidados (algunos con ajax)
 
 gem "coffee-rails" # CoffeeScript para recuersos .js.coffee y vistas
@@ -31,7 +34,7 @@ gem "jbuilder" # API JSON facil. Ver: https://github.com/rails/jbuilder
 
 gem "jsbundling-rails"
 
-gem "kt-paperclip",                 # Anexos
+gem "kt-paperclip", # Anexos
   git: "https://github.com/kreeti/kt-paperclip.git"
 
 gem "libxml-ruby"
@@ -40,7 +43,7 @@ gem "odf-report" # Genera ODT
 
 gem "prawn" # Generación de PDF
 
-gem "prawnto_2",  :require => "prawnto"
+gem "prawnto_2", require: "prawnto"
 
 gem "prawn-table"
 
@@ -56,7 +59,7 @@ gem "rubyzip", ">= 2.0"
 
 gem "sassc-rails" # Hojas de estilo con SCSS
 
-gem "simple_form"   # Formularios
+gem "simple_form" # Formularios
 
 gem "sprockets-rails"
 
@@ -64,34 +67,37 @@ gem "stimulus-rails"
 
 gem "turbo-rails", "~> 1.0"
 
-gem "twitter_cldr"               # Localiación e internacionalización
+gem "twitter_cldr" # Localiación e internacionalización
 
 gem "tzinfo" # Zonas horarias
 
 gem "will_paginate" # Listados en páginas
-
 
 #####
 # Motores que se sobrecargan vistas (deben ponerse en orden de apilamiento
 # lógico y no alfabetico como las gemas anteriores)
 
 gem "msip", # Motor generico
-  git: "https://gitlab.com/pasosdeJesus/msip.git", branch: 'main'
-  #path: "../msip"
+  git: "https://gitlab.com/pasosdeJesus/msip.git",
+  branch: "main"
+# path: "../msip"
 
 gem "mr519_gen", # Motor de gestion de formularios y encuestas
-  git: "https://gitlab.com/pasosdeJesus/mr519_gen.git", branch: 'main'
-  #path: "../mr519_gen"
+  git: "https://gitlab.com/pasosdeJesus/mr519_gen.git",
+  branch: "main"
+# path: "../mr519_gen"
 
-gem "heb412_gen",  # Motor de nube y llenado de plantillas
-  git: "https://gitlab.com/pasosdeJesus/heb412_gen.git", branch: 'main'
-  #path: "../heb412_gen"
+gem "heb412_gen", # Motor de nube y llenado de plantillas
+  git: "https://gitlab.com/pasosdeJesus/heb412_gen.git",
+  branch: "main"
+# path: "../heb412_gen"
 
-gem "sivel2_gen",  # Motor de nube y llenado de plantillas
-  git: "https://gitlab.com/pasosdeJesus/sivel2_gen.git", branch: 'main'
-  #path: "../sivel2_gen-msip"
+gem "sivel2_gen", # Motor de nube y llenado de plantillas
+  git: "https://gitlab.com/pasosdeJesus/sivel2_gen.git",
+  branch: "main"
+# path: "../sivel2_gen-msip"
 
-group  :development, :test do
+group :development, :test do
   gem "brakeman"
 
   gem "bundler-audit"
@@ -99,7 +105,7 @@ group  :development, :test do
   gem "code-scanning-rubocop"
 
   gem "colorize" # Colores en terminal
-  
+
   gem "debug" # Depurar
 
   gem "dotenv-rails"
@@ -111,9 +117,7 @@ group  :development, :test do
   gem "rubocop-shopify"
 end
 
-
 group :development do
-
   gem "erd"
 
   gem "puma"
@@ -123,9 +127,7 @@ group :development do
   gem "spring" # Acelera ejecutando en fondo.
 
   gem "web-console"
-
 end
-
 
 group :test do
   gem "cuprite"
@@ -136,5 +138,3 @@ group :test do
 
   gem "simplecov"
 end
-
-

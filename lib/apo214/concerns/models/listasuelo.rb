@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Apo214
   module Concerns
     module Models
@@ -5,14 +7,17 @@ module Apo214
         extend ActiveSupport::Concern
 
         included do
-          include Msip::Modelo 
+          include Msip::Modelo
 
-          belongs_to :lugarpreliminar, class_name: 'Apo214::Lugarpreliminar',
-            validate: true, foreign_key: 'lugarpreliminar_id', optional: false
-          belongs_to :suelo, class_name: 'Apo214::Suelo', validate: true,
-            foreign_key: 'suelo_id', optional: false
+          belongs_to :lugarpreliminar,
+            class_name: "Apo214::Lugarpreliminar",
+            validate: true,
+            optional: false
+          belongs_to :suelo,
+            class_name: "Apo214::Suelo",
+            validate: true,
+            optional: false
           accepts_nested_attributes_for :suelo, reject_if: :all_blank
-
         end # included
       end
     end

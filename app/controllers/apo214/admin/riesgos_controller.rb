@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 module Apo214
   module Admin
     class RiesgosController < Msip::Admin::BasicasController
-      before_action :set_riesgo, 
+      before_action :set_riesgo,
         only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource  class: Apo214::Riesgo
+      load_and_authorize_resource class: Apo214::Riesgo
 
-      def clase 
+      def clase
         "Apo214::Riesgo"
       end
 
@@ -15,22 +17,21 @@ module Apo214
 
       def atributos_index
         [
-          :id, 
-          :nombre, 
-          :observaciones, 
-          :fechacreacion_localizada, 
-          :habilitado
+          :id,
+          :nombre,
+          :observaciones,
+          :fechacreacion_localizada,
+          :habilitado,
         ]
       end
 
       def genclase
-        'M'
+        "M"
       end
 
       def riesgo_params
         params.require(:riesgo).permit(*atributos_form)
       end
-
     end
   end
 end

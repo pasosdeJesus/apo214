@@ -1,4 +1,6 @@
-require 'apo214/concerns/models/evaluacionriesgo'
+# frozen_string_literal: true
+
+require "apo214/concerns/models/evaluacionriesgo"
 
 module Apo214
   class Evaluacionriesgo < ActiveRecord::Base
