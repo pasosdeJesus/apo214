@@ -110,7 +110,7 @@ module Apo214
             if @asisreconocimiento.update(asisreconocimiento_params)
               respond_to do |format|
                 format.turbo_stream { render turbo_stream: turbo_stream.replace(@asisreconocimiento) }
-                format.html { redirect_to @asisreconocimiento }
+                format.html { redirect_to url_for(@asisreconocimiento) }
                 format.json { render :json => @asisreconocimiento}
               end
             end
