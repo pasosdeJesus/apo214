@@ -9,6 +9,7 @@ Apo214::Engine.routes.draw do
     end
   end
   get "/personas/remplazar" => "/msip/personas#remplazar"
+  get "/remplazaraportante" => "/msip/personas#remplazaraportante"
   get "/remplazardepositado" => "/msip/personas#remplazardepositado"
   get "/remplazarotrafuente" => "/msip/personas#remplazarotrafuente"
   get "/lugp/coordenadas" => "lugarespreliminares#coordenadas"
