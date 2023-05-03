@@ -43,16 +43,14 @@ module Apo214
             true
           end
 
-          def remplazar_apo214
-            @persona = Msip::Persona.find(params[:persona_id])
+          def remplazaraportante
+            @persona = Msip::Persona.find(params[:persona_id].to_i)
             respond_to do |format|
-              format.html do
-                render(
-                  "/msip/personas/remplazarpersona",
-                  layout: false,
-                )
+              format.html {
+                render("/apo214/lugarespreliminares/remplazarpersona",
+                       layout: false)
                 return
-              end
+              }
             end
           end
 
@@ -61,13 +59,11 @@ module Apo214
             @listadepositados = id_listadepositados
             @persona = Msip::Persona.find(params[:persona_id])
             respond_to do |format|
-              format.html do
-                render(
-                  "/msip/personas/remplazardepositado",
-                  layout: false,
-                )
+              format.html {
+                render("/msip/personas/remplazardepositado",
+                       layout: false)
                 return
-              end
+              }
             end
           end
 
@@ -76,13 +72,11 @@ module Apo214
             @listapersofuentes = id_otrafuente
             @persona = Msip::Persona.find(params[:persona_id])
             respond_to do |format|
-              format.html do
-                render(
-                  "/msip/personas/remplazarotrafuente",
-                  layout: false,
-                )
+              format.html {
+                render("/msip/personas/remplazarotrafuente",
+                       layout: false)
                 return
-              end
+              }
             end
           end
         end # included
