@@ -17,11 +17,11 @@
         <th></th>
       </tr>
     </thead>
-   <tbody id="listadepositados">
-      <% if f.object.listadepositados.empty? %>
-        <% f.object.listadepositados.push(Apo214::Listadepositados.new) %>
+   <tbody id="listadepositado">
+      <% if f.object.listadepositado.empty? %>
+        <% f.object.listadepositado.push(Apo214::Listadepositado.new) %>
       <% end %>
-    <%= f.simple_fields_for :listadepositados, include_id: false do |ld| %>
+    <%= f.simple_fields_for :listadepositado, include_id: false do |ld| %>
       <tr class='nested-fields filapersona campos_depositado'>
           <% if !ld.object.personadepositada %>
             <% ld.object.personadepositada = @persona %>
@@ -33,11 +33,11 @@
            # generado por cocoon usa el id de la víctima
              # asi que la cambiamos %>
            <% s.gsub!(
-             'lugarpreliminar_listadepositados_attributes_0', 
-             'lugarpreliminar_listadepositados_attributes_' + @listadepositados) %>
+             'lugarpreliminar_listadepositado_attributes_0', 
+             'lugarpreliminar_listadepositado_attributes_' + @listadepositado) %>
            <% s.gsub!(
-             'lugarpreliminar[listadepositados_attributes][0]', 
-             'lugarpreliminar[listadepositados_attributes][' + @listadepositados + ']') %>
+             'lugarpreliminar[listadepositado_attributes][0]', 
+             'lugarpreliminar[listadepositado_attributes][' + @listadepositado + ']') %>
           <%= s.html_safe %>
         <% end %>
         <td>

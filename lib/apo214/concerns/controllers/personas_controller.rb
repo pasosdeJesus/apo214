@@ -55,8 +55,8 @@ module Apo214
           end
 
           def remplazardepositado
-            id_listadepositados = params[:id_listadepositados]
-            @listadepositados = id_listadepositados
+            id_listadepositado = params[:id_listadepositado]
+            @listadepositado = id_listadepositado
             @persona = Msip::Persona.find(params[:persona_id])
             respond_to do |format|
               format.html {
@@ -68,8 +68,8 @@ module Apo214
           end
 
           def remplazarotrafuente
-            id_otrafuente = params[:id_listapersofuentes]
-            @listapersofuentes = id_otrafuente
+            id_otrafuente = params[:id_listapersonafuente]
+            @listapersonafuente = id_otrafuente
             @persona = Msip::Persona.find(params[:persona_id])
             respond_to do |format|
               format.html {

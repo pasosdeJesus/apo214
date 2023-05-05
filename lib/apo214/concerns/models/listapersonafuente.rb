@@ -3,7 +3,7 @@
 module Apo214
   module Concerns
     module Models
-      module Listapersofuentes
+      module Listapersonafuente
         extend ActiveSupport::Concern
 
         included do

@@ -19,11 +19,11 @@
         <th></th>
       </tr>
     </thead>
-   <tbody id="listapersofuentes">
-      <% if f.object.listapersofuentes.empty? %>
-        <% f.object.listapersofuentes.push(Apo214::Listapersofuentes.new) %>
+   <tbody id="listapersonafuente">
+      <% if f.object.listapersonafuente.empty? %>
+        <% f.object.listapersonafuente.push(Apo214::Listapersonafuente.new) %>
       <% end %>
-    <%= f.simple_fields_for :listapersofuentes, include_id: false do |ld| %>
+    <%= f.simple_fields_for :listapersonafuente, include_id: false do |ld| %>
       <tr class='nested-fields filapersona campos_otrafuente'>
           <% if !ld.object.personafuente %>
             <% ld.object.personafuente = @persona %>
@@ -35,20 +35,20 @@
            # generado por cocoon usa el id de la víctima
              # asi que la cambiamos %>
            <% s.gsub!(
-             'lugarpreliminar_listapersofuentes_attributes_0', 
-             'lugarpreliminar_listapersofuentes_attributes_' + @listapersofuentes) %>
+             'lugarpreliminar_listapersonafuente_attributes_0', 
+             'lugarpreliminar_listapersonafuente_attributes_' + @listapersonafuente) %>
            <% s.gsub!(
-             'lugarpreliminar[listapersofuentes_attributes][0]', 
-             'lugarpreliminar[listapersofuentes_attributes][' + @listapersofuentes + ']') %>
+             'lugarpreliminar[listapersonafuente_attributes][0]', 
+             'lugarpreliminar[listapersonafuente_attributes][' + @listapersonafuente + ']') %>
            <%= s.html_safe %>
            <% t = render partial: 'apo214/lugarespreliminares/telefono_y_observacion', 
              locals: { f: ld}  %>
            <% t.gsub!(
-             'lugarpreliminar_listapersofuentes_attributes_0', 
-             'lugarpreliminar_listapersofuentes_attributes_' + @listapersofuentes) %>
+             'lugarpreliminar_listapersonafuente_attributes_0', 
+             'lugarpreliminar_listapersonafuente_attributes_' + @listapersonafuente) %>
            <% t.gsub!(
-             'lugarpreliminar[listapersofuentes_attributes][0]', 
-             'lugarpreliminar[listapersofuentes_attributes][' + @listapersofuentes + ']') %>
+             'lugarpreliminar[listapersonafuente_attributes][0]', 
+             'lugarpreliminar[listapersonafuente_attributes][' + @listapersonafuente + ']') %>
            <%= t.html_safe %>
 
         <% end %>

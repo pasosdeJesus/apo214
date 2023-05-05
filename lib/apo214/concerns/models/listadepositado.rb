@@ -3,7 +3,7 @@
 module Apo214
   module Concerns
     module Models
-      module Listadepositados
+      module Listadepositado
         extend ActiveSupport::Concern
 
         included do

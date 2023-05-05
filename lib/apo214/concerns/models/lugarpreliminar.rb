@@ -88,14 +88,14 @@ module Apo214
           accepts_nested_attributes_for :evaluacionriesgo, reject_if: :all_blank
           validates_associated :evaluacionriesgo
 
-          has_many :listadepositados,
+          has_many :listadepositado,
             dependent: :delete_all,
-            class_name: "Apo214::Listadepositados",
+            class_name: "Apo214::Listadepositado",
             foreign_key: "lugarpreliminar_id"
 
-          has_many :personadepositada, through: :listadepositados, class_name: "Msip::Persona"
+          has_many :personadepositada, through: :listadepositado, class_name: "Msip::Persona"
           accepts_nested_attributes_for :personadepositada, reject_if: :all_blank
-          accepts_nested_attributes_for :listadepositados,
+          accepts_nested_attributes_for :listadepositado,
             allow_destroy: true,
             reject_if: :all_blank
           has_many :listasuelo,
@@ -109,14 +109,14 @@ module Apo214
             reject_if: :all_blank
           accepts_nested_attributes_for :suelo, reject_if: :all_blank
 
-          has_many :listapersofuentes,
+          has_many :listapersonafuente,
             dependent: :delete_all,
-            class_name: "Apo214::Listapersofuentes",
+            class_name: "Apo214::Listapersonafuente",
             foreign_key: "lugarpreliminar_id"
 
-          has_many :personafuente, through: :listapersofuentes, class_name: "Msip::Persona"
+          has_many :personafuente, through: :listapersonafuente, class_name: "Msip::Persona"
           accepts_nested_attributes_for :personafuente, reject_if: :all_blank
-          accepts_nested_attributes_for :listapersofuentes,
+          accepts_nested_attributes_for :listapersonafuente,
             allow_destroy: true,
             reject_if: :all_blank
 
