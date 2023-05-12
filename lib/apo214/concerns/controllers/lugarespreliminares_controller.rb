@@ -118,7 +118,7 @@ module Apo214
                   :id, :descripcion, :adjunto, :_destroy,
                 ],
               ],
-              listadepositados_attributes: [
+              listadepositado_attributes: [
                 :id,
                 :_destroy,
                 personadepositada_attributes: [
@@ -152,7 +152,7 @@ module Apo214
                   :id, :descripcion, :adjunto, :_destroy,
                 ],
               ],
-              listapersofuentes_attributes: [
+              listapersonafuente_attributes: [
                 :id,
                 :telefono,
                 :observacion,
@@ -371,8 +371,8 @@ module Apo214
                 @lugarpreliminar.persona_id = persona.id
               end
             end
-            if lugarpreliminar_params[:listadepositados_attributes]
-              lugarpreliminar_params[:listadepositados_attributes].each do |a|
+            if lugarpreliminar_params[:listadepositado_attributes]
+              lugarpreliminar_params[:listadepositado_attributes].each do |a|
                 # Ubicamos los de autocompletacion
                 next unless a[1] && a[1][:id].nil? &&
                   a[1][:personadepositada_attributes] &&
@@ -383,17 +383,17 @@ module Apo214
                   )
                     .count == 1
 
-                ld = Apo214::Listadepositados.create(
+                ld = Apo214::Listadepositado.create(
                   lugarpreliminar_id: @lugarpreliminar.id,
                   persona_id: a[1][:personadepositada_attributes][:id],
                 )
                 ld.save!(validate: false)
-                params[:lugarpreliminar][:listadepositados_attributes][a[0]
+                params[:lugarpreliminar][:listadepositado_attributes][a[0]
                   .to_s][:id] = ld.id
               end
             end
-            if lugarpreliminar_params[:listapersofuentes_attributes]
-              lugarpreliminar_params[:listapersofuentes_attributes].each do |a|
+            if lugarpreliminar_params[:listapersonafuente_attributes]
+              lugarpreliminar_params[:listapersonafuente_attributes].each do |a|
                 # Ubicamos los de autocompletacion
                 next unless a[1] && a[1][:id].nil? &&
                   a[1][:personafuente_attributes] &&
@@ -403,12 +403,12 @@ module Apo214
                     id: a[1][:personafuente_attributes][:id].to_i,
                   ).count == 1
 
-                lp = Apo214::Listapersofuentes.create(
+                lp = Apo214::Listapersonafuente.create(
                   lugarpreliminar_id: @lugarpreliminar.id,
                   persona_id: a[1][:personafuente_attributes][:id],
                 )
                 lp.save!(validate: false)
-                params[:lugarpreliminar][:listapersofuentes_attributes][a[0]
+                params[:lugarpreliminar][:listapersonafuente_attributes][a[0]
                   .to_s][:id] = lp.id
               end
             end

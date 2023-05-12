@@ -12,18 +12,18 @@
       <th></th>
     </tr>
   </thead>
-  <tbody id="listadepositados">
-    <%= f.simple_fields_for :listadepositados do |a| %>
-      <%= render 'listadepositados_campos', f: a %>
+  <tbody id="listadepositado">
+    <%= f.simple_fields_for :listadepositado do |a| %>
+      <%= render 'listadepositado_campos', f: a %>
     <% end %>
   </tbody>
 </table>
 <div class="links">
   <%= link_to_add_association 'Añadir Depositado', f, 
-    :listadepositados,
-    :"data-association-insertion-node" => "tbody#listadepositados", 
+    :listadepositado,
+    :"data-association-insertion-node" => "tbody#listadepositado", 
     :"data-association-insertion-method" => "append", 
-    partial: 'listadepositados_campos',
+    partial: 'listadepositado_campos',
     :class => 'btn btn-sm btn-primary'
   %>
 </div>

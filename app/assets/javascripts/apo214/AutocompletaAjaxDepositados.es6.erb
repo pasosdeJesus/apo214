@@ -23,10 +23,10 @@ export default class Apo214AutocompletaAjaxDepositados {
       window.alert('No se ubico .campos_depositado')
       return
     }
-    const id_listadepositados = elemIdDepositado.id.split("_")[3]
+    const id_listadepositado = elemIdDepositado.id.split("_")[3]
 
     let d = 'persona_id=' + idPersona
-    d += "&id_listadepositados=" + id_listadepositados
+    d += "&id_listadepositado=" + id_listadepositado
     const a = root + 'remplazardepositado'
 
     window.Rails.ajax({
@@ -50,9 +50,9 @@ export default class Apo214AutocompletaAjaxDepositados {
     let root = "<%= Rails.configuration.relative_url_root %>"
     let url = root + 'personas.json'
     var asistentes = new window.AutocompletaAjaxExpreg(
-      [ /^lugarpreliminar_listadepositados_attributes_[0-9]*_personadepositada_attributes_nombres$/,
-        /^lugarpreliminar_listadepositados_attributes_[0-9]*_personadepositada_attributes_apellidos$/,
-        /^lugarpreliminar_listadepositados_attributes_[0-9]*_personadepositada_attributes_numerodocumento$/ ],
+      [ /^lugarpreliminar_listadepositado_attributes_[0-9]*_personadepositada_attributes_nombres$/,
+        /^lugarpreliminar_listadepositado_attributes_[0-9]*_personadepositada_attributes_apellidos$/,
+        /^lugarpreliminar_listadepositado_attributes_[0-9]*_personadepositada_attributes_numerodocumento$/ ],
       url,
       Apo214AutocompletaAjaxDepositados.idDatalist,
       Apo214AutocompletaAjaxDepositados.operarElegida

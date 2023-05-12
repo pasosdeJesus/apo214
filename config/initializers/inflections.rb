@@ -17,11 +17,11 @@
 #   inflect.acronym 'RESTful'
 # end
 ActiveSupport::Inflector.inflections do |inflect|
-  inflect.irregular("listadepositados", "listasdepositados")
+  inflect.irregular("listadepositado", "listasdepositados")
   inflect.irregular("elementopaisaje", "elementospaisaje")
   inflect.irregular("evaluacionriesgo", "evaluacionesriesgo")
   inflect.irregular("tipotestigo", "tipostestigo")
-  inflect.irregular("listapersofuentes", "listaspersofuentes")
+  inflect.irregular("listapersonafuente", "listaspersonasfuentes")
   inflect.irregular("listaevariesgo", "listasevariesgo")
   inflect.irregular("tipotestigo", "tipostestigo")
   inflect.irregular("disposicioncadaveres", "disposicionescadaveres")

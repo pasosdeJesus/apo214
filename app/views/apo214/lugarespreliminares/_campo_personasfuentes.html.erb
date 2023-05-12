@@ -14,18 +14,18 @@
       <th></th>
     </tr>
   </thead>
-  <tbody id="listapersofuentes">
-    <%= f.simple_fields_for :listapersofuentes do |a| %>
-      <%= render 'listapersofuentes_campos', f: a %>
+  <tbody id="listapersonafuente">
+    <%= f.simple_fields_for :listapersonafuente do |a| %>
+      <%= render 'listapersonafuente_campos', f: a %>
     <% end %>
   </tbody>
 </table>
 <div class="links">
   <%= link_to_add_association 'Añadir Fuente', f, 
-    :listapersofuentes,
-    :"data-association-insertion-node" => "tbody#listapersofuentes", 
+    :listapersonafuente,
+    :"data-association-insertion-node" => "tbody#listapersonafuente", 
     :"data-association-insertion-method" => "append", 
-    partial: 'listapersofuentes_campos',
+    partial: 'listapersonafuente_campos',
     :class => 'btn btn-sm btn-primary'
   %>
 </div>

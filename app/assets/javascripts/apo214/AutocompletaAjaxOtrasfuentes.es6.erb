@@ -23,10 +23,10 @@ export default class Apo214AutocompletaAjaxOtrasfuentes {
       window.alert('No se ubico .campos_otrafuente')
       return
     }
-    const id_listapersofuentes = elemIdOtrafuente.id.split("_")[3]
+    const id_listapersonafuente = elemIdOtrafuente.id.split("_")[3]
 
     let d = 'persona_id=' + idPersona
-    d += "&id_listapersofuentes=" + id_listapersofuentes
+    d += "&id_listapersonafuente=" + id_listapersonafuente
     const a = root + 'remplazarotrafuente'
 
     window.Rails.ajax({
@@ -49,9 +49,9 @@ export default class Apo214AutocompletaAjaxOtrasfuentes {
     let root = "<%= Rails.configuration.relative_url_root %>"
     let url = root + 'personas.json'
     var asistentes = new window.AutocompletaAjaxExpreg(
-      [ /^lugarpreliminar_listapersofuentes_attributes_[0-9]*_personafuente_attributes_nombres$/,
-        /^lugarpreliminar_listapersofuentes_attributes_[0-9]*_personafuente_attributes_apellidos$/,
-        /^lugarpreliminar_listapersofuentes_attributes_[0-9]*_personafuente_attributes_numerodocumento$/ ],
+      [ /^lugarpreliminar_listapersonafuente_attributes_[0-9]*_personafuente_attributes_nombres$/,
+        /^lugarpreliminar_listapersonafuente_attributes_[0-9]*_personafuente_attributes_apellidos$/,
+        /^lugarpreliminar_listapersonafuente_attributes_[0-9]*_personafuente_attributes_numerodocumento$/ ],
       url,
       Apo214AutocompletaAjaxOtrasfuentes.idDatalist,
       Apo214AutocompletaAjaxOtrasfuentes.operarElegida
