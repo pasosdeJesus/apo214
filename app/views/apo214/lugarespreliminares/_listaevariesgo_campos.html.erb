@@ -14,7 +14,8 @@
       <%= a.input :id, as: :hidden %>
       <%= a.association :riesgo, input_html: {value: riesgo.id }, as: :hidden %>
       <td> <%= a.input :descripcion, label: false %> </td>
-      <td> <%= a.input :calificacion, label: false %> </td>
+      <td> <%= a.input :calificacion, as: :select, 
+        collection: 1..5, label: false %> </td>
     </tr>
   <% end %>
 <% end %>
