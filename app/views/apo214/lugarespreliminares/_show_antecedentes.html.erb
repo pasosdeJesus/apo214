@@ -1,0 +1,128 @@
+<div class="row">
+  <div class="col-md-12">
+    <strong>Hechos:</strong>
+    <%= @lugarpreliminar.hechos %>
+  </div>
+  <div class="col-md-12">
+    <strong>Ubicación Específica:</strong>
+    <%= @lugarpreliminar.ubicaespecifica %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <strong>Tipo de Entierro:</strong>
+    <%= @lugarpreliminar.tipoentierro.nombre %>
+  </div>
+  <div class="col-md-3">
+    <strong>Disposición de Cadáveres:</strong>
+    <%= @lugarpreliminar.disposicioncadaveres.nombre %>
+  </div>
+  <div class="col-md-3">
+    <% if @lugarpreliminar.otradisposicioncadaveres.present? %>
+      <strong>Otra Disposición de Cadáveres:</strong>
+      <%= @lugarpreliminar.otradisposicioncadaveres %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <strong>Número estimado de individuos depositados:</strong>
+    <%= @lugarpreliminar.min_depositados %> - <%= @lugarpreliminar.max_depositados %>
+  </div>
+  <div class="col-md-3">
+    <strong>Fecha de disposición:</strong>
+    <%= @lugarpreliminar.fechadis %>
+  </div>
+  <div class="col-md-6">
+    <strong>Hora de disposición:</strong>
+    <%= @lugarpreliminar.horadis.strftime("%I:%M %p") %>
+  </div>
+</div>
+
+</br>
+<div class="row">
+  <div class="col-md-2">
+    <h5>Lugar del asesinato:</h5>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-2">
+        <strong>In situ:</strong>
+        <%= @lugarpreliminar.insitu ? 'Sí' : 'No' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <strong>Detalles:</strong>
+      </div>
+      <div class="col-md-10">
+        <%= @lugarpreliminar.detallesasesinato %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<h4> Personas inhumadas en este sitio </h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><strong>Id:</strong></th>
+      <th scope="col"><strong>Nombres:</strong></th>
+      <th scope="col"><strong>Apellidos:</strong></th>
+      <th scope="col"><strong>Tipo de Documento:</strong></th>
+      <th scope="col"><strong>Número de Documento:</strong></th>
+      <th scope="col"><strong>Sexo:</strong></th>
+      <th scope="col"><strong>Edad:</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @lugarpreliminar.personadepositada.each do |persona| %>
+    <tr>
+      <th scope="row"><%= persona.id %></th>
+      <td> <%= persona.nombres.present? ? persona.nombres : 'N/A' %></td>
+      <td> <%= persona.apellidos %></td>
+      <td> <%= persona.tdocumento.sigla %></td>
+      <td> <%= persona.numerodocumento %></td>
+      <td> <%= persona.sexo %></td>
+      <td> <%= edad_de_fechanac_fecha(@aportante.anionac,
+              @aportante.mesnac, @aportante.dianac, Date.today.year,
+              Date.today.month, Date.today.day) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+<h4> Otras fuentes de información sobre estos hechos </h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><strong>Id:</strong></th>
+      <th scope="col"><strong>Nombres:</strong></th>
+      <th scope="col"><strong>Apellidos:</strong></th>
+      <th scope="col"><strong>Tipo de Documento:</strong></th>
+      <th scope="col"><strong>Número de Documento:</strong></th>
+      <th scope="col"><strong>Sexo:</strong></th>
+      <th scope="col"><strong>Edad:</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @lugarpreliminar.personafuente.each do |persona| %>
+    <tr>
+      <th scope="row"><%= persona.id %></th>
+      <td> <%= persona.nombres.present? ? persona.nombres : 'N/A' %></td>
+      <td> <%= persona.apellidos %></td>
+      <td> <%= persona.tdocumento.sigla %></td>
+      <td> <%= persona.numerodocumento %></td>
+      <td> <%= persona.sexo %></td>
+      <td> <%= edad_de_fechanac_fecha(@aportante.anionac,
+              @aportante.mesnac, @aportante.dianac, Date.today.year,
+              Date.today.month, Date.today.day) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= @lugarpreliminar.detallesdisposicion %>
