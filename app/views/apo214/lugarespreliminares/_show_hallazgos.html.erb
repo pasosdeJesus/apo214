@@ -1,9 +1,14 @@
-<h5>Procesos culturales de formación (intervenciones antrópicas, estructuras, 
+<% if @lugarpreliminar.procesoscul != '' %>
+  <h5>Procesos culturales de formación (intervenciones antrópicas, estructuras, 
   uso del suelo, etc.) </h5>
-<p> <%= @lugarpreliminar.procesoscul %></p>
-<h5>Descripción general de anomalías y otros marcadores arqueológicos de interés forense</h5>
-<p> <%= @lugarpreliminar.desgenanomalia %></p>
+  <p> <%= @lugarpreliminar.procesoscul %></p>
+<% end %>
+<% if @lugarpreliminar.desgenanomalia != '' %>
+  <h5>Descripción general de anomalías y otros marcadores arqueológicos de interés forense</h5>
+  <p> <%= @lugarpreliminar.desgenanomalia %></p>
+<% end %>
 
+<% if @lugarpreliminar.infoanomalia.size > 0 %>
 <table class="table">
   <thead>
     <tr>
@@ -32,14 +37,19 @@
   <% end %>
   </tbody>
 </table>
+<% end %>
 
-<h5>Evaluación del presunto sitio de disposición irregular</h5>
-<p> <%= @lugarpreliminar.evaluacionlugar %></p>
-<h5> Riesgos de daños que tiene o podría tener el sitio</h5>
-<p> <%= @lugarpreliminar.riesgosdanios %></p>
+<% if @lugarpreliminar.evaluacionlugar != '' %>
+  <h5>Evaluación del presunto sitio de disposición irregular</h5>
+  <p> <%= @lugarpreliminar.evaluacionlugar %></p>
+<% end %>
+<% if @lugarpreliminar.riesgosdanios != '' %>
+  <h5> Riesgos de daños que tiene o podría tener el sitio</h5>
+  <p> <%= @lugarpreliminar.riesgosdanios %></p>
+<% end %>
 
+<% if @lugarpreliminar.listainfofoto.size > 0 %>
 <h4> Fotografías </h4>
-
 <table class="table">
   <thead>
     <tr>
@@ -60,9 +70,10 @@
   <% end %>
   </tbody>
 </table>
+<% end %>
 
+<% if @lugarpreliminar.asistente.size > 0 %>
 <h4> Asistencia </h4>
-
 <table class="table">
   <thead>
     <tr>
@@ -82,14 +93,19 @@
   <% end %>
   </tbody>
 </table>
+<% end %>
+
+<% if @lugarpreliminar.archivokml %>
 <h4> Archivo KML </h4>
-<%= @lugarpreliminar.archivokml.descripcion %> </td>
+<%= @lugarpreliminar.archivokml.descripcion %></td>
 <a id="msip_anexo_attributes_<%= @lugarpreliminar.archivokml.id%>_adjunto"
   href="<%= msip.descarga_anexo_path(@lugarpreliminar.archivokml.id) %>", 
   style="text-decoration:none" data-turbo='false'>
            <%= @lugarpreliminar.archivokml.adjunto_file_name %></a>
 
+<% end %>
 <hr>
+<% if @lugarpreliminar.msip_anexo.size > 0 %>
 <h4> Anexos </h4>
 <table class="table">
   <thead>
@@ -112,4 +128,5 @@
   <% end %>
   </tbody>
 </table>
+<% end %>
 
