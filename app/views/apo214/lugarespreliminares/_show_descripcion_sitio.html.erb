@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="col-md-6">
+    <p>
+      <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#privada" aria-expanded="false" aria-controls="privada">
+        <h5>Propiedad privada</h5>
+      </button>
+      <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#publica" aria-expanded="false" aria-controls="privada">
+        <h5>Espacio público</h5>
+      </button>
+    </p>
+  </div>
+</div>
+<div class="collapse multi-collapse filapersona" id="privada">
+  <div class="row">
+    <div class="col-md-12">
+      <p>Nombre de la propiedad: <%= @lugarpreliminar.nombrepropiedad %></p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"><strong>Id:</strong></th>
+            <th scope="col"><strong>Nombres:</strong></th>
+            <th scope="col"><strong>Apellidos:</strong></th>
+            <th scope="col"><strong>Tipo de Documento:</strong></th>
+            <th scope="col"><strong>Número de Documento:</strong></th>
+            <th scope="col"><strong>Sexo:</strong></th>
+            <th scope="col"><strong>Edad:</strong></th>
+            <th scope="col"><strong>Teeléfono:</strong></th>
+            <th scope="col"><strong>Observaciones:</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @lugarpreliminar.personapropietario.each do |persona| %>
+          <tr>
+            <th scope="row"><%= persona.id %></th>
+            <td> <%= persona.nombres.present? ? persona.nombres : 'N/A' %></td>
+            <td> <%= persona.apellidos %></td>
+            <td> <%= persona.tdocumento.sigla %></td>
+            <td> <%= persona.numerodocumento %></td>
+            <td> <%= persona.sexo %></td>
+            <td> <%= edad_de_fechanac_fecha(@aportante.anionac,
+                    @aportante.mesnac, @aportante.dianac, Date.today.year,
+                    Date.today.month, Date.today.day) %></td>
+            <td> <%= @lugarpreliminar.propietario.telefono %></td>
+            <td> <%= @lugarpreliminar.propietario.observaciones %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="collapse multi-collapse" id="publica">
+  <div class="row">
+    <div class="col-md-6">
+      <p>Nombre como se conoce: <%= @lugarpreliminar.nomcomoseconoce %></p>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-6">
+    <p>Elemento de paisaje: <%= @lugarpreliminar.elementopaisaje.nombre %></p>
+  </div>
+  <div class="col-md-6">
+    <p>Cobertura: <%= @lugarpreliminar.cobertura.nombre %></p>
+  </div>
+</div> <!-- row -->
+<div class="row">
+  <div class="col-md-6">
+    <p>Interacciones previas: <%= @lugarpreliminar.interatroprevias %></p>
+  </div>
+  <div class="col-md-6">
+    <p>Interacciones actuales: <%= @lugarpreliminar.interatroactuales %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <p>Usos terrestres previos: <%= @lugarpreliminar.usoterprevios %></p>
+  </div>
+  <div class="col-md-4">
+    <p>Usos terrestres actuales: <%= @lugarpreliminar.usoteractuales %></p>
+  </div>
+  <div class="col-md-4">
+    <p>Acceso a lugar: <%= @lugarpreliminar.accesolugar %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h5 style="text-align: center;"> Riesgos evaluados </h5>
+    <table class="table  table-bordered table-sm ">
+      <thead class="thead-light">
+        <tr>
+          <th span="1" style="width: 30%;">Riesgos</th>
+          <th>Descripción</th>
+          <th span="1" style="width: 15%;">Calificación (1 a 5)*</th>
+        </tr>
+      </thead>
+      <tbody id="listaevariesgo">
+        <% @lugarpreliminar.evaluacionriesgo.each do |eva| %>
+          <tr>
+            <td> <%= eva.riesgo.nombre %></td>
+            <td> <%= eva.descripcion %></td>
+            <td> <%= eva.calificacion %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <p>* La evaluación del grado de riesgo se presenta en una escala 1 a 5: 1 = No se detecta; 2 = Bajo; 3 = Medio; 4 = Alto; 5 = Muy alto.</p>
+  </div>
+</div>
+
+</br>
+<h5>Descripción del suelo</h5>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><strong>Profundidad inicial</strong></th>
+      <th scope="col"><strong>Profundidad final</strong></th>
+      <th scope="col"><strong>Color</strong></th>
+      <th scope="col"><strong>Textura</strong></th>
+      <th scope="col"><strong>Humedad</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @lugarpreliminar.suelo.each do |su| %>
+    <tr>
+      <td> <%= su.profinicial %></td>
+      <td> <%= su.proffinal %></td>
+      <td> <%= su.color %></td>
+      <td> <%= su.textura %></td>
+      <td> <%= su.humedad %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<h5>Observaciones</h5>
+<p><%= @lugarpreliminar.observaciones %></p>
+<h5>Perfil estraigráfico</h5>
+<%= @lugarpreliminar.perfilestratigrafico %>

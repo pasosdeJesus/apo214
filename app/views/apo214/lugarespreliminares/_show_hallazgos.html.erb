@@ -1,0 +1,115 @@
+<h5>Procesos culturales de formación (intervenciones antrópicas, estructuras, 
+  uso del suelo, etc.) </h5>
+<p> <%= @lugarpreliminar.procesoscul %></p>
+<h5>Descripción general de anomalías y otros marcadores arqueológicos de interés forense</h5>
+<p> <%= @lugarpreliminar.desgenanomalia %></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><strong>Anomalía</strong></th>
+      <th scope="col"><strong>Descripción</strong></th>
+      <th scope="col"><strong>Coordenadas</strong></th>
+      <th scope="col"><strong>Área</strong></th>
+      <th scope="col"><strong>Nombre del Waypoint</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @lugarpreliminar.infoanomalia.each do |anomalia| %>
+    <tr>
+      <td> <%= anomalia.anomalia %></td>
+      <td> <%= anomalia.descripcion %></td>
+      <td> <%= anomalia.latitud %>
+           <%= anomalia.longitud %>
+      </td>
+      <td> <%= anomalia.area %></td>
+      <td> 
+        <a id="msip_anexo_attributes_<%= anomalia.msip_anexo.id%>_adjunto"
+           href="<%= msip.descarga_anexo_path(anomalia.msip_anexo.id) %>", 
+           style="text-decoration:none" data-turbo='false'>
+           <%= anomalia.msip_anexo.adjunto_file_name %></a></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h5>Evaluación del presunto sitio de disposición irregular</h5>
+<p> <%= @lugarpreliminar.evaluacionlugar %></p>
+<h5> Riesgos de daños que tiene o podría tener el sitio</h5>
+<p> <%= @lugarpreliminar.riesgosdanios %></p>
+
+<h4> Fotografías </h4>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><strong>Fotografía</strong></th>
+      <th scope="col"><strong>Fecha</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @lugarpreliminar.listainfofoto.each do |foto| %>
+    <tr>
+      <td>
+        <a id="msip_anexo_attributes_<%= foto.msip_anexo.id%>_adjunto"
+           href="<%= msip.descarga_anexo_path(foto.msip_anexo.id) %>", 
+           style="text-decoration:none" data-turbo='false'>
+           <%= foto.msip_anexo.adjunto_file_name %></a></td>
+      <td> <%= foto.fecha %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h4> Asistencia </h4>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><strong>Organización</strong></th>
+      <th scope="col"><strong>Nombre</strong></th>
+      <th scope="col"><strong>Sexo</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lugarpreliminar.asistente.each do |asis| %>
+    <% asisreco = Apo214::Asisreconocimiento.where(persona_id: asis.id)[0] %>
+    <tr>
+      <td> <%= asisreco.organizacion %></td>
+      <td> <%= asis.nombres %> <%= asis.apellidos %> </td>
+      <td> <%= asis.sexo %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<h4> Archivo KML </h4>
+<%= @lugarpreliminar.archivokml.descripcion %> </td>
+<a id="msip_anexo_attributes_<%= @lugarpreliminar.archivokml.id%>_adjunto"
+  href="<%= msip.descarga_anexo_path(@lugarpreliminar.archivokml.id) %>", 
+  style="text-decoration:none" data-turbo='false'>
+           <%= @lugarpreliminar.archivokml.adjunto_file_name %></a>
+
+<hr>
+<h4> Anexos </h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><strong>Anexo</strong></th>
+      <th scope="col"><strong>Fecha</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lugarpreliminar.msip_anexo.each do |ane| %>
+      <% lane = Apo214::Listaanexo.where(anexo_id: ane.id)[0] %>
+    <tr>
+      <td> <%= ane.descripcion %> 
+          <a id="msip_anexo_attributes_<%= ane.id%>_adjunto"
+           href="<%= msip.descarga_anexo_path(ane.id) %>",
+           style="text-decoration:none" data-turbo='false'>
+           <%= ane.adjunto_file_name %></a> </td>
+      <td> <%= lane.fecha %> </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

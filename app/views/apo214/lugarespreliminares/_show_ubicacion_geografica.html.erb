@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="offset-md-0 col-md-6">
+    <h5>País</h5>
+    <p><%= @lugarpreliminar.ubicacionpre_pais.nombre %></p>
+  </div>
+  <div class="col-md-6">
+    <h5>Departamento</h5>
+    <p><%= @lugarpreliminar.ubicacionpre_departamento.nombre %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="offset-md-0 col-md-5">
+    <h5>Municipio</h5>
+    <p><%= @lugarpreliminar.ubicacionpre_municipio.nombre %></p>
+  </div>
+  <div class="col-md-1">
+    <h5>&nbsp;</h5>
+    <button type='button' class='btn btn-secondary btn-xs data-toggle' data-bs-toggle="collapse" data-bs-target='<%= "#resto-#{htmlid},#restocp-#{htmlid}" %>'>
+      <i class="fa fa-expand" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="col-md-6 collapse" id='<%= "restocp-#{htmlid}" %>'>
+    <h5>Centro poblado</h5>
+    <p><%= @lugarpreliminar.ubicacionpre_clase.nombre %></p>
+  </div>
+</div>
+
+<div class="collapse div_ubicacionpre" id='resto-<%= htmlid %>'>
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Barrio o vereda</h5>
+      <p><%= @lugarpreliminar.ubicacionpre_lugar %></p>
+    </div>
+    <div class="col-md-6">
+      <h5>Dirección o finca</h5>
+      <p><%= @lugarpreliminar.ubicacionpre_sitio %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h5>Tipo de sitio</h5>
+      <p><%= @lugarpreliminar.ubicacionpre_tsitio.nombre %></p>
+    </div>
+    <div class="col-md-4">
+      <h5>Latitud</h5>
+      <p><%= @lugarpreliminar.ubicacionpre_latitud_localizado %></p>
+    </div>
+    <div class="col-md-4">
+      <h5>Longitud</h5>
+      <p><%= @lugarpreliminar.ubicacionpre_longitud_localizado %></p>
+    </div>
+  </div>
+</div>

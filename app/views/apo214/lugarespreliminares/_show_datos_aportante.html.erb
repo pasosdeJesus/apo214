@@ -1,0 +1,46 @@
+<div class="dlugarpreliminar">
+  <div class="aportantepreliminar">
+    <div class="campos-aportante">
+      <% @aportante = @lugarpreliminar.persona %>
+      <h3>Información personal</h3>
+      <p><strong>Nombre:</strong> <%= @aportante.nombres %></p>
+      <p><strong>Documento de identidad:</strong> <%= @aportante.numerodocumento %></p>
+      <p><strong>Edad:</strong> <%= edad_de_fechanac_fecha(@aportante.anionac, 
+        @aportante.mesnac, @aportante.dianac, Date.today.year, Date.today.month, Date.today.day) %></p>
+      <p><strong>Sexo:</strong> <%= @aportante.sexo %></p>
+
+      <div class="row">
+        <div class="col-md-4">
+          <strong>Grabación de audio</strong>
+          <p><%= @lugarpreliminar.grabacion ? "Si" : "No" %></p>
+        </div>
+        <div class="col-md-4">
+          <strong>Parentezco</strong>
+          <p><%= @lugarpreliminar.parentezco %></p>
+        </div>
+        <div class="col-md-4">
+          <strong>Teléfono</strong>
+          <p><%= @lugarpreliminar.telefono %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <strong>Tipo de testigo</strong>
+          <p><%= @lugarpreliminar.tipotestigo.nombre %></p>
+        </div>
+        <div class="col-md-4">
+          <% if @lugarpreliminar.tipotestigo && @lugarpreliminar.tipotestigo.id == 4 %>
+            <% estipo = "display: block" %>
+          <% else %>
+            <% estipo = "display: none" %>
+          <% end %>
+          <div class="otrotipotestigo" style="<%= estipo %>">
+            <h3>Otro tipo de testigo</h3>
+            <p><%= @lugarpreliminar.otrotipotestigo %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
