@@ -31,8 +31,10 @@
 
       <div class="row">
         <div class="col-md-4">
-          <strong>Tipo de testigo</strong>
-          <p><%= @lugarpreliminar.tipotestigo.nombre %></p>
+          <% if @lugarpreliminar.tipotestigo %>
+            <strong>Tipo de testigo</strong>
+            <p><%= @lugarpreliminar.tipotestigo.nombre %></p>
+          <% end %>
         </div>
         <div class="col-md-4">
           <% if @lugarpreliminar.tipotestigo && @lugarpreliminar.tipotestigo.id == 4 %>
