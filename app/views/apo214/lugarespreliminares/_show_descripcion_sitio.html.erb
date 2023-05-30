@@ -34,7 +34,7 @@
             <th scope="row"><%= persona.id %></th>
             <td> <%= persona.nombres.present? ? persona.nombres : 'N/A' %></td>
             <td> <%= persona.apellidos %></td>
-            <td> <%= persona.tdocumento.sigla %></td>
+            <td> <%= persona.tdocumento.sigla if persona.tdocumento %></td>
             <td> <%= persona.numerodocumento %></td>
             <td> <%= persona.sexo %></td>
             <td> <%= edad_de_fechanac_fecha(@aportante.anionac,
@@ -50,43 +50,61 @@
   </div>
 </div>
 <div class="collapse multi-collapse" id="publica">
+  <% if @lugarpreliminar.nomcomoseconoce %>
   <div class="row">
     <div class="col-md-6">
       <p>Nombre como se conoce: <%= @lugarpreliminar.nomcomoseconoce %></p>
     </div>
   </div>
+  <% end %>
 </div>
 <br>
+<% if @lugarpreliminar.elementopaisaje %>
 <div class="row">
   <div class="col-md-6">
-    <p>Elemento de paisaje: <%= @lugarpreliminar.elementopaisaje.nombre %></p>
+    <p>Elemento de paisaje: 
+    <%= @lugarpreliminar.elementopaisaje.nombre if @lugarpreliminar.
+    elementopaisaje %></p>
   </div>
   <div class="col-md-6">
-    <p>Cobertura: <%= @lugarpreliminar.cobertura.nombre %></p>
+    <p>Cobertura: <%= @lugarpreliminar.cobertura.nombre if @lugarpreliminar.
+      cobertura %></p>
   </div>
 </div> <!-- row -->
+<% end %>
 <div class="row">
   <div class="col-md-6">
+    <% if @lugarpreliminar.interatroprevias != ''  %>
     <p>Interacciones previas: <%= @lugarpreliminar.interatroprevias %></p>
+    <% end %>
   </div>
   <div class="col-md-6">
+    <% if @lugarpreliminar.interatroactuales != '' %>
     <p>Interacciones actuales: <%= @lugarpreliminar.interatroactuales %></p>
+    <% end %>
   </div>
 </div>
 <div class="row">
   <div class="col-md-4">
+    <% if @lugarpreliminar.usoterprevios != '' %>
     <p>Usos terrestres previos: <%= @lugarpreliminar.usoterprevios %></p>
+    <% end %>
   </div>
   <div class="col-md-4">
+    <% if @lugarpreliminar.usoteractuales != '' %>
     <p>Usos terrestres actuales: <%= @lugarpreliminar.usoteractuales %></p>
+    <% end %>
   </div>
   <div class="col-md-4">
+    <% if @lugarpreliminar.accesolugar != '' %>
     <p>Acceso a lugar: <%= @lugarpreliminar.accesolugar %></p>
+    <% end %>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-12">
+    <% if @lugarpreliminar.evaluacionriesgo.size > 0 %>
     <h5 style="text-align: center;"> Riesgos evaluados </h5>
     <table class="table  table-bordered table-sm ">
       <thead class="thead-light">
@@ -107,10 +125,12 @@
       </tbody>
     </table>
     <p>* La evaluación del grado de riesgo se presenta en una escala 1 a 5: 1 = No se detecta; 2 = Bajo; 3 = Medio; 4 = Alto; 5 = Muy alto.</p>
+    <% end %>
   </div>
 </div>
 
 </br>
+<% if @lugarpreliminar.suelo.size > 0 %>
 <h5>Descripción del suelo</h5>
 <table class="table">
   <thead>
@@ -134,7 +154,12 @@
   <% end %>
   </tbody>
 </table>
-<h5>Observaciones</h5>
-<p><%= @lugarpreliminar.observaciones %></p>
-<h5>Perfil estraigráfico</h5>
-<%= @lugarpreliminar.perfilestratigrafico %>
+<% end %>
+<% if @lugarpreliminar.observaciones =! '' %>
+  <h5>Observaciones</h5>
+  <p><%= @lugarpreliminar.observaciones %></p>
+<% end %>
+<% if @lugarpreliminar.perfilestratigrafico =! '' %>
+  <h5>Perfil estraigráfico</h5>
+  <%= @lugarpreliminar.perfilestratigrafico %>
+<% end %>

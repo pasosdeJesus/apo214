@@ -5,8 +5,13 @@
       <h3>Información personal</h3>
       <p><strong>Nombre:</strong> <%= @aportante.nombres %></p>
       <p><strong>Documento de identidad:</strong> <%= @aportante.numerodocumento %></p>
-      <p><strong>Edad:</strong> <%= edad_de_fechanac_fecha(@aportante.anionac, 
+      <p><strong>Edad:
+        <% if @aportante.anionac %>
+        </strong> <%= edad_de_fechanac_fecha(@aportante.anionac, 
         @aportante.mesnac, @aportante.dianac, Date.today.year, Date.today.month, Date.today.day) %></p>
+        <% else %>
+          <strong> No indica </strong>
+        <% end %>
       <p><strong>Sexo:</strong> <%= @aportante.sexo %></p>
 
       <div class="row">
