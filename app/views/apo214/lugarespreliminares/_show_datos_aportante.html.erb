@@ -3,29 +3,41 @@
     <div class="campos-aportante">
       <% @aportante = @lugarpreliminar.persona %>
       <h3>Información personal</h3>
-      <p><strong>Nombre:</strong> <%= @aportante.nombres %></p>
-      <p><strong>Documento de identidad:</strong> <%= @aportante.numerodocumento %></p>
-      <p><strong>Edad:
+      <p>
+        <strong>Nombre:</strong> <%= @aportante.nombres if @aportante != '' %>
+      </p>
+      <p>
+        <strong>Documento de identidad:</strong>
+        <%= @aportante.numerodocumento if @aportante.numerodocumento %>
+      </p>
+      <p>
+        <strong>Edad:</strong>
         <% if @aportante.anionac %>
-        </strong> <%= edad_de_fechanac_fecha(@aportante.anionac, 
-        @aportante.mesnac, @aportante.dianac, Date.today.year, Date.today.month, Date.today.day) %></p>
+           <%= edad_de_fechanac_fecha(@aportante.anionac, 
+            @aportante.mesnac, @aportante.dianac, 
+            Date.today.year, Date.today.month, Date.today.day) %></p>
         <% else %>
           <strong> No indica </strong>
         <% end %>
-      <p><strong>Sexo:</strong> <%= @aportante.sexo %></p>
-
+        <% if @aportante.anionac %>
+          <p><strong>Sexo:</strong> <%= @aportante.sexo %></p>
+        <% end %>
       <div class="row">
         <div class="col-md-4">
           <strong>Grabación de audio</strong>
           <p><%= @lugarpreliminar.grabacion ? "Si" : "No" %></p>
         </div>
         <div class="col-md-4">
-          <strong>Parentezco</strong>
-          <p><%= @lugarpreliminar.parentezco %></p>
+          <% if @lugarpreliminar.parentezco %>
+            <strong>Parentezco</strong>
+            <p><%= @lugarpreliminar.parentezco %></p>
+          <% end %>
         </div>
         <div class="col-md-4">
-          <strong>Teléfono</strong>
-          <p><%= @lugarpreliminar.telefono %></p>
+          <% if @lugarpreliminar.telefono %>
+            <strong>Teléfono</strong>
+            <p><%= @lugarpreliminar.telefono %></p>
+          <% end %>
         </div>
       </div>
 
@@ -43,8 +55,10 @@
             <% estipo = "display: none" %>
           <% end %>
           <div class="otrotipotestigo" style="<%= estipo %>">
-            <h3>Otro tipo de testigo</h3>
-            <p><%= @lugarpreliminar.otrotipotestigo %></p>
+            <% if @lugarpreliminar.otrotipotestigo %>
+              <h3>Otro tipo de testigo</h3>
+              <p><%= @lugarpreliminar.otrotipotestigo %></p>
+            <% end %>
           </div>
         </div>
       </div>

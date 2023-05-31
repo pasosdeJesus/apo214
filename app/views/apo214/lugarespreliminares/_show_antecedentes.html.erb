@@ -136,4 +136,6 @@
   </tbody>
 </table>
 <% end %>
-<%= @lugarpreliminar.detallesdisposicion %>
+<% if @lugarpreliminar.detallesdisposicion != '' %>
+  <%= @lugarpreliminar.detallesdisposicion %>
+<% end %>

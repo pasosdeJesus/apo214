@@ -1,21 +1,29 @@
 <div class="row">
   <div class="col-md-6">
-    <strong>Fecha</strong>
-    <p><%= @lugarpreliminar.fecha %></p>
+    <% if @lugarpreliminar.fecha %>
+      <strong>Fecha</strong>
+      <p><%= @lugarpreliminar.fecha %></p>
+    <% end %>
   </div>
   <div class="col-md-6">
-    <strong>Código Sitio</strong>
-    <p><%= @lugarpreliminar.codigositio %></p>
+    <% if @lugarpreliminar.codigositio != '' %>
+      <strong>Código Sitio</strong>
+      <p><%= @lugarpreliminar.codigositio %></p>
+    <% end %>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-6">
-    <strong>Nombre Usuario</strong>
-    <p><%= @lugarpreliminar.nombreusuario %></p>
+    <% if @lugarpreliminar.nombreusuario != '' %>
+      <strong>Nombre Usuario</strong>
+      <p><%= @lugarpreliminar.nombreusuario %></p>
+    <% end %>
   </div>
   <div class="col-md-6">
-    <strong>Organización</strong>
-    <p><%= @lugarpreliminar.organizacion %></p>
+    <% if @lugarpreliminar.organizacion != '' %>
+      <strong>Organización</strong>
+      <p><%= @lugarpreliminar.organizacion %></p>
+    <% end %>
   </div>
 </div>

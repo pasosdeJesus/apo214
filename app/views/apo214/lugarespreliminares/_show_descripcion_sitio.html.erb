@@ -13,7 +13,10 @@
 <div class="collapse multi-collapse filapersona" id="privada">
   <div class="row">
     <div class="col-md-12">
+    <% if @lugarpreliminar.nombrepropiedad != '' %>
       <p>Nombre de la propiedad: <%= @lugarpreliminar.nombrepropiedad %></p>
+    <% end %>
+    <% if @lugarpreliminar.personapropietario.size > 0 %>
       <table class="table">
         <thead>
           <tr>
@@ -46,11 +49,12 @@
         <% end %>
         </tbody>
       </table>
+    <% end %>
     </div>
   </div>
 </div>
 <div class="collapse multi-collapse" id="publica">
-  <% if @lugarpreliminar.nomcomoseconoce %>
+  <% if @lugarpreliminar.nomcomoseconoce != '' %>
   <div class="row">
     <div class="col-md-6">
       <p>Nombre como se conoce: <%= @lugarpreliminar.nomcomoseconoce %></p>
