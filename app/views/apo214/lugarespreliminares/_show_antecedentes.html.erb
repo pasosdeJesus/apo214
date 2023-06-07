@@ -93,7 +93,7 @@
       <th scope="row"><%= persona.id %></th>
       <td> <%= persona.nombres.present? ? persona.nombres : 'N/A' %></td>
       <td> <%= persona.apellidos %></td>
-      <td> <%= persona.tdocumento.sigla %></td>
+      <td> <%= persona.tdocumento.sigla if persona.tdocumento %></td>
       <td> <%= persona.numerodocumento %></td>
       <td> <%= persona.sexo %></td>
       <td> <%= edad_de_fechanac_fecha(@aportante.anionac,

@@ -2,26 +2,28 @@
   <div class="aportantepreliminar">
     <div class="campos-aportante">
       <% @aportante = @lugarpreliminar.persona %>
-      <h3>Información personal</h3>
-      <p>
-        <strong>Nombre:</strong> <%= @aportante.nombres if @aportante != '' %>
-      </p>
-      <p>
+      <h3>Información personal del aportante</h3>
+      <% if @aportante %>
+        <p>
+        <strong>Nombre:</strong> <%= @aportante.nombres %>
+        </p>
+        <p>
         <strong>Documento de identidad:</strong>
         <%= @aportante.numerodocumento if @aportante.numerodocumento %>
-      </p>
-      <p>
+        </p>
+        <p>
         <strong>Edad:</strong>
         <% if @aportante.anionac %>
-           <%= edad_de_fechanac_fecha(@aportante.anionac, 
-            @aportante.mesnac, @aportante.dianac, 
-            Date.today.year, Date.today.month, Date.today.day) %></p>
+          <%= edad_de_fechanac_fecha(@aportante.anionac, 
+                                     @aportante.mesnac, @aportante.dianac, 
+                                     Date.today.year, Date.today.month, Date.today.day) %></p>
         <% else %>
           <strong> No indica </strong>
         <% end %>
-        <% if @aportante.anionac %>
+        <% if @aportante.sexo %>
           <p><strong>Sexo:</strong> <%= @aportante.sexo %></p>
         <% end %>
+      <% end %>
       <div class="row">
         <div class="col-md-4">
           <strong>Grabación de audio</strong>
