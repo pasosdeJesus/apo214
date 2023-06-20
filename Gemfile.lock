@@ -26,10 +26,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 70aef02c4b7cda1e7a53672c22f298a908ceba7c
+  revision: c2ecf333866d34b275e0eea9364e8cdbd961bee5
   branch: main
   specs:
-    heb412_gen (2.2.0.beta2)
+    heb412_gen (2.2.0.beta4)
       mr519_gen
       msip
       redcarpet
@@ -37,19 +37,19 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 894fe324a7d881e77e9b3a1cd985bda1324e45c7
+  revision: 13ab9a3e7762c6e893debb504b0983a97d25b27d
   branch: main
   specs:
-    mr519_gen (2.2.0.beta2)
+    mr519_gen (2.2.0.beta4)
       msip
       rails
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: cbbf443dc7ed5ee29358c94560276d43dc679ff9
+  revision: b3813de4742a5a907c89232806c8df484f1f8948
   branch: main
   specs:
-    msip (2.2.0.beta2)
+    msip (2.2.0.beta4)
       cancancan (~> 3)
       devise (~> 4)
       devise-i18n (~> 1)
@@ -66,10 +66,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 4a8ae3d38e197cee7ed7e12d79a08e65febc2ff4
+  revision: b686eed93eed8089e83eed1c6b3444f80eb34bbd
   branch: main
   specs:
-    sivel2_gen (2.2.0.beta2)
+    sivel2_gen (2.2.0.beta4)
       color
       devise
       rails
@@ -77,7 +77,7 @@ GIT
 PATH
   remote: .
   specs:
-    apo214 (2.2.0.beta2)
+    apo214 (2.2.0.beta4)
       msip
       rails
 
@@ -192,7 +192,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     color (1.8)
-    colorize (0.8.1)
+    colorize (1.0.1)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     cuprite (0.14.3)
@@ -240,7 +240,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    jsbundling-rails (1.1.1)
+    jsbundling-rails (1.1.2)
       railties (>= 6.0.0)
     json (2.6.3)
     libxml-ruby (4.1.1)
@@ -260,7 +260,7 @@ GEM
     mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
     mini_portile2 (2.8.2)
-    minitest (5.18.0)
+    minitest (5.18.1)
     msgpack (1.7.1)
     net-imap (0.3.6)
       date
@@ -365,7 +365,7 @@ GEM
       parser (>= 3.2.1.0)
     rubocop-minitest (0.31.0)
       rubocop (>= 1.39, < 2.0)
-    rubocop-rails (2.19.1)
+    rubocop-rails (2.20.2)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
