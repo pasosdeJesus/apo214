@@ -30,7 +30,7 @@ module Apo214Demo
       :all,
     ]
 
-    config.x.formato_fecha = (ENV["SIP_FORMATO_FECHA"] ||
+    config.x.formato_fecha = (ENV["MSIP_FORMATO_FECHA"] ||
                               "yyyy-mm-dd")
 
     config.x.heb412_ruta = (ENV["HEB412_RUTA"] ||
