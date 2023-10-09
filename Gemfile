@@ -47,7 +47,7 @@ gem "prawnto_2", require: "prawnto"
 
 gem "prawn-table"
 
-gem "rails", "~> 7.0"
+gem "rails", ">= 7.0", "< 7.1"
 
 gem "rails-i18n"
 
