@@ -14,7 +14,7 @@ gem "bcrypt"
 
 gem "best_in_place", git: "https://github.com/mmotherwell/best_in_place"
 
-gem "bootsnap", ">=1.1.0", require: false
+gem "bootsnap", require: false
 
 gem "cancancan" # Control de acceso
 
@@ -47,7 +47,7 @@ gem "prawnto_2", require: "prawnto"
 
 gem "prawn-table"
 
-gem "rails", ">= 7.0", "< 7.1"
+gem "rails", "~> 7.1"
 
 gem "rails-i18n"
 
@@ -55,7 +55,7 @@ gem "redcarpet" # Descripciones en heb412_gen
 
 gem "rspreadsheet" # Genera ODS
 
-gem "rubyzip", ">= 2.0"
+gem "rubyzip"
 
 gem "sassc-rails" # Hojas de estilo con SCSS
 
@@ -65,7 +65,7 @@ gem "sprockets-rails"
 
 gem "stimulus-rails"
 
-gem "turbo-rails", "~> 1.0"
+gem "turbo-rails"
 
 gem "twitter_cldr" # Localiación e internacionalización
 
