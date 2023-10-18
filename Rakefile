@@ -1,9 +1,10 @@
+# encoding: utf-8
 # frozen_string_literal: true
 
 begin
   require "bundler/setup"
 rescue LoadError
-  puts "You must `gem install bundler` and `bundle install` to run rake tasks"
+  puts "Debe instalar `gem install bundler` y `bundle install` para correr tareas rake"
 end
 
 require "rdoc/task"
@@ -16,19 +17,11 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include("lib/**/*.rb")
 end
 
-APP_RAKEFILE = File.expand_path("test/dummy/Rakefile", __dir__)
+APP_RAKEFILE = File.expand_path("../test/dummy/Rakefile", __FILE__)
 load "rails/tasks/engine.rake"
 
-load "rails/tasks/statistics.rake"
-
-require "bundler/gem_tasks"
-
-require "rake/testtask"
-
-Rake::TestTask.new(:test) do |t|
-  t.libs << "test"
-  t.pattern = "test/**/*_test.rb"
-  t.verbose = false
+Bundler::GemHelper.install_tasks
+if ENV["CONFIG_HOSTS"]
+  ENV["CONFIG_HOSTS"] = "www.example.com"
 end
-
-task default: :test
+task default: "app:test"

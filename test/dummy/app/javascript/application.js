@@ -3,11 +3,15 @@
 console.log('Hola Mundo desde ESM')
 
 import Rails from "@rails/ujs";
-Rails.start();
-window.Rails = Rails
+if (typeof window.Rails == 'undefined') { 
+  Rails.start();
+  window.Rails = Rails;
+}
+
+import "@hotwired/turbo-rails"
 
 import './jquery'
-import '../../vendor/assets/javascripts/jquery-ui.js'
+//import '../../vendor/assets/javascripts/jquery-ui.js'
 
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
 import * as bootstrap from 'bootstrap'              // Maquetacion y elementos de diseño
