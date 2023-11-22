@@ -15,7 +15,7 @@ Apo214Demo::Application.load_tasks # providing your application name is 'sample'
 class ActiveSupport::TestCase
   # fixtures :all
 
-  if Msip::Tclase.all.count == 0
+  if Msip::Tcentropoblado.all.count == 0
     load "#{Rails.root}/db/seeds.rb"
     # Rake::Task[].reenable # in case you're going to invoke the same task second time.
     Rake::Task["msip:indices"].invoke
