@@ -2,7 +2,20 @@
 
 require_relative "boot"
 
-require "rails/all"
+require "rails"
+# Elige los marcos de trabajo que necesitas:
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+# require "active_storage/engine"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+# require "action_mailbox/engine"
+# require "action_text/engine"
+require "action_view/railtie"
+# require "action_cable/engine"
+require "rails/test_unit/railtie"
+
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -36,6 +49,9 @@ module Apo214Demo
     config.x.heb412_ruta = (ENV["HEB412_RUTA"] ||
                             Rails.public_path.join("heb412"))
 
+    config.relative_url_root = ENV.fetch(
+      "RUTA_RELATIVA", "/apo214"
+    )
     config.hosts.concat(
       ENV.fetch("CONFIG_HOSTS", "defensor.info").downcase.split(";"),
     )
