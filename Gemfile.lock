@@ -26,8 +26,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 1fb4ec862836e856151504f4084fb4701c1b990d
-  branch: main
+  revision: 48e3315154e96603871a5b8554f1f8d05291669a
+  branch: rails7.0fin
   specs:
     heb412_gen (2.2.0.beta4)
       mr519_gen
@@ -37,8 +37,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: abf5d908f6dc000193ed45b1845ea9d4ca06b9b8
-  branch: main
+  revision: b874b659b07c76638147e803d5a4084f9bc3edea
+  branch: rails7.0fin
   specs:
     mr519_gen (2.2.0.beta4)
       msip
@@ -46,8 +46,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: aafe487e6d7c568918452f6104d54d84927d317d
-  branch: main
+  revision: 89a073192a6f27559237d1966c044aeaee7c8837
+  branch: rails7.0fin
   specs:
     msip (2.2.0.beta4)
       cancancan (~> 3)
@@ -66,8 +66,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 84100198af84340b2c15f261b6a9faf770974f06
-  branch: main
+  revision: d19d8d713c3fab08343364a7bbeda7c9c7f8a163
+  branch: rails7.0fin
   specs:
     sivel2_gen (2.2.0.beta4)
       color
