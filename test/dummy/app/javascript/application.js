@@ -15,6 +15,7 @@ import 'chosen-js/chosen.jquery';       // Cuadros de seleccion potenciados
 import 'bootstrap-datepicker'
 import 'bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js'
 
+
 // Apexcharts
 import ApexCharts from 'apexcharts'
 window.ApexCharts = ApexCharts
@@ -30,6 +31,23 @@ import 'gridstack'
 // Leaflet
 var L = require('leaflet');
 var mc= require('leaflet.markercluster');
+
+
+import Msip__Motor from "./controllers/msip/motor"
+window.Msip__Motor = Msip__Motor
+Msip__Motor.iniciar()
+import Mr519Gen__Motor from "./controllers/mr519_gen/motor"
+window.Mr519Gen__Motor = Mr519Gen__Motor
+Mr519Gen__Motor.iniciar()
+import Heb412Gen__Motor from "./controllers/heb412_gen/motor"
+window.Heb412Gen__Motor = Heb412Gen__Motor
+Heb412Gen__Motor.iniciar()
+import Apo214__Motor from "./controllers/apo214/motor"
+window.Apo214__Motor = Apo214__Motor
+Apo214__Motor.iniciar()
+import Sivel2Gen__Motor from "./controllers/sivel2_gen/motor"
+window.Sivel2Gen__Motor = Sivel2Gen__Motor
+Sivel2Gen__Motor.iniciar()
 
 import plotly_serietiempo_actos from './plotly_actos'
 
@@ -65,6 +83,12 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   apo214_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_unicos(root);
 
+  Msip__Motor.ejecutarAlCargarDocumentoYRecursos()
+  Mr519Gen__Motor.ejecutarAlCargarDocumentoYRecursos()
+  Heb412Gen__Motor.ejecutarAlCargarDocumentoYRecursos()
+  Apo214__Motor.ejecutarAlCargarDocumentoYRecursos()
+  Sivel2Gen__Motor.ejecutarAlCargarDocumentoYRecursos()
+
   var p = new URL(document.URL).pathname.split('/')
   var p2ult = ''
   if (p.length>2) { 
@@ -86,8 +110,12 @@ document.addEventListener('turbo:load', (e) => {
   
   console.log('Escuchador turbo:load')
 
-  msip_ejecutarAlCargarPagina(window) // Establece root.puntomontaje 
+  msip_ejecutarAlCargarPagina(window) // Establece root.puntomontaje
   Msip__Motor.ejecutarAlCargarPagina()
+  Mr519Gen__Motor.ejecutarAlCargarPagina()
+  Heb412Gen__Motor.ejecutarAlCargarPagina()
+  Apo214__Motor.ejecutarAlCargarPagina()
+  Sivel2Gen__Motor.ejecutarAlCargarPagina()
 })
 
 import "./controllers"
